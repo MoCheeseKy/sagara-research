@@ -1,24 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+import HomeScreen from './screens/index.jsx';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense fallback={<>Loading</>}>
+      <Routes>
+        <Route path='/' element={<HomeScreen />} />
+        <Route
+          path='/whitepapers/explore-whitepapers'
+          element={<>Halaman Explore Whitepapers</>}
+        />
+        <Route
+          path='/whitepapers/detail'
+          element={<>Halaman Whitepapers Detail</>}
+        />
+        <Route path='/about-us/our-teams' element={<>Halaman Our Teams</>} />
+        <Route
+          path='/about-us/our-teams/team-detail'
+          element={<>Halaman Team Detail</>}
+        />
+        <Route
+          path='/about-us/sagara-research'
+          element={<>Halaman Sagara Research</>}
+        />
+        <Route path='/contact-us' element={<>Testing 5</>} />
+
+        {/* Handle Not Found */}
+        <Route
+          path='*'
+          element={
+            <center>
+              <h1>Oops! That page can't be found.</h1>
+              <p>
+                It looks like nothing was found at this location. Maybe try
+                other link ?
+              </p>
+            </center>
+          }
+        />
+      </Routes>
+    </Suspense>
   );
 }
 
