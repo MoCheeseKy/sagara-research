@@ -36,8 +36,9 @@ export default function ContactUsComponent() {
               className='mb-[16px]'
             />
             <Typography.MediumText
-              text='Your feedback is invaluable, please dont hesitate to get in touch with us <br/>
-We appreciate your trust and look forward to assisting you with any inquiries you may have'
+              text='Your feedback is invaluable, please dont hesitate to get in touch with us 
+              <br/>
+              We appreciate your trust and look forward to assisting you with any inquiries you may have'
             />
             <div className='flex items-center gap-2'>
               <MdCall className='text-[#e31937] text-base' />
