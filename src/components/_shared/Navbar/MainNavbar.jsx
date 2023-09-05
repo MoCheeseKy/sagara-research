@@ -7,13 +7,13 @@ import { DownOutlined } from '@ant-design/icons';
 export default function MainNavbar() {
   return (
     <>
-      <nav className='flex items-center justify-between py-4 px-10'>
+      <nav className='flex fixed bg-white w-full items-center justify-between box-border py-4 px-10  shadow-[0_35px_60px_-15px_rgba(0,0,0,0.12)]'>
         <div className='flex gap-[70px]'>
           <div>
             <a href='home'>
               <img
                 src='/assets/Images/sagara-logo-bl.png'
-                className='w-[144px]'
+                className='w-[124px]'
                 alt=''
               />
             </a>
