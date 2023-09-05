@@ -1,11 +1,11 @@
 import React from 'react';
-import Typography from '../Typography'
+import Typography from '../Typography';
 
 export default function MainFooter() {
   return (
     <>
-      <div className='wrapper w-100%'>
-        <footer className='flex space-x-10 bg-[#303030] py-[40px] text-white gap-5 pl-[5rem] pr-[5rem]' >
+      <div className='w-100%'>
+        <footer className='flex space-x-10 bg-[#303030] py-[40px] text-white gap-5 pl-[5rem] pr-[5rem]'>
           <div className='w-32'>
             <Typography.LargeText text='JAKARTA' className='mb-[15px]' />
             <Typography.MediumText text='Wisma KGBI Jl.Jend.Sudirman Kav.28 Bendungan Hilir, Kecamatan Tanah Abang, Jakarta Pusat, DKI Jakarta 10210' />
@@ -39,17 +39,25 @@ export default function MainFooter() {
             </a>
           </div>
           <div className='w-18'>
-            <Typography.LargeText text='LETS KEEP IN TOUCH' className='mb-[15px] gap-2' />
+            <Typography.LargeText
+              text='LETS KEEP IN TOUCH'
+              className='mb-[15px] gap-2'
+            />
             <a href='/'>
-              <Typography.MediumText text='Dont miss any topics from the great people here.
+              <Typography.MediumText
+                text='Dont miss any topics from the great people here.
               <br />
-              Join our Newsletter!' />
+              Join our Newsletter!'
+              />
             </a>
           </div>
         </footer>
         {/* Copyrights */}
         <div className='flex justify-center items-center bg-[#303030] border-t-[1px] border-white py-[15px]'>
-          <Typography.SmallText text='© 2023 Sagara Research | All Rights Reserved.' className='gap-2 text-white ' />
+          <Typography.SmallText
+            text='© 2023 Sagara Research | All Rights Reserved.'
+            className='gap-2 text-white '
+          />
         </div>
       </div>
     </>

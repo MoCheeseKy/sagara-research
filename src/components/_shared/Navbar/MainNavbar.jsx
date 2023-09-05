@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 export default function MainNavbar() {
   return (
     <>
-      <nav className='flex fixed bg-white w-full items-center justify-between box-border py-4 px-10  shadow-[0_35px_60px_-15px_rgba(0,0,0,0.12)]'>
+      <nav className='flex fixed z-[999] bg-white w-full items-center justify-between box-border py-4 px-10  shadow-[0_35px_60px_-15px_rgba(0,0,0,0.12)]'>
         <div className='flex gap-[70px]'>
           <div>
             <Link to='/'>
