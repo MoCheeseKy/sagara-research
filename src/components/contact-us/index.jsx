@@ -6,9 +6,10 @@ import CustomInput from '../_shared/Form/CustomInput';
 import { MdCall } from 'react-icons/md';
 import { HiMail } from 'react-icons/hi';
 
-import { Form } from 'antd';
+import { Form, Input } from 'antd';
 
 export default function ContactUsComponent() {
+  const { TextArea } = Input;
   const [form] = Form.useForm();
   const initialValues = {
     name: '',
@@ -88,14 +89,13 @@ We appreciate your trust and look forward to assisting you with any inquiries yo
                     />
                   </Form.Item>
                   <Form.Item label='Description' name='description'>
-                    <CustomInput
+                    <TextArea
                       placeholder='Input Description'
-                      type='text'
                       className='py-[10px] px-[18px]'
                     />
                   </Form.Item>
                   <div className='flex justify-end'>
-                    <CustomButton text='Submit' />
+                    <CustomButton text='Submit' type='submit' />
                   </div>
                 </div>
               </Form>
