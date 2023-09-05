@@ -59,8 +59,8 @@ export default function LandingComponent() {
               text='Recent Blog'
               className='mb-10'
             />
-            <div className='grid grid-cols-3 gap-[20px]'>
-              <div className='h-[420px]  p-0 rounded-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover'>
+            <div className='grid grid-cols-3 gap-[20px] w-full'>
+              <div className='h-[420px] p-0 rounded-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover'>
                 <span className="">Tips</span>
                 <Typography.MediumText
                   text='Skills Gap Within Organization'
@@ -72,7 +72,7 @@ export default function LandingComponent() {
                   className='px-3 text-white'
                 />
               </div>
-              <div className='h-[420px]  p-0 rounded-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover'>
+              <div className='h-[420px] p-0 rounded-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover'>
                 <span className="">Tips</span>
                 <Typography.MediumText
                   text='Skills Gap Within Organization'
@@ -84,7 +84,7 @@ export default function LandingComponent() {
                   className='px-3 text-white'
                 />
               </div>
-              <div className='h-[420px]  p-0 rounded-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover'>
+              <div className='h-[420px] p-0 rounded-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover'>
                 <span className="">Tips</span>
                 <Typography.MediumText
                   text='Skills Gap Within Organization'
