@@ -90,7 +90,7 @@ By fostering a culture of sharing knowledge, data, and resources, we believe tha
               </Link>
             </div>
           </div>
-          <div className='w-full flex flex-col md:flex-row gap-[30px]'>
+          <div className='w-full flex flex-col-reverse md:flex-row gap-[30px]'>
             <div className='flex flex-col flex-grow'>
               <Typography.LargeHeading text='Our Journey' className='mb-4' />
               <Typography.MediumText text='Collaboration is at the core of our journey. We believe that the best ideas come from diverse perspectives working together. Our team fosters a culture of open communication, mutual respect, and synergy. By combining our unique strengths and skills, we create a powerful force for innovation.' />
