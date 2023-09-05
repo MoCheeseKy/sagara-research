@@ -2,6 +2,8 @@ import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Landing from './screens';
+import OurTeams from './screens/about-us/our-teams';
+import TeamDetail from './screens/about-us/our-teams/team-detail';
 import ContactUs from './screens/contact-us';
 
 function App() {
@@ -17,10 +19,10 @@ function App() {
           path='/whitepapers/detail'
           element={<>Halaman Whitepapers Detail</>}
         />
-        <Route path='/about-us/our-teams' element={<>Halaman Our Teams</>} />
+        <Route path='/about-us/our-teams' element={<OurTeams />} />
         <Route
           path='/about-us/our-teams/team-detail'
-          element={<>Halaman Team Detail</>}
+          element={<TeamDetail />}
         />
         <Route
           path='/about-us/sagara-research'
