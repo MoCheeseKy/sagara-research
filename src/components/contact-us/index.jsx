@@ -27,6 +27,7 @@ export default function ContactUsComponent() {
   };
   return (
     <>
+      <div className='pt-[77px]'></div>
       <div className='py-16 flex flex-col items-center justify-center'>
         <div className='flex flex-col items-center px-[15px] w-full md:w-[85%] max-w-[1080px]'>
           <div className='flex flex-col justify-center items-center text-center mb-[60px]'>
