@@ -11,7 +11,7 @@ export default function TeamDetailComponent() {
           <div className='min-w-[320px] aspect-[3/4] bg-cover bg-center bg-[url(/public/assets/Images/arif.png)] rounded'></div>
           <div className='flex flex-col flex-grow items-start'>
             <Typography.LargeHeading
-              className='text-[#e31937]'
+              className='text-[#a51535]'
               text='Arif Dzikrullah'
               bold
             />
@@ -25,10 +25,10 @@ export default function TeamDetailComponent() {
               <Typography.MediumText text='Johns holds bachelor degree in Computer Science from Takushoku University Japan.' />
               <a href='google.com'>
                 <div className='flex gap-2 items-center'>
-                  <BsLinkedin className='text-[#e31937] text-base' />
+                  <BsLinkedin className='text-[#a51535] text-base' />
                   <Typography.MediumText
                     text='Linkedin'
-                    className='hover:text-[#e31937]'
+                    className='hover:text-[#a51535]'
                   />
                 </div>
               </a>
