@@ -53,49 +53,47 @@ export default function LandingComponent() {
       </Carousel>
       {/* Recent Blog Posts */}
       <div className='py-16 px-16 flex flex-col items-left'>
-        <div className='flex flex-col items-left w-full md:w-[85%] max-w-[1080px]'>
-          <div className='flex flex-col items-left text-left mb-[20px]'>
-            <Typography.LargeHeading
-              text='Recent Blog'
-              className='mb-10'
-            />
-            <div className='grid grid-cols-3 gap-[20px] w-full'>
-              <div className='h-[420px] p-0 rounded-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover'>
-                <span className="">Tips</span>
-                <Typography.MediumText
-                  text='Skills Gap Within Organization'
-                  className='px-3 mb-1 text-white'
-                />
-                <Typography.SmallText
-                  text='It is a serious challenge to acquire and retain talent with needed expertise in
+        <div className='flex flex-col items-left text-left mb-[20px]'>
+          <Typography.LargeHeading
+            text='Recent Blog'
+            className='mb-10'
+          />
+          <div className='grid md:grid-cols-3 gap-[60px] items-center w-full'>
+            <div className='h-[420px] p-0 rounded-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover'>
+              <span className="">Tips</span>
+              <Typography.MediumText
+                text='Skills Gap Within Organization'
+                className='px-3 mb-1 text-white'
+              />
+              <Typography.SmallText
+                text='It is a serious challenge to acquire and retain talent with needed expertise in
                 emerging technologies such as AI, machine learning and cybersecurity.'
-                  className='px-3 text-white'
-                />
-              </div>
-              <div className='h-[420px] p-0 rounded-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover'>
-                <span className="">Tips</span>
-                <Typography.MediumText
-                  text='Skills Gap Within Organization'
-                  className='px-3 mb-1 text-white'
-                />
-                <Typography.SmallText
-                  text='It is a serious challenge to acquire and retain talent with needed expertise in
+                className='px-3 text-white'
+              />
+            </div>
+            <div className='h-[420px] p-0 rounded-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover'>
+              <span className="">Tips</span>
+              <Typography.MediumText
+                text='Skills Gap Within Organization'
+                className='px-3 mb-1 text-white'
+              />
+              <Typography.SmallText
+                text='It is a serious challenge to acquire and retain talent with needed expertise in
                 emerging technologies such as AI, machine learning and cybersecurity.'
-                  className='px-3 text-white'
-                />
-              </div>
-              <div className='h-[420px] p-0 rounded-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover'>
-                <span className="">Tips</span>
-                <Typography.MediumText
-                  text='Skills Gap Within Organization'
-                  className='px-3 mb-1 text-white'
-                />
-                <Typography.SmallText
-                  text='It is a serious challenge to acquire and retain talent with needed expertise in
+                className='px-3 text-white'
+              />
+            </div>
+            <div className='h-[420px] p-0 rounded-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover'>
+              <span className="">Tips</span>
+              <Typography.MediumText
+                text='Skills Gap Within Organization'
+                className='px-3 mb-1 text-white'
+              />
+              <Typography.SmallText
+                text='It is a serious challenge to acquire and retain talent with needed expertise in
                 emerging technologies such as AI, machine learning and cybersecurity.'
-                  className='px-3 text-white'
-                />
-              </div>
+                className='px-3 text-white'
+              />
             </div>
           </div>
         </div>
