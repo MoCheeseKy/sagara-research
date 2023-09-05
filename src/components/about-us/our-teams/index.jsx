@@ -32,7 +32,7 @@ export default function OurTeamsComponent() {
             <Typography.MediumText
               className='text-center'
               text='Meet our team who shared passion for innovation, committed to exploring cutting-edge technologies, pushing boundaries, and driving progress.
-Together, we inspiring each other to achieve remarkable results by constantly pushing the boundaries of technology and remain at the forefront of innovation, driving progress and delivering transformative solutions for our great clients.'
+                    Together, we inspiring each other to achieve remarkable results by constantly pushing the boundaries of technology and remain at the forefront of innovation, driving progress and delivering transformative solutions for our great clients.'
             />
             <CustomButton text='Get to know more about Sagara Research' />
           </div>
