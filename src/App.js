@@ -1,35 +1,36 @@
-import React, { Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-import Landing from "./screens";
+import Landing from './screens';
+import ContactUs from './screens/contact-us';
 
 function App() {
   return (
     <Suspense fallback={<>Loading</>}>
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path='/' element={<Landing />} />
         <Route
-          path="/whitepapers/explore-whitepapers"
+          path='/whitepapers/explore-whitepapers'
           element={<>Halaman Explore Whitepapers</>}
         />
         <Route
-          path="/whitepapers/detail"
+          path='/whitepapers/detail'
           element={<>Halaman Whitepapers Detail</>}
         />
-        <Route path="/about-us/our-teams" element={<>Halaman Our Teams</>} />
+        <Route path='/about-us/our-teams' element={<>Halaman Our Teams</>} />
         <Route
-          path="/about-us/our-teams/team-detail"
+          path='/about-us/our-teams/team-detail'
           element={<>Halaman Team Detail</>}
         />
         <Route
-          path="/about-us/sagara-research"
+          path='/about-us/sagara-research'
           element={<>Halaman Sagara Research</>}
         />
-        <Route path="/contact-us" element={<>Testing 5</>} />
+        <Route path='/contact-us' element={<ContactUs />} />
 
         {/* Handle Not Found */}
         <Route
-          path="*"
+          path='*'
           element={
             <center>
               <h1>Oops! That page can't be found.</h1>
