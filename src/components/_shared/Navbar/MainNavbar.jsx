@@ -9,7 +9,13 @@ export default function MainNavbar() {
     <>
       <nav className='flex items-center justify-between py-4 px-10'>
         <div className='flex gap-[70px]'>
+<<<<<<< HEAD
+          <div>
+            <a href="home"><img src="assets/images/sagara-logo-bl.png" className='w-[144px]' alt="" /></a>
+          </div>
+=======
           <div className='w-[224px] h-[30px] bg-[url(/public/Images/Black_Fullname_SagaraLogo.svg)] bg-cover bg-center'></div>
+>>>>>>> 7a2dc34b0fd4fd3ac2455b78916ed691b8d16fc0
           <div className='flex items-center gap-[30px]'>
             <Typography.MediumText text='Consult With Sagara' />
             <Dropdown
