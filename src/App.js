@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Landing from './screens';
 import OurTeams from './screens/about-us/our-teams';
 import TeamDetail from './screens/about-us/our-teams/team-detail';
+import SagaraResearch from './screens/about-us/sagara-research';
 import ContactUs from './screens/contact-us';
 
 function App() {
@@ -24,10 +25,7 @@ function App() {
           path='/about-us/our-teams/team-detail'
           element={<TeamDetail />}
         />
-        <Route
-          path='/about-us/sagara-research'
-          element={<>Halaman Sagara Research</>}
-        />
+        <Route path='/about-us/sagara-research' element={<SagaraResearch />} />
         <Route path='/contact-us' element={<ContactUs />} />
 
         {/* Handle Not Found */}

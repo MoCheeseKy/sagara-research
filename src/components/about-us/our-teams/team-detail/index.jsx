@@ -7,7 +7,7 @@ export default function TeamDetailComponent() {
     <>
       <div className='pt-[77px]'></div>
       <div className='py-16 flex flex-col items-center justify-center'>
-        <div className='flex gap-[30px]  px-[15px] w-full md:w-[85%] max-w-[1080px]'>
+        <div className='flex flex-col md:flex-row gap-[30px] px-[15px] w-full md:w-[85%] max-w-[1080px]'>
           <div className='min-w-[320px] aspect-[3/4] bg-cover bg-center bg-[url(/public/assets/Images/arif.png)] rounded'></div>
           <div className='flex flex-col flex-grow items-start'>
             <Typography.LargeHeading
