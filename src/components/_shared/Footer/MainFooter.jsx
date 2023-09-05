@@ -67,7 +67,7 @@ export default function MainFooter() {
           <div className='w-18 px-[15px]'>
             <Typography.LargeText
               text='LETS KEEP IN TOUCH'
-              className='mb-[15px]'
+              className='mb-[15px] flex items-center gap-2'
             />
             <a href='/'>
               <Typography.MediumText
@@ -80,13 +80,13 @@ export default function MainFooter() {
                 size='large'
                 type='email'
                 placeholder='Enter your email address'
-                className='bg-[#212529] text-white focus:text-black placeholder:text-gray-600 focus:bg-white'
+                className='bg-[#212529] text-white focus:text-black placeholder:text-gray-600 focus:bg-white borderRadius: 4px'
               />
               <Button
                 size='large'
                 color='white'
-                className='bg-[#a51535] border-none hover:bg-white'
-                style={{ color: 'white', borderRadius: '6px' }}
+                className='bg-[#a51535] border-none hover-[#a51535]'
+                style={{ color: 'white', borderRadius: '4px' }}
               >
                 <FiArrowRight size={16} />
               </Button>
@@ -94,10 +94,10 @@ export default function MainFooter() {
           </div>
         </footer>
         {/* Copyrights */}
-        <div className='flex justify-center items-center bg-[#303030] border-t-[1px] border-[#484848] py-[25px]'>
+        <div className='flex justify-center items-center bg-[#303030] border-t-[1px] border-[#484848] py-[15px]'>
           <Typography.SmallText
             text='© 2023 Sagara Research | All Rights Reserved.'
-            className='gap-2 my-5 text-white '
+            className='gap-2 my-5 text-white'
           />
         </div>
       </div>

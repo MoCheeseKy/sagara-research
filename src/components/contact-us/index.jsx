@@ -28,7 +28,7 @@ export default function ContactUsComponent() {
   return (
     <>
       <div className='pt-[77px]'></div>
-      <div className='py-16 flex flex-col items-center justify-center'>
+      <div className='pt-14 pb-24 flex flex-col items-center justify-center'>
         <div className='flex flex-col items-center px-[15px] w-full md:w-[85%] max-w-[1080px]'>
           <div className='flex flex-col justify-center items-center text-center mb-[60px]'>
             <Typography.LargeHeading
@@ -75,7 +75,7 @@ export default function ContactUsComponent() {
                 form={form}
                 onFinish={onSubmit}
               >
-                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-0'>
                   <Form.Item label='Name' name='name'>
                     <CustomInput
                       placeholder='Input Name'
@@ -93,10 +93,10 @@ export default function ContactUsComponent() {
                   <Form.Item label='Description' name='description'>
                     <TextArea
                       placeholder='Input Description'
-                      className='py-[10px] px-[18px]'
+                      className='py-[16px] px-[18px]'
                     />
                   </Form.Item>
-                  <div className='flex justify-end'>
+                  <div className='flex justify-center'>
                     <CustomButton text='Submit' type='submit' />
                   </div>
                 </div>
