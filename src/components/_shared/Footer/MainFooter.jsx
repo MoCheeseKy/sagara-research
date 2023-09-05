@@ -8,15 +8,15 @@ export default function MainFooter() {
     <>
       <div className='w-[100%] bg-[#303030]'>
         <footer className='flex flex-col md:flex-row min-[1200px]:max-w-[1140px] mx-auto py-[40px] text-white gap-5 px-[15px]'>
-          <div className='w-[190px] px-[15px]'>
+          <div className='w-full md:w-[190px] px-[15px]'>
             <Typography.LargeText text='JAKARTA' className='mb-[15px]' />
             <Typography.MediumText text='Wisma KGBI Jl.Jend.Sudirman Kav.28 Bendungan Hilir, Kecamatan Tanah Abang, Jakarta Pusat, DKI Jakarta 10210' className='text-[#c0c0c0]' />
           </div>
-          <div className='w-[190px]'>
+          <div className='w-full md:w-[190px] px-[15px]'>
             <Typography.LargeText text='BANDUNG' className='mb-[15px]' />
             <Typography.MediumText text='Summarecon Bandung, Magna Commercial No MA03 Rancabolang, Kecamatan Gedebage, Bandung, Jawa Barat 40286' className='text-[#c0c0c0]' />
           </div>
-          <div className='w-[190px]'>
+          <div className='w-full md:w-[190px] px-[15px]'>
             <Typography.LargeText text='FOLLOW US' className='mb-[15px]' />
             <a href='https://www.linkedin.com/company/sagara-asia/mycompany/verification/'>
               <Typography.MediumText text='Linkedin' className='text-[#c0c0c0]' />
@@ -31,7 +31,7 @@ export default function MainFooter() {
               <Typography.MediumText text='Twitter' className='text-[#c0c0c0]' />
             </a>
           </div>
-          <div className='w-[190px]'>
+          <div className='w-full md:w-[190px] px-[15px]'>
             <Typography.LargeText text='ACCOUNT' className='mb-[15px]' />
             <a href='/'>
               <Typography.MediumText text='Register/Log in' className='text-[#c0c0c0]' />
@@ -40,10 +40,10 @@ export default function MainFooter() {
               <Typography.MediumText text='My Account' className='text-[#c0c0c0]' />
             </a>
           </div>
-          <div className='w-18'>
+          <div className='w-18 px-[15px]'>
             <Typography.LargeText
               text='LETS KEEP IN TOUCH'
-              className='mb-[15px] gap-2'
+              className='mb-[15px]'
             />
             <a href='/'>
               <Typography.MediumText
