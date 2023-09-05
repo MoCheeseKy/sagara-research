@@ -5,6 +5,7 @@ import Landing from './screens';
 import OurTeams from './screens/about-us/our-teams';
 import TeamDetail from './screens/about-us/our-teams/team-detail';
 import SagaraResearch from './screens/about-us/sagara-research';
+import ExploreWhitepapers from './screens/whitepapers/explore-whitepapers';
 import ContactUs from './screens/contact-us';
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
         <Route path='/' element={<Landing />} />
         <Route
           path='/whitepapers/explore-whitepapers'
-          element={<>Halaman Explore Whitepapers</>}
+          element={<ExploreWhitepapers />}
         />
         <Route
           path='/whitepapers/detail'
