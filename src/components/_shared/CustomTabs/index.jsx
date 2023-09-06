@@ -5,7 +5,7 @@ export default function CustomTabs({ Options }) {
   const [ActiveTabs, setActiveTabs] = useState(0);
   return (
     <>
-      <div className='flex flex-col gap-12'>
+      <div className='flex flex-col gap-10'>
         <div className='flex items-center gap-6'>
           {Options?.map((TabsLabel, indexTabsLabel) => (
             <React.Fragment key={indexTabsLabel}>
