@@ -85,7 +85,9 @@ export default function MainNavbar() {
             </Link>
           </div>
           <div className='hidden md:flex items-center gap-[30px]'>
-            <Typography.MediumText text='Consult With Sagara' />
+            <div onClick={() => setModalOpen(true)} className='cursor-pointer'>
+              <Typography.MediumText text='Consult With Sagara' />
+            </div>
             <Dropdown
               className='text-black'
               menu={{
