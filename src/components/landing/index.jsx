@@ -59,40 +59,40 @@ export default function LandingComponent() {
             className='mb-10'
           />
           <div className='grid md:grid-cols-3 gap-[60px] items-center w-full'>
-            <div className='h-[420px] p-0 rounded-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover'>
-              <span className="">Tips</span>
-              <Typography.MediumText
+            <div className='h-[420px] p-6 rounded-lg shadow-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover hover:mt-0 mb-0 hover:mb-[15px] duration-300'>
+              <span className="bg-white border-1 rounded w-[fit] px-3 py-1 text-sm">Tips</span>
+              <Typography.MediumHeader
                 text='Skills Gap Within Organization'
-                className='px-3 mb-1 text-white'
+                className='text-white pt-[230px]'
               />
               <Typography.SmallText
                 text='It is a serious challenge to acquire and retain talent with needed expertise in
                 emerging technologies such as AI, machine learning and cybersecurity.'
-                className='px-3 text-white'
+                className='text-white py-3'
               />
             </div>
-            <div className='h-[420px] p-0 rounded-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover'>
-              <span className="">Tips</span>
-              <Typography.MediumText
+            <div className='h-[420px] p-6 rounded-lg shadow-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover hover:mt-0 mb-0 hover:mb-[15px] duration-300'>
+              <span className="bg-white border-1 rounded w-[fit] px-3 py-1 text-sm">Tips</span>
+              <Typography.MediumHeader
                 text='Skills Gap Within Organization'
-                className='px-3 mb-1 text-white'
+                className='text-white pt-[230px]'
               />
               <Typography.SmallText
                 text='It is a serious challenge to acquire and retain talent with needed expertise in
                 emerging technologies such as AI, machine learning and cybersecurity.'
-                className='px-3 text-white'
+                className='text-white py-3'
               />
             </div>
-            <div className='h-[420px] p-0 rounded-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover'>
-              <span className="">Tips</span>
-              <Typography.MediumText
+            <div className='h-[420px] p-6 rounded-lg shadow-lg justify-center items-center bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover hover:mt-0 mb-0 hover:mb-[15px] duration-300'>
+              <span className="bg-white border-1 rounded w-[fit] px-3 py-1 text-sm">Tips</span>
+              <Typography.MediumHeader
                 text='Skills Gap Within Organization'
-                className='px-3 mb-1 text-white'
+                className='text-white pt-[230px]'
               />
               <Typography.SmallText
                 text='It is a serious challenge to acquire and retain talent with needed expertise in
                 emerging technologies such as AI, machine learning and cybersecurity.'
-                className='px-3 text-white'
+                className='text-white py-3'
               />
             </div>
           </div>
