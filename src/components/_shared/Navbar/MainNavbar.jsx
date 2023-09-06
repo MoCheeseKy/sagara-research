@@ -136,13 +136,15 @@ export default function MainNavbar() {
             </Dropdown>
           </div>
         </div>
-        <Link to='/contact-us'>
-          <CustomButton text='Contact Us' />
-        </Link>
-        <div className='block md:hidden'>
-          <Button style={{ borderRadius: '4px' }} size='large' onClick={() => setDrawerOpen(true)}>
-            <GiHamburgerMenu />
-          </Button>
+        <div className='flex flex-row gap-4 items-center'>
+          <Link to='/contact-us'>
+            <CustomButton text='Contact Us' />
+          </Link>
+          <div className='md:hidden'>
+            <Button style={{ borderRadius: '4px', backgroundColor: '#eee', border: 'none' }} size='large' onClick={() => setDrawerOpen(true)}>
+              <GiHamburgerMenu style={{color: '#555'}} />
+            </Button>
+          </div>
         </div>
       </nav>
       <Drawer
