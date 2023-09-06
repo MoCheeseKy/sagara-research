@@ -4,6 +4,7 @@ import { Form } from 'antd';
 import CustomInput from '../../_shared/Form/CustomInput';
 import CustomSelect from '../../_shared/Form/CustomSelect';
 import CustomButton from '../../_shared/CustomButton';
+import CustomTabs from '../../_shared/CustomTabs';
 import { LiaDownloadSolid } from 'react-icons/lia';
 
 export default function WHitepaperDetailComponent() {
@@ -27,6 +28,24 @@ export default function WHitepaperDetailComponent() {
     };
     console.log(payload);
   };
+  const TabsItem = [
+    {
+      label: 'Overview',
+      children: (
+        <>
+          <p>Testing 1</p>
+        </>
+      ),
+    },
+    {
+      label: 'About FGD',
+      children: (
+        <>
+          <p>testing 2</p>
+        </>
+      ),
+    },
+  ];
   return (
     <>
       <div className='pt-[77px]' />
@@ -43,7 +62,7 @@ export default function WHitepaperDetailComponent() {
                 className='w-[80%]'
               />
               <Typography.MediumText text='The rapid pace of technological advancement often creates skills gaps in organizations. To bridge the skills gap, organizations often need to invest in training programs or external resources. It is a serious challenge to acquire and retain talent with needed expertise in emerging technologies such as AI, machine learning and cybersecurity. Also developing many strategies to attract, train, and retain skilled IT personnel who can support the organizations technology goals.' />
-              <div className='grid grid-cols-2 border-b-2 pb-6'>
+              <div className='grid grid-cols-1 md:grid-cols-2 border-b-2 pb-6'>
                 <Typography.MediumText text={`Publication : May 1, 2023`} />
                 <Typography.MediumText
                   text={`Topic : Digital Transformation`}
@@ -149,6 +168,11 @@ export default function WHitepaperDetailComponent() {
               </div>
             </Form>
           </div>
+        </div>
+      </div>
+      <div className='flex justify-center py-16'>
+        <div className='items-center px-[15px] w-full md:w-[85%] max-w-[1080px] gap-6'>
+          <CustomTabs Options={TabsItem} />
         </div>
       </div>
     </>
