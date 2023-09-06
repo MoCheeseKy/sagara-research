@@ -3,12 +3,25 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: Roboto;
-    src: url(../public/assets/Font/Roboto/Roboto-Regular.ttf);
+  font-family: Roboto;
+  src: url(../public/assets/Font/Roboto/Roboto-Regular.ttf);
 }
 
-*{
-    margin: 0;
-    font-family: Roboto !important;
-    padding: 0;
+* {
+  margin: 0;
+  font-family: Roboto !important;
+  padding: 0;
+}
+
+.custom-input {
+  border-radius: 10px;
+  border: 1px solid #afafaf;
+}
+
+.custom-input:focus,
+.custom-input:active,
+.custom-input:hover {
+  border: 1px solid #a51535 !important;
+  box-shadow: 0 0 2px #a51535 !important;
+  outline: none !important;
 }

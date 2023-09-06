@@ -6,6 +6,7 @@ import OurTeams from './screens/about-us/our-teams';
 import TeamDetail from './screens/about-us/our-teams/team-detail';
 import SagaraResearch from './screens/about-us/sagara-research';
 import ExploreWhitepapers from './screens/whitepapers/explore-whitepapers';
+import WhitepaperDetail from './screens/whitepapers/detail';
 import ContactUs from './screens/contact-us';
 
 function App() {
@@ -17,10 +18,7 @@ function App() {
           path='/whitepapers/explore-whitepapers'
           element={<ExploreWhitepapers />}
         />
-        <Route
-          path='/whitepapers/detail'
-          element={<>Halaman Whitepapers Detail</>}
-        />
+        <Route path='/whitepapers/detail' element={<WhitepaperDetail />} />
         <Route path='/about-us/our-teams' element={<OurTeams />} />
         <Route
           path='/about-us/our-teams/team-detail'
