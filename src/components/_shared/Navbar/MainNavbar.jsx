@@ -85,7 +85,7 @@ export default function MainNavbar() {
             </Link>
           </div>
           <div className='hidden md:flex items-center gap-[30px]'>
-            <div onClick={() => setModalOpen(true)} className='cursor-pointer'>
+            <div onClick={() => setModalOpen(true)} className='cursor-pointer hover:text-red-600 duration-300'>
               <Typography.MediumText text='Consult With Sagara' />
             </div>
             <Dropdown
@@ -103,9 +103,9 @@ export default function MainNavbar() {
                 ],
               }}
             >
-              <Space>
-                <Typography.MediumText text='Whitepapers' />
-                <DownOutlined />
+              <Space className='group'>
+                <Typography.MediumText text='Whitepapers' className='group-hover:text-red-600 duration-300' />
+                <DownOutlined className='group-hover:text-red-600 duration-300' />
               </Space>
             </Dropdown>
             <Dropdown
@@ -131,9 +131,9 @@ export default function MainNavbar() {
                 ],
               }}
             >
-              <Space>
-                <Typography.MediumText text='About Us' />
-                <DownOutlined />
+              <Space className='group'>
+                <Typography.MediumText text='About Us' className='group-hover:text-red-600 duration-300' />
+                <DownOutlined className='group-hover:text-red-600 duration-300' />
               </Space>
             </Dropdown>
           </div>
