@@ -15,21 +15,21 @@ export default function ExploreWhitepapersComponent() {
         'Enhancing User Privacy in Online Social Networks: Investigating the Impact of Data Breaches and Privacy Settings',
       date: '20 Februari 2005',
       desc: 'Protecting user privacy in online social networks is crucial in the digital age, given the potential risks associated with data breaches and data misuse.',
-      linkTo: '/whitepapers/explore-whitepapers',
+      linkTo: '/whitepapers/detail',
     },
     {
       title:
         'Enhancing User Privacy in Online Social Networks: Investigating the Impact of Data Breaches and Privacy Settings',
       date: '20 Februari 2005',
       desc: 'Protecting user privacy in online social networks is crucial in the digital age, given the potential risks associated with data breaches and data misuse.',
-      linkTo: '/whitepapers/explore-whitepapers',
+      linkTo: '/whitepapers/detail',
     },
     {
       title:
         'Enhancing User Privacy in Online Social Networks: Investigating the Impact of Data Breaches and Privacy Settings',
       date: '20 Februari 2005',
       desc: 'Protecting user privacy in online social networks is crucial in the digital age, given the potential risks associated with data breaches and data misuse.',
-      linkTo: '/whitepapers/explore-whitepapers',
+      linkTo: '/whitepapers/detail',
     },
   ];
   const Card = ({ title, date, desc, linkTo }) => {
