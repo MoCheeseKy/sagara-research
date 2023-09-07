@@ -1,10 +1,64 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Carousel } from 'antd';
 import Typography from '../_shared/Typography';
+import CustomButton from '../_shared/CustomButton';
+import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 
 export default function LandingComponent() {
+  const carouselRef = useRef(null)
+
+  const NextArrow = ({className, style, onClick}) => {
+    return (
+      <CustomButton
+        className={`${className} carousel-button`}
+        style={{
+          ...style,
+          color: 'white',
+          fontSize: '15px',
+          lineHeight: '1.5715',
+          content: '',
+          padding: '10px 20px',
+          backgroundColor: '#a51535',
+          width: '48px',
+          height: '48px',
+          position: 'absolute',
+          right: '-10%'
+        }}
+        onClick={onClick}
+        icon={<FiChevronRight />}
+      />
+    )
+  }
+
+  const PrevArrow = ({className, style, onClick}) => {
+    return (
+      <CustomButton
+        className={`${className} carousel-button`}
+        style={{
+          ...style,
+          color: 'white',
+          fontSize: '15px',
+          lineHeight: '1.5715',
+          content: '',
+          padding: '10px 20px',
+          // backgroundColor: '#a51535',
+          width: '48px',
+          height: '48px',
+          position: 'absolute',
+          left: '-10%'
+        }}
+        onClick={onClick}
+        icon={<FiChevronLeft />}
+      />
+    )
+  }
+
+  const settings = {
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+  }
+
   const contentStyle = {
-    height: '650px',
     color: '#fff',
     lineHeight: '160px',
     textAlign: 'center',
@@ -110,19 +164,23 @@ export default function LandingComponent() {
         </div>
       </div>
       {/* End of Upcoming Event */}
+      
       {/* Whitepapers Carousel */}
-      <div className='pt-[77px]'></div>
-      <Carousel autoplay>
-        <div>
-          <h3 style={contentStyle}>1</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>2</h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}>3</h3>
-        </div>
-      </Carousel>
+      {/* <div className='pt-[77px]'></div> */}
+      <div className='px-[10%] md:px-[15%] lg:px-[20%]'>
+        <Typography.MediumHeading text='What They Said' className='my-[30px] text-center' />
+        <Carousel arrows ref={carouselRef} autoplay draggable swipeToSlide {...settings}>
+          <div>
+            <h3 style={contentStyle}>1</h3>
+          </div>
+          <div>
+            <h3 style={contentStyle}>2</h3>
+          </div>
+          <div>
+            <h3 style={contentStyle}>3</h3>
+          </div>
+        </Carousel>
+      </div>
       {/* Recent Blog Posts */}
       <div className='py-16 px-16 flex flex-col items-left'>
         <div className='flex flex-col items-left text-left mb-[20px]'>
