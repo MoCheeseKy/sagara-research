@@ -7,6 +7,10 @@ import CustomButton from '../../_shared/CustomButton';
 import CustomTabs from '../../_shared/CustomTabs';
 import { LiaDownloadSolid } from 'react-icons/lia';
 
+// Import Self Component
+import OverviewComponent from './overview';
+import AboutFGDComponent from './aboutFGD';
+
 export default function WHitepaperDetailComponent() {
   const [form] = Form.useForm();
   const initialValues = {
@@ -33,7 +37,17 @@ export default function WHitepaperDetailComponent() {
       label: 'Overview',
       children: (
         <>
-          <p>Testing 1</p>
+          <OverviewComponent
+            description='Skills gaps within organizations in the tech industry are not uncommon due to the rapid pace of technological advancements and the evolving nature of the industry. A skills gap refers to the disparity between the skills and knowledge that employees possess and the skills and knowledge required to perform effectively in their roles or meet the demands of the industry.
+          The tech industry is known for its constant innovation and evolving technologies. New tools, programming languages, frameworks, and methodologies emerge regularly, creating a challenge for employees to keep up with the latest trends and acquire the necessary skills.
+          Finding skilled talent in the tech industry can be challenging. Organizations may need to hire employees with some of the required skills but not the full set. This can create skill gaps that need to be addressed through training and development programs'
+            editor='Sagara Research Team'
+            fgdDate='May 1, 2023'
+            publication='June 2, 2023'
+            topic='Digital Transformation'
+            license='165472-PDF-ENG'
+            length='64'
+          />
         </>
       ),
     },
@@ -41,7 +55,7 @@ export default function WHitepaperDetailComponent() {
       label: 'About FGD',
       children: (
         <>
-          <p>testing 2</p>
+          <AboutFGDComponent data='The purpose of this discussion is to identify the areas where employees perceive a skills gap, understand the impact it has on their roles, and brainstorm potential solutions.' />
         </>
       ),
     },
@@ -170,7 +184,7 @@ export default function WHitepaperDetailComponent() {
           </div>
         </div>
       </div>
-      <div className='flex justify-center py-16'>
+      <div className='flex justify-center pb-16'>
         <div className='items-center px-[15px] w-full md:w-[85%] max-w-[1080px] gap-6'>
           <CustomTabs Options={TabsItem} />
         </div>
