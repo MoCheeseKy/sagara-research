@@ -8,21 +8,21 @@ export default function MainFooter() {
     <>
       <footer className='flex flex-col bg-[#303030] items-center text-white'>
         <div className='flex flex-col gap-6 md:gap-0 flex-wrap md:flex-row py-6 px-[15px] w-full md:w-[85%] max-w-[1080px]'>
-          <div className='w-full md:w-[40%] lg:w-[25%] px-[15px]'>
+          <div className='w-full md:w-[40%] lg:w-[20%] px-[15px]'>
             <Typography.LargeText text='JAKARTA' className='mb-[15px]' />
             <Typography.MediumText
               text='Wisma KGBI Jl.Jend.Sudirman Kav.28 Bendungan Hilir, Kecamatan Tanah Abang, Jakarta Pusat, DKI Jakarta 10210'
               className='text-[#c0c0c0]'
             />
           </div>
-          <div className='w-full md:w-[40%] lg:w-[25%] px-[15px]'>
+          <div className='w-full md:w-[40%] lg:w-[20%] px-[15px]'>
             <Typography.LargeText text='BANDUNG' className='mb-[15px]' />
             <Typography.MediumText
               text='Summarecon Bandung, Magna Commercial No MA03 Rancabolang, Kecamatan Gedebage, Bandung, Jawa Barat 40286'
               className='text-[#c0c0c0]'
             />
           </div>
-          <div className='w-full md:w-[20%] lg:w-[25%] px-[15px]'>
+          <div className='w-full md:w-[20%] lg:w-[20%] px-[15px]'>
             <Typography.LargeText text='FOLLOW US' className='mb-[15px]' />
             <a href='https://www.linkedin.com/company/sagara-asia/mycompany/verification/'>
               <Typography.MediumText
@@ -49,7 +49,7 @@ export default function MainFooter() {
               />
             </a>
           </div>
-          <div className='flex-grow md:pt-6 lg:pt-0 px-[15px]'>
+          <div className='md:pt-6 lg:w-[40%] lg:pt-0 px-[15px]'>
             <Typography.LargeText
               text='LETS KEEP IN TOUCH'
               className='mb-[15px] flex items-center gap-2'
