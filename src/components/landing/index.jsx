@@ -5,20 +5,18 @@ import Typography from '../_shared/Typography';
 export default function LandingComponent() {
   const dummyUpcomingEventCard = [
     {
-      title:
-        'Enhancing User Privacy in Online Social Networks: Investigating the Impact of Data Breaches and Privacy Settings',
-      topic: 'Topic: Tech Program Event',
+      title: 'Techvolution : Powering Progress, Shaping Tomorrow',
+      topic: 'Topic: Tech Talk',
       speaker: 'Speaker: Muhammad Patel',
       date: 'Date: 20 Februari 2005',
-      desc: 'The comprehensive and insightful guidebook designed specifically with and for C-level executives who are leading their organizations through the process of digital transformation. Adapting business processes, implementing new technologies like artificial intelligence (AI) or cloud computing, and managing the cultural shift within the organization require strategic planning and effective leadership.',
+      desc: 'The technological revolution, or "Techvolution," has brought unprecedented changes to our lives, presenting us with both opportunities and challenges. In this event, we hope to gain valuable insights into how we can harness the power of technology responsibly and equitably to shape a brighter future for all. Your perspectives and ideas are crucial in fostering a deeper understanding of the techvolution phenomenon and its impact on society, the economy, and the environment.'
     },
     {
-      title:
-        'Enhancing User Privacy in Online Social Networks: Investigating the Impact of Data Breaches and Privacy Settings',
-      topic: 'Topic: Tech Program Event',
+      title: 'Techvolution : Powering Progress, Shaping Tomorrow',
+      topic: 'Topic: Tech Talk',
       speaker: 'Speaker: Muhammad Patel',
       date: 'Date: 20 Februari 2005',
-      desc: 'The comprehensive and insightful guidebook designed specifically with and for C-level executives who are leading their organizations through the process of digital transformation. Adapting business processes, implementing new technologies like artificial intelligence (AI) or cloud computing, and managing the cultural shift within the organization require strategic planning and effective leadership.',
+      desc: 'The technological revolution, or "Techvolution," has brought unprecedented changes to our lives, presenting us with both opportunities and challenges. In this event, we hope to gain valuable insights into how we can harness the power of technology responsibly and equitably to shape a brighter future for all. Your perspectives and ideas are crucial in fostering a deeper understanding of the techvolution phenomenon and its impact on society, the economy, and the environment.'
     },
   ];
 
@@ -51,11 +49,11 @@ export default function LandingComponent() {
           <div className='p-[30px] flex flex-col'>
             <div className='flex flex-col gap-4'>
               <div>
-                <Typography.LargeText text={title} bold />
-                <Typography.LargeText text={topic} />
-                <Typography.LargeText text={speaker} />
-                <Typography.LargeText text={date} />
-                <Typography.LargeText text={desc} />
+                <Typography.LargeText className='pb-2' text={title} bold />
+                <Typography.MediumText className='pb-1' text={topic} />
+                <Typography.MediumText className='pb-1' text={speaker} />
+                <Typography.MediumText className='pb-2' text={date} />
+                <Typography.MediumText text={desc} />
               </div>
             </div>
           </div>
@@ -69,39 +67,38 @@ export default function LandingComponent() {
       {/* Intro Banner */}
       <Carousel autoplay>
         <div>
-          <div className='flex h-[100vh] flex-col pt-[77px]'>
+          <div className='flex h-[100vh] flex-col'>
             <div className='flex-grow bg-[#ddd]'>Content 1 here....</div>
           </div>
         </div>
         <div>
-          <div className='flex h-[100vh] flex-col pt-[77px]'>
+          <div className='flex h-[100vh] flex-col'>
             <div className='flex-grow bg-[#ddd]'>Content 2 here....</div>
           </div>
         </div>
         <div>
-          <div className='flex h-[100vh] flex-col pt-[77px]'>
+          <div className='flex h-[100vh] flex-col'>
             <div className='flex-grow bg-[#ddd]'>Content 3 here....</div>
           </div>
         </div>
       </Carousel>
       {/* End Intro Banner */}
       {/* Upcoming Event */}
-      <div className='pt-16 px-16 flex flex-col items-left'>
-        <div className='flex flex-col items-left md:w-[85%] max-w-[1080px]'>
-          <div className='flex flex-col items-left text-left mb-[20px]'>
-            <Typography.LargeHeading text='Upcoming Event' className='mb-10' />
-            <div className='grid gap-[15px]'>
-              {dummyUpcomingEventCard.map((dummy, indexDummy) => (
-                <React.Fragment key={indexDummy}>
-                  <UpcomingEventCard
-                    title={dummy.title}
-                    topic={dummy.topic}
-                    speaker={dummy.speaker}
-                    desc={dummy.desc}
-                  />
-                </React.Fragment>
-              ))}
-            </div>
+      <div className='py-16 px-16 w-full flex flex-col items-left'>
+        <div className='flex flex-col md:w-[85%] max-w-[1080px]'>
+          <Typography.LargeHeading text='Upcoming Event' className='mb-10' />
+          <div className='grid gap-[30px]'>
+            {dummyUpcomingEventCard.map((dummy, indexDummy) => (
+              <React.Fragment key={indexDummy}>
+                <UpcomingEventCard
+                  title={dummy.title}
+                  topic={dummy.topic}
+                  speaker={dummy.speaker}
+                  date={dummy.date}
+                  desc={dummy.desc}
+                />
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>
@@ -109,21 +106,22 @@ export default function LandingComponent() {
       {/* Whitepapers Carousel */}
       <Carousel autoplay>
         <div>
-          <div className='flex h-[100vh] flex-col pt-[77px]'>
+          <div className='flex h-[100vh] flex-col'>
             <div className='flex-grow bg-[#ddd]'>Content 1 here....</div>
           </div>
         </div>
         <div>
-          <div className='flex h-[100vh] flex-col pt-[77px]'>
+          <div className='flex h-[100vh] flex-col'>
             <div className='flex-grow bg-[#ddd]'>Content 2 here....</div>
           </div>
         </div>
         <div>
-          <div className='flex h-[100vh] flex-col pt-[77px]'>
+          <div className='flex h-[100vh] flex-col'>
             <div className='flex-grow bg-[#ddd]'>Content 3 here....</div>
           </div>
         </div>
       </Carousel>
+      {/* End of Whitepapers Carousel */}
       {/* Recent Blog Posts */}
       <div className='py-16 px-16 flex flex-col items-left'>
         <div className='flex flex-col items-left text-left mb-[20px]'>
@@ -144,6 +142,16 @@ export default function LandingComponent() {
           </div>
         </div>
       </div>
+      {/* Recognition */}
+      <div className='marquee'>
+        <div>
+          <span>You spin me right round, baby. Like a record, baby.</span>
+          <span>You spin me right round, baby. Like a record, baby.</span>
+          <span>You spin me right round, baby. Like a record, baby.</span>
+          <span>You spin me right round, baby. Like a record, baby.</span>
+        </div>
+      </div>
+      {/* End of Recognition */}
     </>
   );
 }

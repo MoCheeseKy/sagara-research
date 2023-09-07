@@ -13,13 +13,13 @@ export default function OverviewComponent({
   return (
     <>
       <div>
-        <div className='flex flex-col md:flex-row gap-10 mb-16'>
+        <div className='flex flex-col md:flex-row gap-16 mb-16'>
           <div className='flex-grow'>
             <Typography.MediumText className='text-[#666]' text={description} />
           </div>
-          <div className='w-full md:w-[35%] md:min-w-[35%] md:max-w-[35%]'>
+          <div className='w-full md:w-[35%] md:min-w-[35%] md:max-w-[35%] leading-3'>
             <Typography.SmallHeading text='Details' bold className='mb-4' />
-            <div className='grid grid-cols-2 w-full gap-2'>
+            <div className='grid grid-cols-2 w-full gap-0'>
               <Typography.MediumText className='text-[#666]' text='Editor :' />
               <Typography.MediumText className='text-[#666]' text={editor} />
               <Typography.MediumText

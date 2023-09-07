@@ -5,7 +5,6 @@ import CustomInput from '../../_shared/Form/CustomInput';
 import CustomSelect from '../../_shared/Form/CustomSelect';
 import CustomButton from '../../_shared/CustomButton';
 import CustomTabs from '../../_shared/CustomTabs';
-import { LiaDownloadSolid } from 'react-icons/lia';
 
 // Import Self Component
 import OverviewComponent from './overview';
@@ -62,27 +61,28 @@ export default function WHitepaperDetailComponent() {
   ];
   return (
     <>
-      <div className='pt-[77px]' />
-      <div className='flex justify-center py-16'>
-        <div className='flex flex-col lg:flex-row items-center px-[15px] w-full md:w-[85%] max-w-[1080px] gap-6'>
+      <div className='pt-[65px]' />
+      <div className='flex justify-center py-14'>
+        <div className='flex flex-col lg:flex-row items-center px-[15px] w-full md:w-[85%] max-w-[1080px] gap-16'>
           <div className='flex flex-col md:flex-row gap-6 w-full'>
             <div
               className={`w-full md:w-[124px] md:min-w-[124px] h-fit aspect-[3/4.5] rounded bg-[url(/public/assets/Images/MonochromeCircuit.png)] bg-cover`}
             />
             <div className='flex flex-col gap-4'>
               <Typography.MediumText text='WHITE PAPER' bold />
-              <Typography.LargeHeading
+              <Typography.MediumHeading
                 text='SKILSS GAP WITHIN ORGANIZATION'
                 className='w-[80%]'
               />
               <Typography.MediumText text='The rapid pace of technological advancement often creates skills gaps in organizations. To bridge the skills gap, organizations often need to invest in training programs or external resources. It is a serious challenge to acquire and retain talent with needed expertise in emerging technologies such as AI, machine learning and cybersecurity. Also developing many strategies to attract, train, and retain skilled IT personnel who can support the organizations technology goals.' />
               <div className='grid grid-cols-1 md:grid-cols-2 border-b-2 pb-6'>
-                <Typography.MediumText text={`Publication : May 1, 2023`} />
+                <Typography.MediumText text={`Publication : May 1, 2023`} className='text-[#666]' />
                 <Typography.MediumText
                   text={`Topic : Digital Transformation`}
+                  className='text-[#666]'
                 />
-                <Typography.MediumText text={`Download : 1267 People`} />
-                <Typography.MediumText text={`Author : Leading-Expert`} />
+                <Typography.MediumText text={`Download : 1267 People`} className='text-[#666]' />
+                <Typography.MediumText text={`Author : Leading-Expert`} className='text-[#666]' />
               </div>
               <div>
                 <Typography.LargeText
@@ -90,7 +90,7 @@ export default function WHitepaperDetailComponent() {
                   text='What you get :'
                   className='text-[#666]'
                 />
-                <Typography.MediumText text='PDF Document' />
+                <Typography.MediumText text='PDF Document' className='text-[#b1adad]' />
               </div>
             </div>
           </div>
@@ -107,7 +107,7 @@ export default function WHitepaperDetailComponent() {
                   text='DOWNLOAD THE WHITEPAPER FOR MORE INSIGHTFUL CONTENT'
                   className='mb-6'
                 />
-                <div className='md:grid md:grid-cols-2 lg:grid-cols-1 gap-x-4'>
+                <div className='md:grid md:grid-cols-2 lg:grid-cols-1 gap-x-2'>
                   <Form.Item name='name'>
                     <CustomInput
                       placeholder='Name'
@@ -178,7 +178,7 @@ export default function WHitepaperDetailComponent() {
                     />
                   </Form.Item>
                 </div>
-                <CustomButton text='Download' icon={<LiaDownloadSolid />} />
+                <CustomButton text='Download' />
               </div>
             </Form>
           </div>

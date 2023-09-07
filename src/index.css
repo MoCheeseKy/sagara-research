@@ -14,7 +14,7 @@
 }
 
 .custom-input {
-  border-radius: 10px;
+  border-radius: 6px;
   border: 1px solid #afafaf;
 }
 
@@ -24,4 +24,31 @@
   border: 1px solid #a51535 !important;
   box-shadow: 0 0 2px #a51535 !important;
   outline: none !important;
+}
+
+.marquee {
+  height: 50px;
+
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee div {
+  display: block;
+  width: 200%;
+  height: 30px;
+  position: absolute;
+  overflow: hidden;
+
+  animation: marquee 10s linear infinite;
+}
+
+.marquee span {
+  float: left;
+  width: 50%;
+}
+
+@keyframes marquee {
+  0% { left: 0; }
+  100% { left: -100%; }
 }
