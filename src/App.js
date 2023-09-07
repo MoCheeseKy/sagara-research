@@ -21,7 +21,7 @@ function App() {
         <Route path='/whitepapers/detail' element={<WhitepaperDetail />} />
         <Route path='/about-us/our-teams' element={<OurTeams />} />
         <Route
-          path='/about-us/our-teams/team-detail'
+          path='/about-us/our-teams/team-detail/:id'
           element={<TeamDetail />}
         />
         <Route path='/about-us/sagara-research' element={<SagaraResearch />} />

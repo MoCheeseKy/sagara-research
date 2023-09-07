@@ -2,21 +2,26 @@ import React from 'react';
 import Typography from '../../_shared/Typography';
 import CustomButton from '../../_shared/CustomButton';
 import { Link } from 'react-router-dom';
+import { ourTeamsStatisData } from '../../../data/ourTeamsStaticData';
 
 export default function OurTeamsComponent() {
-  const TeamsCard = ({ name, position }) => {
+  const TeamsCard = ({ data, id }) => {
     return (
       <>
-        <Link to='/about-us/our-teams/team-detail'>
+        <Link to={`/about-us/our-teams/team-detail/${id}`}>
           <div className='flex flex-col justify-center items-center'>
-            <div className='w-[124px] h-[124px] md:w-[150px] md:h-[150px] bg-black rounded-full mb-4 bg-cover bg-[url(/public/assets/Images/arif.png)]'></div>
+            <img
+              alt='profile'
+              src={data?.image}
+              className='w-[124px] h-[124px] md:w-[150px] md:h-[150px] rounded-full mb-4'
+            />
             <Typography.MediumHeading
               className='text-center mb-[5px]'
-              text={name}
+              text={data?.name}
             />
             <Typography.MediumText
               className='text-center mb-[5px]'
-              text={position}
+              text={data?.position}
             />
           </div>
         </Link>
@@ -42,26 +47,11 @@ export default function OurTeamsComponent() {
         <div className='py-16 flex flex-col items-center justify-center px-[15px] w-full md:w-[85%] max-w-[1080px] gap-12'>
           <Typography.LargeHeading text='Sagara Research Leadership' />
           <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-[50px]'>
-            <TeamsCard
-              name='Arif Dzikrullah'
-              position='Lead Of Sagara Technology'
-            />
-            <TeamsCard
-              name='Arif Dzikrullah'
-              position='Lead Of Sagara Technology'
-            />
-            <TeamsCard
-              name='Arif Dzikrullah'
-              position='Lead Of Sagara Technology'
-            />
-            <TeamsCard
-              name='Arif Dzikrullah'
-              position='Lead Of Sagara Technology'
-            />
-            <TeamsCard
-              name='Arif Dzikrullah'
-              position='Lead Of Sagara Technology'
-            />
+            {ourTeamsStatisData.map((TeamMember, indexTeamMember) => (
+              <React.Fragment key={indexTeamMember}>
+                <TeamsCard data={TeamMember} id={indexTeamMember} />
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>
