@@ -1,7 +1,6 @@
 import React from 'react';
 import { Carousel } from 'antd';
 import Typography from '../_shared/Typography';
-import CustomButton from '../_shared/CustomButton';
 
 export default function LandingComponent() {
   const contentStyle = {
@@ -33,23 +32,25 @@ export default function LandingComponent() {
       </>
     )
   }
-  const dummyWhitepapers = [
+  const dummyUpcomingEventCard = [
     {
       title:
         'Enhancing User Privacy in Online Social Networks: Investigating the Impact of Data Breaches and Privacy Settings',
-      date: '20 Februari 2005',
-      desc: 'Protecting user privacy in online social networks is crucial in the digital age, given the potential risks associated with data breaches and data misuse.',
-      linkTo: '/whitepapers/explore-whitepapers',
+      topic: 'Topic: Tech Program Event',
+      speaker: 'Speaker: Muhammad Patel',
+      date: 'Date: 20 Februari 2005',
+      desc: 'The comprehensive and insightful guidebook designed specifically with and for C-level executives who are leading their organizations through the process of digital transformation. Adapting business processes, implementing new technologies like artificial intelligence (AI) or cloud computing, and managing the cultural shift within the organization require strategic planning and effective leadership.',
     },
     {
       title:
         'Enhancing User Privacy in Online Social Networks: Investigating the Impact of Data Breaches and Privacy Settings',
-      date: '20 Februari 2005',
-      desc: 'Protecting user privacy in online social networks is crucial in the digital age, given the potential risks associated with data breaches and data misuse.',
-      linkTo: '/whitepapers/explore-whitepapers',
+      topic: 'Topic: Tech Program Event',
+      speaker: 'Speaker: Muhammad Patel',
+      date: 'Date: 20 Februari 2005',
+      desc: 'The comprehensive and insightful guidebook designed specifically with and for C-level executives who are leading their organizations through the process of digital transformation. Adapting business processes, implementing new technologies like artificial intelligence (AI) or cloud computing, and managing the cultural shift within the organization require strategic planning and effective leadership.',
     },
   ];
-  const UpcomingEventCard = ({ title, topic, speaker, date, desc, linkTo }) => {
+  const UpcomingEventCard = ({ title, topic, speaker, date, desc }) => {
     return (
       <div>
         <div className='flex flex-col md:flex-row shadow rounded mt-[15px] hover:mt-0 mb-0 hover:mb-[15px] duration-300 overflow-hidden bg-white'>
@@ -58,15 +59,11 @@ export default function LandingComponent() {
             <div className='flex flex-col gap-4'>
               <div>
                 <Typography.LargeText text={title} bold />
-                <div className='flex gap-2 items-center'>
-                  <Typography.MediumText
-                    text={date}
-                    className='text-[#808080]'
-                  />
-                </div>
+                <Typography.LargeText text={topic} />
+                <Typography.LargeText text={speaker} />
+                <Typography.LargeText text={date} />
+                <Typography.LargeText text={desc} />
               </div>
-              <Typography.MediumText text={desc} className='text-[#808080]' />
-              <CustomButton text='Learn More' className='w-fit' />
             </div>
           </div>
         </div>
@@ -98,7 +95,7 @@ export default function LandingComponent() {
               className='mb-10'
             />
             <div className='grid gap-[15px]'>
-              {dummyWhitepapers.map((dummy, indexDummy) => (
+              {dummyUpcomingEventCard.map((dummy, indexDummy) => (
                 <React.Fragment key={indexDummy}>
                   <UpcomingEventCard
                     title={dummy.title}
