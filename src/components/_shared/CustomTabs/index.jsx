@@ -6,7 +6,7 @@ export default function CustomTabs({ Options }) {
   return (
     <>
       <div className='flex flex-col gap-6'>
-        <div className='flex items-center gap-6'>
+        <div className='flex items-center gap-10'>
           {Options?.map((TabsLabel, indexTabsLabel) => (
             <React.Fragment key={indexTabsLabel}>
               <button

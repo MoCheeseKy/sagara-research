@@ -52,3 +52,26 @@
   0% { left: 0; }
   100% { left: -100%; }
 }
+.ant-carousel .slick-next::before {
+  content: '' !important;
+}
+
+.ant-carousel .slick-prev::before {
+  content: '' !important;
+}
+
+.carousel-button {
+  display: block !important;
+  background-color: #66676b !important;
+  transition-duration: 300ms;
+}
+
+.carousel-button:hover {
+  background-color: #a51535 !important;
+}
+
+@media only screen and (max-width: 650px) {
+  .carousel-button {
+    display: none !important;
+  }
+}
