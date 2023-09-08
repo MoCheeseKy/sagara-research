@@ -2,11 +2,11 @@ import React, { useRef } from 'react';
 import { Carousel } from 'antd';
 import Typography from '../_shared/Typography';
 import CustomButton from '../_shared/CustomButton';
-import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
-import { IoMdQuote } from 'react-icons/io'
+import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
+import { IoMdQuote } from 'react-icons/io';
 
 export default function LandingComponent() {
-  const carouselRef = useRef(null)
+  const carouselRef = useRef(null);
 
   const dummyUpcomingEventCard = [
     {
@@ -14,14 +14,14 @@ export default function LandingComponent() {
       topic: 'Topic: Tech Talk',
       speaker: 'Speaker: Muhammad Patel',
       date: 'Date: 20 Februari 2005',
-      desc: 'The technological revolution, or "Techvolution," has brought unprecedented changes to our lives, presenting us with both opportunities and challenges. In this event, we hope to gain valuable insights into how we can harness the power of technology responsibly and equitably to shape a brighter future for all. Your perspectives and ideas are crucial in fostering a deeper understanding of the techvolution phenomenon and its impact on society, the economy, and the environment.'
+      desc: 'The technological revolution, or "Techvolution," has brought unprecedented changes to our lives, presenting us with both opportunities and challenges. In this event, we hope to gain valuable insights into how we can harness the power of technology responsibly and equitably to shape a brighter future for all. Your perspectives and ideas are crucial in fostering a deeper understanding of the techvolution phenomenon and its impact on society, the economy, and the environment.',
     },
     {
       title: 'Techvolution : Powering Progress, Shaping Tomorrow',
       topic: 'Topic: Tech Talk',
       speaker: 'Speaker: Muhammad Patel',
       date: 'Date: 20 Februari 2005',
-      desc: 'The technological revolution, or "Techvolution," has brought unprecedented changes to our lives, presenting us with both opportunities and challenges. In this event, we hope to gain valuable insights into how we can harness the power of technology responsibly and equitably to shape a brighter future for all. Your perspectives and ideas are crucial in fostering a deeper understanding of the techvolution phenomenon and its impact on society, the economy, and the environment.'
+      desc: 'The technological revolution, or "Techvolution," has brought unprecedented changes to our lives, presenting us with both opportunities and challenges. In this event, we hope to gain valuable insights into how we can harness the power of technology responsibly and equitably to shape a brighter future for all. Your perspectives and ideas are crucial in fostering a deeper understanding of the techvolution phenomenon and its impact on society, the economy, and the environment.',
     },
   ];
 
@@ -72,7 +72,6 @@ export default function LandingComponent() {
       <CustomButton
         className={`${className} carousel-button`}
         style={{
-          ...style,
           color: 'white',
           fontSize: '15px',
           lineHeight: '1.5715',
@@ -82,20 +81,20 @@ export default function LandingComponent() {
           width: '48px',
           height: '48px',
           position: 'absolute',
-          right: '-10%'
+          right: '-10%',
+          ...style,
         }}
         onClick={onClick}
         icon={<FiChevronRight />}
       />
-    )
-  }
+    );
+  };
 
   const PrevArrow = ({ className, style, onClick }) => {
     return (
       <CustomButton
         className={`${className} carousel-button`}
         style={{
-          ...style,
           color: 'white',
           fontSize: '15px',
           lineHeight: '1.5715',
@@ -105,18 +104,47 @@ export default function LandingComponent() {
           width: '48px',
           height: '48px',
           position: 'absolute',
-          left: '-10%'
+          left: '-10%',
+          ...style,
         }}
         onClick={onClick}
         icon={<FiChevronLeft />}
       />
-    )
-  }
+    );
+  };
+
+  const TestimonialCard = ({ image, name, position, description }) => {
+    return (
+      <>
+        <div className='flex flex-col h-[444px] md:h-[364px]'>
+          <IoMdQuote size={80} className='text-[#a51535]' />
+          <div className='flex-grow bg-white rounded'>
+            <div className='flex flex-col items-center h-full px-6 lgpx-12 mt-[-35px]'>
+              <img
+                src={image}
+                alt='profile'
+                className='w-[70px] h-[70px] rounded-full mb-6 lg:mb-[35px]'
+              />
+              <Typography.LargeText text={name} bold />
+              <Typography.MediumText
+                className='mt-1 bg-primary text-white w-fit rounded py-1 px-4 mb-[15px]'
+                text={position}
+              />
+              <Typography.MediumText
+                className='text-center'
+                text={description}
+              />
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
 
   const settings = {
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
-  }
+  };
 
   return (
     <>
@@ -163,52 +191,30 @@ export default function LandingComponent() {
       {/* Whitepapers Carousel */}
       {/* <div className='pt-[77px]'></div> */}
       <div className='px-[10%] md:px-[15%] lg:px-[20%]'>
-        <Typography.MediumHeading text='What They Said' className='my-[30px] text-center' />
-        <Carousel arrows ref={carouselRef} autoplay draggable swipeToSlide {...settings}>
-          <div>
-            <IoMdQuote size={80} className='text-[#a51535]' />
-            <div id='testimonial-box' className='pt-5 pb-[15px] px-[45px] relative rounded-lg bg-white text-center mx-auto'>
-              <div className='absolute w-full mx-auto -translate-y-[50%]'>
-                <img
-                  src="/assets/Images/user-avatar-small-02.jpg"
-                  alt="avatar"
-                  className='rounded-full w-[70px] h-auto mx-auto'
-                />
-              </div>
-              <div className='mt-10 py-5'>
-                <Typography.SmallHeading text='Sindy Forest' />
-                <span className='bg-[#e31937] px-3 py-1 text-white rounded'>Founder of Agoda</span>
-              </div>
-              <div className='text-[#6D6D6D] text-base'>
-                I am truly impressed with the exceptional level of service and
-                expertise they provided throughout our collaboration. From the
-                very beginning, their team demonstrated a deep understanding of
-                our industry and specific research needs, which immediately
-                instilled confidence in their abilitie.
-              </div>
-            </div>
-          </div>
-          <div>
-            <IoMdQuote size={80} className='text-[#a51535]' />
-            <div id='testimonial-box' className='pt-5 pb-[15px] px-[45px] relative rounded-lg bg-white text-center mx-auto'>
-              <div className='absolute w-full mx-auto -translate-y-[50%]'>
-                <img
-                  src="/assets/Images/user-avatar-small-02.jpg"
-                  alt="avatar"
-                  className='rounded-full w-[70px] h-auto mx-auto'
-                />
-              </div>
-              <div className='mt-10 py-5'>
-                <Typography.SmallHeading text='Tom Smith' />
-                <span className='bg-[#e31937] px-3 py-1 text-white rounded'>Founder of Tokopedia</span>
-              </div>
-              <div className='text-[#6D6D6D] text-base'>
-                The research they conducted was thorough, insightful, and meticulously
-                presented, allowing us to gain valuable and actionable insights into the
-                current market trends and technological advancements.
-              </div>
-            </div>
-          </div>
+        <Typography.MediumHeading
+          text='What They Said'
+          className='my-[30px] text-center'
+        />
+        <Carousel
+          arrows
+          ref={carouselRef}
+          autoplay
+          draggable
+          swipeToSlide
+          {...settings}
+        >
+          <TestimonialCard
+            image='/assets/Images/user-avatar-small-02.jpg'
+            name='Rifky Muhammad Prayudhi'
+            position='CEO Google 2025'
+            description='I am truly impressed with the exceptional level of service and expertise they provided throughout our collaboration. From the very beginning, their team demonstrated a deep understanding of our industry and specific research needs, which immediately instilled confidence in their abilitie.'
+          />
+          <TestimonialCard
+            image='/assets/Images/user-avatar-small-02.jpg'
+            name='Rifky Muhammad Prayudhi'
+            position='CEO Google 2025'
+            description='I am truly impressed with the exceptional level of service and expertise they provided throughout our collaboration. From the very beginning, their team demonstrated a deep understanding of our industry and specific research needs, which immediately instilled confidence in their abilitie.'
+          />
         </Carousel>
       </div>
       {/* Recent Blog Posts */}
