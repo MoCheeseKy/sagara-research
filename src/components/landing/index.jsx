@@ -4,6 +4,7 @@ import Typography from '../_shared/Typography';
 import CustomButton from '../_shared/CustomButton';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 import { IoMdQuote } from 'react-icons/io'
+import MarqueeImage from '../_shared/MarqueeImage';
 
 export default function LandingComponent() {
   const carouselRef = useRef(null)
@@ -143,7 +144,7 @@ export default function LandingComponent() {
       <div className='py-16 px-16 flex flex-col items-left'>
         <div className='flex flex-col items-left text-left mb-[20px]'>
           <Typography.LargeHeading
-            text='Explore Whitepapers'
+            text='Upcoming Event'
             className='mb-10'
           />
           <div className='grid gap-[30px]'>
@@ -163,7 +164,26 @@ export default function LandingComponent() {
       </div>
       {/* End of Upcoming Event */}
       {/* Whitepapers Carousel */}
-      {/* <div className='pt-[77px]'></div> */}
+      <Carousel autoplay>
+        <div>
+          <div className='flex h-[90vh] flex-col'>
+            <div className='flex-grow bg-[#ddd]'>Content 1 here....</div>
+          </div>
+        </div>
+        <div>
+          <div className='flex h-[90vh] flex-col'>
+            <div className='flex-grow bg-[#ddd]'>Content 2 here....</div>
+          </div>
+        </div>
+        <div>
+          <div className='flex h-[90vh] flex-col'>
+            <div className='flex-grow bg-[#ddd]'>Content 3 here....</div>
+          </div>
+        </div>
+      </Carousel>
+      {/* End of Whitepapers Carousel */}
+      {/* What they said */}
+      <div className='pt-[77px]'></div>
       <div className='px-[10%] md:px-[15%] lg:px-[20%]'>
         <Typography.MediumHeading text='What They Said' className='text-center' />
         <Carousel arrows ref={carouselRef} autoplay draggable swipeToSlide {...settings}>
@@ -213,6 +233,7 @@ export default function LandingComponent() {
           </div>
         </Carousel>
       </div>
+      {/* End of what they said */}
       {/* Recent Blog Posts */}
       <div className='py-16 px-16 flex flex-col items-left'>
         <div className='flex flex-col items-left text-left mb-[20px]'>
@@ -236,9 +257,7 @@ export default function LandingComponent() {
       {/* End of Recent Blog Posts */}
       {/* Recognition */}
       <div className="App">
-        <div marquee container>
-          <div marquee content='bg-[url(/public/assets/Images/kalbe logo.png)]' />
-        </div>
+        <MarqueeImage />
       </div>
       {/* End of Recognition */}
     </>
