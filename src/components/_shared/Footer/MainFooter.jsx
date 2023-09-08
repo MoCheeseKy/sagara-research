@@ -70,7 +70,7 @@ export default function MainFooter() {
               <Button
                 size='large'
                 color='white'
-                className='bg-[#a51535] border-none hover-[#a51535]'
+                className='bg-primary border-none hover-primary'
                 style={{ color: 'white', borderRadius: '4px' }}
               >
                 <FiArrowRight size={16} />

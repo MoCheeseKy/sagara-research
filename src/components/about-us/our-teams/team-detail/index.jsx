@@ -19,7 +19,7 @@ export default function TeamDetailComponent() {
           />
           <div className='flex flex-col flex-grow items-start'>
             <Typography.LargeHeading
-              className='text-[#a51535]'
+              className='text-primary'
               text={ourTeamsStatisData[id]?.name}
               bold
             />
@@ -33,10 +33,10 @@ export default function TeamDetailComponent() {
               />
               <a href={ourTeamsStatisData[id]?.linkedin}>
                 <div className='flex gap-2 items-center'>
-                  <BsLinkedin className='text-[#a51535] text-base' />
+                  <BsLinkedin className='text-primary text-base' />
                   <Typography.MediumText
                     text='Linkedin'
-                    className='hover:text-[#a51535]'
+                    className='hover:text-primary'
                   />
                 </div>
               </a>
