@@ -1,3 +1,4 @@
-import Login from './api/login'
+import Login from './api/login';
+import Whitepapers from './api/whitepapers';
 
-export { Login }
+export { Login, Whitepapers };

@@ -19,12 +19,12 @@ export default function CustomTabs({ Options }) {
                   bold
                   className={`${
                     ActiveTabs === indexTabsLabel
-                      ? 'text-[#a51535]'
+                      ? 'text-primary'
                       : 'text-black'
                   }`}
                 />
                 <div
-                  className={`h-[2px] w-full bg-[#a51535] relative opacity-0 duration-100 ${
+                  className={`h-[2px] w-full bg-primary relative opacity-0 duration-100 ${
                     ActiveTabs === indexTabsLabel ? 'opacity-100' : ''
                   }`}
                 ></div>

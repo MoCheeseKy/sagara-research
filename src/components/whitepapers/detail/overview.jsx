@@ -49,7 +49,7 @@ export default function OverviewComponent({
         </div>
         <div className='flex flex-col gap-10 md:gap-16 items-center'>
           <Typography.ExtraLargeHeading
-            className='text-[#a51535] text-center'
+            className='text-primary text-center'
             text='Addressing the skills gap in an organization
 requires a comprehensive and proactive approach.'
           />
@@ -66,7 +66,7 @@ requires a comprehensive and proactive approach.'
           <div>{/*  */}</div>
           <div className='flex flex-col w-full items-center gap-4 md:gap-6'>
             <Typography.ExtraLargeHeading
-              className='text-[#a51535] text-center'
+              className='text-primary text-center'
               text='Watch our whitepaper launch this month'
             />
             <iframe

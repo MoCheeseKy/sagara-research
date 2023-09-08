@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Typography from '../../_shared/Typography';
 import CustomButton from '../../_shared/CustomButton';
 import { AiOutlineClockCircle } from 'react-icons/ai';
@@ -8,7 +8,17 @@ import { GiChampions } from 'react-icons/gi';
 import { PiShareDuotone } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { Whitepapers } from '../../../service';
+
 export default function ExploreWhitepapersComponent() {
+  const dispatch = useDispatch();
+  const { whitepapersList } = useSelector((state) => state.whitepaper);
+
+  useEffect(() => {
+    dispatch(Whitepapers.GetWhitepapersList());
+  }, []);
+
   const dummyWhitepapers = [
     {
       title:
@@ -113,7 +123,7 @@ export default function ExploreWhitepapersComponent() {
             <LiaDownloadSolid className='text-[#808080] text-[84px] ' />
             <Typography.ExtraLargeHeading
               text='1,100'
-              className='text-[#a51535] '
+              className='text-primary '
             />
             <Typography.LargeText
               text='Downloaded'
@@ -124,7 +134,7 @@ export default function ExploreWhitepapersComponent() {
             <PiShareDuotone className='text-[#808080] text-[84px] ' />
             <Typography.ExtraLargeHeading
               text='1,100'
-              className='text-[#a51535] '
+              className='text-primary '
             />
             <Typography.LargeText text='Shared' className='text-[#808080]' />
           </div>
@@ -132,7 +142,7 @@ export default function ExploreWhitepapersComponent() {
             <BiUser className='text-[#808080] text-[84px] ' />
             <Typography.ExtraLargeHeading
               text='1,100'
-              className='text-[#a51535] '
+              className='text-primary '
             />
             <Typography.LargeText
               text='Active Members'
@@ -143,7 +153,7 @@ export default function ExploreWhitepapersComponent() {
             <GiChampions className='text-[#808080] text-[84px] ' />
             <Typography.ExtraLargeHeading
               text='1,100'
-              className='text-[#a51535] '
+              className='text-primary '
             />
             <Typography.LargeText
               text='Satisfaction Rate'

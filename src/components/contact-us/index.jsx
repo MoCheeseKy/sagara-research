@@ -41,18 +41,18 @@ export default function ContactUsComponent() {
               We appreciate your trust and look forward to assisting you with any inquiries you may have'
             />
             <div className='flex items-center gap-2'>
-              <MdCall className='text-[#a51535] text-base' />
+              <MdCall className='text-primary text-base' />
               <a href='tel:003024630820'>
                 <Typography.MediumText
                   text='+62 814 1720 2212'
-                  className='hover:text-[#a51535]'
+                  className='hover:text-primary'
                 />
               </a>
-              <HiMail className='text-[#a51535] text-base' />
+              <HiMail className='text-primary text-base' />
               <a href='mailto:office@evolo.com'>
                 <Typography.MediumText
                   text='sagararesearch.com'
-                  className='hover:text-[#a51535]'
+                  className='hover:text-primary'
                 />
               </a>
             </div>
