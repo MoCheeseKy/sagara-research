@@ -29,7 +29,7 @@ export default function WHitepaperDetailComponent() {
   const initialValues = {
     name: '',
     company: '',
-    title: '',
+    position: '',
     email: '',
     phone: '',
     country: undefined,
@@ -39,7 +39,7 @@ export default function WHitepaperDetailComponent() {
 
     formData.append('name', e.name)
     formData.append('company', e.company)
-    formData.append('title', e.title)
+    formData.append('position', e.position)
     formData.append('email', e.email)
     formData.append('phone', e.phone)
     formData.append('country', 1)
@@ -48,7 +48,6 @@ export default function WHitepaperDetailComponent() {
       formData,
       slug: whitepapersDetail.slug
     };
-    console.log(data);
     dispatch(Whitepapers.DownloadWhitepaper(data))
   };
   const TabsItem = [
@@ -140,35 +139,61 @@ export default function WHitepaperDetailComponent() {
                   className='mb-6'
                 />
                 <div className='md:grid md:grid-cols-2 lg:grid-cols-1 gap-x-2'>
-                  <Form.Item name='name'>
+                  <Form.Item
+                    name='name'
+                    rules={[
+                      { required: true, message: 'This field is required' }
+                    ]}
+                  >
                     <CustomInput
                       placeholder='Name'
                       type='text'
                       className='py-[10px] px-[18px]'
                     />
                   </Form.Item>
-                  <Form.Item name='company'>
+                  <Form.Item
+                    name='company'
+                    rules={[
+                      { required: true, message: 'This field is required' }
+                    ]}
+                  >
                     <CustomInput
                       placeholder='Company'
                       type='text'
                       className='py-[10px] px-[18px]'
                     />
                   </Form.Item>
-                  <Form.Item name='title'>
+                  <Form.Item
+                    name='position'
+                    rules={[
+                      { required: true, message: 'This Field is required' }
+                    ]}
+                  >
                     <CustomInput
                       placeholder='Title/Position'
                       type='text'
                       className='py-[10px] px-[18px]'
                     />
                   </Form.Item>
-                  <Form.Item name='email'>
+                  <Form.Item
+                    name='email'
+                    rules={[
+                      { required: true, message: 'This field is required' },
+                      { type: 'email', message: 'Please input correct email' },
+                    ]}
+                  >
                     <CustomInput
                       placeholder='Email'
                       type='text'
                       className='py-[10px] px-[18px]'
                     />
                   </Form.Item>
-                  <Form.Item name='phone'>
+                  <Form.Item
+                    name='phone'
+                    rules={[
+                      { required: true, message: 'This Field is required' },
+                    ]}
+                  >
                     <CustomInput
                       placeholder='Phone'
                       type='text'
