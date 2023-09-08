@@ -35,15 +35,21 @@ export default function WHitepaperDetailComponent() {
     country: undefined,
   };
   const onSubmitDownload = (e) => {
-    const payload = {
-      name: e.name,
-      company: e.company,
-      title: e.title,
-      email: e.email,
-      phone: e.phone,
-      country: e.country,
+    const formData = new FormData()
+
+    formData.append('name', e.name)
+    formData.append('company', e.company)
+    formData.append('title', e.title)
+    formData.append('email', e.email)
+    formData.append('phone', e.phone)
+    formData.append('country', 1)
+
+    const data = {
+      formData,
+      slug: whitepapersDetail.slug
     };
-    console.log(payload);
+    console.log(data);
+    dispatch(Whitepapers.DownloadWhitepaper(data))
   };
   const TabsItem = [
     {
