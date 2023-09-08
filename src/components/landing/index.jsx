@@ -4,7 +4,6 @@ import Typography from '../_shared/Typography';
 import CustomButton from '../_shared/CustomButton';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 import { IoMdQuote } from 'react-icons/io'
-import MarqueeImage from '../_shared/MarqueeImage';
 
 export default function LandingComponent() {
   const carouselRef = useRef(null);
