@@ -85,7 +85,7 @@ export default function ExploreWhitepapersComponent() {
             className='mb-[30px]'
           />
           <div className='grid gap-[15px]'>
-            {whitepapersList.map((whitepaper, indexWhitepaper) => (
+            {whitepapersList?.results?.map((whitepaper, indexWhitepaper) => (
               <React.Fragment key={indexWhitepaper}>
                 <Card
                   image={whitepaper?.image}
