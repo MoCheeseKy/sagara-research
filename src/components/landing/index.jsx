@@ -3,6 +3,7 @@ import { Carousel } from 'antd';
 import Typography from '../_shared/Typography';
 import CustomButton from '../_shared/CustomButton';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
+import ImageMarquee from '../_shared/ImageMarquee';
 
 export default function LandingComponent() {
   const carouselRef = useRef(null)
@@ -19,15 +20,15 @@ export default function LandingComponent() {
       title: 'Techvolution : Powering Progress, Shaping Tomorrow',
       topic: 'Topic: Tech Talk',
       speaker: 'Speaker: Muhammad Patel',
-      date: 'Date: 20 Februari 2005',
-      desc: 'The technological revolution, or "Techvolution," has brought unprecedented changes to our lives, presenting us with both opportunities and challenges. In this event, we hope to gain valuable insights into how we can harness the power of technology responsibly and equitably to shape a brighter future for all. Your perspectives and ideas are crucial in fostering a deeper understanding of the techvolution phenomenon and its impact on society, the economy, and the environment.'
+      date: 'Date: 20 Februari 2024',
+      desc: 'The technological revolution, or "Techvolution," has brought unprecedented changes to our lives, presenting us with both opportunities and challenges. We hope to gain valuable insights about the power of technology responsibly and equitably to shape a brighter future for all. Your perspectives and ideas are crucial in fostering a deeper understanding of the techvolution phenomenon and its impact on society, the economy, and the environment.'
     },
     {
       title: 'Techvolution : Powering Progress, Shaping Tomorrow',
       topic: 'Topic: Tech Talk',
       speaker: 'Speaker: Muhammad Patel',
-      date: 'Date: 20 Februari 2005',
-      desc: 'The technological revolution, or "Techvolution," has brought unprecedented changes to our lives, presenting us with both opportunities and challenges. In this event, we hope to gain valuable insights into how we can harness the power of technology responsibly and equitably to shape a brighter future for all. Your perspectives and ideas are crucial in fostering a deeper understanding of the techvolution phenomenon and its impact on society, the economy, and the environment.'
+      date: 'Date: 20 Februari 2024',
+      desc: 'The technological revolution, or "Techvolution," has brought unprecedented changes to our lives, presenting us with both opportunities and challenges. We hope to gain valuable insights about the power of technology responsibly and equitably to shape a brighter future for all. Your perspectives and ideas are crucial in fostering a deeper understanding of the techvolution phenomenon and its impact on society, the economy, and the environment.'
     },
   ];
 
@@ -56,7 +57,7 @@ export default function LandingComponent() {
     return (
       <div>
         <div className='flex flex-col md:flex-row shadow rounded mt-[15px] hover:mt-0 mb-0 hover:mb-[15px] duration-300 overflow-hidden bg-white'>
-          <div className='min-w-[240px] aspect-[3/3.5] h-fit bg-[url(/public/assets/Images/1.png)] bg-cover'></div>
+          <div className='min-w-[240px] aspect-[3/3.5] h-max bg-[url(/public/assets/Images/1.png)] bg-cover'></div>
           <div className='p-[30px] flex flex-col'>
             <div className='flex flex-col gap-4'>
               <div>
@@ -146,9 +147,12 @@ export default function LandingComponent() {
       </Carousel>
       {/* End Intro Banner */}
       {/* Upcoming Event */}
-      <div className='py-16 px-16 w-full flex flex-col items-left'>
-        <div className='flex flex-col md:w-[85%] max-w-[1080px]'>
-          <Typography.LargeHeading text='Upcoming Event' className='mb-10' />
+      <div className='py-16 px-16 flex flex-col items-left'>
+        <div className='flex flex-col items-left text-left mb-[20px]'>
+          <Typography.LargeHeading
+            text='Explore Whitepapers'
+            className='mb-10'
+          />
           <div className='grid gap-[30px]'>
             {dummyUpcomingEventCard.map((dummy, indexDummy) => (
               <React.Fragment key={indexDummy}>
@@ -165,11 +169,10 @@ export default function LandingComponent() {
         </div>
       </div>
       {/* End of Upcoming Event */}
-
       {/* Whitepapers Carousel */}
       {/* <div className='pt-[77px]'></div> */}
       <div className='px-[10%] md:px-[15%] lg:px-[20%]'>
-        <Typography.MediumHeading text='What They Said' className='my-[30px] text-center' />
+        <Typography.MediumHeading text='What They Said' className='text-center' />
         <Carousel arrows ref={carouselRef} autoplay draggable swipeToSlide {...settings}>
           <div>
             <h3 style={contentStyle}>1</h3>
@@ -202,13 +205,11 @@ export default function LandingComponent() {
           </div>
         </div>
       </div>
+      {/* End of Recent Blog Posts */}
       {/* Recognition */}
-      <div className='marquee'>
-        <div>
-          <span>You spin me right round, baby. Like a record, baby.</span>
-          <span>You spin me right round, baby. Like a record, baby.</span>
-          <span>You spin me right round, baby. Like a record, baby.</span>
-          <span>You spin me right round, baby. Like a record, baby.</span>
+      <div className="App">
+        <div marquee container>
+          <ImageMarquee marquee content='bg-[url(/public/assets/Images/kalbe logo.png)]' />
         </div>
       </div>
       {/* End of Recognition */}

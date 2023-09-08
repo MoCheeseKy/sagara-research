@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '../../_shared/Typography';
-import { GiThreeFriends } from 'react-icons/gi';
+import { FaUserFriends } from 'react-icons/fa';
 import { GiPowerLightning } from 'react-icons/gi';
 import { CgCommunity } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
@@ -9,17 +9,17 @@ import CustomButton from '../../_shared/CustomButton';
 export default function SagaraResearchComponent() {
   const phylosophyData = [
     {
-      icon: <GiThreeFriends className='text-[#a51535]' />,
+      icon: <FaUserFriends className='text-primary' />,
       about: 'Collaboration',
       desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     },
     {
-      icon: <GiPowerLightning className='text-[#a51535]' />,
+      icon: <GiPowerLightning className='text-primary' />,
       about: 'Empowerment',
       desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     },
     {
-      icon: <CgCommunity className='text-[#a51535]' />,
+      icon: <CgCommunity className='text-primary' />,
       about: 'Community',
       desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     },
