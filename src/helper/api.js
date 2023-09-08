@@ -11,11 +11,17 @@ const api = ({ url, method, body, headers }) => {
   return axios(config);
 };
 
-const apiRequest = async ({ method, url, payload = {} }) => {
+const apiRequest = async ({ method, url, payload = {}, isForm }) => {
   let body = null;
   let headers = {
     'Content-Type': 'application/json',
   };
+
+  if (isForm) {
+    headers = {
+      'Content-Type': 'multipart/form-data'
+    }
+  }
 
   const user = localStorage.getItem('user');
 
@@ -41,8 +47,8 @@ const apiRequest = async ({ method, url, payload = {} }) => {
 const get = ({ url }) => apiRequest({ url, method: 'get' });
 const deleteRequest = ({ url, payload }) =>
   apiRequest({ method: 'delete', url: url, payload: payload });
-const post = ({ url, payload }) =>
-  apiRequest({ method: 'post', url: url, payload: payload });
+const post = ({ url, payload, isForm }) =>
+  apiRequest({ method: 'post', url: url, payload: payload, isForm });
 const put = ({ url, payload }) =>
   apiRequest({ method: 'put', url: url, payload: payload });
 

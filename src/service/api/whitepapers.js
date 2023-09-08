@@ -27,9 +27,26 @@ const GetWhitepaperDetail = createAsyncThunk(
   }
 );
 
+const DownloadWhitepaper = createAsyncThunk(
+  'post/downloadWhitepaper',
+  async (data, {rejectWithValue}) => {
+    const {slug, formData} = data
+    try {
+      return API.post({
+        url: `user-download/${slug}/`,
+        payload: formData,
+        isForm: true
+      })
+    } catch (error) {
+      return rejectWithValue(error)
+    }
+  }
+)
+
 const Whitepapers = {
   GetWhitepapersList,
   GetWhitepaperDetail,
+  DownloadWhitepaper
 };
 
 export default Whitepapers;
