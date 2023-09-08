@@ -7,7 +7,7 @@ export default function MainFooter() {
   return (
     <>
       <footer className='flex flex-col bg-[#303030] items-center text-white'>
-        <div className='flex flex-col gap-6 md:gap-0 flex-wrap md:flex-row py-6 px-[15px] w-full md:w-[85%] max-w-[1080px]'>
+        <div className='flex flex-col gap-6 md:gap-0 flex-wrap md:flex-row py-10 px-[15px] w-full md:w-[85%] max-w-[1080px]'>
           <div className='w-full md:w-[40%] lg:w-[20%] px-[15px]'>
             <Typography.LargeText text='JAKARTA' className='mb-[15px]' />
             <Typography.MediumText
