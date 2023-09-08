@@ -18,7 +18,10 @@ function App() {
           path='/whitepapers/explore-whitepapers'
           element={<ExploreWhitepapers />}
         />
-        <Route path='/whitepapers/detail' element={<WhitepaperDetail />} />
+        <Route
+          path='/whitepapers/detail/:slug'
+          element={<WhitepaperDetail />}
+        />
         <Route path='/about-us/our-teams' element={<OurTeams />} />
         <Route
           path='/about-us/our-teams/team-detail/:id'

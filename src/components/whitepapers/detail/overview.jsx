@@ -73,9 +73,7 @@ requires a comprehensive and proactive approach.'
               className='w-full lg:w-[85%]  aspect-video h-fit'
               src='https://www.youtube.com/embed/CXNwHvRZYxE'
               title='Sagara Technology Work Culture. Life in a Tech Company✨'
-              frameborder='0'
               allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-              allowfullscreen
             />
           </div>
         </div>

@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Typography from '../../_shared/Typography';
 import { Form } from 'antd';
 import CustomInput from '../../_shared/Form/CustomInput';
 import CustomSelect from '../../_shared/Form/CustomSelect';
 import CustomButton from '../../_shared/CustomButton';
 import CustomTabs from '../../_shared/CustomTabs';
+import { useParams } from 'react-router-dom';
 
 // Import Self Component
 import OverviewComponent from './overview';
 import AboutFGDComponent from './aboutFGD';
 
+// Dispatch Setting
+import { useDispatch, useSelector } from 'react-redux';
+import { Whitepapers } from '../../../service';
+
 export default function WHitepaperDetailComponent() {
+  const params = useParams();
+  const slug = params.slug;
   const [form] = Form.useForm();
+  const dispatch = useDispatch();
+  const { whitepapersDetail } = useSelector((state) => state.whitepaper);
+
+  useEffect(() => {
+    dispatch(Whitepapers.GetWhitepaperDetail(slug));
+  }, []);
+
   const initialValues = {
     name: '',
     company: '',
@@ -76,13 +90,22 @@ export default function WHitepaperDetailComponent() {
               />
               <Typography.MediumText text='The rapid pace of technological advancement often creates skills gaps in organizations. To bridge the skills gap, organizations often need to invest in training programs or external resources. It is a serious challenge to acquire and retain talent with needed expertise in emerging technologies such as AI, machine learning and cybersecurity. Also developing many strategies to attract, train, and retain skilled IT personnel who can support the organizations technology goals.' />
               <div className='grid grid-cols-1 md:grid-cols-2 border-b-2 pb-6'>
-                <Typography.MediumText text={`Publication : May 1, 2023`} className='text-[#666]' />
+                <Typography.MediumText
+                  text={`Publication : May 1, 2023`}
+                  className='text-[#666]'
+                />
                 <Typography.MediumText
                   text={`Topic : Digital Transformation`}
                   className='text-[#666]'
                 />
-                <Typography.MediumText text={`Download : 1267 People`} className='text-[#666]' />
-                <Typography.MediumText text={`Author : Leading-Expert`} className='text-[#666]' />
+                <Typography.MediumText
+                  text={`Download : 1267 People`}
+                  className='text-[#666]'
+                />
+                <Typography.MediumText
+                  text={`Author : Leading-Expert`}
+                  className='text-[#666]'
+                />
               </div>
               <div>
                 <Typography.LargeText
@@ -90,7 +113,10 @@ export default function WHitepaperDetailComponent() {
                   text='What you get :'
                   className='text-[#666]'
                 />
-                <Typography.MediumText text='PDF Document' className='text-[#b1adad]' />
+                <Typography.MediumText
+                  text='PDF Document'
+                  className='text-[#b1adad]'
+                />
               </div>
             </div>
           </div>

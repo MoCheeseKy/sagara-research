@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const api = ({ url, method, body, headers }) => {
   const config = {
-    url: `http://sagara-research-news.nikici.com/${url}`,
+    url: `https://sagara-research-news.nikici.com/${url}`,
     method: method,
     data: body,
     headers: headers,

@@ -3,6 +3,7 @@ import { Whitepapers } from '../../service';
 
 const initialState = {
   whitepapersList: [],
+  whitepapersDetail: [],
   loading: false,
 };
 
@@ -10,7 +11,7 @@ export const whitepaperSlice = createSlice({
   name: 'whitepapers',
   initialState,
   extraReducers: (builder) => {
-    // Whitepapers
+    // Get List
     builder.addCase(Whitepapers.GetWhitepapersList.pending, (state) => {
       state.loading = true;
     });
@@ -22,6 +23,21 @@ export const whitepaperSlice = createSlice({
       }
     );
     builder.addCase(Whitepapers.GetWhitepapersList.rejected, (state) => {
+      state.loading = false;
+    });
+
+    // Get Detail
+    builder.addCase(Whitepapers.GetWhitepaperDetail.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      Whitepapers.GetWhitepaperDetail.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.whitepapersDetail = action.payload.data;
+      }
+    );
+    builder.addCase(Whitepapers.GetWhitepaperDetail.rejected, (state) => {
       state.loading = false;
     });
   },

@@ -14,9 +14,22 @@ const GetWhitepapersList = createAsyncThunk(
     }
   }
 );
+const GetWhitepaperDetail = createAsyncThunk(
+  'get/whitepaperDetail',
+  async (slug, { rejectWithValue }) => {
+    try {
+      return API.get({
+        url: `whitepapers/${slug}`,
+      });
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
 
 const Whitepapers = {
   GetWhitepapersList,
+  GetWhitepaperDetail,
 };
 
 export default Whitepapers;

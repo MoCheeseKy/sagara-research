@@ -19,34 +19,15 @@ export default function ExploreWhitepapersComponent() {
     dispatch(Whitepapers.GetWhitepapersList());
   }, []);
 
-  const dummyWhitepapers = [
-    {
-      title:
-        'Enhancing User Privacy in Online Social Networks: Investigating the Impact of Data Breaches and Privacy Settings',
-      date: '20 Februari 2005',
-      desc: 'Protecting user privacy in online social networks is crucial in the digital age, given the potential risks associated with data breaches and data misuse.',
-      linkTo: '/whitepapers/detail',
-    },
-    {
-      title:
-        'Enhancing User Privacy in Online Social Networks: Investigating the Impact of Data Breaches and Privacy Settings',
-      date: '20 Februari 2005',
-      desc: 'Protecting user privacy in online social networks is crucial in the digital age, given the potential risks associated with data breaches and data misuse.',
-      linkTo: '/whitepapers/detail',
-    },
-    {
-      title:
-        'Enhancing User Privacy in Online Social Networks: Investigating the Impact of Data Breaches and Privacy Settings',
-      date: '20 Februari 2005',
-      desc: 'Protecting user privacy in online social networks is crucial in the digital age, given the potential risks associated with data breaches and data misuse.',
-      linkTo: '/whitepapers/detail',
-    },
-  ];
-  const Card = ({ title, date, desc, linkTo }) => {
+  const Card = ({ image, title, date, desc, slug }) => {
     return (
       <>
         <div className='flex flex-col md:flex-row shadow rounded mt-[15px] hover:mt-0 mb-0 hover:mb-[15px] duration-300 overflow-hidden bg-white'>
-          <div className='min-w-[240px] aspect-[3/3.5] h-fit bg-[url(/public/assets/Images/1.png)] bg-cover'></div>
+          <img
+            src={image}
+            alt='whitepaper_image'
+            className='md:min-w-[240px] md:max-w-[240px] aspect-[3/4] h-fit bg-cover'
+          />
           <div className='p-[30px] flex flex-col'>
             <div className='flex flex-col gap-4'>
               <div>
@@ -60,7 +41,7 @@ export default function ExploreWhitepapersComponent() {
                 </div>
               </div>
               <Typography.MediumText text={desc} className='text-[#808080]' />
-              <Link to={linkTo}>
+              <Link to={`/whitepapers/detail/${slug}`}>
                 <CustomButton text='Learn More' className='w-fit' />
               </Link>
             </div>
@@ -104,13 +85,14 @@ export default function ExploreWhitepapersComponent() {
             className='mb-[30px]'
           />
           <div className='grid gap-[15px]'>
-            {dummyWhitepapers.map((dummy, indexDummy) => (
-              <React.Fragment key={indexDummy}>
+            {whitepapersList?.results?.map((whitepaper, indexWhitepaper) => (
+              <React.Fragment key={indexWhitepaper}>
                 <Card
-                  title={dummy.title}
-                  date={dummy.date}
-                  desc={dummy.desc}
-                  linkTo={dummy.linkTo}
+                  image={whitepaper?.image}
+                  title={whitepaper?.title}
+                  date={whitepaper?.published_at}
+                  desc={whitepaper?.description}
+                  slug={whitepaper?.slug}
                 />
               </React.Fragment>
             ))}
