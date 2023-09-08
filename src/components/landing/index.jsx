@@ -3,17 +3,10 @@ import { Carousel } from 'antd';
 import Typography from '../_shared/Typography';
 import CustomButton from '../_shared/CustomButton';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
-import ImageMarquee from '../_shared/ImageMarquee';
+import { IoMdQuote } from 'react-icons/io'
 
 export default function LandingComponent() {
   const carouselRef = useRef(null)
-
-  const contentStyle = {
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#364d79',
-  };
 
   const dummyUpcomingEventCard = [
     {
@@ -175,13 +168,48 @@ export default function LandingComponent() {
         <Typography.MediumHeading text='What They Said' className='text-center' />
         <Carousel arrows ref={carouselRef} autoplay draggable swipeToSlide {...settings}>
           <div>
-            <h3 style={contentStyle}>1</h3>
+            <IoMdQuote size={80} className='text-[#a51535]' />
+            <div id='testimonial-box' className='pt-5 pb-[15px] px-[45px] relative rounded-lg bg-white text-center mx-auto'>
+              <div className='absolute w-full mx-auto -translate-y-[50%]'>
+                <img
+                  src="/assets/Images/user-avatar-small-02.jpg"
+                  alt="avatar"
+                  className='rounded-full w-[70px] h-auto mx-auto'
+                />
+              </div>
+              <div className='mt-10 py-5'>
+                <Typography.SmallHeading text='Sindy Forest' />
+                <span className='bg-[#e31937] px-3 py-1 text-white rounded'>Founder of Agoda</span>
+              </div>
+              <div className='text-[#6D6D6D] text-base'>
+                I am truly impressed with the exceptional level of service and
+                expertise they provided throughout our collaboration. From the
+                very beginning, their team demonstrated a deep understanding of
+                our industry and specific research needs, which immediately
+                instilled confidence in their abilitie.
+              </div>
+            </div>
           </div>
           <div>
-            <h3 style={contentStyle}>2</h3>
-          </div>
-          <div>
-            <h3 style={contentStyle}>3</h3>
+            <IoMdQuote size={80} className='text-[#a51535]' />
+            <div id='testimonial-box' className='pt-5 pb-[15px] px-[45px] relative rounded-lg bg-white text-center mx-auto'>
+              <div className='absolute w-full mx-auto -translate-y-[50%]'>
+                <img
+                  src="/assets/Images/user-avatar-small-02.jpg"
+                  alt="avatar"
+                  className='rounded-full w-[70px] h-auto mx-auto'
+                />
+              </div>
+              <div className='mt-10 py-5'>
+                <Typography.SmallHeading text='Tom Smith' />
+                <span className='bg-[#e31937] px-3 py-1 text-white rounded'>Founder of Tokopedia</span>
+              </div>
+              <div className='text-[#6D6D6D] text-base'>
+                The research they conducted was thorough, insightful, and meticulously
+                presented, allowing us to gain valuable and actionable insights into the
+                current market trends and technological advancements.
+              </div>
+            </div>
           </div>
         </Carousel>
       </div>
@@ -209,7 +237,7 @@ export default function LandingComponent() {
       {/* Recognition */}
       <div className="App">
         <div marquee container>
-          <ImageMarquee marquee content='bg-[url(/public/assets/Images/kalbe logo.png)]' />
+          <div marquee content='bg-[url(/public/assets/Images/kalbe logo.png)]' />
         </div>
       </div>
       {/* End of Recognition */}
