@@ -19,7 +19,7 @@ const GetWhitepaperDetail = createAsyncThunk(
   async (slug, { rejectWithValue }) => {
     try {
       return API.get({
-        url: `whitepapers/${slug}`,
+        url: `whitepapers/${slug}/`,
       });
     } catch (error) {
       return rejectWithValue(error);
@@ -29,24 +29,24 @@ const GetWhitepaperDetail = createAsyncThunk(
 
 const DownloadWhitepaper = createAsyncThunk(
   'post/downloadWhitepaper',
-  async (data, {rejectWithValue}) => {
-    const {slug, formData} = data
+  async (data, { rejectWithValue }) => {
+    const { slug, formData } = data;
     try {
       return API.post({
         url: `user-download/${slug}/`,
         payload: formData,
-        isForm: true
-      })
+        isForm: true,
+      });
     } catch (error) {
-      return rejectWithValue(error)
+      return rejectWithValue(error);
     }
   }
-)
+);
 
 const Whitepapers = {
   GetWhitepapersList,
   GetWhitepaperDetail,
-  DownloadWhitepaper
+  DownloadWhitepaper,
 };
 
 export default Whitepapers;
