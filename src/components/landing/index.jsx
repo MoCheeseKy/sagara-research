@@ -8,18 +8,18 @@ import CustomButton from '../_shared/CustomButton';
 
 import { Carousel } from 'antd';
 
-import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
-import { IoMdQuote } from 'react-icons/io'
+import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
+import { IoMdQuote } from 'react-icons/io';
 
 export default function LandingComponent() {
   const carouselRef = useRef(null);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const { upcomingEvent } = useSelector((state) => state.event)
+  const { upcomingEvent } = useSelector((state) => state.event);
 
   useEffect(() => {
-    dispatch(Event.GetUpcomingEvent())
-  }, [])
+    dispatch(Event.GetUpcomingEvent());
+  }, []);
 
   const RecentBlogCard = ({ title, description }) => {
     return (
@@ -46,14 +46,27 @@ export default function LandingComponent() {
     return (
       <div>
         <div className='flex flex-col md:flex-row shadow rounded mt-[15px] hover:mt-0 mb-0 hover:mb-[15px] duration-300 overflow-hidden bg-white'>
-          <div className='min-w-[240px] aspect-[3/3.5] h-max bg-[url(/public/assets/Images/1.png)] bg-cover'></div>
+          <img
+            src='/public/assets/Images/1.png'
+            alt='event_image'
+            className='min-w-[240px] aspect-[3/4] h-max bg-cover'
+          />
           <div className='p-[30px] flex flex-col'>
             <div className='flex flex-col gap-4'>
               <div>
                 <Typography.LargeText className='pb-2' text={title} bold />
-                <Typography.MediumText className='pb-1' text={`Topic: ${topic}`} />
-                <Typography.MediumText className='pb-1' text={`Speaker: ${speaker}`} />
-                <Typography.MediumText className='pb-2' text={`Date: ${date}`} />
+                <Typography.MediumText
+                  className='pb-1'
+                  text={`Topic: ${topic}`}
+                />
+                <Typography.MediumText
+                  className='pb-1'
+                  text={`Speaker: ${speaker}`}
+                />
+                <Typography.MediumText
+                  className='pb-2'
+                  text={`Date: ${date}`}
+                />
                 <Typography.MediumText text={`${desc}`} />
               </div>
             </div>
@@ -166,10 +179,7 @@ export default function LandingComponent() {
       {/* Upcoming Event */}
       <div className='py-16 px-16 flex flex-col items-left'>
         <div className='flex flex-col items-left text-left mb-[20px]'>
-          <Typography.LargeHeading
-            text='Upcoming Event'
-            className='mb-10'
-          />
+          <Typography.LargeHeading text='Upcoming Event' className='mb-10' />
           <div className='grid gap-[30px]'>
             {upcomingEvent?.results?.map((event) => (
               <React.Fragment key={event.id}>
@@ -257,9 +267,12 @@ export default function LandingComponent() {
       </div>
       {/* End of Recent Blog Posts */}
       {/* Recognition */}
-      <div className="App">
+      <div className='App'>
         <div marquee container>
-          <div marquee content='bg-[url(/public/assets/Images/kalbe logo.png)]' />
+          <div
+            marquee
+            content='bg-[url(/public/assets/Images/kalbe logo.png)]'
+          />
         </div>
       </div>
       {/* End of Recognition */}

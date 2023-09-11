@@ -59,9 +59,11 @@ export default function ExploreWhitepapersComponent() {
         >
           <div className='flex w-full h-full justify-center items-center bg-gradient-to-r from-white to-transparent'>
             <div className='flex gap-[30px] px-[15px] items-center w-full md:w-[85%] max-w-[1080px]'>
-              <div
-                className={`w-[320px] aspect-[3/4.5] rounded bg-[url(/public/assets/Images/MonochromeCircuit.png)] bg-cover`}
-              ></div>
+              <img
+                src='/public/assets/Images/MonochromeCircuit.png'
+                alt='cover'
+                className='w-[320px] aspect-[3/4.5] rounded bg-cover'
+              />
               <div className='flex-grow'>
                 <Typography.LargeHeading
                   text='Unravel the C-Level insights with, <br/>
