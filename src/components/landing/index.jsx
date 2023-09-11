@@ -1,29 +1,25 @@
-import React, { useRef } from 'react';
-import { Carousel } from 'antd';
+import React, { useEffect, useRef } from 'react';
+import dayjs from 'dayjs';
+import { useDispatch, useSelector } from 'react-redux';
+import { Event } from '../../service';
+
 import Typography from '../_shared/Typography';
 import CustomButton from '../_shared/CustomButton';
+
+import { Carousel } from 'antd';
+
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 import { IoMdQuote } from 'react-icons/io'
 
 export default function LandingComponent() {
   const carouselRef = useRef(null);
+  const dispatch = useDispatch()
 
-  const dummyUpcomingEventCard = [
-    {
-      title: 'Techvolution : Powering Progress, Shaping Tomorrow',
-      topic: 'Topic: Tech Talk',
-      speaker: 'Speaker: Muhammad Patel',
-      date: 'Date: 20 Februari 2024',
-      desc: 'The technological revolution, or "Techvolution," has brought unprecedented changes to our lives, presenting us with both opportunities and challenges. We hope to gain valuable insights about the power of technology responsibly and equitably to shape a brighter future for all. Your perspectives and ideas are crucial in fostering a deeper understanding of the techvolution phenomenon and its impact on society, the economy, and the environment.',
-    },
-    {
-      title: 'Techvolution : Powering Progress, Shaping Tomorrow',
-      topic: 'Topic: Tech Talk',
-      speaker: 'Speaker: Muhammad Patel',
-      date: 'Date: 20 Februari 2024',
-      desc: 'The technological revolution, or "Techvolution," has brought unprecedented changes to our lives, presenting us with both opportunities and challenges. We hope to gain valuable insights about the power of technology responsibly and equitably to shape a brighter future for all. Your perspectives and ideas are crucial in fostering a deeper understanding of the techvolution phenomenon and its impact on society, the economy, and the environment.',
-    },
-  ];
+  const { upcomingEvent } = useSelector((state) => state.event)
+
+  useEffect(() => {
+    dispatch(Event.GetUpcomingEvent())
+  }, [])
 
   const RecentBlogCard = ({ title, description }) => {
     return (
@@ -55,10 +51,10 @@ export default function LandingComponent() {
             <div className='flex flex-col gap-4'>
               <div>
                 <Typography.LargeText className='pb-2' text={title} bold />
-                <Typography.MediumText className='pb-1' text={topic} />
-                <Typography.MediumText className='pb-1' text={speaker} />
-                <Typography.MediumText className='pb-2' text={date} />
-                <Typography.MediumText text={desc} />
+                <Typography.MediumText className='pb-1' text={`Topic: ${topic}`} />
+                <Typography.MediumText className='pb-1' text={`Speaker: ${speaker}`} />
+                <Typography.MediumText className='pb-2' text={`Date: ${date}`} />
+                <Typography.MediumText text={`${desc}`} />
               </div>
             </div>
           </div>
@@ -175,14 +171,14 @@ export default function LandingComponent() {
             className='mb-10'
           />
           <div className='grid gap-[30px]'>
-            {dummyUpcomingEventCard.map((dummy, indexDummy) => (
-              <React.Fragment key={indexDummy}>
+            {upcomingEvent?.results?.map((event) => (
+              <React.Fragment key={event.id}>
                 <UpcomingEventCard
-                  title={dummy.title}
-                  topic={dummy.topic}
-                  speaker={dummy.speaker}
-                  date={dummy.date}
-                  desc={dummy.desc}
+                  title={event.name}
+                  topic={event.topic || '-'}
+                  speaker={event.speaker}
+                  date={dayjs(event.date).format('YY MMMM YYYY')}
+                  desc={event.description}
                 />
               </React.Fragment>
             ))}
