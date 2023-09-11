@@ -42,11 +42,15 @@ export default function LandingComponent() {
     );
   };
 
-  const UpcomingEventCard = ({ title, topic, speaker, date, desc }) => {
+  const UpcomingEventCard = ({ title, topic, speaker, date, desc, image }) => {
     return (
       <div>
         <div className='flex flex-col md:flex-row shadow rounded mt-[15px] hover:mt-0 mb-0 hover:mb-[15px] duration-300 overflow-hidden bg-white'>
-          <div className='min-w-[240px] aspect-[3/3.5] h-max bg-[url(/public/assets/Images/1.png)] bg-cover'></div>
+          <img
+            src={image}
+            alt='event_image'
+            className='min-w-[240px] aspect-[3/4] h-max bg-cover'
+          />
           <div className='p-[30px] flex flex-col'>
             <div className='flex flex-col gap-4'>
               <div>
@@ -179,6 +183,7 @@ export default function LandingComponent() {
                   speaker={event.speaker}
                   date={dayjs(event.date).format('YY MMMM YYYY')}
                   desc={event.description}
+                  image={event.image}
                 />
               </React.Fragment>
             ))}
