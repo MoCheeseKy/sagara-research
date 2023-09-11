@@ -6,6 +6,7 @@ import CustomSelect from '../../_shared/Form/CustomSelect';
 import CustomButton from '../../_shared/CustomButton';
 import CustomTabs from '../../_shared/CustomTabs';
 import { useParams } from 'react-router-dom';
+import dayjs from 'dayjs';
 
 // Import Self Component
 import OverviewComponent from './overview';
@@ -74,31 +75,53 @@ export default function WHitepaperDetailComponent() {
       <div className='flex justify-center py-14'>
         <div className='flex flex-col lg:flex-row items-center px-[15px] w-full md:w-[85%] max-w-[1080px] gap-16'>
           <div className='flex flex-col md:flex-row gap-6 w-full'>
-            <div
-              className={`w-full md:w-[124px] md:min-w-[124px] h-fit aspect-[3/4.5] rounded bg-[url(/public/assets/Images/MonochromeCircuit.png)] bg-cover`}
+            <img
+              src={whitepapersDetail?.image}
+              alt='whitepaper_image'
+              className='w-full md:w-[124px] md:min-w-[124px] h-fit aspect-[3/4] rounded bg-cover'
             />
             <div className='flex flex-col gap-4'>
               <Typography.MediumText text='WHITE PAPER' bold />
               <Typography.MediumHeading
-                text='SKILSS GAP WITHIN ORGANIZATION'
+                text={whitepapersDetail?.title ? whitepapersDetail?.title : '-'}
                 className='w-[80%]'
               />
-              <Typography.MediumText text='The rapid pace of technological advancement often creates skills gaps in organizations. To bridge the skills gap, organizations often need to invest in training programs or external resources. It is a serious challenge to acquire and retain talent with needed expertise in emerging technologies such as AI, machine learning and cybersecurity. Also developing many strategies to attract, train, and retain skilled IT personnel who can support the organizations technology goals.' />
+              <Typography.MediumText
+                text={
+                  whitepapersDetail?.description
+                    ? whitepapersDetail?.description
+                    : '-'
+                }
+              />
               <div className='grid grid-cols-1 md:grid-cols-2 border-b-2 pb-6'>
                 <Typography.MediumText
-                  text={`Publication : May 1, 2023`}
+                  text={`Publication : ${
+                    whitepapersDetail?.about?.published_at
+                      ? dayjs(whitepapersDetail?.about?.published_at).format(
+                          'DD-MM-YYYY'
+                        )
+                      : '-'
+                  }`}
                   className='text-[#666]'
                 />
                 <Typography.MediumText
-                  text={`Topic : Digital Transformation`}
+                  text={`Topic : ${
+                    whitepapersDetail?.topic ? whitepapersDetail?.topic : '-'
+                  }`}
                   className='text-[#666]'
                 />
                 <Typography.MediumText
-                  text={`Download : 1267 People`}
+                  text={`Download : ${
+                    whitepapersDetail?.count_of_downloads
+                      ? whitepapersDetail?.count_of_downloads
+                      : '0'
+                  }`}
                   className='text-[#666]'
                 />
                 <Typography.MediumText
-                  text={`Author : Leading-Expert`}
+                  text={`Author : ${
+                    whitepapersDetail?.author ? whitepapersDetail?.author : '-'
+                  }`}
                   className='text-[#666]'
                 />
               </div>
