@@ -35,20 +35,20 @@ export default function WHitepaperDetailComponent() {
     country: undefined,
   };
   const onSubmitDownload = (e) => {
-    const formData = new FormData()
+    const formData = new FormData();
 
-    formData.append('name', e.name)
-    formData.append('company', e.company)
-    formData.append('position', e.position)
-    formData.append('email', e.email)
-    formData.append('phone', e.phone)
-    formData.append('country', 1)
+    formData.append('name', e.name);
+    formData.append('company', e.company);
+    formData.append('position', e.position);
+    formData.append('email', e.email);
+    formData.append('phone', e.phone);
+    formData.append('country', 1);
 
     const data = {
       formData,
-      slug: whitepapersDetail.slug
+      slug: slug,
     };
-    dispatch(Whitepapers.DownloadWhitepaper(data))
+    dispatch(Whitepapers.DownloadWhitepaper(data));
   };
   const TabsItem = [
     {
@@ -142,7 +142,7 @@ export default function WHitepaperDetailComponent() {
                   <Form.Item
                     name='name'
                     rules={[
-                      { required: true, message: 'This field is required' }
+                      { required: true, message: 'This field is required' },
                     ]}
                   >
                     <CustomInput
@@ -154,7 +154,7 @@ export default function WHitepaperDetailComponent() {
                   <Form.Item
                     name='company'
                     rules={[
-                      { required: true, message: 'This field is required' }
+                      { required: true, message: 'This field is required' },
                     ]}
                   >
                     <CustomInput
@@ -166,7 +166,7 @@ export default function WHitepaperDetailComponent() {
                   <Form.Item
                     name='position'
                     rules={[
-                      { required: true, message: 'This Field is required' }
+                      { required: true, message: 'This Field is required' },
                     ]}
                   >
                     <CustomInput
