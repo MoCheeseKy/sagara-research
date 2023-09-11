@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-
+import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Event } from '../../service';
 
@@ -68,10 +68,10 @@ export default function LandingComponent() {
             <div className='flex flex-col gap-4'>
               <div>
                 <Typography.LargeText className='pb-2' text={title} bold />
-                <Typography.MediumText className='pb-1' text={topic} />
-                <Typography.MediumText className='pb-1' text={speaker} />
-                <Typography.MediumText className='pb-2' text={date} />
-                <Typography.MediumText text={desc} />
+                <Typography.MediumText className='pb-1' text={`Topic: ${topic}`} />
+                <Typography.MediumText className='pb-1' text={`Speaker: ${speaker}`} />
+                <Typography.MediumText className='pb-2' text={`Date: ${date}`} />
+                <Typography.MediumText text={`${desc}`} />
               </div>
             </div>
           </div>
@@ -194,7 +194,7 @@ export default function LandingComponent() {
                   title={event.name}
                   topic={event.topic || '-'}
                   speaker={event.speaker}
-                  date={event.date}
+                  date={dayjs(event.date).format('YY MMMM YYYY')}
                   desc={event.description}
                 />
               </React.Fragment>
