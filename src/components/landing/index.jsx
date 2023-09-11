@@ -21,23 +21,6 @@ export default function LandingComponent() {
     dispatch(Event.GetUpcomingEvent())
   }, [])
 
-  const dummyUpcomingEventCard = [
-    {
-      title: 'Techvolution : Powering Progress, Shaping Tomorrow',
-      topic: 'Topic: Tech Talk',
-      speaker: 'Speaker: Muhammad Patel',
-      date: 'Date: 20 Februari 2024',
-      desc: 'The technological revolution, or "Techvolution," has brought unprecedented changes to our lives, presenting us with both opportunities and challenges. We hope to gain valuable insights about the power of technology responsibly and equitably to shape a brighter future for all. Your perspectives and ideas are crucial in fostering a deeper understanding of the techvolution phenomenon and its impact on society, the economy, and the environment.',
-    },
-    {
-      title: 'Techvolution : Powering Progress, Shaping Tomorrow',
-      topic: 'Topic: Tech Talk',
-      speaker: 'Speaker: Muhammad Patel',
-      date: 'Date: 20 Februari 2024',
-      desc: 'The technological revolution, or "Techvolution," has brought unprecedented changes to our lives, presenting us with both opportunities and challenges. We hope to gain valuable insights about the power of technology responsibly and equitably to shape a brighter future for all. Your perspectives and ideas are crucial in fostering a deeper understanding of the techvolution phenomenon and its impact on society, the economy, and the environment.',
-    },
-  ];
-
   const RecentBlogCard = ({ title, description }) => {
     return (
       <>
