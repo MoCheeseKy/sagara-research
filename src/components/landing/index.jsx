@@ -1,12 +1,25 @@
-import React, { useRef } from 'react';
-import { Carousel } from 'antd';
+import React, { useEffect, useRef } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { Event } from '../../service';
+
 import Typography from '../_shared/Typography';
 import CustomButton from '../_shared/CustomButton';
+
+import { Carousel } from 'antd';
+
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi'
 import { IoMdQuote } from 'react-icons/io'
 
 export default function LandingComponent() {
   const carouselRef = useRef(null);
+  const dispatch = useDispatch()
+
+  const { upcomingEvent } = useSelector((state) => state.event)
+
+  useEffect(() => {
+    dispatch(Event.GetUpcomingEvent())
+  }, [])
 
   const dummyUpcomingEventCard = [
     {
@@ -175,14 +188,14 @@ export default function LandingComponent() {
             className='mb-10'
           />
           <div className='grid gap-[30px]'>
-            {dummyUpcomingEventCard.map((dummy, indexDummy) => (
-              <React.Fragment key={indexDummy}>
+            {upcomingEvent?.results?.map((event) => (
+              <React.Fragment key={event.id}>
                 <UpcomingEventCard
-                  title={dummy.title}
-                  topic={dummy.topic}
-                  speaker={dummy.speaker}
-                  date={dummy.date}
-                  desc={dummy.desc}
+                  title={event.name}
+                  topic={event.topic || '-'}
+                  speaker={event.speaker}
+                  date={event.date}
+                  desc={event.description}
                 />
               </React.Fragment>
             ))}
