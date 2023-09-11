@@ -1,5 +1,6 @@
 import React from 'react';
 import Typography from '../../_shared/Typography';
+import dayjs from 'dayjs';
 
 export default function OverviewComponent({ data }) {
   return (
@@ -35,7 +36,9 @@ export default function OverviewComponent({ data }) {
               <Typography.MediumText
                 className='text-[#666]'
                 text={
-                  data?.about?.published_at ? data?.about?.published_at : '-'
+                  data?.about?.published_at
+                    ? dayjs(data?.about?.published_at).format('DD-MM-YYYY')
+                    : '-'
                 }
               />
               <Typography.MediumText className='text-[#666]' text='Topic :' />
