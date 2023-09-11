@@ -4,7 +4,10 @@ import Typography from '../../_shared/Typography';
 export default function AboutFGDComponent({ data }) {
   return (
     <>
-      <Typography.MediumText className='text-[#666]' text={data} />
+      <Typography.MediumText
+        className='text-[#666]'
+        text={data?.about?.FGD_about}
+      />
     </>
   );
 }
