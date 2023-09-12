@@ -3,7 +3,7 @@ import Typography from '../../_shared/Typography';
 import CustomButton from '../../_shared/CustomButton';
 import CustomInput from '../../_shared/Form/CustomInput'
 import { LiaDownloadSolid } from 'react-icons/lia';
-import { BiUser } from 'react-icons/bi';
+import { BiUser, BiSearch } from 'react-icons/bi';
 import { GiChampions } from 'react-icons/gi';
 import { PiShareDuotone } from 'react-icons/pi';
 import { notification, Pagination } from 'antd';
@@ -78,13 +78,18 @@ export default function ExploreWhitepapersComponent() {
         </div>
       </div>
       <div className='flex justify-center w-full'>
-        <div className='py-16 flex flex-col  px-[15px] w-full md:w-[85%] max-w-[1080px]'>
-          <div className='grid md:grid-cols-2 grid-rows-2'>
+        <div className='py-16 flex flex-col px-[15px] w-full md:w-[85%] max-w-[1080px]'>
+          <div className='grid grid-cols-1 md:grid-cols-12 grid-rows-2 md:grid-rows-1'>
             <Typography.LargeHeading
               text='Explore Whitepapers'
-              className='mb-[30px]'
+              className='mb-0 md:mb-[30px] col-span-4'
             />
-            <CustomInput className='mb-[30px]' placeholder='Press enter to search' onKeyUp={handleSearch} />
+            <CustomInput
+              className='mb-[30px] md:col-start-6 md:col-end-13'
+              placeholder='Press enter to search'
+              onKeyUp={handleSearch}
+              prefix={<BiSearch />}
+            />
           </div>
           <div className='grid gap-[15px]'>
             {whitepapersList?.results?.map((whitepaper, indexWhitepaper) => (
