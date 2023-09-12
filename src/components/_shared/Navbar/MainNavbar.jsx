@@ -9,6 +9,7 @@ import {
   Form,
   Input,
   Collapse,
+  notification
 } from 'antd';
 import CustomInput from '../Form/CustomInput';
 import Typography from '../Typography';
@@ -24,6 +25,7 @@ export default function MainNavbar() {
   const { TextArea } = Input;
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [api, context] = notification.useNotification()
 
   const collapseItem = [
     {
@@ -96,11 +98,16 @@ export default function MainNavbar() {
       .then(() => {
         setModalOpen(false);
         form.resetFields();
-      });
+        api.success({message: 'Success send data'})
+      })
+      .catch(() => {
+        api.error({message: 'Failed send data'})
+      })
   };
 
   return (
     <>
+      {context}
       <nav className='flex fixed z-[999] bg-white w-full items-center justify-between box-border py-4 px-[10px] md:px-10 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.12)]'>
         <div className='flex gap-[70px]'>
           <div>
