@@ -6,8 +6,7 @@ const GetWhitepapersList = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       return API.get({
-        url: `whitepapers/`,
-        payload,
+        url: `whitepapers/?page_size=5&page=${payload}`,
       });
     } catch (error) {
       return rejectWithValue(error);

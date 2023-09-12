@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Typography from '../../_shared/Typography';
 import CustomButton from '../../_shared/CustomButton';
 import { AiOutlineClockCircle } from 'react-icons/ai';
@@ -7,7 +7,7 @@ import { BiUser } from 'react-icons/bi';
 import { GiChampions } from 'react-icons/gi';
 import { PiShareDuotone } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
-import { notification } from 'antd';
+import { notification, Pagination } from 'antd';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../../service';
@@ -19,9 +19,10 @@ export default function ExploreWhitepapersComponent() {
   const dispatch = useDispatch();
   const { whitepapersList } = useSelector((state) => state.whitepaper);
   const [api, context] = notification.useNotification()
+  const [pagination, setPagination] = useState({ page: 1, page_size: 5 });
 
   useEffect(() => {
-    dispatch(Whitepapers.GetWhitepapersList())
+    dispatch(Whitepapers.GetWhitepapersList(pagination.page))
       .unwrap()
       .then(() => {
         api.success({message: 'Success get whitepaper'})
@@ -29,7 +30,11 @@ export default function ExploreWhitepapersComponent() {
       .catch(() => {
         api.error({message: 'Failed get whitepaper'})
       })
-  }, [dispatch, api]);
+  }, [dispatch, api, pagination]);
+
+  const paginationChange = (page) => {
+    setPagination({...pagination, page})
+  }
 
   const Card = ({ image, title, date, desc, slug }) => {
     return (
@@ -116,6 +121,11 @@ export default function ExploreWhitepapersComponent() {
                 />
               </React.Fragment>
             ))}
+            {whitepapersList?.count > 5 && (
+              <div className='text-right'>
+                <Pagination total={whitepapersList.count} pageSize={5} onChange={paginationChange} />
+              </div>
+            )}
           </div>
         </div>
       </div>
