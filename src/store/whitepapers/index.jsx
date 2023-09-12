@@ -3,6 +3,8 @@ import { Whitepapers } from '../../service';
 
 const initialState = {
   whitepapersList: [],
+  recentWhitepaperList: [],
+  popularWhitepaperList: [],
   whitepapersDetail: [],
   loading: false,
 };
@@ -23,6 +25,36 @@ export const whitepaperSlice = createSlice({
       }
     );
     builder.addCase(Whitepapers.GetWhitepapersList.rejected, (state) => {
+      state.loading = false;
+    });
+
+    // Get Recent List
+    builder.addCase(Whitepapers.GetRecentWhitepapersList.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      Whitepapers.GetRecentWhitepapersList.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.recentWhitepaperList = action.payload.data;
+      }
+    );
+    builder.addCase(Whitepapers.GetRecentWhitepapersList.rejected, (state) => {
+      state.loading = false;
+    });
+
+    // Get Popular List
+    builder.addCase(Whitepapers.GetPopularWhitepapersList.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      Whitepapers.GetPopularWhitepapersList.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.popularWhitepaperList = action.payload.data;
+      }
+    );
+    builder.addCase(Whitepapers.GetPopularWhitepapersList.rejected, (state) => {
       state.loading = false;
     });
 

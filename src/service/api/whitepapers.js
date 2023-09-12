@@ -13,6 +13,33 @@ const GetWhitepapersList = createAsyncThunk(
     }
   }
 );
+
+const GetRecentWhitepapersList = createAsyncThunk(
+  'get/recentWhitepapersList',
+  async (payload, { rejectWithValue }) => {
+    try {
+      return API.get({
+        url: `whitepapers/?latest=true`,
+      });
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+const GetPopularWhitepapersList = createAsyncThunk(
+  'get/popularWhitepapersList',
+  async (payload, { rejectWithValue }) => {
+    try {
+      return API.get({
+        url: `whitepapers/?latest=true`,
+      });
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 const GetWhitepaperDetail = createAsyncThunk(
   'get/whitepaperDetail',
   async (slug, { rejectWithValue }) => {
@@ -44,6 +71,8 @@ const DownloadWhitepaper = createAsyncThunk(
 
 const Whitepapers = {
   GetWhitepapersList,
+  GetRecentWhitepapersList,
+  GetPopularWhitepapersList,
   GetWhitepaperDetail,
   DownloadWhitepaper,
 };

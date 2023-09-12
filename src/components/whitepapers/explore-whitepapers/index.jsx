@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '../../_shared/Typography';
 import CustomButton from '../../_shared/CustomButton';
-import { AiOutlineClockCircle } from 'react-icons/ai';
 import { LiaDownloadSolid } from 'react-icons/lia';
 import { BiUser } from 'react-icons/bi';
 import { GiChampions } from 'react-icons/gi';
 import { PiShareDuotone } from 'react-icons/pi';
-import { Link } from 'react-router-dom';
 import { notification, Pagination } from 'antd';
 import WhitepaperCard from '../../_shared/WhitepaperCard';
 
