@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '../../_shared/Typography';
 import CustomButton from '../../_shared/CustomButton';
-import CustomInput from '../../_shared/Form/CustomInput'
+import CustomInput from '../../_shared/Form/CustomInput';
 import { LiaDownloadSolid } from 'react-icons/lia';
 import { BiUser, BiSearch } from 'react-icons/bi';
 import { GiChampions } from 'react-icons/gi';
@@ -12,20 +12,27 @@ import WhitepaperCard from '../../_shared/WhitepaperCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../../service';
 import dayjs from 'dayjs';
+import { Link } from 'react-router-dom';
 
-import HeroImage from '../../../assets/Images/MonochromeCircuit.png';
+import CustomSelect from '../../_shared/Form/CustomSelect';
+import { Form, Checkbox } from 'antd';
 
 export default function ExploreWhitepapersComponent() {
   const dispatch = useDispatch();
+  const [form] = Form.useForm();
   const { whitepapersList } = useSelector((state) => state.whitepaper);
   const [api, context] = notification.useNotification();
-  const [pagination, setPagination] = useState({ page: 1, page_size: 5, search: '' });
+  const [pagination, setPagination] = useState({
+    page: 1,
+    page_size: 5,
+    search: '',
+  });
 
   useEffect(() => {
     const payload = {
       search: pagination.search,
-      page: pagination.page
-    }
+      page: pagination.page,
+    };
     dispatch(Whitepapers.GetWhitepapersList(payload))
       .unwrap()
       .then(() => {
@@ -42,9 +49,40 @@ export default function ExploreWhitepapersComponent() {
 
   const handleSearch = (e) => {
     if (e.key === 'Enter') {
-      setPagination({...pagination, search: e.target.value, page: 1})
+      setPagination({ ...pagination, search: e.target.value, page: 1 });
     }
-  }
+  };
+
+  const initialValues = {
+    name: '',
+    company: '',
+    position: '',
+    email: '',
+    phone: '',
+    country: undefined,
+    term: false,
+  };
+
+  const onSubmitDownload = (e) => {
+    if (e.term) {
+      const formData = new FormData();
+
+      formData.append('name', e.name);
+      formData.append('company', e.company);
+      formData.append('position', e.position);
+      formData.append('email', e.email);
+      formData.append('phone', e.phone);
+      formData.append('country', 1);
+
+      const data = {
+        formData,
+        slug: 'testing',
+      };
+      dispatch(Whitepapers.DownloadWhitepaper(data));
+    } else {
+      form.validateFields();
+    }
+  };
 
   return (
     <>
@@ -52,40 +90,173 @@ export default function ExploreWhitepapersComponent() {
       <div className='flex flex-col h-[100vh]'>
         <div className='h-[77px]' />
         <div
-          className={`flex flex-grow bg-[url('https://img.freepik.com/free-photo/3d-render-low-poly-plexus-design-network-communications_1048-14542.jpg?w=740&t=st=1691053736~exp=1691054336~hmac=3e831c9125aba14bfad1a71615a1b0585cb219773a81a811d88d687adf6160bd')] bg-cover`}
+          className={`flex justify-center items-center flex-grow bg-[url('https://img.freepik.com/free-photo/3d-render-low-poly-plexus-design-network-communications_1048-14542.jpg?w=740&t=st=1691053736~exp=1691054336~hmac=3e831c9125aba14bfad1a71615a1b0585cb219773a81a811d88d687adf6160bd')] bg-cover`}
         >
-          <div className='flex w-full h-full justify-center items-center bg-gradient-to-r from-white to-transparent'>
-            <div className='flex gap-[30px] px-[15px] items-center w-full md:w-[85%] max-w-[1080px]'>
-              <img
-                src={HeroImage}
-                alt='cover'
-                className='w-[320px] aspect-[3/4.5] rounded bg-cover'
-              />
-              <div className='flex-grow'>
+          <div className='px-[15px] flex gap-6 w-full md:w-[85%] max-w-[1080px]'>
+            <div className='flex-grow flex-flex-col'>
+              <div className='w-[184px] md:min-w-[184px] md:max-w-[184px] h-fit bg-cover bg-white aspect-[3/4]' />
+              <div>
                 <Typography.LargeHeading
-                  text='Unravel the C-Level insights with, <br/>
-                  Sagara Research!'
+                  text='Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing'
+                  className='text-white mt-8'
                   bold
                 />
-                <Typography.MediumText
-                  text='Discover new ideas and innovation from the expert in Tech Industry'
-                  className='mb-5'
-                />
-                <CustomButton text='Learn More' />
+                <div className='lg:w-[70%] grid grid-cols-2 mt-2'>
+                  <Typography.MediumText
+                    text={`Topic : Testing`}
+                    className='text-white'
+                  />
+                  <Typography.MediumText
+                    text={`Speaker : Testing`}
+                    className='text-white'
+                  />
+                  <Typography.MediumText
+                    text={`Date : Testing`}
+                    className='text-white'
+                  />
+                  <Typography.MediumText
+                    text={`Date : Testing`}
+                    className='text-white'
+                  />
+                </div>
+                <div className='flex mt-4 gap-4'>
+                  <Link>
+                    <CustomButton text='Learn More' />
+                  </Link>
+                  <CustomButton text='Download' className=' md:hidden' />
+                </div>
               </div>
+            </div>
+            <div className='hidden md:block md:w-[40%] md:min-w-[40%] md:max-w-[40%] lg:w-[35%] lg:min-w-[35%] lg:max-w-[35%]'>
+              <Form
+                requiredMark={false}
+                initialValues={initialValues}
+                layout='vertical'
+                form={form}
+                onFinish={onSubmitDownload}
+              >
+                <div className='flex flex-col gap-0'>
+                  <div className='md:grid grid-cols-2 md:grid-cols-1 gap-x-2'>
+                    <Form.Item
+                      name='name'
+                      rules={[
+                        { required: true, message: 'This field is required' },
+                      ]}
+                    >
+                      <CustomInput
+                        placeholder='Name'
+                        type='text'
+                        className='py-[10px] px-[18px]'
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      name='company'
+                      rules={[
+                        { required: true, message: 'This field is required' },
+                      ]}
+                    >
+                      <CustomInput
+                        placeholder='Company'
+                        type='text'
+                        className='py-[10px] px-[18px]'
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      name='position'
+                      rules={[
+                        { required: true, message: 'This Field is required' },
+                      ]}
+                    >
+                      <CustomInput
+                        placeholder='Title/Position'
+                        type='text'
+                        className='py-[10px] px-[18px]'
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      name='email'
+                      rules={[
+                        { required: true, message: 'This field is required' },
+                        {
+                          type: 'email',
+                          message: 'Please input correct email',
+                        },
+                      ]}
+                    >
+                      <CustomInput
+                        placeholder='Email'
+                        type='text'
+                        className='py-[10px] px-[18px]'
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      name='phone'
+                      rules={[
+                        { required: true, message: 'This Field is required' },
+                      ]}
+                    >
+                      <CustomInput
+                        placeholder='Phone'
+                        type='text'
+                        className='py-[10px] px-[18px]'
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      name='country'
+                      className='bg-white rounded-[10px]'
+                      rules={[
+                        { required: true, message: 'This Field is required' },
+                      ]}
+                    >
+                      <CustomSelect
+                        placeholder='Select Research Objective'
+                        bordered={false}
+                        className='py-[6px] px-[6px] outline-none shadow-none border-0'
+                        optionFilterProp='children'
+                        options={[
+                          {
+                            value: 'Business Purpose',
+                            label: 'Business Purpose',
+                          },
+                          {
+                            value: 'Research Purpose',
+                            label: 'Research Purpose',
+                          },
+                          {
+                            value: 'Personal Purpose',
+                            label: 'Personal Purpose',
+                          },
+                        ]}
+                      />
+                    </Form.Item>
+                    <Form.Item name='term' valuePropName='checked'>
+                      <div className='flex gap-2 items-start'>
+                        <Checkbox />
+                        <Typography.SmallText
+                          className='text-white'
+                          text='By accepting these Terms and Conditions, you agree to our
+                  terms of cooperation, which include the possibility of being
+                  contacted by our consultants.'
+                        />
+                      </div>
+                    </Form.Item>
+                  </div>
+                  <CustomButton text='Download' />
+                </div>
+              </Form>
             </div>
           </div>
         </div>
       </div>
       <div className='flex justify-center w-full'>
         <div className='py-16 flex flex-col px-[15px] w-full md:w-[85%] max-w-[1080px]'>
-          <div className='grid grid-cols-1 md:grid-cols-12 grid-rows-2 md:grid-rows-1'>
+          <div className='grid grid-cols-1 md:grid-cols-12 items-center grid-rows-2 md:grid-rows-1'>
             <Typography.LargeHeading
               text='Explore Whitepapers'
               className='mb-0 md:mb-[30px] col-span-4'
             />
             <CustomInput
-              className='mb-[30px] md:col-start-6 md:col-end-13'
+              className='mb-[30px] md:col-start-6 md:col-end-13 py-[10px] px-[18px] mt-[-10px] md:mt-0'
               placeholder='Press enter to search'
               onKeyUp={handleSearch}
               prefix={<BiSearch />}

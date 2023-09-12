@@ -128,6 +128,18 @@ export default function WHitepaperDetailComponent() {
               />
               <div className='grid grid-cols-1 md:grid-cols-2 border-b-2 pb-6'>
                 <Typography.MediumText
+                  text={`Topic : ${
+                    whitepapersDetail?.topic ? whitepapersDetail?.topic : '-'
+                  }`}
+                  className='text-[#666]'
+                />
+                <Typography.MediumText
+                  text={`Author : ${
+                    whitepapersDetail?.author ? whitepapersDetail?.author : '-'
+                  }`}
+                  className='text-[#666]'
+                />
+                <Typography.MediumText
                   text={`Publication : ${
                     whitepapersDetail?.about?.published_at
                       ? dayjs(whitepapersDetail?.about?.published_at).format(
@@ -138,22 +150,10 @@ export default function WHitepaperDetailComponent() {
                   className='text-[#666]'
                 />
                 <Typography.MediumText
-                  text={`Topic : ${
-                    whitepapersDetail?.topic ? whitepapersDetail?.topic : '-'
-                  }`}
-                  className='text-[#666]'
-                />
-                <Typography.MediumText
                   text={`Download : ${
                     whitepapersDetail?.count_of_downloads
                       ? whitepapersDetail?.count_of_downloads
                       : '0'
-                  }`}
-                  className='text-[#666]'
-                />
-                <Typography.MediumText
-                  text={`Author : ${
-                    whitepapersDetail?.author ? whitepapersDetail?.author : '-'
                   }`}
                   className='text-[#666]'
                 />
