@@ -10,25 +10,20 @@ import {
   Input,
   Collapse,
 } from 'antd';
+import CustomInput from '../Form/CustomInput';
 import Typography from '../Typography';
 import { DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BiChevronRight } from 'react-icons/bi';
 import Logo from '../../../assets/Images/sagara-logo-bl.png';
+import axios from 'axios';
 
 export default function MainNavbar() {
   const [form] = Form.useForm();
+  const { TextArea } = Input;
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-
-  const initialValues = {
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    need: '',
-  };
 
   const collapseItem = [
     {
@@ -82,12 +77,26 @@ export default function MainNavbar() {
 
   const onCancel = () => {
     setModalOpen(false);
+    form.resetFields();
   };
 
-  const handleSubmit = (value) => {
-    setModalOpen(false);
-    console.log(value);
-    form.resetFields();
+  const initialValues = {
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    need: '',
+  };
+
+  const handleSubmit = (e) => {
+    axios
+      .post(
+        `https://api.telegram.org/bot5951291096:AAGU7DOgVUuHfXvJ-rDRCDtlXMSnmBi4CTg/sendMessage?chat_id=-4081985652&text=@consult%0A%0AName: ${e.name}%0AEmail : ${e.email}%0APhone : ${e.phone}%0ACompany : ${e.company}%0ANeed : ${e.need}`
+      )
+      .then(() => {
+        setModalOpen(false);
+        form.resetFields();
+      });
   };
 
   return (
@@ -173,7 +182,6 @@ export default function MainNavbar() {
                 backgroundColor: '#eee',
                 border: 'none',
               }}
-              size='large'
               onClick={() => setDrawerOpen(true)}
             >
               <GiHamburgerMenu style={{ color: '#555' }} />
@@ -235,13 +243,17 @@ export default function MainNavbar() {
             form={form}
             autoComplete='off'
             initialValues={initialValues}
+            layout='vertical'
           >
-            <div className='flex flex-col gap-1'>
+            <div className='flex flex-col'>
               <Form.Item
                 name='name'
                 rules={[{ required: true, message: 'This field is required' }]}
               >
-                <Input size='large' placeholder='Name' />
+                <CustomInput
+                  placeholder='Name'
+                  className='py-[10px] px-[18px]'
+                />
               </Form.Item>
               <Form.Item
                 name='email'
@@ -250,27 +262,40 @@ export default function MainNavbar() {
                   { type: 'email', message: 'Please input correct email' },
                 ]}
               >
-                <Input size='large' placeholder='Email' />
+                <CustomInput
+                  placeholder='Email'
+                  className='py-[10px] px-[18px]'
+                />
               </Form.Item>
               <Form.Item
                 name='phone'
-                rules={[{ required: true, message: 'This field is required' }]}
+                rules={[
+                  { required: true, message: 'This field is required' },
+                  { type: 'integer', message: 'Please input number' },
+                ]}
               >
-                <Input size='large' placeholder='Phone' />
+                <CustomInput
+                  placeholder='Phone'
+                  className='py-[10px] px-[18px]'
+                />
               </Form.Item>
               <Form.Item
                 name='company'
                 rules={[{ required: true, message: 'This field is required' }]}
               >
-                <Input size='large' placeholder='Company' />
+                <CustomInput
+                  placeholder='Company'
+                  type='text'
+                  className='py-[10px] px-[18px]'
+                />
               </Form.Item>
               <Form.Item
                 name='need'
                 rules={[{ required: true, message: 'This field is required' }]}
               >
-                <Input.TextArea
-                  size='large'
+                <TextArea
                   placeholder='Brefly Describe your needs or objectives'
+                  className='py-[16px] px-[18px]'
                 />
               </Form.Item>
             </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import Typography from '../_shared/Typography';
 import CustomButton from '../_shared/CustomButton';
 import CustomInput from '../_shared/Form/CustomInput';
+import axios from 'axios';
 
 import { MdCall } from 'react-icons/md';
 import { HiMail } from 'react-icons/hi';
@@ -18,12 +19,9 @@ export default function ContactUsComponent() {
   };
 
   const onSubmit = (e) => {
-    const payload = {
-      name: e.name,
-      email: e.email,
-      description: e.description,
-    };
-    console.log(payload);
+    axios.post(
+      `https://api.telegram.org/bot5951291096:AAGU7DOgVUuHfXvJ-rDRCDtlXMSnmBi4CTg/sendMessage?chat_id=-4081985652&text=@contact-us%0A%0AName: ${e.name}%0AEmail : ${e.email}%0ADescription : ${e.description}`
+    );
   };
   return (
     <>
@@ -76,21 +74,40 @@ export default function ContactUsComponent() {
                 onFinish={onSubmit}
               >
                 <div className='flex flex-col gap-0'>
-                  <Form.Item label='Name' name='name'>
+                  <Form.Item
+                    label='Name'
+                    name='name'
+                    rules={[
+                      { required: true, message: 'This field is required' },
+                    ]}
+                  >
                     <CustomInput
                       placeholder='Input Name'
                       type='text'
                       className='py-[10px] px-[18px]'
                     />
                   </Form.Item>
-                  <Form.Item label='Email' name='email'>
+                  <Form.Item
+                    label='Email'
+                    name='email'
+                    rules={[
+                      { required: true, message: 'This field is required' },
+                      { type: 'email', message: 'Please input correct email' },
+                    ]}
+                  >
                     <CustomInput
                       placeholder='Input Email'
                       type='text'
                       className='py-[10px] px-[18px]'
                     />
                   </Form.Item>
-                  <Form.Item label='Description' name='description'>
+                  <Form.Item
+                    label='Description'
+                    name='description'
+                    rules={[
+                      { required: true, message: 'This field is required' },
+                    ]}
+                  >
                     <TextArea
                       placeholder='Input Description'
                       className='py-[16px] px-[18px]'
