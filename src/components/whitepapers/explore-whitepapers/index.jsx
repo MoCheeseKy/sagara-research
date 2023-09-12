@@ -11,6 +11,8 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../../service';
 
+import HeroImage from '../../../assets/Images/MonochromeCircuit.png';
+
 export default function ExploreWhitepapersComponent() {
   const dispatch = useDispatch();
   const { whitepapersList } = useSelector((state) => state.whitepaper);
@@ -60,7 +62,7 @@ export default function ExploreWhitepapersComponent() {
           <div className='flex w-full h-full justify-center items-center bg-gradient-to-r from-white to-transparent'>
             <div className='flex gap-[30px] px-[15px] items-center w-full md:w-[85%] max-w-[1080px]'>
               <img
-                src='/assets/Images/MonochromeCircuit.png'
+                src={HeroImage}
                 alt='cover'
                 className='w-[320px] aspect-[3/4.5] rounded bg-cover'
               />

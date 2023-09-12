@@ -2,14 +2,14 @@ import React, { useEffect, useRef } from 'react';
 import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Event } from '../../service';
-
 import Typography from '../_shared/Typography';
 import CustomButton from '../_shared/CustomButton';
-
 import { Carousel } from 'antd';
-
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { IoMdQuote } from 'react-icons/io';
+
+import BlogImage from '../../assets/Images/blog-01a.jpg';
+import TestimonialImage from '../../assets/Images/user-avatar-small-02.jpg';
 
 export default function LandingComponent() {
   const carouselRef = useRef(null);
@@ -28,7 +28,7 @@ export default function LandingComponent() {
           <div
             className='h-[420px] p-6 rounded-lg shadow-lg flex flex-col justify-between bg-cover'
             style={{
-              backgroundImage: 'url(../../assets/Images/blog-01a.jpg)',
+              backgroundImage: `url(${BlogImage})`,
             }}
           >
             <div className='bg-white border-1 rounded w-fit px-3 py-1 text-sm'>
@@ -237,13 +237,13 @@ export default function LandingComponent() {
           {...settings}
         >
           <TestimonialCard
-            image='/assets/Images/user-avatar-small-02.jpg'
+            image={TestimonialImage}
             name='Rifky Muhammad Prayudhi'
             position='CEO Google 2025'
             description='I am truly impressed with the exceptional level of service and expertise they provided throughout our collaboration. From the very beginning, their team demonstrated a deep understanding of our industry and specific research needs, which immediately instilled confidence in their abilitie.'
           />
           <TestimonialCard
-            image='/assets/Images/user-avatar-small-02.jpg'
+            image={TestimonialImage}
             name='Rifky Muhammad Prayudhi'
             position='CEO Google 2025'
             description='I am truly impressed with the exceptional level of service and expertise they provided throughout our collaboration. From the very beginning, their team demonstrated a deep understanding of our industry and specific research needs, which immediately instilled confidence in their abilitie.'
