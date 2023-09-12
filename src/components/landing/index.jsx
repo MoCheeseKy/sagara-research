@@ -28,7 +28,7 @@ export default function LandingComponent() {
           <div
             className='h-[420px] p-6 rounded-lg shadow-lg flex flex-col justify-between bg-cover'
             style={{
-              backgroundImage: 'url(/assets/Images/blog-01a.jpg)',
+              backgroundImage: 'url(../../assets/Images/blog-01a.jpg)',
             }}
           >
             <div className='bg-white border-1 rounded w-fit px-3 py-1 text-sm'>

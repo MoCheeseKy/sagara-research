@@ -8,16 +8,16 @@ import {
   Modal,
   Form,
   Input,
-  Collapse
+  Collapse,
 } from 'antd';
 import Typography from '../Typography';
 import { DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import { GiHamburgerMenu } from 'react-icons/gi'
-import { BiChevronRight } from 'react-icons/bi'
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { BiChevronRight } from 'react-icons/bi';
 
 export default function MainNavbar() {
-  const [form] = Form.useForm()
+  const [form] = Form.useForm();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -27,7 +27,7 @@ export default function MainNavbar() {
     phone: '',
     company: '',
     need: '',
-  }
+  };
 
   const collapseItem = [
     {
@@ -36,40 +36,58 @@ export default function MainNavbar() {
       onClick: () => setModalOpen(true),
       style: { borderBottom: '1px solid #404040' },
       showArrow: false,
-      collapsible: 'disabled'
+      collapsible: 'disabled',
     },
     {
       key: 2,
       label: <p style={{ color: 'white' }}>Whitepapers</p>,
-      children: <Link to='/whitepapers/explore-whitepapers' style={{ color: 'white' }}>Explore Whitepapers</Link>,
+      children: (
+        <Link to='/whitepapers/explore-whitepapers' style={{ color: 'white' }}>
+          Explore Whitepapers
+        </Link>
+      ),
       style: { borderBottom: '1px solid #404040' },
-      extra: <div className='rounded-full w-5 text-center text-white bg-[#e31937]'>1</div>
+      extra: (
+        <div className='rounded-full w-5 text-center text-white bg-[#e31937]'>
+          1
+        </div>
+      ),
     },
     {
       key: 3,
       label: <p style={{ color: 'white' }}>About Us</p>,
-      children: <div className='flex flex-col gap-4'>
-        <Link to='/about-us/our-teams' style={{ color: 'white' }}>Our Team</Link>
-        <Link to='/about-us/sagara-research' style={{ color: 'white' }}>What is Sagara Research</Link>
-      </div>,
+      children: (
+        <div className='flex flex-col gap-4'>
+          <Link to='/about-us/our-teams' style={{ color: 'white' }}>
+            Our Team
+          </Link>
+          <Link to='/about-us/sagara-research' style={{ color: 'white' }}>
+            What is Sagara Research
+          </Link>
+        </div>
+      ),
       style: { borderBottom: '1px solid #404040' },
-      extra: <div className='rounded-full w-5 text-center text-white bg-[#e31937]'>2</div>
+      extra: (
+        <div className='rounded-full w-5 text-center text-white bg-[#e31937]'>
+          2
+        </div>
+      ),
     },
-  ]
+  ];
 
   const modalOk = () => {
-    form.submit()
-  }
+    form.submit();
+  };
 
   const onCancel = () => {
-    setModalOpen(false)
-  }
+    setModalOpen(false);
+  };
 
   const handleSubmit = (value) => {
-    setModalOpen(false)
+    setModalOpen(false);
     console.log(value);
-    form.resetFields()
-  }
+    form.resetFields();
+  };
 
   return (
     <>
@@ -78,14 +96,17 @@ export default function MainNavbar() {
           <div>
             <Link to='/'>
               <img
-                src='/assets/Images/sagara-logo-bl.png'
+                src='../../../assets/Images/sagara-logo-bl.png'
                 className='w-[124px]'
                 alt=''
               />
             </Link>
           </div>
           <div className='hidden md:flex items-center gap-[30px]'>
-            <div onClick={() => setModalOpen(true)} className='cursor-pointer hover:text-red-600 duration-300'>
+            <div
+              onClick={() => setModalOpen(true)}
+              className='cursor-pointer hover:text-red-600 duration-300'
+            >
               <Typography.MediumText text='Consult With Sagara' />
             </div>
             <Dropdown
@@ -104,7 +125,10 @@ export default function MainNavbar() {
               }}
             >
               <Space className='group'>
-                <Typography.MediumText text='Whitepapers' className='group-hover:text-red-600 duration-300' />
+                <Typography.MediumText
+                  text='Whitepapers'
+                  className='group-hover:text-red-600 duration-300'
+                />
                 <DownOutlined className='group-hover:text-red-600 duration-300' />
               </Space>
             </Dropdown>
@@ -132,7 +156,10 @@ export default function MainNavbar() {
               }}
             >
               <Space className='group'>
-                <Typography.MediumText text='About Us' className='group-hover:text-red-600 duration-300' />
+                <Typography.MediumText
+                  text='About Us'
+                  className='group-hover:text-red-600 duration-300'
+                />
                 <DownOutlined className='group-hover:text-red-600 duration-300' />
               </Space>
             </Dropdown>
@@ -143,21 +170,29 @@ export default function MainNavbar() {
             <CustomButton text='Contact Us' />
           </Link>
           <div className='md:hidden'>
-            <Button style={{ borderRadius: '4px', backgroundColor: '#eee', border: 'none' }} size='large' onClick={() => setDrawerOpen(true)}>
-              <GiHamburgerMenu style={{color: '#555'}} />
+            <Button
+              style={{
+                borderRadius: '4px',
+                backgroundColor: '#eee',
+                border: 'none',
+              }}
+              size='large'
+              onClick={() => setDrawerOpen(true)}
+            >
+              <GiHamburgerMenu style={{ color: '#555' }} />
             </Button>
           </div>
         </div>
       </nav>
       <Drawer
-        title={<span style={{color: 'white'}}>Menu</span>}
+        title={<span style={{ color: 'white' }}>Menu</span>}
         placement='left'
         closable={false}
         onClose={() => setDrawerOpen(false)}
         open={drawerOpen}
         width={300}
         headerStyle={{ textAlign: 'center', backgroundColor: '#262626' }}
-        bodyStyle={{ padding: '0', backgroundColor: '#2a2a2a', }}
+        bodyStyle={{ padding: '0', backgroundColor: '#2a2a2a' }}
         style={{ color: 'white' }}
       >
         <div className='flex flex-col'>
@@ -169,8 +204,14 @@ export default function MainNavbar() {
             expandIconPosition='end'
             expandIcon={(e) => {
               return (
-                <BiChevronRight color='white' size={24} className={`transition ${e.isActive ? 'rotate-90' : 'rotate-0'}`} />
-              )
+                <BiChevronRight
+                  color='white'
+                  size={24}
+                  className={`transition ${
+                    e.isActive ? 'rotate-90' : 'rotate-0'
+                  }`}
+                />
+              );
             }}
             style={{ color: 'white' }}
           />
@@ -185,32 +226,55 @@ export default function MainNavbar() {
         okText='Submit'
         cancelText='Close'
         cancelButtonProps={{
-          style: { backgroundColor: '#6c757d', color: 'white' }
+          style: { backgroundColor: '#6c757d', color: 'white' },
         }}
         okButtonProps={{
-          style: { backgroundColor: '#a51535', color: 'white' }
+          style: { backgroundColor: '#a51535', color: 'white' },
         }}
       >
         <div className='py-4'>
-          <Form onFinish={handleSubmit} form={form} autoComplete='off' initialValues={initialValues}>
+          <Form
+            onFinish={handleSubmit}
+            form={form}
+            autoComplete='off'
+            initialValues={initialValues}
+          >
             <div className='flex flex-col gap-1'>
-              <Form.Item name='name' rules={[{ required: true, message: 'This field is required' }]}>
+              <Form.Item
+                name='name'
+                rules={[{ required: true, message: 'This field is required' }]}
+              >
                 <Input size='large' placeholder='Name' />
               </Form.Item>
-              <Form.Item name='email' rules={[
-                { required: true, message: 'This field is required' },
-                { type: 'email', message: 'Please input correct email' }
-              ]}>
+              <Form.Item
+                name='email'
+                rules={[
+                  { required: true, message: 'This field is required' },
+                  { type: 'email', message: 'Please input correct email' },
+                ]}
+              >
                 <Input size='large' placeholder='Email' />
               </Form.Item>
-              <Form.Item name='phone' rules={[{ required: true, message: 'This field is required' }]}>
+              <Form.Item
+                name='phone'
+                rules={[{ required: true, message: 'This field is required' }]}
+              >
                 <Input size='large' placeholder='Phone' />
               </Form.Item>
-              <Form.Item name='company' rules={[{ required: true, message: 'This field is required' }]}>
+              <Form.Item
+                name='company'
+                rules={[{ required: true, message: 'This field is required' }]}
+              >
                 <Input size='large' placeholder='Company' />
               </Form.Item>
-              <Form.Item name='need' rules={[{ required: true, message: 'This field is required' }]}>
-                <Input.TextArea size='large' placeholder='Brefly Describe your needs or objectives' />
+              <Form.Item
+                name='need'
+                rules={[{ required: true, message: 'This field is required' }]}
+              >
+                <Input.TextArea
+                  size='large'
+                  placeholder='Brefly Describe your needs or objectives'
+                />
               </Form.Item>
             </div>
           </Form>

@@ -34,7 +34,7 @@ export default function OurTeamsComponent() {
         className='flex h-[100vh] justify-center items-center bg-cover'
         style={{
           backgroundImage:
-            'url(/assets/Images/business-team-joining-hands-together-city-background.jpg)',
+            'url(../../../assets/Images/business-team-joining-hands-together-city-background.jpg)',
         }}
       >
         <div className='flex w-full h-full justify-center items-center bg-[rgba(250,250,250,0.5)]'>
