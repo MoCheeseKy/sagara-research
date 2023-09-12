@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '../../_shared/Typography';
 import CustomButton from '../../_shared/CustomButton';
+import CustomInput from '../../_shared/Form/CustomInput'
 import { LiaDownloadSolid } from 'react-icons/lia';
 import { BiUser } from 'react-icons/bi';
 import { GiChampions } from 'react-icons/gi';
@@ -18,10 +19,14 @@ export default function ExploreWhitepapersComponent() {
   const dispatch = useDispatch();
   const { whitepapersList } = useSelector((state) => state.whitepaper);
   const [api, context] = notification.useNotification();
-  const [pagination, setPagination] = useState({ page: 1, page_size: 5 });
+  const [pagination, setPagination] = useState({ page: 1, page_size: 5, search: '' });
 
   useEffect(() => {
-    dispatch(Whitepapers.GetWhitepapersList(pagination.page))
+    const payload = {
+      search: pagination.search,
+      page: pagination.page
+    }
+    dispatch(Whitepapers.GetWhitepapersList(payload))
       .unwrap()
       .then(() => {
         api.success({ message: 'Success get whitepaper' });
@@ -34,6 +39,12 @@ export default function ExploreWhitepapersComponent() {
   const paginationChange = (page) => {
     setPagination({ ...pagination, page });
   };
+
+  const handleSearch = (e) => {
+    if (e.key === 'Enter') {
+      setPagination({...pagination, search: e.target.value, page: 1})
+    }
+  }
 
   return (
     <>
@@ -68,10 +79,13 @@ export default function ExploreWhitepapersComponent() {
       </div>
       <div className='flex justify-center w-full'>
         <div className='py-16 flex flex-col  px-[15px] w-full md:w-[85%] max-w-[1080px]'>
-          <Typography.LargeHeading
-            text='Explore Whitepapers'
-            className='mb-[30px]'
-          />
+          <div className='grid md:grid-cols-2 grid-rows-2'>
+            <Typography.LargeHeading
+              text='Explore Whitepapers'
+              className='mb-[30px]'
+            />
+            <CustomInput className='mb-[30px]' placeholder='Press enter to search' onKeyUp={handleSearch} />
+          </div>
           <div className='grid gap-[15px]'>
             {whitepapersList?.results?.map((whitepaper, indexWhitepaper) => (
               <React.Fragment key={indexWhitepaper}>
