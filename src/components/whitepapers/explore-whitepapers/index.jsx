@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../../service';
+import dayjs from 'dayjs';
 
 import HeroImage from '../../../assets/Images/MonochromeCircuit.png';
 
@@ -93,9 +94,13 @@ export default function ExploreWhitepapersComponent() {
               <React.Fragment key={indexWhitepaper}>
                 <Card
                   image={whitepaper?.image}
-                  title={whitepaper?.title}
-                  date={whitepaper?.published_at}
-                  desc={whitepaper?.description}
+                  title={whitepaper?.title ? whitepaper?.title : '-'}
+                  date={
+                    whitepaper?.published_at
+                      ? dayjs(whitepaper?.published_at).format('DD-MM-YYYY')
+                      : '-'
+                  }
+                  desc={whitepaper?.overview ? whitepaper?.overview : '-'}
                   slug={whitepaper?.slug}
                 />
               </React.Fragment>
