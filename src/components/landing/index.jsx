@@ -54,7 +54,7 @@ export default function LandingComponent() {
           <img
             src={image}
             alt='event_image'
-            className='min-w-[240px] aspect-[3/4] h-max bg-cover'
+            className='md:min-w-[240px] md:max-w-[240px] aspect-[3/4] h-fit bg-cover'
           />
           <div className='p-[30px] flex flex-col'>
             <div className='flex flex-col gap-4'>
