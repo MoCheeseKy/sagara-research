@@ -15,6 +15,7 @@ import { DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BiChevronRight } from 'react-icons/bi';
+import Logo from '../../../assets/Images/sagara-logo-bl.png';
 
 export default function MainNavbar() {
   const [form] = Form.useForm();
@@ -95,11 +96,7 @@ export default function MainNavbar() {
         <div className='flex gap-[70px]'>
           <div>
             <Link to='/'>
-              <img
-                src='../../../assets/Images/sagara-logo-bl.png'
-                className='w-[124px]'
-                alt=''
-              />
+              <img src={Logo} className='w-[124px]' alt='' />
             </Link>
           </div>
           <div className='hidden md:flex items-center gap-[30px]'>
