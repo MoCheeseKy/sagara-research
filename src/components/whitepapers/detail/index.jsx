@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Typography from '../../_shared/Typography';
-import { Form, notification } from 'antd';
+import { Form, notification, Checkbox } from 'antd';
 import CustomInput from '../../_shared/Form/CustomInput';
 import CustomSelect from '../../_shared/Form/CustomSelect';
 import CustomButton from '../../_shared/CustomButton';
@@ -42,23 +42,30 @@ export default function WHitepaperDetailComponent() {
     email: '',
     phone: '',
     country: undefined,
+    term: false,
   };
+
   const onSubmitDownload = (e) => {
-    const formData = new FormData();
-
-    formData.append('name', e.name);
-    formData.append('company', e.company);
-    formData.append('position', e.position);
-    formData.append('email', e.email);
-    formData.append('phone', e.phone);
-    formData.append('country', 1);
-
-    const data = {
-      formData,
-      slug: slug,
-    };
-    dispatch(Whitepapers.DownloadWhitepaper(data));
+    if (e.term) {
+      const formData = new FormData();
+  
+      formData.append('name', e.name);
+      formData.append('company', e.company);
+      formData.append('position', e.position);
+      formData.append('email', e.email);
+      formData.append('phone', e.phone);
+      formData.append('country', 1);
+  
+      const data = {
+        formData,
+        slug: slug,
+      };
+      dispatch(Whitepapers.DownloadWhitepaper(data));
+    } else {
+      form.validateFields()
+    }
   };
+
   const TabsItem = [
     {
       label: 'Overview',
@@ -77,6 +84,7 @@ export default function WHitepaperDetailComponent() {
       ),
     },
   ];
+
   return (
     <>
       {context}
@@ -255,6 +263,16 @@ export default function WHitepaperDetailComponent() {
                         },
                       ]}
                     />
+                  </Form.Item>
+                  <Form.Item
+                    name='term'
+                    valuePropName='checked'
+                  >
+                    <Checkbox style={{display: 'flex', alignItems: 'flex-start'}}>
+                      By accepting these Terms and Conditions, you agree to our
+                      terms of cooperation, which include the possibility of being
+                      contacted by our consultants.
+                    </Checkbox>
                   </Form.Item>
                 </div>
                 <CustomButton text='Download' />
