@@ -30,7 +30,13 @@ export default function OurTeamsComponent() {
   };
   return (
     <>
-      <div className='flex h-[100vh] justify-center items-center bg-[url(/public/assets/Images/business-team-joining-hands-together-city-background.jpg)] bg-cover'>
+      <div
+        className='flex h-[100vh] justify-center items-center bg-cover'
+        style={{
+          backgroundImage:
+            'url(/assets/Images/business-team-joining-hands-together-city-background.jpg)',
+        }}
+      >
         <div className='flex w-full h-full justify-center items-center bg-[rgba(250,250,250,0.5)]'>
           <div className='flex flex-col items-center gap-5 md:gap-10 px-[15px] w-full md:w-[85%] max-w-[1080px]'>
             <Typography.LargeHeading text='Our Team' bold />
