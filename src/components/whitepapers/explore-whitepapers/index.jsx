@@ -7,6 +7,7 @@ import { BiUser } from 'react-icons/bi';
 import { GiChampions } from 'react-icons/gi';
 import { PiShareDuotone } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
+import { notification } from 'antd';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../../service';
@@ -17,10 +18,18 @@ import HeroImage from '../../../assets/Images/MonochromeCircuit.png';
 export default function ExploreWhitepapersComponent() {
   const dispatch = useDispatch();
   const { whitepapersList } = useSelector((state) => state.whitepaper);
+  const [api, context] = notification.useNotification()
 
   useEffect(() => {
-    dispatch(Whitepapers.GetWhitepapersList());
-  }, []);
+    dispatch(Whitepapers.GetWhitepapersList())
+      .unwrap()
+      .then(() => {
+        api.success({message: 'Success get whitepaper'})
+      })
+      .catch(() => {
+        api.error({message: 'Failed get whitepaper'})
+      })
+  }, [dispatch, api]);
 
   const Card = ({ image, title, date, desc, slug }) => {
     return (
@@ -53,8 +62,10 @@ export default function ExploreWhitepapersComponent() {
       </>
     );
   };
+
   return (
     <>
+      {context}
       <div className='flex flex-col h-[100vh]'>
         <div className='h-[77px]' />
         <div

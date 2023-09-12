@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Typography from '../../_shared/Typography';
-import { Form } from 'antd';
+import { Form, notification } from 'antd';
 import CustomInput from '../../_shared/Form/CustomInput';
 import CustomSelect from '../../_shared/Form/CustomSelect';
 import CustomButton from '../../_shared/CustomButton';
@@ -22,10 +22,18 @@ export default function WHitepaperDetailComponent() {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const { whitepapersDetail } = useSelector((state) => state.whitepaper);
+  const [api, context] = notification.useNotification()
 
   useEffect(() => {
-    dispatch(Whitepapers.GetWhitepaperDetail(slug));
-  }, []);
+    dispatch(Whitepapers.GetWhitepaperDetail(slug))
+      .unwrap()
+      .then(() => {
+        api.success({message: 'Success get detail'})
+      })
+      .catch(() => {
+        api.error({message: 'Failed get detail'})
+      })
+  }, [dispatch, api, slug]);
 
   const initialValues = {
     name: '',
@@ -71,6 +79,7 @@ export default function WHitepaperDetailComponent() {
   ];
   return (
     <>
+      {context}
       <div className='pt-[65px]' />
       <div className='flex justify-center py-14'>
         <div className='flex flex-col lg:flex-row items-center px-[15px] w-full md:w-[85%] max-w-[1080px] gap-16'>

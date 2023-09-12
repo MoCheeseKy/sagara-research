@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Event } from '../../service';
 import Typography from '../_shared/Typography';
 import CustomButton from '../_shared/CustomButton';
-import { Carousel } from 'antd';
+import { Carousel, notification } from 'antd';
 import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import { IoMdQuote } from 'react-icons/io';
 
@@ -14,16 +14,26 @@ import TestimonialImage from '../../assets/Images/user-avatar-small-02.jpg';
 export default function LandingComponent() {
   const carouselRef = useRef(null);
   const dispatch = useDispatch();
+  const [api, context] = notification.useNotification()
 
   const { upcomingEvent } = useSelector((state) => state.event);
 
   useEffect(() => {
-    dispatch(Event.GetUpcomingEvent());
-  }, []);
+    dispatch(Event.GetUpcomingEvent())
+      .unwrap()
+      .then(() => {
+        notification.success({message: 'Success get event'})
+        api.success({message: 'test'})
+      })
+      .catch(() => {
+        notification.error({message: 'Failed get event'})
+      })
+  }, [dispatch, api]);
 
   const RecentBlogCard = ({ title, description }) => {
     return (
       <>
+        {context}
         <div className='pt-[15px] hover:pt-0 duration-300'>
           <div
             className='h-[420px] p-6 rounded-lg shadow-lg flex flex-col justify-between bg-cover'
