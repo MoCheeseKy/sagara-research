@@ -8,6 +8,7 @@ import { GiChampions } from 'react-icons/gi';
 import { PiShareDuotone } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 import { notification, Pagination } from 'antd';
+import WhitepaperCard from '../../_shared/WhitepaperCard';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../../service';
@@ -18,54 +19,22 @@ import HeroImage from '../../../assets/Images/MonochromeCircuit.png';
 export default function ExploreWhitepapersComponent() {
   const dispatch = useDispatch();
   const { whitepapersList } = useSelector((state) => state.whitepaper);
-  const [api, context] = notification.useNotification()
+  const [api, context] = notification.useNotification();
   const [pagination, setPagination] = useState({ page: 1, page_size: 5 });
 
   useEffect(() => {
     dispatch(Whitepapers.GetWhitepapersList(pagination.page))
       .unwrap()
       .then(() => {
-        api.success({message: 'Success get whitepaper'})
+        api.success({ message: 'Success get whitepaper' });
       })
       .catch(() => {
-        api.error({message: 'Failed get whitepaper'})
-      })
+        api.error({ message: 'Failed get whitepaper' });
+      });
   }, [dispatch, api, pagination]);
 
   const paginationChange = (page) => {
-    setPagination({...pagination, page})
-  }
-
-  const Card = ({ image, title, date, desc, slug }) => {
-    return (
-      <>
-        <div className='flex flex-col md:flex-row shadow rounded mt-[15px] hover:mt-0 mb-0 hover:mb-[15px] duration-300 overflow-hidden bg-white'>
-          <img
-            src={image}
-            alt='whitepaper_image'
-            className='md:min-w-[240px] md:max-w-[240px] aspect-[3/4] h-fit bg-cover'
-          />
-          <div className='p-[30px] flex flex-col'>
-            <div className='flex flex-col gap-4'>
-              <div>
-                <Typography.LargeText text={title} bold />
-                <div className='flex gap-2 items-center'>
-                  <AiOutlineClockCircle className='text-[#808080]' />
-                  <Typography.MediumText
-                    text={date}
-                    className='text-[#808080]'
-                  />
-                </div>
-              </div>
-              <Typography.MediumText text={desc} className='text-[#808080]' />
-              <Link to={`/whitepapers/detail/${slug}`}>
-                <CustomButton text='Learn More' className='w-fit' />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </>
-    );
+    setPagination({ ...pagination, page });
   };
 
   return (
@@ -108,7 +77,7 @@ export default function ExploreWhitepapersComponent() {
           <div className='grid gap-[15px]'>
             {whitepapersList?.results?.map((whitepaper, indexWhitepaper) => (
               <React.Fragment key={indexWhitepaper}>
-                <Card
+                <WhitepaperCard
                   image={whitepaper?.image}
                   title={whitepaper?.title ? whitepaper?.title : '-'}
                   date={
@@ -116,6 +85,8 @@ export default function ExploreWhitepapersComponent() {
                       ? dayjs(whitepaper?.published_at).format('DD-MM-YYYY')
                       : '-'
                   }
+                  speaker={whitepaper?.speaker}
+                  topic={whitepaper?.topic}
                   desc={whitepaper?.overview ? whitepaper?.overview : '-'}
                   slug={whitepaper?.slug}
                 />
@@ -123,7 +94,11 @@ export default function ExploreWhitepapersComponent() {
             ))}
             {whitepapersList?.count > 5 && (
               <div className='text-right'>
-                <Pagination total={whitepapersList.count} pageSize={5} onChange={paginationChange} />
+                <Pagination
+                  total={whitepapersList.count}
+                  pageSize={5}
+                  onChange={paginationChange}
+                />
               </div>
             )}
           </div>

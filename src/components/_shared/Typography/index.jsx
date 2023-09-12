@@ -3,6 +3,8 @@
 
 // Custom
 import Custom from './Custom';
+// Elipsis
+import Elipsis from './Elipsis';
 // 14px
 import SmallText from './SmallText';
 // 16px
@@ -22,6 +24,7 @@ import Insight from './Insight';
 
 export default {
   Custom,
+  Elipsis,
   SmallText,
   MediumText,
   LargeText,
