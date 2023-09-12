@@ -25,7 +25,12 @@ export default function LandingComponent() {
     return (
       <>
         <div className='pt-[15px] hover:pt-0 duration-300'>
-          <div className='h-[420px] p-6 rounded-lg shadow-lg flex flex-col justify-between bg-[url(/public/assets/Images/blog-01a.jpg)] bg-cover'>
+          <div
+            className='h-[420px] p-6 rounded-lg shadow-lg flex flex-col justify-between bg-cover'
+            style={{
+              backgroundImage: 'url(/assets/Images/blog-01a.jpg)',
+            }}
+          >
             <div className='bg-white border-1 rounded w-fit px-3 py-1 text-sm'>
               Tips
             </div>
