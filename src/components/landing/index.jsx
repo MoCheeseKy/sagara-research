@@ -197,7 +197,7 @@ export default function LandingComponent() {
           <Typography.LargeHeading text='Upcoming Event' className='mb-10' />
           <div className='grid gap-[30px]'>
             {upcomingEvent?.results?.map((event) => (
-              <React.Fragment key={event.id}>
+              <React.Fragment key={event.uuid}>
                 <UpcomingEventCard
                   title={event.name}
                   topic={event.topic || '-'}
