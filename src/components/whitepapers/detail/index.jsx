@@ -274,13 +274,17 @@ export default function WHitepaperDetailComponent() {
                       ]}
                     />
                   </Form.Item>
-                  <Form.Item name='term' valuePropName='checked'>
+                  <Form.Item
+                    name='term'
+                    valuePropName='checked'
+                    className='col-span-2 lg:col-span-1'
+                  >
                     <div className='flex gap-2 items-start'>
                       <Checkbox />
                       <Typography.SmallText
                         text='By accepting these Terms and Conditions, you agree to our
-                  terms of cooperation, which include the possibility of being
-                  contacted by our consultants.'
+                        terms of cooperation, which include the possibility of being
+                        contacted by our consultants.'
                       />
                     </div>
                   </Form.Item>
