@@ -61,31 +61,6 @@ export default function OverviewComponent({ data }) {
             </div>
           </div>
         </div>
-        {data?.insight ? (
-          <>
-            <div className='mt-6'>
-              <Typography.SmallHeading
-                text='Insight'
-                className='text-primary'
-                bold
-              />
-              <div className='grid md:grid-cols-2 gap-12 mt-6'>
-                {data?.insight?.map((insight, indexInsight) => (
-                  <div key={indexInsight}>
-                    <Typography.SmallHeading
-                      text={insight?.title}
-                      bold
-                      className='mb-2'
-                    />
-                    <Typography.MediumText text={insight?.description} />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </>
-        ) : (
-          <></>
-        )}
       </div>
     </>
   );

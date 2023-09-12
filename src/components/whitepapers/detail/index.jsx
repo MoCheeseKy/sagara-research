@@ -11,10 +11,13 @@ import dayjs from 'dayjs';
 // Import Self Component
 import OverviewComponent from './overview';
 import AboutFGDComponent from './aboutFGD';
+import InsightComponent from './insight';
 
 // Dispatch Setting
 import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../../service';
+
+import DefaultCover from '../../../assets/Images/DefaultWhitepaperCover.svg';
 
 export default function WHitepaperDetailComponent() {
   const params = useParams();
@@ -22,17 +25,17 @@ export default function WHitepaperDetailComponent() {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const { whitepapersDetail } = useSelector((state) => state.whitepaper);
-  const [api, context] = notification.useNotification()
+  const [api, context] = notification.useNotification();
 
   useEffect(() => {
     dispatch(Whitepapers.GetWhitepaperDetail(slug))
       .unwrap()
       .then(() => {
-        api.success({message: 'Success get detail'})
+        api.success({ message: 'Success get detail' });
       })
       .catch(() => {
-        api.error({message: 'Failed get detail'})
-      })
+        api.error({ message: 'Failed get detail' });
+      });
   }, [dispatch, api, slug]);
 
   const initialValues = {
@@ -48,21 +51,21 @@ export default function WHitepaperDetailComponent() {
   const onSubmitDownload = (e) => {
     if (e.term) {
       const formData = new FormData();
-  
+
       formData.append('name', e.name);
       formData.append('company', e.company);
       formData.append('position', e.position);
       formData.append('email', e.email);
       formData.append('phone', e.phone);
       formData.append('country', 1);
-  
+
       const data = {
         formData,
         slug: slug,
       };
       dispatch(Whitepapers.DownloadWhitepaper(data));
     } else {
-      form.validateFields()
+      form.validateFields();
     }
   };
 
@@ -83,6 +86,14 @@ export default function WHitepaperDetailComponent() {
         </>
       ),
     },
+    {
+      label: 'Insight',
+      children: (
+        <>
+          <InsightComponent data={whitepapersDetail} />
+        </>
+      ),
+    },
   ];
 
   return (
@@ -92,11 +103,16 @@ export default function WHitepaperDetailComponent() {
       <div className='flex justify-center py-14'>
         <div className='flex flex-col lg:flex-row items-center px-[15px] w-full md:w-[85%] max-w-[1080px] gap-16'>
           <div className='flex flex-col md:flex-row gap-6 w-full'>
-            <img
-              src={whitepapersDetail?.image}
-              alt='whitepaper_image'
-              className='w-full md:w-[124px] md:min-w-[124px] h-fit aspect-[3/4] rounded bg-cover'
-            />
+            <div
+              className='w-fit h-fit bg-cover'
+              style={{ backgroundImage: `url(${DefaultCover})` }}
+            >
+              <img
+                src={whitepapersDetail?.image}
+                alt=' '
+                className='w-full md:w-[124px] md:min-w-[124px] h-fit aspect-[3/4] rounded bg-cover'
+              />
+            </div>
             <div className='flex flex-col gap-4'>
               <Typography.MediumText text='WHITE PAPER' bold />
               <Typography.MediumHeading
@@ -230,49 +246,43 @@ export default function WHitepaperDetailComponent() {
                       className='py-[10px] px-[18px]'
                     />
                   </Form.Item>
-                  <Form.Item name='country' className='bg-white rounded-[10px]'>
+                  <Form.Item
+                    name='country'
+                    className='bg-white rounded-[10px]'
+                    rules={[
+                      { required: true, message: 'This Field is required' },
+                    ]}
+                  >
                     <CustomSelect
-                      placeholder='Select a Country'
+                      placeholder='Select Research Objective'
                       bordered={false}
                       className='py-[6px] px-[6px] outline-none shadow-none border-0'
                       optionFilterProp='children'
                       options={[
                         {
-                          value: '1',
-                          label: 'Select Country',
+                          value: 'Business Purpose',
+                          label: 'Business Purpose',
                         },
                         {
-                          value: '2',
-                          label: 'Closed',
+                          value: 'Research Purpose',
+                          label: 'Research Purpose',
                         },
                         {
-                          value: '3',
-                          label: 'Communicated',
-                        },
-                        {
-                          value: '4',
-                          label: 'Identified',
-                        },
-                        {
-                          value: '5',
-                          label: 'Resolved',
-                        },
-                        {
-                          value: '6',
-                          label: 'Cancelled',
+                          value: 'Personal Purpose',
+                          label: 'Personal Purpose',
                         },
                       ]}
                     />
                   </Form.Item>
-                  <Form.Item
-                    name='term'
-                    valuePropName='checked'
-                  >
-                    <Checkbox style={{display: 'flex', alignItems: 'flex-start'}}>
-                      By accepting these Terms and Conditions, you agree to our
-                      terms of cooperation, which include the possibility of being
-                      contacted by our consultants.
-                    </Checkbox>
+                  <Form.Item name='term' valuePropName='checked'>
+                    <div className='flex gap-2 items-start'>
+                      <Checkbox />
+                      <Typography.SmallText
+                        text='By accepting these Terms and Conditions, you agree to our
+                  terms of cooperation, which include the possibility of being
+                  contacted by our consultants.'
+                      />
+                    </div>
                   </Form.Item>
                 </div>
                 <CustomButton text='Download' />
