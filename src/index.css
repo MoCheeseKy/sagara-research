@@ -36,7 +36,7 @@
 
 .carousel-button {
   display: block !important;
-  background-color: #66676b !important;
+  background-color: transparent !important;
   transition-duration: 300ms;
 }
 

@@ -70,19 +70,6 @@ export default function LandingComponent() {
     return (
       <CustomButton
         className={`${className} carousel-button`}
-        style={{
-          color: 'white',
-          fontSize: '15px',
-          lineHeight: '1.5715',
-          content: '',
-          padding: '10px 20px',
-          backgroundColor: '#a51535',
-          width: '48px',
-          height: '48px',
-          position: 'absolute',
-          right: '-10%',
-          ...style,
-        }}
         onClick={onClick}
         icon={<FiChevronRight />}
       />
@@ -93,19 +80,6 @@ export default function LandingComponent() {
     return (
       <CustomButton
         className={`${className} carousel-button`}
-        style={{
-          color: 'white',
-          fontSize: '15px',
-          lineHeight: '1.5715',
-          content: '',
-          padding: '10px 20px',
-          // backgroundColor: '#a51535',
-          width: '48px',
-          height: '48px',
-          position: 'absolute',
-          left: '-10%',
-          ...style,
-        }}
         onClick={onClick}
         icon={<FiChevronLeft />}
       />
