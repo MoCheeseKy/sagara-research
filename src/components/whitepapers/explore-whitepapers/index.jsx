@@ -6,7 +6,16 @@ import { LiaDownloadSolid } from 'react-icons/lia';
 import { BiUser, BiSearch } from 'react-icons/bi';
 import { GiChampions } from 'react-icons/gi';
 import { PiShareDuotone } from 'react-icons/pi';
-import { notification, Pagination, Form, Modal } from 'antd';
+import {
+  notification,
+  Pagination,
+  Form,
+  Modal,
+  Radio,
+  Space,
+  Select,
+  DatePicker
+} from 'antd';
 import FormDownload from '../../_shared/Form/FormDownload';
 import WhitepaperCard from '../../_shared/WhitepaperCard';
 
@@ -21,18 +30,30 @@ export default function ExploreWhitepapersComponent() {
   const { whitepapersList } = useSelector((state) => state.whitepaper);
   const [api, context] = notification.useNotification();
 
-  const [pagination, setPagination] = useState({
+  const [query, setQuery] = useState({
     page: 1,
     page_size: 5,
     search: '',
+    author: '',
+    theme: '',
+    ordering: '',
+    publish_date_after: '',
+    publish_date_before: ''
   });
-  const [modalOpen, setModalOpen] = useState(false);
+  const [formModalOpen, setFormModalOpen] = useState(false);
+  const [filterModalOpen, setFilterModalOpen] = useState(false);
 
   useEffect(() => {
     const payload = {
-      search: pagination.search,
-      page: pagination.page,
+      search: query.search,
+      page: query.page,
+      author: query.author,
+      theme: query.theme,
+      ordering: query.ordering,
+      publish_date_after: query.publish_date_after,
+      publish_date_before: query.publish_date_before,
     };
+    
     dispatch(Whitepapers.GetWhitepapersList(payload))
       .unwrap()
       .then(() => {
@@ -41,15 +62,15 @@ export default function ExploreWhitepapersComponent() {
       .catch(() => {
         api.error({ message: 'Failed get whitepaper' });
       });
-  }, [dispatch, api, pagination]);
+  }, [dispatch, api, query]);
 
   const paginationChange = (page) => {
-    setPagination({ ...pagination, page });
+    setQuery({ ...query, page });
   };
 
   const handleSearch = (e) => {
     if (e.key === 'Enter') {
-      setPagination({ ...pagination, search: e.target.value, page: 1 });
+      setQuery({ ...query, search: e.target.value, page: 1 });
     }
   };
 
@@ -83,6 +104,53 @@ export default function ExploreWhitepapersComponent() {
       form.validateFields();
     }
   };
+
+  const filterOption = (input, option) => 
+    (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+
+  const dateChange = (e) => {
+    if (e !== null) {
+      const startDate = dayjs(e[0]).format('YYYY-MM-DD')
+      const endDate = dayjs(e[1]).format('YYYY-MM-DD')
+      setQuery({
+        ...query,
+        publish_date_after: startDate,
+        publish_date_before: endDate
+      })
+    } else {
+      setQuery({...query, publish_date_after: '', publish_date_before: ''})
+    }
+  }
+
+  const dummyAuthor = [
+    {
+      value: 'author_1',
+      label: 'Author 1'
+    },
+    {
+      value: 'author_2',
+      label: 'Author 2'
+    },
+    {
+      value: 'author_3',
+      label: 'Author 3'
+    },
+  ]
+
+  const dummytheme = [
+    {
+      value: 'topic_1',
+      label: 'Tokpik 1'
+    },
+    {
+      value: 'topic_2',
+      label: 'Topik 2'
+    },
+    {
+      value: 'topic_3',
+      label: 'Topik 3'
+    },
+  ]
 
   return (
     <>
@@ -123,7 +191,7 @@ export default function ExploreWhitepapersComponent() {
                   <Link>
                     <CustomButton text='Learn More' />
                   </Link>
-                  <CustomButton text='Download' className='md:hidden' onClick={() => setModalOpen(true)} />
+                  <CustomButton text='Download' className='md:hidden' onClick={() => setFormModalOpen(true)} />
                 </div>
               </div>
             </div>
@@ -135,18 +203,43 @@ export default function ExploreWhitepapersComponent() {
       </div>
       <div className='flex justify-center w-full'>
         <div className='py-16 flex flex-col px-[15px] w-full md:w-[85%] max-w-[1080px]'>
-          <Typography.LargeHeading
-            text='Explore Whitepapers'
-            className='mb-0 md:mb-[30px] col-span-4'
-          />
+          <div className='flex flex-row justify-between items-center'>
+            <Typography.LargeHeading
+              text='Explore Whitepapers'
+              className='mb-0 md:mb-[30px] col-span-4'
+            />
+            <CustomButton text='Pilih filter' className='lg:hidden' onClick={() => setFilterModalOpen(true)} />
+          </div>
           <div className='flex gap-12'>
-            <div className='hidden lg:flex lg:flex-col w-[25%] max-w-[25%] min-w-[25%] h-fit'>
+            <div className='hidden lg:flex lg:flex-col w-[25%] max-w-[25%] min-w-[25%] h-fit gap-7'>
               <CustomInput
-                className='mb-[30px] md:col-start-6 md:col-end-13 py-[10px] px-[18px] mt-[-10px] md:mt-0'
+                className='md:col-start-6 md:col-end-13 py-[10px] px-[18px] mt-[-10px] md:mt-0'
                 placeholder='Press enter to search'
                 onKeyUp={handleSearch}
                 prefix={<BiSearch />}
               />
+              <div className='flex flex-col gap-3'>
+                <Typography.LargeText text='Sort by' />
+                <Radio.Group value={query.ordering} onChange={(e) => setQuery({...query, ordering: e.target.value})}>
+                  <Space direction='vertical'>
+                    <Radio value='-published_at'>Newest</Radio>
+                    <Radio value='published_at'>Oldest</Radio>
+                    <Radio value='-count_of_downloads'>Most Popular</Radio>
+                  </Space>
+                </Radio.Group>
+              </div>
+              <div>
+                <Typography.LargeText text='Search Author' />
+                <Select showSearch filterOption={filterOption} className='w-full' options={dummyAuthor} placeholder='Search Author' />
+              </div>
+              <div>
+                <Typography.LargeText text='Search Topic' />
+                <Select showSearch filterOption={filterOption} className='w-full' options={dummytheme} placeholder='Search Topic' />
+              </div>
+              <div>
+                <Typography.LargeText text='Search by Date' />
+                <DatePicker.RangePicker onChange={dateChange} />
+              </div>
             </div>
             <div className='grid gap-[15px]'>
               {whitepapersList?.results?.map((whitepaper, indexWhitepaper) => (
@@ -224,16 +317,57 @@ export default function ExploreWhitepapersComponent() {
           </div>
         </div>
       </div>
+
+      {/* Form Modal */}
       <Modal
-        open={modalOpen}
-        onCancel={() => setModalOpen(false)}
-        onOk={() => setModalOpen(false)}
+        open={formModalOpen}
+        onCancel={() => setFormModalOpen(false)}
+        onOk={() => setFormModalOpen(false)}
         footer={null}
         title='Download Whitepaper'
       >
         <>
           <FormDownload form={form} initialValues={initialValues} onSubmitDownload={onSubmitDownload} />
         </>
+      </Modal>
+
+      {/* Filter Modal */}
+      <Modal
+        open={filterModalOpen}
+        onCancel={() => setFilterModalOpen(false)}
+        onOk={() => setFilterModalOpen(false)}
+        title='Filter'
+      >
+        <div className='p-3 flex flex-col gap-3'>
+          <CustomInput
+            className='md:col-start-6 md:col-end-13 py-[10px] px-[18px] mt-[-10px] md:mt-0'
+            placeholder='Press enter to search'
+            onKeyUp={handleSearch}
+            prefix={<BiSearch />}
+          />
+          <div className='flex flex-col gap-3'>
+            <Typography.LargeText text='Sort by' />
+            <Radio.Group>
+              <Space direction='vertical'>
+                <Radio value='terbaru'>Newest</Radio>
+                <Radio value='terlama'>Oldest</Radio>
+                <Radio value='popular'>Most Popular</Radio>
+              </Space>
+            </Radio.Group>
+          </div>
+          <div>
+            <Typography.LargeText text='Search Author' />
+            <Select showSearch filterOption={filterOption} className='w-full' options={dummyAuthor} placeholder='Search Author' />
+          </div>
+          <div>
+            <Typography.LargeText text='Search Topic' />
+            <Select showSearch filterOption={filterOption} className='w-full' options={dummytheme} placeholder='Search Topic' />
+          </div>
+          <div>
+            <Typography.LargeText text='Search by Date' />
+            <DatePicker.RangePicker />
+          </div>
+        </div>
       </Modal>
     </>
   );
