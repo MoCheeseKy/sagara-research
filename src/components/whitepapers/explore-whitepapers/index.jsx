@@ -122,6 +122,18 @@ export default function ExploreWhitepapersComponent() {
     }
   };
 
+  const authorSearch = (e) => {
+    if (e.key === 'Enter') {
+      setQuery({ ...query, author: e.target.value });
+    }
+  };
+
+  const topicSearch = (e) => {
+    if (e.key === 'Enter') {
+      setQuery({ ...query, theme: e.target.value });
+    }
+  };
+
   const dummyAuthor = [
     {
       value: 'author_1',
@@ -248,23 +260,21 @@ export default function ExploreWhitepapersComponent() {
               </div>
               <div>
                 <Typography.LargeText text='Search Author' />
-                <Select
-                  showSearch
-                  filterOption={filterOption}
-                  className='w-full'
-                  options={dummyAuthor}
+                <CustomInput
+                  onKeyUp={authorSearch}
+                  size='default'
                   placeholder='Search Author'
                 />
+                {/* <Select showSearch filterOption={filterOption} className='w-full' options={dummyAuthor} placeholder='Search Author' /> */}
               </div>
               <div>
                 <Typography.LargeText text='Search Topic' />
-                <Select
-                  showSearch
-                  filterOption={filterOption}
-                  className='w-full'
-                  options={dummytheme}
+                <CustomInput
+                  onKeyUp={topicSearch}
+                  size='default'
                   placeholder='Search Topic'
                 />
+                {/* <Select showSearch filterOption={filterOption} className='w-full' options={dummytheme} placeholder='Search Topic' /> */}
               </div>
               <div>
                 <Typography.LargeText text='Search by Date' />
