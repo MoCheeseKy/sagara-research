@@ -15,7 +15,7 @@ const GetWhitepapersList = createAsyncThunk(
     } = payload;
     try {
       return API.get({
-        url: `whitepapers/?page_size=5&page=${page}&search=${search}&author=${author}&theme=${theme}&ordering=${ordering}&publish_date_before=${publish_date_before}&publish_date_after=${publish_date_after}`,
+        url: `whitepapers/?page_size=5&page=${page}&search=${search}&author_search=${author}&theme=${theme}&ordering=${ordering}&publish_date_before=${publish_date_before}&publish_date_after=${publish_date_after}`,
       });
     } catch (error) {
       return rejectWithValue(error);
