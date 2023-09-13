@@ -107,16 +107,6 @@ export default function LandingComponent() {
                 </div>
                 <div>
                   <div className='flex gap-[6px] mb-2'>
-                    {/* <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
-                      <Typography.Custom
-                        text={
-                          highlightWhitepaperList?.results[0]?.theme
-                            ? highlightWhitepaperList?.results[0]?.theme
-                            : '-'
-                        }
-                        className='text-white text-xs'
-                      />
-                    </div> */}
                     {highlightWhitepaperList?.results[0]?.theme ? (
                       <>
                         {highlightWhitepaperList?.results[0]?.theme?.map(

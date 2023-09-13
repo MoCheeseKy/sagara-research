@@ -2,6 +2,7 @@ import Typography from '../Typography';
 import CustomButton from '../CustomButton';
 import { Link } from 'react-router-dom';
 import DefaultCover from '../../../assets/Images/DefaultWhitepaperCover.svg';
+import React from 'react';
 
 export default function WhitepaperCard({
   image,
@@ -34,14 +35,18 @@ export default function WhitepaperCard({
                   />
                 </div>
                 <div>
-                  <div className='flex gap-[6px] mb-2'>
-                    <div className='border-primary border-[1px] px-4 rounded-lg w-fit'>
-                      <Typography.Custom
-                        text={topic ? topic : 'Testing'}
-                        className='text-primary text-xs'
-                      />
-                    </div>
-                  </div>
+                  {topic?.map((topic, indexTopic) => (
+                    <React.Fragment key={indexTopic}>
+                      <div className='flex gap-[6px] mb-2'>
+                        <div className='border-primary border-[1px] px-4 rounded-lg w-fit'>
+                          <Typography.Custom
+                            text={topic ? topic : 'Testing'}
+                            className='text-primary text-xs'
+                          />
+                        </div>
+                      </div>
+                    </React.Fragment>
+                  ))}
                   <div>
                     <Typography.LargeText
                       text={title ? `${title} Testing Testing Testing` : '-'}

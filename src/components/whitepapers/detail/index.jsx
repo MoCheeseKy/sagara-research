@@ -67,7 +67,7 @@ export default function WHitepaperDetailComponent() {
     }
   };
 
-  const TabsItem = [
+  const FullTabsItem = [
     {
       label: 'Overview',
       children: (
@@ -94,12 +94,31 @@ export default function WHitepaperDetailComponent() {
     },
   ];
 
+  const TabsItemWithoutInsight = [
+    {
+      label: 'Overview',
+      children: (
+        <>
+          <OverviewComponent data={whitepapersDetail} />
+        </>
+      ),
+    },
+    {
+      label: 'About FGD',
+      children: (
+        <>
+          <AboutFGDComponent data={whitepapersDetail} />
+        </>
+      ),
+    },
+  ];
+
   return (
     <>
       {context}
       <div className='pt-[65px]' />
       <div className='flex justify-center py-14'>
-        <div className='flex flex-col lg:flex-row items-center px-[15px] w-full md:w-[85%] max-w-[1080px] gap-16'>
+        <div className='flex flex-col lg:flex-row px-[15px] w-full md:w-[85%] max-w-[1080px] gap-16'>
           <div className='flex flex-col md:flex-row gap-6 w-full'>
             <div
               className='w-fit h-fit bg-cover'
@@ -112,7 +131,18 @@ export default function WHitepaperDetailComponent() {
               />
             </div>
             <div className='flex flex-col gap-4'>
-              <Typography.MediumText text='WHITE PAPER' bold />
+              <div className='flex gap-[6px]'>
+                {whitepapersDetail?.theme?.map((topic, indexTopic) => (
+                  <React.Fragment key={indexTopic}>
+                    <div className='border-primary border-[1px] px-4 rounded-lg w-fit'>
+                      <Typography.Custom
+                        text={topic?.title ? topic?.title : '-'}
+                        className='text-primary text-xs'
+                      />
+                    </div>
+                  </React.Fragment>
+                ))}
+              </div>
               <Typography.MediumHeading
                 text={whitepapersDetail?.title ? whitepapersDetail?.title : '-'}
                 className='w-[80%]'
@@ -124,13 +154,7 @@ export default function WHitepaperDetailComponent() {
                     : '-'
                 }
               />
-              <div className='grid grid-cols-1 md:grid-cols-2 border-b-2 pb-6'>
-                <Typography.MediumText
-                  text={`Topic : ${
-                    whitepapersDetail?.topic ? whitepapersDetail?.topic : '-'
-                  }`}
-                  className='text-[#666]'
-                />
+              <div className='grid grid-cols-1 md:grid-cols-2 border-b-2 border-t-2  py-6'>
                 <Typography.MediumText
                   text={`Author : ${
                     whitepapersDetail?.author ? whitepapersDetail?.author : '-'
@@ -155,8 +179,40 @@ export default function WHitepaperDetailComponent() {
                   }`}
                   className='text-[#666]'
                 />
+                <Typography.MediumText
+                  text={`Editor : ${
+                    whitepapersDetail?.about?.editor
+                      ? whitepapersDetail?.about?.editor
+                      : '-'
+                  }`}
+                  className='text-[#666]'
+                />
+                <Typography.MediumText
+                  text={`FDG Date : ${
+                    whitepapersDetail?.about?.FGD_date
+                      ? whitepapersDetail?.about?.FGD_date
+                      : '-'
+                  }`}
+                  className='text-[#666]'
+                />
+                <Typography.MediumText
+                  text={`Page : ${
+                    whitepapersDetail?.about?.length
+                      ? whitepapersDetail?.about?.length
+                      : '0'
+                  }-page(s)`}
+                  className='text-[#666]'
+                />
+                <Typography.MediumText
+                  text={`License : ${
+                    whitepapersDetail?.about?.license
+                      ? whitepapersDetail?.about?.license
+                      : '-'
+                  }`}
+                  className='text-[#666]'
+                />
               </div>
-              <div>
+              <div className='border-b-2 pb-6'>
                 <Typography.LargeText
                   bold
                   text='What you get :'
@@ -167,16 +223,22 @@ export default function WHitepaperDetailComponent() {
                   className='text-[#b1adad]'
                 />
               </div>
+              <CustomTabs
+                Options={
+                  whitepapersDetail?.insight?.length !== 0
+                    ? FullTabsItem
+                    : TabsItemWithoutInsight
+                }
+              />
             </div>
           </div>
-          <div className='w-full lg:w-[40%] lg:max-w-[40%]'>
-            <FormDownload form={form} initialValues={initialValues} onSubmitDownload={onSubmitDownload} />
+          <div className='w-full h-fit sticky top-24 lg:w-[40%] lg:max-w-[40%]'>
+            <FormDownload
+              form={form}
+              initialValues={initialValues}
+              onSubmitDownload={onSubmitDownload}
+            />
           </div>
-        </div>
-      </div>
-      <div className='flex justify-center pb-16'>
-        <div className='items-center px-[15px] w-full md:w-[85%] max-w-[1080px] gap-6'>
-          <CustomTabs Options={TabsItem} />
         </div>
       </div>
     </>

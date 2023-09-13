@@ -13,7 +13,7 @@ export default function OverviewComponent({ data }) {
               text={data?.overview ? data?.overview : '-'}
             />
           </div>
-          <div className='w-full md:w-[35%] md:min-w-[35%] md:max-w-[35%] leading-3'>
+          {/* <div className='w-full md:w-[35%] md:min-w-[35%] md:max-w-[35%] leading-3'>
             <Typography.SmallHeading text='Details' bold className='mb-4' />
             <div className='grid grid-cols-2 w-full gap-0'>
               <Typography.MediumText className='text-[#666]' text='Editor :' />
@@ -59,7 +59,7 @@ export default function OverviewComponent({ data }) {
                 }-page(s)`}
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>
