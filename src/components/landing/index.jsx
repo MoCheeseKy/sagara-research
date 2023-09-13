@@ -66,10 +66,6 @@ export default function LandingComponent() {
     term: false,
   };
 
-  useEffect(() => {
-    console.log(selectedInsight);
-  }, [selectedInsight])
-
   const onSubmitDownload = (e) => {
     if (e.term) {
       const formData = new FormData();
