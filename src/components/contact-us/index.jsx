@@ -12,7 +12,7 @@ import { Form, Input, notification } from 'antd';
 export default function ContactUsComponent() {
   const { TextArea } = Input;
   const [form] = Form.useForm();
-  const [api, context] = notification.useNotification()
+  const [api, context] = notification.useNotification();
 
   const initialValues = {
     name: '',
@@ -23,14 +23,14 @@ export default function ContactUsComponent() {
   const onSubmit = (e) => {
     axios
       .post(
-      `https://api.telegram.org/bot5951291096:AAGU7DOgVUuHfXvJ-rDRCDtlXMSnmBi4CTg/sendMessage?chat_id=-4081985652&text=@contact-us%0A%0AName: ${e.name}%0AEmail : ${e.email}%0ADescription : ${e.description}`
+        `https://api.telegram.org/bot5951291096:AAGU7DOgVUuHfXvJ-rDRCDtlXMSnmBi4CTg/sendMessage?chat_id=-4081985652&text=@contact-us%0A%0AName: ${e.name}%0AEmail : ${e.email}%0ADescription : ${e.description}`
       )
       .then(() => {
-        api.success({message: 'Success send data'})
+        api.success({ message: 'Success send data' });
       })
       .catch(() => {
-        api.error({message: 'Failed send data'})
-      })
+        api.error({ message: 'Failed send data' });
+      });
   };
 
   return (
@@ -124,7 +124,7 @@ export default function ContactUsComponent() {
                       className='py-[16px] px-[18px]'
                     />
                   </Form.Item>
-                  <div className='flex justify-center'>
+                  <div className='flex justify-end'>
                     <CustomButton text='Submit' type='submit' />
                   </div>
                 </div>
