@@ -116,7 +116,7 @@ export default function LandingComponent() {
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
     effect: 'fade',
-    autoplay: true,
+    autoplay: !modalOpen,
     autoplaySpeed: 6000,
     arrows: true
   };
@@ -131,7 +131,7 @@ export default function LandingComponent() {
           className={`flex justify-center items-center flex-grow bg-cover`}
         >
           <div className='px-[15px] flex gap-6 w-full md:w-[85%] max-w-[1080px]'>
-            <div className='md:w-[50%] mr-14'>
+            <div className='lg:w-[50%] lg:mr-14 w-full'>
               <Carousel ref={carouselRef} afterChange={(current) => setSelectedInsight(current)} {...carouselSettings}>
                 {highlightWhitepaperList?.results?.map((item, index) => (
                   <div className='flex-grow flex flex-col h-full w-full justify-between' key={index}>
@@ -183,7 +183,7 @@ export default function LandingComponent() {
                         </Link>
                         <CustomButton
                           text='Download'
-                          className='md:hidden'
+                          className='lg:hidden'
                           onClick={() => setModalOpen(true)}
                         />
                       </div>
@@ -192,7 +192,7 @@ export default function LandingComponent() {
                 ))}
               </Carousel>
             </div>
-            <div className='hidden md:block md:w-[40%] md:min-w-[40%] md:max-w-[40%] lg:w-[35%] lg:min-w-[35%] lg:max-w-[35%]'>
+            <div className='hidden lg:block md:w-[40%] md:min-w-[40%] md:max-w-[40%] lg:w-[35%] lg:min-w-[35%] lg:max-w-[35%]'>
               <FormDownload
                 form={form}
                 initialValues={initialValues}

@@ -44,7 +44,7 @@
   background-color: #a51535 !important;
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 1000px) {
   .carousel-button {
     display: none !important;
   }
