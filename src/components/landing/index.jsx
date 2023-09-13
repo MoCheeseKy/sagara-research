@@ -152,7 +152,7 @@ export default function LandingComponent() {
           className={`flex justify-center items-center flex-grow bg-cover`}
         >
           <div className='px-[15px] flex gap-6 w-full md:w-[85%] max-w-[1080px]'>
-            <div className='w-full'>
+            <div className='md:w-[50%] mr-14'>
               <Carousel ref={carouselRef} afterChange={(current) => setSelectedInsight(current)} {...carouselSettings}>
                 {highlightWhitepaperList?.results?.map((item, index) => (
                   <div className='flex-grow flex flex-col h-full w-full justify-between' key={index}>
