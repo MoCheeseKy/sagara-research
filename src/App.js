@@ -9,6 +9,8 @@ import ExploreWhitepapers from './screens/whitepapers/explore-whitepapers';
 import WhitepaperDetail from './screens/whitepapers/detail';
 import ContactUs from './screens/contact-us';
 
+import MainLayout from './layouts/MainLayout';
+
 import NotFoundImage from './assets/Images/NotFoundPage.svg';
 
 function App() {
@@ -36,12 +38,15 @@ function App() {
         <Route
           path='*'
           element={
-            <div className='w-[100vw] h-[100vh] flex justify-center items-center'>
-              <div
-                style={{ backgroundImage: `url(${NotFoundImage})` }}
-                className='px-[15px] w-full md:w-[85%] max-w-[1080px] aspect-video bg-cover'
-              />
-            </div>
+            <MainLayout>
+              <div className='h-[100vh] flex flex-col justify-center items-center'>
+                <div className='h-[77px]'></div>
+                <div
+                  style={{ backgroundImage: `url(${NotFoundImage})` }}
+                  className='px-[15px] w-full lg:w-[60%] aspect-video bg-cover'
+                />
+              </div>
+            </MainLayout>
           }
         />
       </Routes>
