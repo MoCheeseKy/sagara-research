@@ -56,10 +56,12 @@ export default function WhitepaperCard({
                     />
                   </div>
                   <div>
-                    <Typography.SmallText
-                      text={`Author : ${author ? author : '-'}`}
-                      className='text-[#808080] mt-2'
-                    />
+                    <Link to={`/whitepapers/explore-whitepapers?author=${author}`}>
+                      <Typography.SmallText
+                        text={`Author : ${author ? author : '-'}`}
+                        className='text-[#808080] mt-2'
+                      />
+                    </Link>
                     <Typography.SmallText
                       text={`Publish : ${date ? date : '-'}`}
                       className='text-[#808080]'
