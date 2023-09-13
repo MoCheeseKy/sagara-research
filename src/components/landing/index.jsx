@@ -12,14 +12,14 @@ import FormDownload from '../_shared/Form/FormDownload';
 import HeroBanner from '../../assets/Images/HeroBanner.svg';
 import DefaultBanner from '../../assets/Images/DefaultWhitepaperCover.svg';
 
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 export default function LandingComponent() {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const [api, context] = notification.useNotification();
   const [modalOpen, setModalOpen] = useState(false);
-  const carouselRef = useRef(null)
+  const carouselRef = useRef(null);
 
   const {
     recentWhitepaperList,
@@ -118,13 +118,13 @@ export default function LandingComponent() {
     effect: 'fade',
     autoplay: !modalOpen,
     autoplaySpeed: 6000,
-    arrows: true
+    arrows: true,
   };
 
   return (
     <>
       {context}
-      <div className='flex flex-col h-[100vh]'>
+      <div className='flex flex-col h-[100vh] md:h-[700px] lg:h-[100vh]'>
         <div className='h-[77px]' />
         <div
           style={{ backgroundImage: `url(${HeroBanner})` }}
@@ -132,60 +132,71 @@ export default function LandingComponent() {
         >
           <div className='px-[15px] flex gap-6 w-full md:w-[85%] max-w-[1080px]'>
             <div className='lg:w-[50%] lg:mr-14 w-full'>
-              <Carousel ref={carouselRef} afterChange={(current) => setSelectedInsight(current)} {...carouselSettings}>
+              <Carousel
+                ref={carouselRef}
+                afterChange={(current) => setSelectedInsight(current)}
+                {...carouselSettings}
+              >
                 {highlightWhitepaperList?.results?.map((item, index) => (
-                  <div className='flex-grow flex flex-col h-full w-full justify-between' key={index}>
-                    <div
-                      style={{ backgroundImage: `url(${DefaultBanner})` }}
-                      className='w-fit h-fit bg-cover'
-                    >
-                      <img
-                        src={item.image}
-                        alt=' '
-                        className='w-[214px] md:min-w-[214px] md:max-w-[214px] h-fit bg-cover aspect-[3/4]'
-                      />
-                    </div>
-                    <div>
-                      <div className='flex gap-[6px] mb-2'>
-                        {item?.theme?.map((theme, indexTheme) => (
-                          <React.Fragment key={indexTheme}>
-                            <Typography.Custom
-                              text={theme ? theme : '-'}
-                              className='text-white text-xs'
-                            />
-                          </React.Fragment>
-                        ))}
-                      </div>
-                      <Typography.LargeHeading
-                        text={item.title}
-                        className='text-white'
-                        bold
-                      />
-                      <div className='flex gap-4 flex-wrap mt-2'>
-                        <Typography.MediumText
-                          text={`Author : ${item.author}`}
-                          className='text-white'
-                        />
-                        <Typography.MediumText
-                          text={`Published : ${dayjs(item.published_at).format('YYYY-MM-DD')}`}
-                          className='text-white'
+                  <div
+                    key={index}
+                    className='h-[554px] flex flex-col w-full justify-between'
+                  >
+                    <div className='flex flex-col justify-center lg:justify-between h-full pb-6'>
+                      <div
+                        style={{ backgroundImage: `url(${DefaultBanner})` }}
+                        className='w-fit h-fit bg-cover'
+                      >
+                        <img
+                          src={item.image}
+                          alt=' '
+                          className='w-[214px] md:min-w-[214px] md:max-w-[214px] h-fit bg-cover aspect-[3/4]'
                         />
                       </div>
-                      <div className='flex mt-4 gap-4'>
-                        <Link
-                          className='w-fit h-fit'
-                          to={`/whitepapers/detail/${item.slug}`}
-                        >
-                          <CustomButton
-                            text='Learn More'
-                            className='bg-transparent text-sm py-2 border-white border-[1px] text-white'
+                      <div>
+                        <div className='flex  gap-[6px] mb-2'>
+                          {item?.theme?.map((theme, indexTheme) => (
+                            <React.Fragment key={indexTheme}>
+                              <Typography.Custom
+                                text={theme ? theme : '-'}
+                                className='text-white text-xs'
+                              />
+                            </React.Fragment>
+                          ))}
+                        </div>
+                        <Typography.LargeHeading
+                          text={item.title}
+                          className='text-white'
+                          bold
+                        />
+                        <div className='flex gap-4 flex-wrap mt-2'>
+                          <Typography.MediumText
+                            text={`Author : ${item.author}`}
+                            className='text-white'
                           />
-                        </Link>
-                        <CustomButton
-                          text='Download'
-                          className='lg:hidden'
-                          onClick={() => setModalOpen(true)}
-                        />
+                          <Typography.MediumText
+                            text={`Published : ${dayjs(
+                              item.published_at
+                            ).format('YYYY-MM-DD')}`}
+                            className='text-white'
+                          />
+                        </div>
+                        <div className='flex mt-4 gap-4'>
+                          <Link
+                            className='w-fit h-fit'
+                            to={`/whitepapers/detail/${item.slug}`}
+                          >
+                            <CustomButton
+                              text='Learn More'
+                              className='bg-transparent text-sm py-2 border-white border-[1px] text-white'
+                            />
+                          </Link>
+                          <CustomButton
+                            text='Download'
+                            className='lg:hidden'
+                            onClick={() => setModalOpen(true)}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
