@@ -8,6 +8,7 @@ import LandingWhitepaperCard from '../_shared/LandingWhitepaperCard';
 import { Link } from 'react-router-dom';
 import CustomButton from '../_shared/CustomButton';
 import FormDownload from '../_shared/Form/FormDownload';
+import HeroBanner from '../../assets/Images/HeroBanner.svg';
 
 export default function LandingComponent() {
   const dispatch = useDispatch();
@@ -85,29 +86,38 @@ export default function LandingComponent() {
       <div className='flex flex-col h-[100vh]'>
         <div className='h-[77px]' />
         <div
-          className={`flex justify-center items-center flex-grow bg-[url('https://img.freepik.com/free-photo/3d-render-low-poly-plexus-design-network-communications_1048-14542.jpg?w=740&t=st=1691053736~exp=1691054336~hmac=3e831c9125aba14bfad1a71615a1b0585cb219773a81a811d88d687adf6160bd')] bg-cover`}
+          style={{ backgroundImage: `url(${HeroBanner})` }}
+          className={`flex justify-center items-center flex-grow bg-cover`}
         >
           {!highlightWhitepaperList?.results ? (
             <Skeleton active />
           ) : (
             <div className='px-[15px] flex gap-6 w-full md:w-[85%] max-w-[1080px]'>
-              <div className='flex-grow flex-flex-col'>
-                <div className='w-[184px] md:min-w-[184px] md:max-w-[184px] h-fit bg-cover bg-white aspect-[3/4]' />
+              <div className='flex-grow flex flex-col justify-between'>
+                <div className='w-[214px] md:min-w-[214px] md:max-w-[214px] h-fit bg-cover bg-white aspect-[3/4]' />
                 <div>
+                  <div className='flex gap-[6px] mb-2'>
+                    <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
+                      <Typography.Custom
+                        text={
+                          highlightWhitepaperList?.results[0]?.theme
+                            ? highlightWhitepaperList?.results[0]?.theme
+                            : '-'
+                        }
+                        className='text-white text-xs'
+                      />
+                    </div>
+                  </div>
                   <Typography.LargeHeading
-                    text='Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing'
-                    className='text-white mt-8'
+                    text={
+                      highlightWhitepaperList?.results[0]?.title
+                        ? highlightWhitepaperList?.results[0]?.title
+                        : '-'
+                    }
+                    className='text-white'
                     bold
                   />
-                  <div className='lg:w-[70%] grid grid-cols-2 mt-2'>
-                    <Typography.MediumText
-                      text={`Topic : ${
-                        highlightWhitepaperList?.results[0]?.theme
-                          ? highlightWhitepaperList?.results[0]?.theme
-                          : '-'
-                      }`}
-                      className='text-white'
-                    />
+                  <div className='flex gap-4 flex-wrap mt-2'>
                     <Typography.MediumText
                       text={`Author : ${
                         highlightWhitepaperList?.results[0]?.author
@@ -126,22 +136,16 @@ export default function LandingComponent() {
                       }`}
                       className='text-white'
                     />
-                    <Typography.MediumText
-                      text={`Download : ${
-                        highlightWhitepaperList?.results[0]?.count_of_downloads
-                          ? highlightWhitepaperList?.results[0]
-                              ?.count_of_downloads
-                          : '-'
-                      }`}
-                      className='text-white'
-                    />
                   </div>
                   <div className='flex mt-4 gap-4'>
                     <Link
                       className='w-fit h-fit'
                       to={`/whitepapers/detail/${highlightWhitepaperList?.results[0]?.slug}`}
                     >
-                      <CustomButton text='Learn More' />
+                      <CustomButton
+                        text='Learn More'
+                        className='bg-transparent text-sm py-2 border-white border-[1px] text-white'
+                      />
                     </Link>
                     <CustomButton
                       text='Download'
@@ -181,8 +185,9 @@ export default function LandingComponent() {
                         ? dayjs(whitepaper?.published_at).format('DD-MM-YYYY')
                         : '-'
                     }
-                    speaker={whitepaper?.speaker}
-                    topic={whitepaper?.topic}
+                    author={whitepaper?.author}
+                    download={whitepaper?.count_of_downloads}
+                    topic={whitepaper?.theme}
                     desc={whitepaper?.overview ? whitepaper?.overview : '-'}
                     slug={whitepaper?.slug}
                   />
@@ -227,8 +232,9 @@ export default function LandingComponent() {
                         ? dayjs(whitepaper?.published_at).format('DD-MM-YYYY')
                         : '-'
                     }
-                    speaker={whitepaper?.speaker}
-                    topic={whitepaper?.topic}
+                    author={whitepaper?.author}
+                    download={whitepaper?.count_of_downloads}
+                    topic={whitepaper?.theme}
                     desc={whitepaper?.overview ? whitepaper?.overview : '-'}
                     slug={whitepaper?.slug}
                   />

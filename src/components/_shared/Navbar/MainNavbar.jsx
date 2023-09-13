@@ -9,7 +9,7 @@ import {
   Form,
   Input,
   Collapse,
-  notification
+  notification,
 } from 'antd';
 import CustomInput from '../Form/CustomInput';
 import Typography from '../Typography';
@@ -17,7 +17,7 @@ import { DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BiChevronRight } from 'react-icons/bi';
-import Logo from '../../../assets/Images/sagara-logo-bl.png';
+import DarkLogo from '../../../assets/Images/DarkLogo.png';
 import axios from 'axios';
 
 export default function MainNavbar() {
@@ -25,7 +25,7 @@ export default function MainNavbar() {
   const { TextArea } = Input;
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [api, context] = notification.useNotification()
+  const [api, context] = notification.useNotification();
 
   const collapseItem = [
     {
@@ -38,18 +38,14 @@ export default function MainNavbar() {
     },
     {
       key: 2,
-      label: <p style={{ color: 'white' }}>Whitepapers</p>,
-      children: (
+      label: (
         <Link to='/whitepapers/explore-whitepapers' style={{ color: 'white' }}>
           Explore Whitepapers
         </Link>
       ),
       style: { borderBottom: '1px solid #404040' },
-      extra: (
-        <div className='rounded-full w-5 text-center text-white bg-[#e31937]'>
-          1
-        </div>
-      ),
+      showArrow: false,
+      collapsible: 'disabled',
     },
     {
       key: 3,
@@ -98,11 +94,11 @@ export default function MainNavbar() {
       .then(() => {
         setModalOpen(false);
         form.resetFields();
-        api.success({message: 'Success send data'})
+        api.success({ message: 'Success send data' });
       })
       .catch(() => {
-        api.error({message: 'Failed send data'})
-      })
+        api.error({ message: 'Failed send data' });
+      });
   };
 
   return (
@@ -112,7 +108,7 @@ export default function MainNavbar() {
         <div className='flex gap-[70px]'>
           <div>
             <Link to='/'>
-              <img src={Logo} className='w-[124px]' alt='' />
+              <img src={DarkLogo} className='w-[144px]' alt='' />
             </Link>
           </div>
           <div className='hidden md:flex items-center gap-[30px]'>
@@ -122,29 +118,9 @@ export default function MainNavbar() {
             >
               <Typography.MediumText text='Consult With Sagara' />
             </div>
-            <Dropdown
-              className='text-black'
-              menu={{
-                items: [
-                  {
-                    key: 0,
-                    label: (
-                      <Link to='/whitepapers/explore-whitepapers'>
-                        <Typography.MediumText text='Explore Whitepapers' />
-                      </Link>
-                    ),
-                  },
-                ],
-              }}
-            >
-              <Space className='group'>
-                <Typography.MediumText
-                  text='Whitepapers'
-                  className='group-hover:text-red-600 duration-300'
-                />
-                <DownOutlined className='group-hover:text-red-600 duration-300' />
-              </Space>
-            </Dropdown>
+            <Link to='/whitepapers/explore-whitepapers'>
+              <Typography.MediumText text='Whitepapers' />
+            </Link>
             <Dropdown
               className='text-black'
               menu={{

@@ -14,7 +14,7 @@ import {
   Radio,
   Space,
   Select,
-  DatePicker
+  DatePicker,
 } from 'antd';
 import FormDownload from '../../_shared/Form/FormDownload';
 import WhitepaperCard from '../../_shared/WhitepaperCard';
@@ -38,7 +38,7 @@ export default function ExploreWhitepapersComponent() {
     theme: '',
     ordering: '',
     publish_date_after: '',
-    publish_date_before: ''
+    publish_date_before: '',
   });
   const [formModalOpen, setFormModalOpen] = useState(false);
   const [filterModalOpen, setFilterModalOpen] = useState(false);
@@ -53,7 +53,7 @@ export default function ExploreWhitepapersComponent() {
       publish_date_after: query.publish_date_after,
       publish_date_before: query.publish_date_before,
     };
-    
+
     dispatch(Whitepapers.GetWhitepapersList(payload))
       .unwrap()
       .then(() => {
@@ -105,52 +105,52 @@ export default function ExploreWhitepapersComponent() {
     }
   };
 
-  const filterOption = (input, option) => 
+  const filterOption = (input, option) =>
     (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
 
   const dateChange = (e) => {
     if (e !== null) {
-      const startDate = dayjs(e[0]).format('YYYY-MM-DD')
-      const endDate = dayjs(e[1]).format('YYYY-MM-DD')
+      const startDate = dayjs(e[0]).format('YYYY-MM-DD');
+      const endDate = dayjs(e[1]).format('YYYY-MM-DD');
       setQuery({
         ...query,
         publish_date_after: startDate,
-        publish_date_before: endDate
-      })
+        publish_date_before: endDate,
+      });
     } else {
-      setQuery({...query, publish_date_after: '', publish_date_before: ''})
+      setQuery({ ...query, publish_date_after: '', publish_date_before: '' });
     }
-  }
+  };
 
   const dummyAuthor = [
     {
       value: 'author_1',
-      label: 'Author 1'
+      label: 'Author 1',
     },
     {
       value: 'author_2',
-      label: 'Author 2'
+      label: 'Author 2',
     },
     {
       value: 'author_3',
-      label: 'Author 3'
+      label: 'Author 3',
     },
-  ]
+  ];
 
   const dummytheme = [
     {
       value: 'topic_1',
-      label: 'Tokpik 1'
+      label: 'Tokpik 1',
     },
     {
       value: 'topic_2',
-      label: 'Topik 2'
+      label: 'Topik 2',
     },
     {
       value: 'topic_3',
-      label: 'Topik 3'
+      label: 'Topik 3',
     },
-  ]
+  ];
 
   return (
     <>
@@ -191,12 +191,21 @@ export default function ExploreWhitepapersComponent() {
                   <Link>
                     <CustomButton text='Learn More' />
                   </Link>
-                  <CustomButton text='Download' className='md:hidden' onClick={() => setFormModalOpen(true)} />
+                  <CustomButton
+                    text='Download'
+                    className='md:hidden'
+                    onClick={() => setFormModalOpen(true)}
+                  />
                 </div>
               </div>
             </div>
             <div className='hidden md:block md:w-[40%] md:min-w-[40%] md:max-w-[40%] lg:w-[35%] lg:min-w-[35%] lg:max-w-[35%]'>
-              <FormDownload form={form} initialValues={initialValues} onSubmitDownload={onSubmitDownload} isLanding />
+              <FormDownload
+                form={form}
+                initialValues={initialValues}
+                onSubmitDownload={onSubmitDownload}
+                isLanding
+              />
             </div>
           </div>
         </div>
@@ -208,7 +217,11 @@ export default function ExploreWhitepapersComponent() {
               text='Explore Whitepapers'
               className='mb-0 md:mb-[30px] col-span-4'
             />
-            <CustomButton text='Pilih filter' className='lg:hidden' onClick={() => setFilterModalOpen(true)} />
+            <CustomButton
+              text='Pilih filter'
+              className='lg:hidden'
+              onClick={() => setFilterModalOpen(true)}
+            />
           </div>
           <div className='flex gap-12'>
             <div className='hidden lg:flex lg:flex-col w-[25%] max-w-[25%] min-w-[25%] h-fit gap-7'>
@@ -220,7 +233,12 @@ export default function ExploreWhitepapersComponent() {
               />
               <div className='flex flex-col gap-3'>
                 <Typography.LargeText text='Sort by' />
-                <Radio.Group value={query.ordering} onChange={(e) => setQuery({...query, ordering: e.target.value})}>
+                <Radio.Group
+                  value={query.ordering}
+                  onChange={(e) =>
+                    setQuery({ ...query, ordering: e.target.value })
+                  }
+                >
                   <Space direction='vertical'>
                     <Radio value='-published_at'>Newest</Radio>
                     <Radio value='published_at'>Oldest</Radio>
@@ -230,11 +248,23 @@ export default function ExploreWhitepapersComponent() {
               </div>
               <div>
                 <Typography.LargeText text='Search Author' />
-                <Select showSearch filterOption={filterOption} className='w-full' options={dummyAuthor} placeholder='Search Author' />
+                <Select
+                  showSearch
+                  filterOption={filterOption}
+                  className='w-full'
+                  options={dummyAuthor}
+                  placeholder='Search Author'
+                />
               </div>
               <div>
                 <Typography.LargeText text='Search Topic' />
-                <Select showSearch filterOption={filterOption} className='w-full' options={dummytheme} placeholder='Search Topic' />
+                <Select
+                  showSearch
+                  filterOption={filterOption}
+                  className='w-full'
+                  options={dummytheme}
+                  placeholder='Search Topic'
+                />
               </div>
               <div>
                 <Typography.LargeText text='Search by Date' />
@@ -252,8 +282,9 @@ export default function ExploreWhitepapersComponent() {
                         ? dayjs(whitepaper?.published_at).format('DD-MM-YYYY')
                         : '-'
                     }
-                    speaker={whitepaper?.speaker}
-                    topic={whitepaper?.topic}
+                    author={whitepaper?.author}
+                    download={whitepaper?.count_of_downloads}
+                    topic={whitepaper?.theme}
                     desc={whitepaper?.overview ? whitepaper?.overview : '-'}
                     slug={whitepaper?.slug}
                   />
@@ -327,7 +358,11 @@ export default function ExploreWhitepapersComponent() {
         title='Download Whitepaper'
       >
         <>
-          <FormDownload form={form} initialValues={initialValues} onSubmitDownload={onSubmitDownload} />
+          <FormDownload
+            form={form}
+            initialValues={initialValues}
+            onSubmitDownload={onSubmitDownload}
+          />
         </>
       </Modal>
 
@@ -357,11 +392,23 @@ export default function ExploreWhitepapersComponent() {
           </div>
           <div>
             <Typography.LargeText text='Search Author' />
-            <Select showSearch filterOption={filterOption} className='w-full' options={dummyAuthor} placeholder='Search Author' />
+            <Select
+              showSearch
+              filterOption={filterOption}
+              className='w-full'
+              options={dummyAuthor}
+              placeholder='Search Author'
+            />
           </div>
           <div>
             <Typography.LargeText text='Search Topic' />
-            <Select showSearch filterOption={filterOption} className='w-full' options={dummytheme} placeholder='Search Topic' />
+            <Select
+              showSearch
+              filterOption={filterOption}
+              className='w-full'
+              options={dummytheme}
+              placeholder='Search Topic'
+            />
           </div>
           <div>
             <Typography.LargeText text='Search by Date' />
