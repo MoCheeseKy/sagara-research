@@ -143,7 +143,7 @@ export default function ExploreWhitepapersComponent() {
         publish_date_before: '',
       }
     }
-    console.log(e.range_time);
+    setFilterModalOpen(false)
     setQuery({
       ...query,
       ...value
@@ -437,12 +437,13 @@ export default function ExploreWhitepapersComponent() {
       {/* Filter Modal */}
       <Modal
         open={filterModalOpen}
-        onCancel={() => setFilterModalOpen(false)}
-        onOk={() => {
-          setFilterModalOpen(false)
-          filterForm.submit()
-        }}
         title='Filter'
+        footer={
+          <div className='flex flex-row gap-3 justify-end'>
+            <CustomButton text='Cancel' onClick={() => setFilterModalOpen(false)} />
+            <CustomButton text='Apply' onClick={() => filterForm.submit()} />
+          </div>
+        }
       >
         <Form form={filterForm} initialValues={filterInitVal} onFinish={filterSubmit}>
           <div className='p-3 flex flex-col gap-3'>
