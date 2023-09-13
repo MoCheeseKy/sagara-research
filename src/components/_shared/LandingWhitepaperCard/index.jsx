@@ -3,7 +3,7 @@ import CustomButton from '../CustomButton';
 import { Link } from 'react-router-dom';
 import DefaultCover from '../../../assets/Images/DefaultWhitepaperCover.svg';
 
-export default function WhitepaperCard({
+export default function LandingWhitepaperCard({
   image,
   title,
   date,
@@ -17,6 +17,19 @@ export default function WhitepaperCard({
     <>
       <Link to={`/whitepapers/detail/${slug}`}>
         <div className='flex flex-col md:flex-row shadow rounded mt-[15px] hover:mt-0 mb-0 hover:mb-[15px] duration-300 overflow-hidden bg-white'>
+          <div
+            className='w-fit h-fit hidden md:flex'
+            style={{
+              backgroundImage: `url(${DefaultCover})`,
+              backgroundSize: 'cover',
+            }}
+          >
+            <img
+              src={image ? image : DefaultCover}
+              alt=' '
+              className='md:min-w-[260px] md:max-w-[260px] aspect-[3/4] h-fit bg-cover'
+            />
+          </div>
           <div className='p-6 md:p-[30px] flex flex-col'>
             <div className='flex flex-col gap-2'>
               <div className='flex gap-6'>
@@ -30,7 +43,7 @@ export default function WhitepaperCard({
                   <img
                     src={image ? image : DefaultCover}
                     alt=' '
-                    className='w-[74px] md:min-w-[144px] md:max-w-[144px] aspect-[3/4] h-fit bg-cover'
+                    className='w-[74px] md:hidden md:min-w-[144px] md:max-w-[144px] aspect-[3/4] h-fit bg-cover'
                   />
                 </div>
                 <div>
@@ -77,19 +90,19 @@ export default function WhitepaperCard({
                   </div>
                 </div>
               </div>
-            </div>
-            <div className='flex flex-col md:hidden'>
-              <Typography.Elipsis
-                text={desc}
-                ellipsis={3}
-                className='text-[#808080]'
-              />
-              <Link to={`/whitepapers/detail/${slug}`}>
-                <CustomButton
-                  text='Learn More'
-                  className='w-fit text-sm py-2'
+              <div className='flex flex-col md:hidden'>
+                <Typography.Elipsis
+                  text={desc}
+                  ellipsis={3}
+                  className='text-[#808080]'
                 />
-              </Link>
+                <Link to={`/whitepapers/detail/${slug}`}>
+                  <CustomButton
+                    text='Learn More'
+                    className='w-fit text-sm py-2'
+                  />
+                </Link>
+              </div>
             </div>
           </div>
         </div>

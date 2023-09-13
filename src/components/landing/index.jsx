@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../service';
 import Typography from '../_shared/Typography';
 import { Carousel, notification, Form, Modal, Skeleton } from 'antd';
-import WhitepaperCard from '../_shared/WhitepaperCard';
+import LandingWhitepaperCard from '../_shared/LandingWhitepaperCard';
 import { Link } from 'react-router-dom';
 import CustomButton from '../_shared/CustomButton';
 import FormDownload from '../_shared/Form/FormDownload';
@@ -143,12 +143,21 @@ export default function LandingComponent() {
                     >
                       <CustomButton text='Learn More' />
                     </Link>
-                    <CustomButton text='Download' className='md:hidden' onClick={() => setModalOpen(true)} />
+                    <CustomButton
+                      text='Download'
+                      className='md:hidden'
+                      onClick={() => setModalOpen(true)}
+                    />
                   </div>
                 </div>
               </div>
               <div className='hidden md:block md:w-[40%] md:min-w-[40%] md:max-w-[40%] lg:w-[35%] lg:min-w-[35%] lg:max-w-[35%]'>
-                <FormDownload form={form} initialValues={initialValues} onSubmitDownload={onSubmitDownload} isLanding />
+                <FormDownload
+                  form={form}
+                  initialValues={initialValues}
+                  onSubmitDownload={onSubmitDownload}
+                  isLanding
+                />
               </div>
             </div>
           )}
@@ -164,7 +173,7 @@ export default function LandingComponent() {
             {recentWhitepaperList?.results?.map(
               (whitepaper, indexWhitepaper) => (
                 <React.Fragment key={indexWhitepaper}>
-                  <WhitepaperCard
+                  <LandingWhitepaperCard
                     image={whitepaper?.image}
                     title={whitepaper?.title ? whitepaper?.title : '-'}
                     date={
@@ -210,7 +219,7 @@ export default function LandingComponent() {
             {popularWhitepaperList?.results?.map(
               (whitepaper, indexWhitepaper) => (
                 <React.Fragment key={indexWhitepaper}>
-                  <WhitepaperCard
+                  <LandingWhitepaperCard
                     image={whitepaper?.image}
                     title={whitepaper?.title ? whitepaper?.title : '-'}
                     date={
@@ -237,7 +246,11 @@ export default function LandingComponent() {
         title='Download Whitepaper'
       >
         <>
-          <FormDownload form={form} initialValues={initialValues} onSubmitDownload={onSubmitDownload} />
+          <FormDownload
+            form={form}
+            initialValues={initialValues}
+            onSubmitDownload={onSubmitDownload}
+          />
         </>
       </Modal>
     </>
