@@ -227,7 +227,16 @@ export default function ExploreWhitepapersComponent() {
           <div className='flex flex-row justify-between items-center'>
             <Typography.LargeHeading
               text='Explore Whitepapers'
-              className='mb-0 md:mb-[30px] col-span-4'
+              className='mb-0 flex col-span-4'
+            />
+            <Typography.LargeText
+              text={
+                whitepapersList?.count > 0
+                  ? `${whitepapersList?.count} Results`
+                  : 'No Results'
+              }
+              bold
+              className='hidden lg:block mb-0 md:mb-[30px] col-span-4'
             />
             <CustomButton
               text='Pilih filter'
@@ -282,6 +291,17 @@ export default function ExploreWhitepapersComponent() {
               </div>
             </div>
             <div className='grid gap-[15px]'>
+              <div>
+                <Typography.LargeText
+                  text={
+                    whitepapersList?.count > 0
+                      ? `${whitepapersList?.count} Results`
+                      : 'No Results'
+                  }
+                  bold
+                  className='flex lg:hidden mb-0 md:mb-[30px] col-span-4'
+                />
+              </div>
               {whitepapersList?.results?.map((whitepaper, indexWhitepaper) => (
                 <React.Fragment key={indexWhitepaper}>
                   <WhitepaperCard

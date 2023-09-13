@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import CustomButton from '../_shared/CustomButton';
 import FormDownload from '../_shared/Form/FormDownload';
 import HeroBanner from '../../assets/Images/HeroBanner.svg';
+import DefaultBanner from '../../assets/Images/DefaultWhitepaperCover.svg';
 
 export default function LandingComponent() {
   const dispatch = useDispatch();
@@ -94,10 +95,19 @@ export default function LandingComponent() {
           ) : (
             <div className='px-[15px] flex gap-6 w-full md:w-[85%] max-w-[1080px]'>
               <div className='flex-grow flex flex-col justify-between'>
-                <div className='w-[214px] md:min-w-[214px] md:max-w-[214px] h-fit bg-cover bg-white aspect-[3/4]' />
+                <div
+                  style={{ backgroundImage: `url(${DefaultBanner})` }}
+                  className='w-fit h-fit bg-cover'
+                >
+                  <img
+                    src={highlightWhitepaperList?.results[0]?.image}
+                    alt=' '
+                    className='w-[214px] md:min-w-[214px] md:max-w-[214px] h-fit bg-cover aspect-[3/4]'
+                  />
+                </div>
                 <div>
                   <div className='flex gap-[6px] mb-2'>
-                    <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
+                    {/* <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
                       <Typography.Custom
                         text={
                           highlightWhitepaperList?.results[0]?.theme
@@ -106,7 +116,23 @@ export default function LandingComponent() {
                         }
                         className='text-white text-xs'
                       />
-                    </div>
+                    </div> */}
+                    {highlightWhitepaperList?.results[0]?.theme ? (
+                      <>
+                        {highlightWhitepaperList?.results[0]?.theme?.map(
+                          (theme, indexTheme) => (
+                            <React.Fragment key={indexTheme}>
+                              <Typography.Custom
+                                text={theme ? theme : '-'}
+                                className='text-white text-xs'
+                              />
+                            </React.Fragment>
+                          )
+                        )}
+                      </>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                   <Typography.LargeHeading
                     text={
@@ -197,25 +223,8 @@ export default function LandingComponent() {
           </div>
         </div>
       </div>
-      <Carousel autoplay>
-        <div>
-          <div className='flex h-[90vh] flex-col'>
-            <div className='flex-grow bg-[#ddd]'>Content 1 here....</div>
-          </div>
-        </div>
-        <div>
-          <div className='flex h-[90vh] flex-col'>
-            <div className='flex-grow bg-[#ddd]'>Content 2 here....</div>
-          </div>
-        </div>
-        <div>
-          <div className='flex h-[90vh] flex-col'>
-            <div className='flex-grow bg-[#ddd]'>Content 3 here....</div>
-          </div>
-        </div>
-      </Carousel>
       <div className='flex justify-center w-full'>
-        <div className='py-16 flex flex-col  px-[15px] w-full md:w-[85%] max-w-[1080px]'>
+        <div className='pb-16 flex flex-col  px-[15px] w-full md:w-[85%] max-w-[1080px]'>
           <Typography.LargeHeading
             text='Popular Whitepapers'
             className='mb-[30px]'
