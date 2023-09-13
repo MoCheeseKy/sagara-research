@@ -4,7 +4,7 @@ import API from '../../helper/api';
 const GetWhitepapersList = createAsyncThunk(
   'get/whitepapersList',
   async (payload, { rejectWithValue }) => {
-    const {search, page} = payload
+    const { search, page } = payload;
     try {
       return API.get({
         url: `whitepapers/?page_size=5&page=${page}&search=${search}`,
@@ -34,6 +34,19 @@ const GetPopularWhitepapersList = createAsyncThunk(
     try {
       return API.get({
         url: `whitepapers/?latest=true`,
+      });
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+const GetHighlightWhitepaper = createAsyncThunk(
+  'get/highlightWhitepapersList',
+  async (payload, { rejectWithValue }) => {
+    try {
+      return API.get({
+        url: `whitepapers/?is_insight=true`,
       });
     } catch (error) {
       return rejectWithValue(error);
@@ -74,6 +87,7 @@ const Whitepapers = {
   GetWhitepapersList,
   GetRecentWhitepapersList,
   GetPopularWhitepapersList,
+  GetHighlightWhitepaper,
   GetWhitepaperDetail,
   DownloadWhitepaper,
 };

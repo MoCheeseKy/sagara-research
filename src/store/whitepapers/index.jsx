@@ -5,6 +5,7 @@ const initialState = {
   whitepapersList: [],
   recentWhitepaperList: [],
   popularWhitepaperList: [],
+  highlightWhitepaperList: [],
   whitepapersDetail: [],
   loading: false,
 };
@@ -55,6 +56,21 @@ export const whitepaperSlice = createSlice({
       }
     );
     builder.addCase(Whitepapers.GetPopularWhitepapersList.rejected, (state) => {
+      state.loading = false;
+    });
+
+    // Get Highlight List
+    builder.addCase(Whitepapers.GetHighlightWhitepaper.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(
+      Whitepapers.GetHighlightWhitepaper.fulfilled,
+      (state, action) => {
+        state.loading = false;
+        state.highlightWhitepaperList = action.payload.data;
+      }
+    );
+    builder.addCase(Whitepapers.GetHighlightWhitepaper.rejected, (state) => {
       state.loading = false;
     });
 

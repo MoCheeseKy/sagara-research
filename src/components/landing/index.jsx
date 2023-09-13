@@ -5,7 +5,7 @@ import { Whitepapers } from '../../service';
 import Typography from '../_shared/Typography';
 import { Carousel, notification, Form, Checkbox } from 'antd';
 import WhitepaperCard from '../_shared/WhitepaperCard';
-import Link from 'antd/es/typography/Link';
+import { Link } from 'react-router-dom';
 import CustomButton from '../_shared/CustomButton';
 import CustomInput from '../_shared/Form/CustomInput';
 import CustomSelect from '../_shared/Form/CustomSelect';
@@ -15,9 +15,11 @@ export default function LandingComponent() {
   const [form] = Form.useForm();
   const [api, context] = notification.useNotification();
 
-  const { recentWhitepaperList, popularWhitepaperList } = useSelector(
-    (state) => state.whitepaper
-  );
+  const {
+    recentWhitepaperList,
+    popularWhitepaperList,
+    highlightWhitepaperList,
+  } = useSelector((state) => state.whitepaper);
 
   useEffect(() => {
     dispatch(Whitepapers.GetRecentWhitepapersList())
@@ -36,6 +38,14 @@ export default function LandingComponent() {
       .catch(() => {
         api.error({ message: 'Failed get popular whitepaper' });
       });
+    dispatch(Whitepapers.GetHighlightWhitepaper())
+      .unwrap()
+      .then(() => {
+        api.success({ message: 'Success get highlight whitepaper' });
+      })
+      .catch(() => {
+        api.error({ message: 'Failed get highlight whitepaper' });
+      });
   }, [dispatch, api]);
 
   const initialValues = {
@@ -47,6 +57,8 @@ export default function LandingComponent() {
     country: undefined,
     term: false,
   };
+
+  console.log(highlightWhitepaperList);
 
   const onSubmitDownload = (e) => {
     if (e.term) {
@@ -88,24 +100,46 @@ export default function LandingComponent() {
                 />
                 <div className='lg:w-[70%] grid grid-cols-2 mt-2'>
                   <Typography.MediumText
-                    text={`Topic : Testing`}
+                    text={`Topic : ${
+                      highlightWhitepaperList?.results[0]?.theme
+                        ? highlightWhitepaperList?.results[0]?.theme
+                        : '-'
+                    }`}
                     className='text-white'
                   />
                   <Typography.MediumText
-                    text={`Speaker : Testing`}
+                    text={`Author : ${
+                      highlightWhitepaperList?.results[0]?.author
+                        ? highlightWhitepaperList?.results[0]?.author
+                        : '-'
+                    }`}
                     className='text-white'
                   />
                   <Typography.MediumText
-                    text={`Date : Testing`}
+                    text={`Published : ${
+                      highlightWhitepaperList?.results[0]?.published_at
+                        ? dayjs(
+                            highlightWhitepaperList?.results[0]?.published_at
+                          ).format('DD-MM-YYYY')
+                        : '-'
+                    }`}
                     className='text-white'
                   />
                   <Typography.MediumText
-                    text={`Date : Testing`}
+                    text={`Download : ${
+                      highlightWhitepaperList?.results[0]?.count_of_downloads
+                        ? highlightWhitepaperList?.results[0]
+                            ?.count_of_downloads
+                        : '-'
+                    }`}
                     className='text-white'
                   />
                 </div>
                 <div className='flex mt-4 gap-4'>
-                  <Link>
+                  <Link
+                    className='w-fit h-fit'
+                    to={`/whitepapers/detail/${highlightWhitepaperList?.results[0]?.slug}`}
+                  >
                     <CustomButton text='Learn More' />
                   </Link>
                   <CustomButton text='Download' className=' md:hidden' />
