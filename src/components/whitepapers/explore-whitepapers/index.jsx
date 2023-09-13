@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Typography from '../../_shared/Typography';
 import CustomButton from '../../_shared/CustomButton';
 import CustomInput from '../../_shared/Form/CustomInput';
@@ -15,6 +15,7 @@ import {
   Space,
   // Select,
   DatePicker,
+  Carousel,
 } from 'antd';
 import FormDownload from '../../_shared/Form/FormDownload';
 import WhitepaperCard from '../../_shared/WhitepaperCard';
@@ -25,15 +26,22 @@ import { Whitepapers } from '../../../service';
 import dayjs from 'dayjs';
 import { Link, useSearchParams } from 'react-router-dom';
 
+import HeroBanner from '../../../assets/Images/HeroBanner.svg';
+import DefaultBanner from '../../../assets/Images/DefaultWhitepaperCover.svg';
+import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
+
 export default function ExploreWhitepapersComponent() {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const [filterForm] = Form.useForm();
-  const { whitepapersList } = useSelector((state) => state.whitepaper);
+  const { whitepapersList, highlightWhitepaperList } = useSelector(
+    (state) => state.whitepaper
+  );
   const [api, context] = notification.useNotification();
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams, setSearchParams] = useSearchParams();
+  const carouselRef = useRef(null);
 
-  const initAuthor = searchParams.get('author')
+  const initAuthor = searchParams.get('author');
 
   const [query, setQuery] = useState({
     page: 1,
@@ -47,6 +55,7 @@ export default function ExploreWhitepapersComponent() {
   });
   const [formModalOpen, setFormModalOpen] = useState(false);
   const [filterModalOpen, setFilterModalOpen] = useState(false);
+  const [selectedInsight, setSelectedInsight] = useState(0);
 
   useEffect(() => {
     const payload = {
@@ -117,7 +126,7 @@ export default function ExploreWhitepapersComponent() {
   const authorSearch = (e) => {
     if (e.key === 'Enter') {
       setQuery({ ...query, author: e.target.value });
-      setSearchParams(`author=${e.target.value}`)
+      setSearchParams(`author=${e.target.value}`);
     }
   };
 
@@ -156,8 +165,63 @@ export default function ExploreWhitepapersComponent() {
   };
 
   useEffect(() => {
-    setQuery({...query, author: initAuthor})
-  }, [initAuthor])
+    setQuery({ ...query, author: initAuthor });
+  }, [initAuthor]);
+
+  const NextArrow = ({ className, style, onClick }) => {
+    return (
+      <CustomButton
+        className={`${className} carousel-button`}
+        style={{
+          color: 'white',
+          fontSize: '15px',
+          lineHeight: '1.5715',
+          content: '',
+          padding: '10px 20px',
+          backgroundColor: '#a51535',
+          width: '48px',
+          height: '48px',
+          position: 'absolute',
+          right: '-10%',
+          ...style,
+        }}
+        onClick={onClick}
+        icon={<BsChevronCompactRight className='text-white' size={24} />}
+      />
+    );
+  };
+
+  const PrevArrow = ({ className, style, onClick }) => {
+    return (
+      <CustomButton
+        className={`${className} carousel-button`}
+        style={{
+          color: 'white',
+          fontSize: '15px',
+          lineHeight: '1.5715',
+          content: '',
+          padding: '10px 20px',
+          backgroundColor: '#a51535',
+          width: '48px',
+          height: '48px',
+          position: 'absolute',
+          right: '-10%',
+          ...style,
+        }}
+        onClick={onClick}
+        icon={<BsChevronCompactLeft className='text-white' size={24} />}
+      />
+    );
+  };
+
+  const carouselSettings = {
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+    effect: 'fade',
+    autoplay: !formModalOpen,
+    autoplaySpeed: 6000,
+    arrows: true,
+  };
 
   const initialValues = {
     name: '',
@@ -213,51 +277,86 @@ export default function ExploreWhitepapersComponent() {
   return (
     <>
       {context}
-      <div className='flex flex-col h-[100vh]'>
+      <div className='flex flex-col h-[100vh] md:h-[700px] lg:h-[100vh]'>
         <div className='h-[77px]' />
         <div
-          className={`flex justify-center items-center flex-grow bg-[url('https://img.freepik.com/free-photo/3d-render-low-poly-plexus-design-network-communications_1048-14542.jpg?w=740&t=st=1691053736~exp=1691054336~hmac=3e831c9125aba14bfad1a71615a1b0585cb219773a81a811d88d687adf6160bd')] bg-cover`}
+          style={{ backgroundImage: `url(${HeroBanner})` }}
+          className={`flex justify-center items-center flex-grow bg-cover`}
         >
           <div className='px-[15px] flex gap-6 w-full md:w-[85%] max-w-[1080px]'>
-            <div className='flex-grow flex-flex-col'>
-              <div className='w-[184px] md:min-w-[184px] md:max-w-[184px] h-fit bg-cover bg-white aspect-[3/4]' />
-              <div>
-                <Typography.LargeHeading
-                  text='Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing'
-                  className='text-white mt-8'
-                  bold
-                />
-                <div className='lg:w-[70%] grid grid-cols-2 mt-2'>
-                  <Typography.MediumText
-                    text={`Topic : Testing`}
-                    className='text-white'
-                  />
-                  <Typography.MediumText
-                    text={`Speaker : Testing`}
-                    className='text-white'
-                  />
-                  <Typography.MediumText
-                    text={`Date : Testing`}
-                    className='text-white'
-                  />
-                  <Typography.MediumText
-                    text={`Date : Testing`}
-                    className='text-white'
-                  />
-                </div>
-                <div className='flex mt-4 gap-4'>
-                  <Link>
-                    <CustomButton text='Learn More' />
-                  </Link>
-                  <CustomButton
-                    text='Download'
-                    className='md:hidden'
-                    onClick={() => setFormModalOpen(true)}
-                  />
-                </div>
-              </div>
+            <div className='lg:w-[50%] lg:mr-14 w-full'>
+              <Carousel
+                ref={carouselRef}
+                afterChange={(current) => setSelectedInsight(current)}
+                {...carouselSettings}
+              >
+                {highlightWhitepaperList?.results?.map((item, index) => (
+                  <div
+                    key={index}
+                    className='h-[554px] lg:pl-10 flex flex-col w-full justify-between'
+                  >
+                    <div className='flex flex-col justify-center lg:justify-between h-full pb-6'>
+                      <div
+                        style={{ backgroundImage: `url(${DefaultBanner})` }}
+                        className='w-fit h-fit bg-cover'
+                      >
+                        <img
+                          src={item.image}
+                          alt=' '
+                          className='w-[214px] md:min-w-[214px] md:max-w-[214px] h-fit bg-cover aspect-[3/4]'
+                        />
+                      </div>
+                      <div>
+                        <div className='flex  gap-[6px] mb-2'>
+                          {item?.theme?.map((theme, indexTheme) => (
+                            <React.Fragment key={indexTheme}>
+                              <Typography.Custom
+                                text={theme ? theme : '-'}
+                                className='text-white text-xs'
+                              />
+                            </React.Fragment>
+                          ))}
+                        </div>
+                        <Typography.LargeHeading
+                          text={item.title}
+                          className='text-white'
+                          bold
+                        />
+                        <div className='flex gap-4 flex-wrap mt-2'>
+                          <Typography.MediumText
+                            text={`Author : ${item.author}`}
+                            className='text-white'
+                          />
+                          <Typography.MediumText
+                            text={`Published : ${dayjs(
+                              item.published_at
+                            ).format('YYYY-MM-DD')}`}
+                            className='text-white'
+                          />
+                        </div>
+                        <div className='flex mt-4 gap-4'>
+                          <Link
+                            className='w-fit h-fit'
+                            to={`/whitepapers/detail/${item.slug}`}
+                          >
+                            <CustomButton
+                              text='Learn More'
+                              className='bg-transparent text-sm py-2 border-white border-[1px] text-white'
+                            />
+                          </Link>
+                          <CustomButton
+                            text='Download'
+                            className='lg:hidden'
+                            onClick={() => setFormModalOpen(true)}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </Carousel>
             </div>
-            <div className='hidden md:block md:w-[40%] md:min-w-[40%] md:max-w-[40%] lg:w-[35%] lg:min-w-[35%] lg:max-w-[35%]'>
+            <div className='hidden lg:block md:w-[40%] md:min-w-[40%] md:max-w-[40%] lg:w-[35%] lg:min-w-[35%] lg:max-w-[35%]'>
               <FormDownload
                 form={form}
                 initialValues={initialValues}

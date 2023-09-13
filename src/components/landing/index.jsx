@@ -12,7 +12,7 @@ import FormDownload from '../_shared/Form/FormDownload';
 import HeroBanner from '../../assets/Images/HeroBanner.svg';
 import DefaultBanner from '../../assets/Images/DefaultWhitepaperCover.svg';
 
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 
 export default function LandingComponent() {
   const dispatch = useDispatch();
@@ -70,8 +70,21 @@ export default function LandingComponent() {
     return (
       <CustomButton
         className={`${className} carousel-button`}
+        style={{
+          color: 'white',
+          fontSize: '15px',
+          lineHeight: '1.5715',
+          content: '',
+          padding: '10px 20px',
+          backgroundColor: '#a51535',
+          width: '48px',
+          height: '48px',
+          position: 'absolute',
+          right: '-10%',
+          ...style,
+        }}
         onClick={onClick}
-        icon={<FiChevronRight />}
+        icon={<BsChevronCompactRight className='text-white' size={24} />}
       />
     );
   };
@@ -80,8 +93,21 @@ export default function LandingComponent() {
     return (
       <CustomButton
         className={`${className} carousel-button`}
+        style={{
+          color: 'white',
+          fontSize: '15px',
+          lineHeight: '1.5715',
+          content: '',
+          padding: '10px 20px',
+          backgroundColor: '#a51535',
+          width: '48px',
+          height: '48px',
+          position: 'absolute',
+          right: '-10%',
+          ...style,
+        }}
         onClick={onClick}
-        icon={<FiChevronLeft />}
+        icon={<BsChevronCompactLeft className='text-white' size={24} />}
       />
     );
   };
@@ -114,7 +140,7 @@ export default function LandingComponent() {
                 {highlightWhitepaperList?.results?.map((item, index) => (
                   <div
                     key={index}
-                    className='h-[554px] flex flex-col w-full justify-between'
+                    className='h-[554px] lg:pl-10 flex flex-col w-full justify-between'
                   >
                     <div className='flex flex-col justify-center lg:justify-between h-full pb-6'>
                       <div
