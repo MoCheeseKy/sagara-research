@@ -35,18 +35,20 @@ export default function WhitepaperCard({
                   />
                 </div>
                 <div>
-                  {topic?.map((topic, indexTopic) => (
-                    <React.Fragment key={indexTopic}>
-                      <div className='flex gap-[6px] mb-2'>
-                        <div className='border-primary border-[1px] px-4 rounded-lg w-fit'>
-                          <Typography.Custom
-                            text={topic ? topic : 'Testing'}
-                            className='text-primary text-xs'
-                          />
+                  <div className='flex flex-wrap gap-[6px]'>
+                    {topic?.map((topic, indexTopic) => (
+                      <React.Fragment key={indexTopic}>
+                        <div className='flex gap-[6px] mb-2'>
+                          <div className='border-primary border-[1px] px-4 rounded-lg w-fit'>
+                            <Typography.Custom
+                              text={topic?.title ? topic?.title : '-'}
+                              className='text-primary text-xs'
+                            />
+                          </div>
                         </div>
-                      </div>
-                    </React.Fragment>
-                  ))}
+                      </React.Fragment>
+                    ))}
+                  </div>
                   <div>
                     <Typography.LargeText
                       text={title ? `${title} Testing Testing Testing` : '-'}

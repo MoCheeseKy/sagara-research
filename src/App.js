@@ -9,6 +9,8 @@ import ExploreWhitepapers from './screens/whitepapers/explore-whitepapers';
 import WhitepaperDetail from './screens/whitepapers/detail';
 import ContactUs from './screens/contact-us';
 
+import NotFoundImage from './assets/Images/NotFoundPage.svg';
+
 function App() {
   return (
     <Suspense fallback={<>Loading</>}>
@@ -34,13 +36,12 @@ function App() {
         <Route
           path='*'
           element={
-            <center>
-              <h1>Oops! That page can't be found.</h1>
-              <p>
-                It looks like nothing was found at this location. Maybe try
-                other link ?
-              </p>
-            </center>
+            <div className='w-[100vw] h-[100vh] flex justify-center items-center'>
+              <div
+                style={{ backgroundImage: `url(${NotFoundImage})` }}
+                className='px-[15px] w-full md:w-[85%] max-w-[1080px] aspect-video bg-cover'
+              />
+            </div>
           }
         />
       </Routes>

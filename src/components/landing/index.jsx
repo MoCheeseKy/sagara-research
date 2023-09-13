@@ -24,30 +24,9 @@ export default function LandingComponent() {
   } = useSelector((state) => state.whitepaper);
 
   useEffect(() => {
-    dispatch(Whitepapers.GetRecentWhitepapersList())
-      .unwrap()
-      .then(() => {
-        api.success({ message: 'Success get recent whitepaper' });
-      })
-      .catch(() => {
-        api.error({ message: 'Failed get recent whitepaper' });
-      });
-    dispatch(Whitepapers.GetPopularWhitepapersList())
-      .unwrap()
-      .then(() => {
-        api.success({ message: 'Success get popular whitepaper' });
-      })
-      .catch(() => {
-        api.error({ message: 'Failed get popular whitepaper' });
-      });
-    dispatch(Whitepapers.GetHighlightWhitepaper())
-      .unwrap()
-      .then(() => {
-        api.success({ message: 'Success get highlight whitepaper' });
-      })
-      .catch(() => {
-        api.error({ message: 'Failed get highlight whitepaper' });
-      });
+    dispatch(Whitepapers.GetRecentWhitepapersList()).unwrap();
+    dispatch(Whitepapers.GetPopularWhitepapersList()).unwrap();
+    dispatch(Whitepapers.GetHighlightWhitepaper()).unwrap();
   }, [dispatch, api]);
 
   const initialValues = {

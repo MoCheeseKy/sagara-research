@@ -18,6 +18,7 @@ import {
 } from 'antd';
 import FormDownload from '../../_shared/Form/FormDownload';
 import WhitepaperCard from '../../_shared/WhitepaperCard';
+import EmptyState from '../../../assets/Images/EmptyState.svg';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../../service';
@@ -27,7 +28,7 @@ import { Link } from 'react-router-dom';
 export default function ExploreWhitepapersComponent() {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
-  const [filterForm] = Form.useForm()
+  const [filterForm] = Form.useForm();
   const { whitepapersList } = useSelector((state) => state.whitepaper);
   const [api, context] = notification.useNotification();
 
@@ -123,7 +124,7 @@ export default function ExploreWhitepapersComponent() {
   };
 
   const filterSubmit = (e) => {
-    let value = {...e}
+    let value = { ...e };
     if (e.range_time !== null) {
       value = {
         search: e.search,
@@ -132,7 +133,7 @@ export default function ExploreWhitepapersComponent() {
         ordering: e.ordering,
         publish_date_after: dayjs(e.range_time[0]).format('YYYY-MM-DD'),
         publish_date_before: dayjs(e.range_time[1]).format('YYYY-MM-DD'),
-      }
+      };
     } else {
       value = {
         search: e.search,
@@ -141,15 +142,15 @@ export default function ExploreWhitepapersComponent() {
         ordering: e.ordering,
         publish_date_after: '',
         publish_date_before: '',
-      }
+      };
     }
-    setFilterModalOpen(false)
+    setFilterModalOpen(false);
     setQuery({
       ...query,
-      ...value
-    })
-  }
-  
+      ...value,
+    });
+  };
+
   const initialValues = {
     name: '',
     company: '',
@@ -166,11 +167,10 @@ export default function ExploreWhitepapersComponent() {
     theme: '',
     ordering: '',
     range_time: null,
-  }
+  };
 
   // const filterOption = (input, option) =>
   //   (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
-
 
   // const dummyAuthor = [
   //   {
@@ -283,7 +283,7 @@ export default function ExploreWhitepapersComponent() {
             />
           </div>
           <div className='flex gap-12'>
-            <div className='hidden lg:flex lg:flex-col w-[25%] max-w-[25%] min-w-[25%] h-fit gap-7'>
+            <div className='hidden lg:flex lg:flex-col sticky top-24 w-[25%] max-w-[25%] min-w-[25%] h-fit gap-7'>
               <CustomInput
                 className='md:col-start-6 md:col-end-13 py-[10px] px-[18px] mt-[-10px] md:mt-0'
                 placeholder='Press enter to search'
@@ -328,7 +328,7 @@ export default function ExploreWhitepapersComponent() {
                 <DatePicker.RangePicker onChange={dateChange} />
               </div>
             </div>
-            <div className='grid gap-[15px]'>
+            <div className='grid w-full gap-[15px]'>
               <div>
                 <Typography.LargeText
                   text={
@@ -340,24 +340,41 @@ export default function ExploreWhitepapersComponent() {
                   className='flex lg:hidden mb-0 md:mb-[30px] col-span-4'
                 />
               </div>
-              {whitepapersList?.results?.map((whitepaper, indexWhitepaper) => (
-                <React.Fragment key={indexWhitepaper}>
-                  <WhitepaperCard
-                    image={whitepaper?.image}
-                    title={whitepaper?.title ? whitepaper?.title : '-'}
-                    date={
-                      whitepaper?.published_at
-                        ? dayjs(whitepaper?.published_at).format('DD-MM-YYYY')
-                        : '-'
-                    }
-                    author={whitepaper?.author}
-                    download={whitepaper?.count_of_downloads}
-                    topic={whitepaper?.theme}
-                    desc={whitepaper?.overview ? whitepaper?.overview : '-'}
-                    slug={whitepaper?.slug}
+              {whitepapersList?.count > 0 ? (
+                <>
+                  {whitepapersList?.results?.map(
+                    (whitepaper, indexWhitepaper) => (
+                      <React.Fragment key={indexWhitepaper}>
+                        <WhitepaperCard
+                          image={whitepaper?.image}
+                          title={whitepaper?.title ? whitepaper?.title : '-'}
+                          date={
+                            whitepaper?.published_at
+                              ? dayjs(whitepaper?.published_at).format(
+                                  'DD-MM-YYYY'
+                                )
+                              : '-'
+                          }
+                          author={whitepaper?.author}
+                          download={whitepaper?.count_of_downloads}
+                          topic={whitepaper?.theme}
+                          desc={
+                            whitepaper?.overview ? whitepaper?.overview : '-'
+                          }
+                          slug={whitepaper?.slug}
+                        />
+                      </React.Fragment>
+                    )
+                  )}
+                </>
+              ) : (
+                <>
+                  <div
+                    style={{ backgroundImage: `url(${EmptyState})` }}
+                    className='flex-grow w-full bg-cover aspect-video'
                   />
-                </React.Fragment>
-              ))}
+                </>
+              )}
               {whitepapersList?.count > 5 && (
                 <div className='text-right'>
                   <Pagination
@@ -440,12 +457,19 @@ export default function ExploreWhitepapersComponent() {
         title='Filter'
         footer={
           <div className='flex flex-row gap-3 justify-end'>
-            <CustomButton text='Cancel' onClick={() => setFilterModalOpen(false)} />
+            <CustomButton
+              text='Cancel'
+              onClick={() => setFilterModalOpen(false)}
+            />
             <CustomButton text='Apply' onClick={() => filterForm.submit()} />
           </div>
         }
       >
-        <Form form={filterForm} initialValues={filterInitVal} onFinish={filterSubmit}>
+        <Form
+          form={filterForm}
+          initialValues={filterInitVal}
+          onFinish={filterSubmit}
+        >
           <div className='p-3 flex flex-col gap-3'>
             <Form.Item name='search'>
               <CustomInput
@@ -469,20 +493,14 @@ export default function ExploreWhitepapersComponent() {
             <div>
               <Typography.LargeText text='Search Author' />
               <Form.Item name='author'>
-                <CustomInput
-                  size='default'
-                  placeholder='Search Author'
-                />
+                <CustomInput size='default' placeholder='Search Author' />
               </Form.Item>
               {/* <Select showSearch filterOption={filterOption} className='w-full' options={dummyAuthor} placeholder='Search Author' /> */}
             </div>
             <div>
               <Typography.LargeText text='Search Topic' />
               <Form.Item name='theme'>
-                <CustomInput
-                  size='default'
-                  placeholder='Search Topic'
-                />
+                <CustomInput size='default' placeholder='Search Topic' />
               </Form.Item>
               {/* <Select showSearch filterOption={filterOption} className='w-full' options={dummytheme} placeholder='Search Topic' /> */}
             </div>
