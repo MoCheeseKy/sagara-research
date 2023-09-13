@@ -23,7 +23,7 @@ import EmptyState from '../../../assets/Images/EmptyState.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../../service';
 import dayjs from 'dayjs';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 export default function ExploreWhitepapersComponent() {
   const dispatch = useDispatch();
@@ -31,12 +31,15 @@ export default function ExploreWhitepapersComponent() {
   const [filterForm] = Form.useForm();
   const { whitepapersList } = useSelector((state) => state.whitepaper);
   const [api, context] = notification.useNotification();
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const initAuthor = searchParams.get('author')
 
   const [query, setQuery] = useState({
     page: 1,
     page_size: 5,
     search: '',
-    author: '',
+    author: searchParams.get('author') || '',
     theme: '',
     ordering: '',
     publish_date_after: '',
@@ -114,6 +117,7 @@ export default function ExploreWhitepapersComponent() {
   const authorSearch = (e) => {
     if (e.key === 'Enter') {
       setQuery({ ...query, author: e.target.value });
+      setSearchParams(`author=${e.target.value}`)
     }
   };
 
@@ -150,6 +154,10 @@ export default function ExploreWhitepapersComponent() {
       ...value,
     });
   };
+
+  useEffect(() => {
+    setQuery({...query, author: initAuthor})
+  }, [initAuthor])
 
   const initialValues = {
     name: '',
@@ -311,6 +319,7 @@ export default function ExploreWhitepapersComponent() {
                   onKeyUp={authorSearch}
                   size='default'
                   placeholder='Search Author'
+                  defaultValue={query.author}
                 />
                 {/* <Select showSearch filterOption={filterOption} className='w-full' options={dummyAuthor} placeholder='Search Author' /> */}
               </div>
