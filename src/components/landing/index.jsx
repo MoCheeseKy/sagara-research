@@ -58,8 +58,6 @@ export default function LandingComponent() {
     term: false,
   };
 
-  console.log(highlightWhitepaperList);
-
   const onSubmitDownload = (e) => {
     if (e.term) {
       const formData = new FormData();
@@ -73,13 +71,17 @@ export default function LandingComponent() {
 
       const data = {
         formData,
-        // slug: slug,
+        slug: highlightWhitepaperList?.results[0]?.slug,
       };
       dispatch(Whitepapers.DownloadWhitepaper(data));
     } else {
       form.validateFields();
     }
   };
+
+  if (!highlightWhitepaperList?.results) {
+    return null
+  }
 
   return (
     <>
