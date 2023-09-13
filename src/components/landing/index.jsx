@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../service';
 import Typography from '../_shared/Typography';
-import { Carousel, notification, Form, Modal } from 'antd';
+import { Carousel, notification, Form, Modal, Skeleton } from 'antd';
 import WhitepaperCard from '../_shared/WhitepaperCard';
 import { Link } from 'react-router-dom';
 import CustomButton from '../_shared/CustomButton';
@@ -79,10 +79,6 @@ export default function LandingComponent() {
     }
   };
 
-  if (!highlightWhitepaperList?.results) {
-    return null
-  }
-
   return (
     <>
       {context}
@@ -91,67 +87,71 @@ export default function LandingComponent() {
         <div
           className={`flex justify-center items-center flex-grow bg-[url('https://img.freepik.com/free-photo/3d-render-low-poly-plexus-design-network-communications_1048-14542.jpg?w=740&t=st=1691053736~exp=1691054336~hmac=3e831c9125aba14bfad1a71615a1b0585cb219773a81a811d88d687adf6160bd')] bg-cover`}
         >
-          <div className='px-[15px] flex gap-6 w-full md:w-[85%] max-w-[1080px]'>
-            <div className='flex-grow flex-flex-col'>
-              <div className='w-[184px] md:min-w-[184px] md:max-w-[184px] h-fit bg-cover bg-white aspect-[3/4]' />
-              <div>
-                <Typography.LargeHeading
-                  text='Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing'
-                  className='text-white mt-8'
-                  bold
-                />
-                <div className='lg:w-[70%] grid grid-cols-2 mt-2'>
-                  <Typography.MediumText
-                    text={`Topic : ${
-                      highlightWhitepaperList?.results[0]?.theme
-                        ? highlightWhitepaperList?.results[0]?.theme
-                        : '-'
-                    }`}
-                    className='text-white'
+          {!highlightWhitepaperList?.results ? (
+            <Skeleton active />
+          ) : (
+            <div className='px-[15px] flex gap-6 w-full md:w-[85%] max-w-[1080px]'>
+              <div className='flex-grow flex-flex-col'>
+                <div className='w-[184px] md:min-w-[184px] md:max-w-[184px] h-fit bg-cover bg-white aspect-[3/4]' />
+                <div>
+                  <Typography.LargeHeading
+                    text='Testing Testing Testing Testing Testing Testing Testing Testing Testing Testing'
+                    className='text-white mt-8'
+                    bold
                   />
-                  <Typography.MediumText
-                    text={`Author : ${
-                      highlightWhitepaperList?.results[0]?.author
-                        ? highlightWhitepaperList?.results[0]?.author
-                        : '-'
-                    }`}
-                    className='text-white'
-                  />
-                  <Typography.MediumText
-                    text={`Published : ${
-                      highlightWhitepaperList?.results[0]?.published_at
-                        ? dayjs(
-                            highlightWhitepaperList?.results[0]?.published_at
-                          ).format('DD-MM-YYYY')
-                        : '-'
-                    }`}
-                    className='text-white'
-                  />
-                  <Typography.MediumText
-                    text={`Download : ${
-                      highlightWhitepaperList?.results[0]?.count_of_downloads
-                        ? highlightWhitepaperList?.results[0]
-                            ?.count_of_downloads
-                        : '-'
-                    }`}
-                    className='text-white'
-                  />
-                </div>
-                <div className='flex mt-4 gap-4'>
-                  <Link
-                    className='w-fit h-fit'
-                    to={`/whitepapers/detail/${highlightWhitepaperList?.results[0]?.slug}`}
-                  >
-                    <CustomButton text='Learn More' />
-                  </Link>
-                  <CustomButton text='Download' className='md:hidden' onClick={() => setModalOpen(true)} />
+                  <div className='lg:w-[70%] grid grid-cols-2 mt-2'>
+                    <Typography.MediumText
+                      text={`Topic : ${
+                        highlightWhitepaperList?.results[0]?.theme
+                          ? highlightWhitepaperList?.results[0]?.theme
+                          : '-'
+                      }`}
+                      className='text-white'
+                    />
+                    <Typography.MediumText
+                      text={`Author : ${
+                        highlightWhitepaperList?.results[0]?.author
+                          ? highlightWhitepaperList?.results[0]?.author
+                          : '-'
+                      }`}
+                      className='text-white'
+                    />
+                    <Typography.MediumText
+                      text={`Published : ${
+                        highlightWhitepaperList?.results[0]?.published_at
+                          ? dayjs(
+                              highlightWhitepaperList?.results[0]?.published_at
+                            ).format('DD-MM-YYYY')
+                          : '-'
+                      }`}
+                      className='text-white'
+                    />
+                    <Typography.MediumText
+                      text={`Download : ${
+                        highlightWhitepaperList?.results[0]?.count_of_downloads
+                          ? highlightWhitepaperList?.results[0]
+                              ?.count_of_downloads
+                          : '-'
+                      }`}
+                      className='text-white'
+                    />
+                  </div>
+                  <div className='flex mt-4 gap-4'>
+                    <Link
+                      className='w-fit h-fit'
+                      to={`/whitepapers/detail/${highlightWhitepaperList?.results[0]?.slug}`}
+                    >
+                      <CustomButton text='Learn More' />
+                    </Link>
+                    <CustomButton text='Download' className='md:hidden' onClick={() => setModalOpen(true)} />
+                  </div>
                 </div>
               </div>
+              <div className='hidden md:block md:w-[40%] md:min-w-[40%] md:max-w-[40%] lg:w-[35%] lg:min-w-[35%] lg:max-w-[35%]'>
+                <FormDownload form={form} initialValues={initialValues} onSubmitDownload={onSubmitDownload} isLanding />
+              </div>
             </div>
-            <div className='hidden md:block md:w-[40%] md:min-w-[40%] md:max-w-[40%] lg:w-[35%] lg:min-w-[35%] lg:max-w-[35%]'>
-              <FormDownload form={form} initialValues={initialValues} onSubmitDownload={onSubmitDownload} isLanding />
-            </div>
-          </div>
+          )}
         </div>
       </div>
       <div className='flex justify-center w-full'>
