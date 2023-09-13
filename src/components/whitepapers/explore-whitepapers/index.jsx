@@ -250,45 +250,47 @@ export default function ExploreWhitepapersComponent() {
       </div>
       <div className='flex justify-center w-full'>
         <div className='py-16 flex flex-col px-[15px] w-full md:w-[85%] max-w-[1080px]'>
-          <div className='grid grid-cols-1 md:grid-cols-12 items-center grid-rows-2 md:grid-rows-1'>
-            <Typography.LargeHeading
-              text='Explore Whitepapers'
-              className='mb-0 md:mb-[30px] col-span-4'
-            />
-            <CustomInput
-              className='mb-[30px] md:col-start-6 md:col-end-13 py-[10px] px-[18px] mt-[-10px] md:mt-0'
-              placeholder='Press enter to search'
-              onKeyUp={handleSearch}
-              prefix={<BiSearch />}
-            />
-          </div>
-          <div className='grid gap-[15px]'>
-            {whitepapersList?.results?.map((whitepaper, indexWhitepaper) => (
-              <React.Fragment key={indexWhitepaper}>
-                <WhitepaperCard
-                  image={whitepaper?.image}
-                  title={whitepaper?.title ? whitepaper?.title : '-'}
-                  date={
-                    whitepaper?.published_at
-                      ? dayjs(whitepaper?.published_at).format('DD-MM-YYYY')
-                      : '-'
-                  }
-                  speaker={whitepaper?.speaker}
-                  topic={whitepaper?.topic}
-                  desc={whitepaper?.overview ? whitepaper?.overview : '-'}
-                  slug={whitepaper?.slug}
-                />
-              </React.Fragment>
-            ))}
-            {whitepapersList?.count > 5 && (
-              <div className='text-right'>
-                <Pagination
-                  total={whitepapersList.count}
-                  pageSize={5}
-                  onChange={paginationChange}
-                />
-              </div>
-            )}
+          <Typography.LargeHeading
+            text='Explore Whitepapers'
+            className='mb-0 md:mb-[30px] col-span-4'
+          />
+          <div className='flex gap-12'>
+            <div className='hidden lg:flex lg:flex-col w-[25%] max-w-[25%] min-w-[25%] h-fit'>
+              <CustomInput
+                className='mb-[30px] md:col-start-6 md:col-end-13 py-[10px] px-[18px] mt-[-10px] md:mt-0'
+                placeholder='Press enter to search'
+                onKeyUp={handleSearch}
+                prefix={<BiSearch />}
+              />
+            </div>
+            <div className='grid gap-[15px]'>
+              {whitepapersList?.results?.map((whitepaper, indexWhitepaper) => (
+                <React.Fragment key={indexWhitepaper}>
+                  <WhitepaperCard
+                    image={whitepaper?.image}
+                    title={whitepaper?.title ? whitepaper?.title : '-'}
+                    date={
+                      whitepaper?.published_at
+                        ? dayjs(whitepaper?.published_at).format('DD-MM-YYYY')
+                        : '-'
+                    }
+                    speaker={whitepaper?.speaker}
+                    topic={whitepaper?.topic}
+                    desc={whitepaper?.overview ? whitepaper?.overview : '-'}
+                    slug={whitepaper?.slug}
+                  />
+                </React.Fragment>
+              ))}
+              {whitepapersList?.count > 5 && (
+                <div className='text-right'>
+                  <Pagination
+                    total={whitepapersList.count}
+                    pageSize={5}
+                    onChange={paginationChange}
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

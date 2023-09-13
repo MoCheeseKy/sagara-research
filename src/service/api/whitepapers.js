@@ -20,7 +20,7 @@ const GetRecentWhitepapersList = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       return API.get({
-        url: `whitepapers/?latest=true`,
+        url: `whitepapers/?latest=true?sort=`,
       });
     } catch (error) {
       return rejectWithValue(error);
@@ -33,7 +33,7 @@ const GetPopularWhitepapersList = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       return API.get({
-        url: `whitepapers/?latest=true`,
+        url: `whitepapers/?top_downloads=true`,
       });
     } catch (error) {
       return rejectWithValue(error);
