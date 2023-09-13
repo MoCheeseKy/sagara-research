@@ -6,7 +6,8 @@ import { LiaDownloadSolid } from 'react-icons/lia';
 import { BiUser, BiSearch } from 'react-icons/bi';
 import { GiChampions } from 'react-icons/gi';
 import { PiShareDuotone } from 'react-icons/pi';
-import { notification, Pagination } from 'antd';
+import { notification, Pagination, Form, Modal } from 'antd';
+import FormDownload from '../../_shared/Form/FormDownload';
 import WhitepaperCard from '../../_shared/WhitepaperCard';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,19 +15,18 @@ import { Whitepapers } from '../../../service';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
-import CustomSelect from '../../_shared/Form/CustomSelect';
-import { Form, Checkbox } from 'antd';
-
 export default function ExploreWhitepapersComponent() {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const { whitepapersList } = useSelector((state) => state.whitepaper);
   const [api, context] = notification.useNotification();
+
   const [pagination, setPagination] = useState({
     page: 1,
     page_size: 5,
     search: '',
   });
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const payload = {
@@ -123,127 +123,12 @@ export default function ExploreWhitepapersComponent() {
                   <Link>
                     <CustomButton text='Learn More' />
                   </Link>
-                  <CustomButton text='Download' className=' md:hidden' />
+                  <CustomButton text='Download' className='md:hidden' onClick={() => setModalOpen(true)} />
                 </div>
               </div>
             </div>
             <div className='hidden md:block md:w-[40%] md:min-w-[40%] md:max-w-[40%] lg:w-[35%] lg:min-w-[35%] lg:max-w-[35%]'>
-              <Form
-                requiredMark={false}
-                initialValues={initialValues}
-                layout='vertical'
-                form={form}
-                onFinish={onSubmitDownload}
-              >
-                <div className='flex flex-col gap-0'>
-                  <div className='md:grid grid-cols-2 md:grid-cols-1 gap-x-2'>
-                    <Form.Item
-                      name='name'
-                      rules={[
-                        { required: true, message: 'This field is required' },
-                      ]}
-                    >
-                      <CustomInput
-                        placeholder='Name'
-                        type='text'
-                        className='py-[10px] px-[18px]'
-                      />
-                    </Form.Item>
-                    <Form.Item
-                      name='company'
-                      rules={[
-                        { required: true, message: 'This field is required' },
-                      ]}
-                    >
-                      <CustomInput
-                        placeholder='Company'
-                        type='text'
-                        className='py-[10px] px-[18px]'
-                      />
-                    </Form.Item>
-                    <Form.Item
-                      name='position'
-                      rules={[
-                        { required: true, message: 'This Field is required' },
-                      ]}
-                    >
-                      <CustomInput
-                        placeholder='Title/Position'
-                        type='text'
-                        className='py-[10px] px-[18px]'
-                      />
-                    </Form.Item>
-                    <Form.Item
-                      name='email'
-                      rules={[
-                        { required: true, message: 'This field is required' },
-                        {
-                          type: 'email',
-                          message: 'Please input correct email',
-                        },
-                      ]}
-                    >
-                      <CustomInput
-                        placeholder='Email'
-                        type='text'
-                        className='py-[10px] px-[18px]'
-                      />
-                    </Form.Item>
-                    <Form.Item
-                      name='phone'
-                      rules={[
-                        { required: true, message: 'This Field is required' },
-                      ]}
-                    >
-                      <CustomInput
-                        placeholder='Phone'
-                        type='text'
-                        className='py-[10px] px-[18px]'
-                      />
-                    </Form.Item>
-                    <Form.Item
-                      name='country'
-                      className='bg-white rounded-[10px]'
-                      rules={[
-                        { required: true, message: 'This Field is required' },
-                      ]}
-                    >
-                      <CustomSelect
-                        placeholder='Select Research Objective'
-                        bordered={false}
-                        className='py-[6px] px-[6px] outline-none shadow-none border-0'
-                        optionFilterProp='children'
-                        options={[
-                          {
-                            value: 'Business Purpose',
-                            label: 'Business Purpose',
-                          },
-                          {
-                            value: 'Research Purpose',
-                            label: 'Research Purpose',
-                          },
-                          {
-                            value: 'Personal Purpose',
-                            label: 'Personal Purpose',
-                          },
-                        ]}
-                      />
-                    </Form.Item>
-                    <Form.Item name='term' valuePropName='checked'>
-                      <div className='flex gap-2 items-start'>
-                        <Checkbox />
-                        <Typography.SmallText
-                          className='text-white'
-                          text='By accepting these Terms and Conditions, you agree to our
-                  terms of cooperation, which include the possibility of being
-                  contacted by our consultants.'
-                        />
-                      </div>
-                    </Form.Item>
-                  </div>
-                  <CustomButton text='Download' />
-                </div>
-              </Form>
+              <FormDownload form={form} initialValues={initialValues} onSubmitDownload={onSubmitDownload} isLanding />
             </div>
           </div>
         </div>
@@ -339,6 +224,17 @@ export default function ExploreWhitepapersComponent() {
           </div>
         </div>
       </div>
+      <Modal
+        open={modalOpen}
+        onCancel={() => setModalOpen(false)}
+        onOk={() => setModalOpen(false)}
+        footer={null}
+        title='Download Whitepaper'
+      >
+        <>
+          <FormDownload form={form} initialValues={initialValues} onSubmitDownload={onSubmitDownload} />
+        </>
+      </Modal>
     </>
   );
 }
