@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../service';
 import Typography from '../_shared/Typography';
-import { Carousel, notification, Form } from 'antd';
+import { Carousel, notification, Form, Modal } from 'antd';
 import WhitepaperCard from '../_shared/WhitepaperCard';
 import Link from 'antd/es/typography/Link';
 import CustomButton from '../_shared/CustomButton';
@@ -13,6 +13,7 @@ export default function LandingComponent() {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const [api, context] = notification.useNotification();
+  const [modalOpen, setModalOpen] = useState(false);
 
   const { recentWhitepaperList, popularWhitepaperList } = useSelector(
     (state) => state.whitepaper
@@ -107,7 +108,7 @@ export default function LandingComponent() {
                   <Link>
                     <CustomButton text='Learn More' />
                   </Link>
-                  <CustomButton text='Download' className=' md:hidden' />
+                  <CustomButton text='Download' className='md:hidden' onClick={() => setModalOpen(true)} />
                 </div>
               </div>
             </div>
@@ -192,6 +193,17 @@ export default function LandingComponent() {
           </div>
         </div>
       </div>
+      <Modal
+        open={modalOpen}
+        onCancel={() => setModalOpen(false)}
+        onOk={() => setModalOpen(false)}
+        footer={null}
+        title='Download Whitepaper'
+      >
+        <>
+          <FormDownload form={form} initialValues={initialValues} onSubmitDownload={onSubmitDownload} />
+        </>
+      </Modal>
     </>
   );
 }
