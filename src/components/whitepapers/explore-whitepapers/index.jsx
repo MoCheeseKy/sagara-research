@@ -13,7 +13,7 @@ import {
   Modal,
   Radio,
   Space,
-  Select,
+  // Select,
   DatePicker,
 } from 'antd';
 import FormDownload from '../../_shared/Form/FormDownload';
@@ -27,6 +27,7 @@ import { Link } from 'react-router-dom';
 export default function ExploreWhitepapersComponent() {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
+  const [filterForm] = Form.useForm()
   const { whitepapersList } = useSelector((state) => state.whitepaper);
   const [api, context] = notification.useNotification();
 
@@ -74,16 +75,6 @@ export default function ExploreWhitepapersComponent() {
     }
   };
 
-  const initialValues = {
-    name: '',
-    company: '',
-    position: '',
-    email: '',
-    phone: '',
-    country: undefined,
-    term: false,
-  };
-
   const onSubmitDownload = (e) => {
     if (e.term) {
       const formData = new FormData();
@@ -104,9 +95,6 @@ export default function ExploreWhitepapersComponent() {
       form.validateFields();
     }
   };
-
-  const filterOption = (input, option) =>
-    (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
 
   const dateChange = (e) => {
     if (e !== null) {
@@ -134,35 +122,85 @@ export default function ExploreWhitepapersComponent() {
     }
   };
 
-  const dummyAuthor = [
-    {
-      value: 'author_1',
-      label: 'Author 1',
-    },
-    {
-      value: 'author_2',
-      label: 'Author 2',
-    },
-    {
-      value: 'author_3',
-      label: 'Author 3',
-    },
-  ];
+  const filterSubmit = (e) => {
+    let value = {...e}
+    if (e.range_time !== null) {
+      value = {
+        search: e.search,
+        author: e.author,
+        theme: e.theme,
+        ordering: e.ordering,
+        publish_date_after: dayjs(e.range_time[0]).format('YYYY-MM-DD'),
+        publish_date_before: dayjs(e.range_time[1]).format('YYYY-MM-DD'),
+      }
+    } else {
+      value = {
+        search: e.search,
+        author: e.author,
+        theme: e.theme,
+        ordering: e.ordering,
+        publish_date_after: '',
+        publish_date_before: '',
+      }
+    }
+    console.log(e.range_time);
+    setQuery({
+      ...query,
+      ...value
+    })
+  }
+  
+  const initialValues = {
+    name: '',
+    company: '',
+    position: '',
+    email: '',
+    phone: '',
+    country: undefined,
+    term: false,
+  };
 
-  const dummytheme = [
-    {
-      value: 'topic_1',
-      label: 'Tokpik 1',
-    },
-    {
-      value: 'topic_2',
-      label: 'Topik 2',
-    },
-    {
-      value: 'topic_3',
-      label: 'Topik 3',
-    },
-  ];
+  const filterInitVal = {
+    search: '',
+    author: '',
+    theme: '',
+    ordering: '',
+    range_time: null,
+  }
+
+  // const filterOption = (input, option) =>
+  //   (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+
+
+  // const dummyAuthor = [
+  //   {
+  //     value: 'author_1',
+  //     label: 'Author 1',
+  //   },
+  //   {
+  //     value: 'author_2',
+  //     label: 'Author 2',
+  //   },
+  //   {
+  //     value: 'author_3',
+  //     label: 'Author 3',
+  //   },
+  // ];
+
+  // const dummytheme = [
+  //   {
+  //     value: 'topic_1',
+  //     label: 'Tokpik 1',
+  //   },
+  //   {
+  //     value: 'topic_2',
+  //     label: 'Topik 2',
+  //   },
+  //   {
+  //     value: 'topic_3',
+  //     label: 'Topik 3',
+  //   },
+  // ];
 
   return (
     <>
@@ -380,51 +418,61 @@ export default function ExploreWhitepapersComponent() {
       <Modal
         open={filterModalOpen}
         onCancel={() => setFilterModalOpen(false)}
-        onOk={() => setFilterModalOpen(false)}
+        onOk={() => {
+          setFilterModalOpen(false)
+          filterForm.submit()
+        }}
         title='Filter'
       >
-        <div className='p-3 flex flex-col gap-3'>
-          <CustomInput
-            className='md:col-start-6 md:col-end-13 py-[10px] px-[18px] mt-[-10px] md:mt-0'
-            placeholder='Press enter to search'
-            onKeyUp={handleSearch}
-            prefix={<BiSearch />}
-          />
-          <div className='flex flex-col gap-3'>
-            <Typography.LargeText text='Sort by' />
-            <Radio.Group>
-              <Space direction='vertical'>
-                <Radio value='terbaru'>Newest</Radio>
-                <Radio value='terlama'>Oldest</Radio>
-                <Radio value='popular'>Most Popular</Radio>
-              </Space>
-            </Radio.Group>
+        <Form form={filterForm} initialValues={filterInitVal} onFinish={filterSubmit}>
+          <div className='p-3 flex flex-col gap-3'>
+            <Form.Item name='search'>
+              <CustomInput
+                className='md:col-start-6 md:col-end-13 py-[10px] px-[18px] mt-[-10px] md:mt-0'
+                placeholder='Press enter to search'
+                prefix={<BiSearch />}
+              />
+            </Form.Item>
+            <div className='flex flex-col gap-3'>
+              <Typography.LargeText text='Sort by' />
+              <Form.Item name='ordering'>
+                <Radio.Group>
+                  <Space direction='vertical'>
+                    <Radio value='-published_at'>Newest</Radio>
+                    <Radio value='published_at'>Oldest</Radio>
+                    <Radio value='-count_of_downloads'>Most Popular</Radio>
+                  </Space>
+                </Radio.Group>
+              </Form.Item>
+            </div>
+            <div>
+              <Typography.LargeText text='Search Author' />
+              <Form.Item name='author'>
+                <CustomInput
+                  size='default'
+                  placeholder='Search Author'
+                />
+              </Form.Item>
+              {/* <Select showSearch filterOption={filterOption} className='w-full' options={dummyAuthor} placeholder='Search Author' /> */}
+            </div>
+            <div>
+              <Typography.LargeText text='Search Topic' />
+              <Form.Item name='theme'>
+                <CustomInput
+                  size='default'
+                  placeholder='Search Topic'
+                />
+              </Form.Item>
+              {/* <Select showSearch filterOption={filterOption} className='w-full' options={dummytheme} placeholder='Search Topic' /> */}
+            </div>
+            <div>
+              <Typography.LargeText text='Search by Date' />
+              <Form.Item name='range_time'>
+                <DatePicker.RangePicker className='w-full' />
+              </Form.Item>
+            </div>
           </div>
-          <div>
-            <Typography.LargeText text='Search Author' />
-            <Select
-              showSearch
-              filterOption={filterOption}
-              className='w-full'
-              options={dummyAuthor}
-              placeholder='Search Author'
-            />
-          </div>
-          <div>
-            <Typography.LargeText text='Search Topic' />
-            <Select
-              showSearch
-              filterOption={filterOption}
-              className='w-full'
-              options={dummytheme}
-              placeholder='Search Topic'
-            />
-          </div>
-          <div>
-            <Typography.LargeText text='Search by Date' />
-            <DatePicker.RangePicker />
-          </div>
-        </div>
+        </Form>
       </Modal>
     </>
   );
