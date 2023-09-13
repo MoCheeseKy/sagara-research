@@ -30,19 +30,30 @@ export default function ExploreWhitepapersComponent() {
   const { whitepapersList } = useSelector((state) => state.whitepaper);
   const [api, context] = notification.useNotification();
 
-  const [pagination, setPagination] = useState({
+  const [query, setQuery] = useState({
     page: 1,
     page_size: 5,
     search: '',
+    author: '',
+    theme: '',
+    ordering: '',
+    publish_date_after: '',
+    publish_date_before: ''
   });
   const [formModalOpen, setFormModalOpen] = useState(false);
   const [filterModalOpen, setFilterModalOpen] = useState(false);
 
   useEffect(() => {
     const payload = {
-      search: pagination.search,
-      page: pagination.page,
+      search: query.search,
+      page: query.page,
+      author: query.author,
+      theme: query.theme,
+      ordering: query.ordering,
+      publish_date_after: query.publish_date_after,
+      publish_date_before: query.publish_date_before,
     };
+    
     dispatch(Whitepapers.GetWhitepapersList(payload))
       .unwrap()
       .then(() => {
@@ -51,15 +62,15 @@ export default function ExploreWhitepapersComponent() {
       .catch(() => {
         api.error({ message: 'Failed get whitepaper' });
       });
-  }, [dispatch, api, pagination]);
+  }, [dispatch, api, query]);
 
   const paginationChange = (page) => {
-    setPagination({ ...pagination, page });
+    setQuery({ ...query, page });
   };
 
   const handleSearch = (e) => {
     if (e.key === 'Enter') {
-      setPagination({ ...pagination, search: e.target.value, page: 1 });
+      setQuery({ ...query, search: e.target.value, page: 1 });
     }
   };
 
@@ -96,6 +107,20 @@ export default function ExploreWhitepapersComponent() {
 
   const filterOption = (input, option) => 
     (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+
+  const dateChange = (e) => {
+    if (e !== null) {
+      const startDate = dayjs(e[0]).format('YYYY-MM-DD')
+      const endDate = dayjs(e[1]).format('YYYY-MM-DD')
+      setQuery({
+        ...query,
+        publish_date_after: startDate,
+        publish_date_before: endDate
+      })
+    } else {
+      setQuery({...query, publish_date_after: '', publish_date_before: ''})
+    }
+  }
 
   const dummyAuthor = [
     {
@@ -195,11 +220,11 @@ export default function ExploreWhitepapersComponent() {
               />
               <div className='flex flex-col gap-3'>
                 <Typography.LargeText text='Sort by' />
-                <Radio.Group>
+                <Radio.Group value={query.ordering} onChange={(e) => setQuery({...query, ordering: e.target.value})}>
                   <Space direction='vertical'>
-                    <Radio value='terbaru'>Newest</Radio>
-                    <Radio value='terlama'>Oldest</Radio>
-                    <Radio value='popular'>Most Popular</Radio>
+                    <Radio value='-published_at'>Newest</Radio>
+                    <Radio value='published_at'>Oldest</Radio>
+                    <Radio value='-count_of_downloads'>Most Popular</Radio>
                   </Space>
                 </Radio.Group>
               </div>
@@ -213,7 +238,7 @@ export default function ExploreWhitepapersComponent() {
               </div>
               <div>
                 <Typography.LargeText text='Search by Date' />
-                <DatePicker.RangePicker />
+                <DatePicker.RangePicker onChange={dateChange} />
               </div>
             </div>
             <div className='grid gap-[15px]'>

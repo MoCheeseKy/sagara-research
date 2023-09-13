@@ -4,10 +4,18 @@ import API from '../../helper/api';
 const GetWhitepapersList = createAsyncThunk(
   'get/whitepapersList',
   async (payload, { rejectWithValue }) => {
-    const { search, page } = payload;
+    const {
+      search,
+      page,
+      author,
+      theme,
+      ordering,
+      publish_date_after,
+      publish_date_before
+    } = payload;
     try {
       return API.get({
-        url: `whitepapers/?page_size=5&page=${page}&search=${search}`,
+        url: `whitepapers/?page_size=5&page=${page}&search=${search}&author=${author}&theme=${theme}&ordering=${ordering}&publish_date_before=${publish_date_before}&publish_date_after=${publish_date_after}`,
       });
     } catch (error) {
       return rejectWithValue(error);
