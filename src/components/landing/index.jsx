@@ -80,7 +80,6 @@ export default function LandingComponent() {
           width: '48px',
           height: '48px',
           position: 'absolute',
-          right: '-10%',
           ...style,
         }}
         onClick={onClick}
@@ -103,7 +102,7 @@ export default function LandingComponent() {
           width: '48px',
           height: '48px',
           position: 'absolute',
-          right: '-10%',
+          zIndex: '10',
           ...style,
         }}
         onClick={onClick}
@@ -119,6 +118,7 @@ export default function LandingComponent() {
     autoplay: !modalOpen,
     autoplaySpeed: 6000,
     arrows: true,
+    waitForAnimate: true
   };
 
   return (
