@@ -77,7 +77,7 @@ export default function ExploreWhitepapersComponent() {
       .catch(() => {
         api.error({ message: 'Failed get whitepaper' });
       });
-      
+
     dispatch(Whitepapers.GetHighlightWhitepaper());
   }, [dispatch, api, query]);
 
@@ -296,7 +296,7 @@ export default function ExploreWhitepapersComponent() {
                 {highlightWhitepaperList?.results?.map((item, index) => (
                   <div
                     key={index}
-                    className='h-[554px] lg:pl-10 flex flex-col w-full justify-between'
+                    className='h-[478px] lg:pl-10 flex flex-col w-full justify-between'
                   >
                     <div className='flex flex-col justify-center lg:justify-between h-full pb-6'>
                       <div
@@ -306,7 +306,7 @@ export default function ExploreWhitepapersComponent() {
                         <img
                           src={item.image}
                           alt=' '
-                          className='w-[214px] md:min-w-[214px] md:max-w-[214px] h-fit bg-cover aspect-[3/4]'
+                          className='w-[180px] md:min-w-[180px] md:max-w-[180px] h-fit bg-cover aspect-[3/4]'
                         />
                       </div>
                       <div>
@@ -320,23 +320,41 @@ export default function ExploreWhitepapersComponent() {
                             </React.Fragment>
                           ))}
                         </div>
+                        <div className='flex gap-[6px] mb-2'>
+                          <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
+                            <Typography.Custom
+                              text={'Topic'}
+                              className='text-white text-xs'
+                            />
+                          </div>
+                          <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
+                            <Typography.Custom
+                              text={'Topic'}
+                              className='text-white text-xs'
+                            />
+                          </div>
+                        </div>
                         <Typography.LargeHeading
                           text={item.title}
-                          className='text-white'
+                          className='text-white lg:text-[28px]'
                           bold
                         />
-                        <div className='flex gap-4 flex-wrap mt-2'>
-                          <Link to={`/whitepapers/explore-whitepapers?author=${item.author}`}>
-                            <Typography.MediumText
-                              text={`Author : ${item.author}`}
-                              className='text-white hover:text-blue-500'
-                            />
-                          </Link>
+                        <Typography.LargeHeading
+                          text={item.title}
+                          className='text-white lg:text-[28px]'
+                          bold
+                        />
+                        <div className='flex gap-x-2 flex-wrap mt-2'>
                           <Typography.MediumText
-                            text={`Published : ${dayjs(
-                              item.published_at
-                            ).format('YYYY-MM-DD')}`}
+                            text={`${item.author}`}
                             className='text-white'
+                            bold
+                          />
+                          <Typography.MediumText
+                            text={`${dayjs(item.published_at).format(
+                              'YYYY-MM-DD'
+                            )}`}
+                            className='text-white opacity-75'
                           />
                         </div>
                         <div className='flex mt-4 gap-4'>

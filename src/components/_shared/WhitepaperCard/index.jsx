@@ -51,12 +51,14 @@ export default function WhitepaperCard({
                   </div>
                   <div>
                     <Typography.LargeText
-                      text={title ? `${title} Testing Testing Testing` : '-'}
+                      text={title ? `${title}` : '-'}
                       bold
                     />
                   </div>
                   <div>
-                    <Link to={`/whitepapers/explore-whitepapers?author=${author}`}>
+                    <Link
+                      to={`/whitepapers/explore-whitepapers?author=${author}`}
+                    >
                       <Typography.SmallText
                         text={`Author : ${author ? author : '-'}`}
                         className='text-[#808080] hover:text-blue-500 mt-2'
