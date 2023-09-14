@@ -313,32 +313,15 @@ export default function ExploreWhitepapersComponent() {
                         <div className='flex  gap-[6px] mb-2'>
                           {item?.theme?.map((theme, indexTheme) => (
                             <React.Fragment key={indexTheme}>
-                              <Typography.Custom
-                                text={theme ? theme : '-'}
-                                className='text-white text-xs'
-                              />
+                              <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
+                                <Typography.Custom
+                                  text={theme ? theme : '-'}
+                                  className='text-white text-xs'
+                                />
+                              </div>
                             </React.Fragment>
                           ))}
                         </div>
-                        <div className='flex gap-[6px] mb-2'>
-                          <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
-                            <Typography.Custom
-                              text={'Topic'}
-                              className='text-white text-xs'
-                            />
-                          </div>
-                          <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
-                            <Typography.Custom
-                              text={'Topic'}
-                              className='text-white text-xs'
-                            />
-                          </div>
-                        </div>
-                        <Typography.LargeHeading
-                          text={item.title}
-                          className='text-white lg:text-[28px]'
-                          bold
-                        />
                         <Typography.LargeHeading
                           text={item.title}
                           className='text-white lg:text-[28px]'
