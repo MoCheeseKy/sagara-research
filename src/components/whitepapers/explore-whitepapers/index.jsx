@@ -451,7 +451,7 @@ export default function ExploreWhitepapersComponent() {
               </div>
               <div>
                 <Typography.LargeText text='Search by Date' />
-                <DatePicker.RangePicker onChange={dateChange} />
+                <DatePicker.RangePicker onChange={dateChange} className='custom-input' />
               </div>
             </div>
             <div className='grid w-full gap-[15px]'>
