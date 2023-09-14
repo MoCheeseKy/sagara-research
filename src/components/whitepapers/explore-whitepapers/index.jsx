@@ -355,7 +355,7 @@ export default function ExploreWhitepapersComponent() {
                         <div className='flex mt-4 gap-4'>
                           <Link
                             className='w-fit h-fit'
-                            to={`/whitepapers/detail/${item.slug}`}
+                            to={`/research/detail/${item.slug}`}
                           >
                             <CustomButton
                               text='Learn More'
@@ -451,7 +451,10 @@ export default function ExploreWhitepapersComponent() {
               </div>
               <div>
                 <Typography.LargeText text='Search by Date' />
-                <DatePicker.RangePicker onChange={dateChange} className='custom-input' />
+                <DatePicker.RangePicker
+                  onChange={dateChange}
+                  className='custom-input'
+                />
               </div>
             </div>
             <div className='grid w-full gap-[15px]'>

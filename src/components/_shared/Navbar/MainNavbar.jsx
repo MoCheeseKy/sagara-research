@@ -36,8 +36,8 @@ export default function MainNavbar() {
     {
       key: 2,
       label: (
-        <Link to='/whitepapers/explore-whitepapers' style={{ color: 'white' }}>
-          Explore Whitepapers
+        <Link to='/research/explore-research' style={{ color: 'white' }}>
+          Explore Research
         </Link>
       ),
       style: { borderBottom: '1px solid #404040' },
@@ -109,8 +109,8 @@ export default function MainNavbar() {
             >
               <Typography.MediumText text='Consult With Sagara' />
             </div>
-            <Link to='/whitepapers/explore-whitepapers'>
-              <Typography.MediumText text='Whitepapers' />
+            <Link to='/research/explore-research'>
+              <Typography.MediumText text='Research' />
             </Link>
             <Link to='/about-us'>
               <Typography.MediumText text='About' />

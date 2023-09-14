@@ -173,27 +173,19 @@ export default function WHitepaperDetailComponent() {
                   className='text-[#666]'
                 />
                 <Typography.MediumText
-                  text={`Publication : ${
-                    whitepapersDetail?.about?.published_at
-                      ? dayjs(whitepapersDetail?.about?.published_at).format(
-                          'DD-MM-YYYY'
-                        )
+                  text={`Language : ${
+                    whitepapersDetail?.langguage
+                      ? whitepapersDetail?.langguage
                       : '-'
                   }`}
                   className='text-[#666]'
                 />
                 <Typography.MediumText
-                  text={`Download : ${
-                    whitepapersDetail?.count_of_downloads
-                      ? whitepapersDetail?.count_of_downloads
-                      : '0'
-                  }`}
-                  className='text-[#666]'
-                />
-                <Typography.MediumText
-                  text={`Editor : ${
-                    whitepapersDetail?.about?.editor
-                      ? whitepapersDetail?.about?.editor
+                  text={`Publication : ${
+                    whitepapersDetail?.about?.published_at
+                      ? dayjs(whitepapersDetail?.about?.published_at).format(
+                          'DD-MM-YYYY'
+                        )
                       : '-'
                   }`}
                   className='text-[#666]'
@@ -207,6 +199,22 @@ export default function WHitepaperDetailComponent() {
                   className='text-[#666]'
                 />
                 <Typography.MediumText
+                  text={`Editor : ${
+                    whitepapersDetail?.about?.editor
+                      ? whitepapersDetail?.about?.editor
+                      : '-'
+                  }`}
+                  className='text-[#666]'
+                />
+                <Typography.MediumText
+                  text={`License : ${
+                    whitepapersDetail?.about?.license
+                      ? whitepapersDetail?.about?.license
+                      : '-'
+                  }`}
+                  className='text-[#666]'
+                />
+                <Typography.MediumText
                   text={`Page : ${
                     whitepapersDetail?.about?.length
                       ? whitepapersDetail?.about?.length
@@ -215,10 +223,10 @@ export default function WHitepaperDetailComponent() {
                   className='text-[#666]'
                 />
                 <Typography.MediumText
-                  text={`License : ${
-                    whitepapersDetail?.about?.license
-                      ? whitepapersDetail?.about?.license
-                      : '-'
+                  text={`Download : ${
+                    whitepapersDetail?.count_of_downloads
+                      ? whitepapersDetail?.count_of_downloads
+                      : '0'
                   }`}
                   className='text-[#666]'
                 />

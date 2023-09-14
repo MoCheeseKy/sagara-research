@@ -20,13 +20,10 @@ function App() {
       <Routes>
         <Route path='/' element={<Landing />} />
         <Route
-          path='/whitepapers/explore-whitepapers'
+          path='/research/explore-research'
           element={<ExploreWhitepapers />}
         />
-        <Route
-          path='/whitepapers/detail/:slug'
-          element={<WhitepaperDetail />}
-        />
+        <Route path='/research/detail/:slug' element={<WhitepaperDetail />} />
         <Route path='/about-us' element={<AboutUs />} />
         <Route path='/about-us/our-teams' element={<OurTeams />} />
         <Route

@@ -16,7 +16,7 @@ export default function WhitepaperCard({
 }) {
   return (
     <>
-      <Link to={`/whitepapers/detail/${slug}`}>
+      <Link to={`/research/detail/${slug}`}>
         <div className='flex flex-col md:flex-row shadow rounded mt-[15px] hover:mt-0 mb-0 hover:mb-[15px] duration-300 overflow-hidden bg-white'>
           <div className='p-6 md:p-[30px] flex flex-col'>
             <div className='flex flex-col gap-2'>
@@ -35,10 +35,17 @@ export default function WhitepaperCard({
                   />
                 </div>
                 <div>
+                  <div>
+                    <Typography.LargeText
+                      text={title ? `${title}` : '-'}
+                      bold
+                      className='mb-2'
+                    />
+                  </div>
                   <div className='flex flex-wrap gap-[6px]'>
                     {topic?.map((topic, indexTopic) => (
                       <React.Fragment key={indexTopic}>
-                        <div className='flex gap-[6px] mb-2'>
+                        <div className='flex gap-[6px]'>
                           <div className='border-primary border-[1px] px-4 rounded-lg w-fit'>
                             <Typography.Custom
                               text={topic?.title ? topic?.title : '-'}
@@ -50,15 +57,7 @@ export default function WhitepaperCard({
                     ))}
                   </div>
                   <div>
-                    <Typography.LargeText
-                      text={title ? `${title}` : '-'}
-                      bold
-                    />
-                  </div>
-                  <div>
-                    <Link
-                      to={`/whitepapers/explore-whitepapers?author=${author}`}
-                    >
+                    <Link to={`/research/explore-research?author=${author}`}>
                       <Typography.SmallText
                         text={`Author : ${author ? author : '-'}`}
                         className='text-[#808080] hover:text-blue-500 mt-2'
@@ -78,7 +77,7 @@ export default function WhitepaperCard({
                         ellipsis={3}
                         className='text-[#808080]'
                       />
-                      <Link to={`/whitepapers/detail/${slug}`}>
+                      <Link to={`/research/detail/${slug}`}>
                         <CustomButton
                           text='Learn More'
                           className='w-fit text-sm py-2'
@@ -95,7 +94,7 @@ export default function WhitepaperCard({
                 ellipsis={3}
                 className='text-[#808080]'
               />
-              <Link to={`/whitepapers/detail/${slug}`}>
+              <Link to={`/research/detail/${slug}`}>
                 <CustomButton
                   text='Learn More'
                   className='w-fit text-sm py-2'

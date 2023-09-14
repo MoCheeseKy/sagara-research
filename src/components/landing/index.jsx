@@ -234,7 +234,7 @@ export default function LandingComponent() {
       <div className='flex justify-center w-full'>
         <div className='py-16 flex flex-col  px-[15px] w-full md:w-[85%] max-w-[1080px]'>
           <Typography.LargeHeading
-            text='Recent Whitepapers'
+            text='Recent Research'
             className='mb-[30px]'
           />
           <div className='grid gap-[15px]'>
@@ -264,7 +264,7 @@ export default function LandingComponent() {
       <div className='flex justify-center w-full'>
         <div className='pb-16 flex flex-col  px-[15px] w-full md:w-[85%] max-w-[1080px]'>
           <Typography.LargeHeading
-            text='Popular Whitepapers'
+            text='Popular Research'
             className='mb-[30px]'
           />
           <div className='grid gap-[15px]'>

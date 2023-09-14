@@ -16,7 +16,7 @@ export default function LandingWhitepaperCard({
 }) {
   return (
     <>
-      <Link to={`/whitepapers/detail/${slug}`}>
+      <Link to={`/research/detail/${slug}`}>
         <div className='flex flex-col md:flex-row shadow rounded mt-[15px] hover:mt-0 mb-0 hover:mb-[15px] duration-300 overflow-hidden bg-white'>
           <div
             className='w-fit h-fit hidden md:flex'
@@ -64,12 +64,12 @@ export default function LandingWhitepaperCard({
                   </div>
                   <div>
                     <Typography.LargeText
-                      text={title ? `${title} Testing Testing Testing` : '-'}
+                      text={title ? `${title}` : '-'}
                       bold
                     />
                   </div>
                   <div>
-                    <Link to={`/whitepapers/explore-whitepapers?author=${author}`}>
+                    <Link to={`/research/explore-research?author=${author}`}>
                       <Typography.SmallText
                         text={`Author : ${author ? author : '-'}`}
                         className='text-[#808080] hover:text-blue-500 mt-2'
@@ -89,7 +89,7 @@ export default function LandingWhitepaperCard({
                         ellipsis={3}
                         className='text-[#808080]'
                       />
-                      <Link to={`/whitepapers/detail/${slug}`}>
+                      <Link to={`/research/detail/${slug}`}>
                         <CustomButton
                           text='Learn More'
                           className='w-fit text-sm py-2'
@@ -105,7 +105,7 @@ export default function LandingWhitepaperCard({
                   ellipsis={3}
                   className='text-[#808080]'
                 />
-                <Link to={`/whitepapers/detail/${slug}`}>
+                <Link to={`/research/detail/${slug}`}>
                   <CustomButton
                     text='Learn More'
                     className='w-fit text-sm py-2'
