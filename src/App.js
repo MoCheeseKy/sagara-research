@@ -40,7 +40,7 @@ function App() {
           element={
             <MainLayout>
               <div className='h-[100vh] flex flex-col justify-center items-center'>
-                <div className='h-[77px]'></div>
+                <div className='h-[64px]'></div>
                 <div
                   style={{ backgroundImage: `url(${NotFoundImage})` }}
                   className='px-[15px] w-full lg:w-[60%] aspect-video bg-cover'

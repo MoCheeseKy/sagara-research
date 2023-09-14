@@ -278,7 +278,7 @@ export default function ExploreWhitepapersComponent() {
     <>
       {context}
       <div className='flex flex-col h-[100vh] md:h-[700px] lg:h-[100vh]'>
-        <div className='h-[77px]' />
+        <div className='h-[64px]' />
         <div
           style={{ backgroundImage: `url(${HeroBanner})` }}
           className={`flex justify-center items-center flex-grow bg-cover`}

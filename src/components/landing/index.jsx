@@ -125,7 +125,7 @@ export default function LandingComponent() {
     <>
       {context}
       <div className='flex flex-col h-[100vh] md:h-[700px] lg:h-[100vh]'>
-        <div className='h-[77px]' />
+        <div className='h-[64px]' />
         <div
           style={{ backgroundImage: `url(${HeroBanner})` }}
           className={`flex justify-center items-center flex-grow bg-cover`}
@@ -140,7 +140,7 @@ export default function LandingComponent() {
                 {highlightWhitepaperList?.results?.map((item, index) => (
                   <div
                     key={index}
-                    className='h-[554px] lg:pl-10 flex flex-col w-full justify-between'
+                    className='h-[478px] lg:pl-10 flex flex-col w-full justify-between'
                   >
                     <div className='flex flex-col justify-center lg:justify-between h-full pb-6'>
                       <div

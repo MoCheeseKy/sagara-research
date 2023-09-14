@@ -104,11 +104,11 @@ export default function MainNavbar() {
   return (
     <>
       {context}
-      <nav className='flex fixed z-[999] bg-white w-full items-center justify-between box-border py-4 px-[10px] md:px-10 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.12)]'>
+      <nav className='flex fixed z-[999] bg-white w-full items-center justify-between box-border py-[12px] px-[10px] md:px-10 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.12)]'>
         <div className='flex gap-[70px]'>
           <div>
             <Link to='/'>
-              <img src={DarkLogo} className='w-[144px]' alt='' />
+              <img src={DarkLogo} className='w-[164px]' alt='' />
             </Link>
           </div>
           <div className='hidden md:flex items-center gap-[30px]'>
@@ -156,7 +156,7 @@ export default function MainNavbar() {
         </div>
         <div className='flex flex-row gap-4 items-center'>
           <Link to='/contact-us'>
-            <CustomButton text='Contact Us' />
+            <CustomButton text='Contact Us' className='pt-2 pb-2' />
           </Link>
           <div className='md:hidden'>
             <Button

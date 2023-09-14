@@ -9,7 +9,7 @@ export default function FormDownload({
   initialValues,
   form,
   onSubmitDownload = () => {},
-  isLanding = false
+  isLanding = false,
 }) {
   return (
     <>
@@ -29,7 +29,7 @@ export default function FormDownload({
               <CustomInput
                 placeholder='Name'
                 type='text'
-                className='py-[10px] px-[18px]'
+                className='py-[6px] px-[18px]'
               />
             </Form.Item>
             <Form.Item
@@ -39,7 +39,7 @@ export default function FormDownload({
               <CustomInput
                 placeholder='Company'
                 type='text'
-                className='py-[10px] px-[18px]'
+                className='py-[6px] px-[18px]'
               />
             </Form.Item>
             <Form.Item
@@ -49,7 +49,7 @@ export default function FormDownload({
               <CustomInput
                 placeholder='Title/Position'
                 type='text'
-                className='py-[10px] px-[18px]'
+                className='py-[6px] px-[18px]'
               />
             </Form.Item>
             <Form.Item
@@ -65,7 +65,7 @@ export default function FormDownload({
               <CustomInput
                 placeholder='Email'
                 type='text'
-                className='py-[10px] px-[18px]'
+                className='py-[6px] px-[18px]'
               />
             </Form.Item>
             <Form.Item
@@ -75,7 +75,7 @@ export default function FormDownload({
               <CustomInput
                 placeholder='Phone'
                 type='text'
-                className='py-[10px] px-[18px]'
+                className='py-[6px] px-[18px]'
               />
             </Form.Item>
             <Form.Item
@@ -86,7 +86,7 @@ export default function FormDownload({
               <CustomSelect
                 placeholder='Select Research Objective'
                 bordered={false}
-                className='py-[6px] px-[6px] outline-none shadow-none border-0'
+                className='py-[2px] px-[6px] outline-none shadow-none border-0'
                 optionFilterProp='children'
                 options={[
                   {
@@ -108,7 +108,9 @@ export default function FormDownload({
               <div className='flex gap-2 items-start'>
                 <Checkbox />
                 <Typography.SmallText
-                  className={isLanding ? 'text-white' : 'text-black'}
+                  className={
+                    isLanding ? 'text-white text-xs' : 'text-black text-xs'
+                  }
                   text='By accepting these Terms and Conditions, you agree to our
                   terms of cooperation, which include the possibility of being
                   contacted by our consultants.'
@@ -116,7 +118,7 @@ export default function FormDownload({
               </div>
             </Form.Item>
           </div>
-          <CustomButton text='Download' />
+          <CustomButton text='Download' bold className='pt-[12px] pb-[12px]' />
         </div>
       </Form>
     </>

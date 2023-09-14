@@ -9,7 +9,7 @@ export default function TeamDetailComponent() {
   const id = params.id;
   return (
     <>
-      <div className='pt-[77px]'></div>
+      <div className='pt-[64px]'></div>
       <div className='py-16 flex flex-col items-center justify-center'>
         <div className='flex flex-col md:flex-row gap-[30px] px-[15px] w-full md:w-[85%] max-w-[1080px]'>
           <img
