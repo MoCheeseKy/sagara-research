@@ -639,7 +639,7 @@ export default function ExploreWhitepapersComponent() {
             <div>
               <Typography.LargeText text='Search by Date' />
               <Form.Item name='range_time'>
-                <DatePicker.RangePicker className='w-full' />
+                <DatePicker.RangePicker className='w-full custom-input' />
               </Form.Item>
             </div>
           </div>
