@@ -27,6 +27,18 @@
   color: rgb(107 114 128) !important;
 }
 
+.ant-radio-checked .ant-radio-inner {
+  border-color: #a51535 !important;
+  border-width: 2px !important;
+}
+.ant-radio-checked .ant-radio-inner::after {
+  background-color: #a51535 !important;
+}
+span .ant-radio-inner {
+  border-color: #afafaf !important;
+  background-color: #fff !important;
+}
+
 .custom-input:focus,
 .custom-input:active,
 .custom-input:hover {
