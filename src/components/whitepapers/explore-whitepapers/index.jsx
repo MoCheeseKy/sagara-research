@@ -44,13 +44,13 @@ export default function ExploreWhitepapersComponent() {
   const [searchParams, setSearchParams] = useSearchParams();
   const carouselRef = useRef(null);
 
-  const initAuthor = searchParams.get('author');
+  const initAuthor = searchParams.get('author') || '';
 
   const [query, setQuery] = useState({
     page: 1,
     page_size: 5,
     search: '',
-    author: searchParams.get('author') || '',
+    author: initAuthor,
     theme: '',
     ordering: '-published_at',
     publish_date_after: '',
