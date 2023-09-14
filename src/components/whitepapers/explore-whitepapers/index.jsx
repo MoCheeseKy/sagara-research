@@ -583,6 +583,7 @@ export default function ExploreWhitepapersComponent() {
       <Modal
         open={filterModalOpen}
         title='Filter'
+        onCancel={() => setFilterModalOpen(false)}
         footer={
           <div className='flex flex-row gap-3 justify-end'>
             <CustomButton
