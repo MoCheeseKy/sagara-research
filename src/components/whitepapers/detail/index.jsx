@@ -252,6 +252,15 @@ export default function WHitepaperDetailComponent() {
             </div>
           </div>
           <div className='w-full h-fit sticky top-24 lg:w-[40%] lg:max-w-[40%]'>
+            <Typography.MediumText
+              text={`${
+                whitepapersDetail?.count_of_downloads
+                  ? whitepapersDetail?.count_of_downloads
+                  : '0'
+              } Business Leader has been downloaded this research.`}
+              className=' mb-4'
+              bold
+            />
             <FormDownload
               form={form}
               initialValues={initialValues}
