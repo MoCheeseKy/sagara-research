@@ -79,46 +79,49 @@ export default function LandingComponent() {
 
   const NextArrow = ({ className, style, onClick }) => {
     return (
-      <CustomButton
-        className={`${className} carousel-button`}
-        style={{
-          color: 'white',
-          fontSize: '15px',
-          lineHeight: '1.5715',
-          content: '',
-          padding: '10px 20px',
-          backgroundColor: '#a51535',
-          width: '48px',
-          height: '48px',
-          position: 'absolute',
-          ...style,
-        }}
-        onClick={onClick}
-        icon={<BsChevronCompactRight className='text-white' size={24} />}
-      />
+      <div className='carousel-button'>
+        <CustomButton
+          className={`${className} rounded-full w-[44px] min-w-[44px] max-w-[44px] h-[44px] min-h-[44px] max-h-[44px] opacity-button`}
+          style={{
+            color: 'white',
+            fontSize: '15px',
+            lineHeight: '1.5715',
+            content: '',
+            padding: '10px',
+            backgroundColor: '#a51535',
+            width: '48px',
+            height: '48px',
+            position: 'absolute',
+            ...style,
+          }}
+          onClick={onClick}
+          icon={<BsChevronCompactRight className='text-white' size={24} />}
+        />
+      </div>
     );
   };
 
   const PrevArrow = ({ className, style, onClick }) => {
     return (
-      <CustomButton
-        className={`${className} carousel-button`}
-        style={{
-          color: 'white',
-          fontSize: '15px',
-          lineHeight: '1.5715',
-          content: '',
-          padding: '10px 20px',
-          backgroundColor: '#a51535',
-          width: '48px',
-          height: '48px',
-          position: 'absolute',
-          zIndex: '10',
-          ...style,
-        }}
-        onClick={onClick}
-        icon={<BsChevronCompactLeft className='text-white' size={24} />}
-      />
+      <div className='carousel-button'>
+        <CustomButton
+          className={`${className} rounded-full w-[44px] min-w-[44px] max-w-[44px] h-[44px] min-h-[44px] max-h-[44px] opacity-button`}
+          style={{
+            color: 'white',
+            fontSize: '15px',
+            lineHeight: '1.5715',
+            content: '',
+            padding: '10px',
+            backgroundColor: '#a51535',
+            width: '48px',
+            height: '48px',
+            position: 'absolute',
+            ...style,
+          }}
+          onClick={onClick}
+          icon={<BsChevronCompactLeft className='text-white' size={24} />}
+        />
+      </div>
     );
   };
 

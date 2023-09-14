@@ -63,6 +63,10 @@ span .ant-radio-inner {
   transition-duration: 300ms;
 }
 
+.opacity-button {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
 @media only screen and (max-width: 1000px) {
   .carousel-button {
     display: none !important;
