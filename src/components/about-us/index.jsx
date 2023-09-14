@@ -15,7 +15,7 @@ export default function AboutUsComponent() {
           style={{ backgroundImage: `url(${AboutUsHeroImage})` }}
           className='flex flex-col h-full justify-center md:justify-end px-[15px] w-full md:w-[85%] max-w-[1080px] bg-[center_top_4rem] md:bg-right-top lg:bg-right py-20 bg-no-repeat bg-[length:400px_400px] md:bg-[length:570px_570px] lg:bg-[length:900px_900px]'
         >
-          <div className='flex gap-1 pt-[74px] md:pt-0'>
+          <div className='flex gap-1 pt-[108px] md:pt-0'>
             <Typography.Insight
               className=' lg:text-[40px]'
               text='About <br/>Sagara Research'
