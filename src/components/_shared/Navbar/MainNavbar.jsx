@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import CustomButton from '../CustomButton';
 import {
-  Dropdown,
-  Space,
   Button,
   Drawer,
   Modal,
@@ -13,11 +11,10 @@ import {
 } from 'antd';
 import CustomInput from '../Form/CustomInput';
 import Typography from '../Typography';
-import { DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { BiChevronRight } from 'react-icons/bi';
-import DarkLogo from '../../../assets/Images/DarkLogo.png';
+import DarkLogo from '../../../assets/Images/SagaraResearchLogo.gif';
 import axios from 'axios';
 
 export default function MainNavbar() {
@@ -49,23 +46,14 @@ export default function MainNavbar() {
     },
     {
       key: 3,
-      label: <p style={{ color: 'white' }}>About Us</p>,
-      children: (
-        <div className='flex flex-col gap-4'>
-          <Link to='/about-us/our-teams' style={{ color: 'white' }}>
-            Our Team
-          </Link>
-          <Link to='/about-us/sagara-research' style={{ color: 'white' }}>
-            What is Sagara Research
-          </Link>
-        </div>
+      label: (
+        <Link to='/about-us' style={{ color: 'white' }}>
+          About
+        </Link>
       ),
       style: { borderBottom: '1px solid #404040' },
-      extra: (
-        <div className='rounded-full w-5 text-center text-white bg-[#e31937]'>
-          2
-        </div>
-      ),
+      showArrow: false,
+      collapsible: 'disabled',
     },
   ];
 
@@ -111,7 +99,7 @@ export default function MainNavbar() {
         <div className='flex gap-[70px]'>
           <div>
             <Link to='/'>
-              <img src={DarkLogo} className='w-[164px]' alt='' />
+              <img src={DarkLogo} className='w-[164px] bg-white' alt=' ' />
             </Link>
           </div>
           <div className='hidden md:flex items-center gap-[30px]'>
@@ -124,37 +112,9 @@ export default function MainNavbar() {
             <Link to='/whitepapers/explore-whitepapers'>
               <Typography.MediumText text='Whitepapers' />
             </Link>
-            <Dropdown
-              className='text-black'
-              menu={{
-                items: [
-                  {
-                    label: (
-                      <Link to='/about-us/our-teams'>
-                        <Typography.MediumText text='Our Teams' />
-                      </Link>
-                    ),
-                    key: 0,
-                  },
-                  {
-                    label: (
-                      <Link to='/about-us/sagara-research'>
-                        <Typography.MediumText text='What is Sagara Research' />
-                      </Link>
-                    ),
-                    key: 1,
-                  },
-                ],
-              }}
-            >
-              <Space className='group'>
-                <Typography.MediumText
-                  text='About Us'
-                  className='group-hover:text-red-600 duration-300'
-                />
-                <DownOutlined className='group-hover:text-red-600 duration-300' />
-              </Space>
-            </Dropdown>
+            <Link to='/about-us'>
+              <Typography.MediumText text='About' />
+            </Link>
           </div>
         </div>
         <div className='flex flex-row gap-4 items-center'>

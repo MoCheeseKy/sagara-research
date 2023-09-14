@@ -6,6 +6,7 @@ import OurTeams from './screens/about-us/our-teams';
 import TeamDetail from './screens/about-us/our-teams/team-detail';
 import SagaraResearch from './screens/about-us/sagara-research';
 import ExploreWhitepapers from './screens/whitepapers/explore-whitepapers';
+import AboutUs from './screens/about-us';
 import WhitepaperDetail from './screens/whitepapers/detail';
 import ContactUs from './screens/contact-us';
 
@@ -26,6 +27,7 @@ function App() {
           path='/whitepapers/detail/:slug'
           element={<WhitepaperDetail />}
         />
+        <Route path='/about-us' element={<AboutUs />} />
         <Route path='/about-us/our-teams' element={<OurTeams />} />
         <Route
           path='/about-us/our-teams/team-detail/:id'
