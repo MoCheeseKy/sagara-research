@@ -21,9 +21,12 @@ export default function ContactUsComponent() {
   };
 
   const onSubmit = (e) => {
+    const TelegramToken = process.env.REACT_APP_TELEGRAM_TOKEN;
+    const ChatID = process.env.REACT_APP_TELEGRAM_CHAT_ID;
+    const Messages = `@contact-us%0A%0AName: ${e.name}%0AEmail : ${e.email}%0ADescription : ${e.description}`;
     axios
       .post(
-        `https://api.telegram.org/bot5951291096:AAGU7DOgVUuHfXvJ-rDRCDtlXMSnmBi4CTg/sendMessage?chat_id=-4081985652&text=@contact-us%0A%0AName: ${e.name}%0AEmail : ${e.email}%0ADescription : ${e.description}`
+        `https://api.telegram.org/bot${TelegramToken}/sendMessage?chat_id=${ChatID}&text=${Messages}`
       )
       .then(() => {
         api.success({ message: 'Success send data' });

@@ -87,9 +87,12 @@ export default function MainNavbar() {
   };
 
   const handleSubmit = (e) => {
+    const TelegramToken = process.env.REACT_APP_TELEGRAM_TOKEN;
+    const ChatID = process.env.REACT_APP_TELEGRAM_CHAT_ID;
+    const Messages = `@consult%0A%0AName: ${e.name}%0AEmail : ${e.email}%0APhone : ${e.phone}%0ACompany : ${e.company}%0ANeed : ${e.need}`;
     axios
       .post(
-        `https://api.telegram.org/bot5951291096:AAGU7DOgVUuHfXvJ-rDRCDtlXMSnmBi4CTg/sendMessage?chat_id=-4081985652&text=@consult%0A%0AName: ${e.name}%0AEmail : ${e.email}%0APhone : ${e.phone}%0ACompany : ${e.company}%0ANeed : ${e.need}`
+        `https://api.telegram.org/bot${TelegramToken}/sendMessage?chat_id=${ChatID}&text=${Messages}`
       )
       .then(() => {
         setModalOpen(false);

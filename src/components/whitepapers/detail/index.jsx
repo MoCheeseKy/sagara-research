@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../../service';
 
 import DefaultCover from '../../../assets/Images/DefaultWhitepaperCover.svg';
+import axios from 'axios';
 
 export default function WHitepaperDetailComponent() {
   const params = useParams();
@@ -57,11 +58,21 @@ export default function WHitepaperDetailComponent() {
       formData.append('phone', e.phone);
       formData.append('country', 1);
 
+      const TelegramToken = process.env.REACT_APP_TELEGRAM_TOKEN;
+      const ChatID = process.env.REACT_APP_TELEGRAM_CHAT_ID;
+      const Messages = `@download-research : ${whitepapersDetail?.title}%0A%0AName: ${e.name}%0ACompany : ${e.company}%0APosition : ${e.position}%0AEmail : ${e.email}%0APhone : ${e.phone}%0AResearch Objective : ${e.country}`;
+
       const data = {
         formData,
         slug: slug,
       };
-      dispatch(Whitepapers.DownloadWhitepaper(data));
+      dispatch(Whitepapers.DownloadWhitepaper(data))
+        .unwrap()
+        .then(() => {
+          axios.post(
+            `https://api.telegram.org/bot${TelegramToken}/sendMessage?chat_id=${ChatID}&text=${Messages}`
+          );
+        });
     } else {
       form.validateFields();
     }

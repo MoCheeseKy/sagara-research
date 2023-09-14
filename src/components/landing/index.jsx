@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import { Carousel, notification, Form, Modal } from 'antd';
 import { Link } from 'react-router-dom';
 import { Whitepapers } from '../../service';
+import axios from 'axios';
 
 import Typography from '../_shared/Typography';
 import LandingWhitepaperCard from '../_shared/LandingWhitepaperCard';
@@ -56,11 +57,21 @@ export default function LandingComponent() {
       formData.append('phone', e.phone);
       formData.append('country', 1);
 
+      const TelegramToken = process.env.REACT_APP_TELEGRAM_TOKEN;
+      const ChatID = process.env.REACT_APP_TELEGRAM_CHAT_ID;
+      const Messages = `@download-research : ${highlightWhitepaperList?.results[selectedInsight]?.title}%0A%0AName: ${e.name}%0ACompany : ${e.company}%0APosition : ${e.position}%0AEmail : ${e.email}%0APhone : ${e.phone}%0AResearch Objective : ${e.country}`;
+
       const data = {
         formData,
         slug: highlightWhitepaperList?.results[selectedInsight]?.slug,
       };
-      dispatch(Whitepapers.DownloadWhitepaper(data));
+      dispatch(Whitepapers.DownloadWhitepaper(data))
+        .unwrap()
+        .then(() => {
+          axios.post(
+            `https://api.telegram.org/bot${TelegramToken}/sendMessage?chat_id=${ChatID}&text=${Messages}`
+          );
+        });
     } else {
       form.validateFields();
     }
