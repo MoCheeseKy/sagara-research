@@ -79,9 +79,11 @@ export default function ExploreWhitepapersComponent() {
       .catch(() => {
         api.error({ message: 'Failed get whitepaper' });
       });
-
-    dispatch(Whitepapers.GetHighlightWhitepaper());
   }, [dispatch, api, query]);
+
+  useEffect(() => {
+    dispatch(Whitepapers.GetHighlightWhitepaper());
+  }, [dispatch, Whitepapers])
 
   const paginationChange = (page) => {
     setQuery({ ...query, page });
@@ -584,6 +586,7 @@ export default function ExploreWhitepapersComponent() {
       <Modal
         open={filterModalOpen}
         title='Filter'
+        onCancel={() => setFilterModalOpen(false)}
         footer={
           <div className='flex flex-row gap-3 justify-end'>
             <CustomButton
