@@ -118,7 +118,7 @@ export default function FormDownload({
               </div>
             </Form.Item>
           </div>
-          <CustomButton text='Download' bold className='pt-[12px] pb-[12px]' />
+          <CustomButton text='Download' className='pt-[12px] pb-[12px]' />
         </div>
       </Form>
     </>
