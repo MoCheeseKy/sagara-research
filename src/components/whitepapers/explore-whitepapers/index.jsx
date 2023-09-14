@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useRef } from 'react';
 import Typography from '../../_shared/Typography';
 import CustomButton from '../../_shared/CustomButton';
@@ -49,7 +50,7 @@ export default function ExploreWhitepapersComponent() {
     search: '',
     author: searchParams.get('author') || '',
     theme: '',
-    ordering: '',
+    ordering: '-published_at',
     publish_date_after: '',
     publish_date_before: '',
   });
@@ -76,6 +77,8 @@ export default function ExploreWhitepapersComponent() {
       .catch(() => {
         api.error({ message: 'Failed get whitepaper' });
       });
+      
+    dispatch(Whitepapers.GetHighlightWhitepaper());
   }, [dispatch, api, query]);
 
   const paginationChange = (page) => {
@@ -101,7 +104,7 @@ export default function ExploreWhitepapersComponent() {
 
       const data = {
         formData,
-        slug: 'testing',
+        slug: highlightWhitepaperList?.results[selectedInsight]?.slug,
       };
       dispatch(Whitepapers.DownloadWhitepaper(data));
     } else {
@@ -323,10 +326,12 @@ export default function ExploreWhitepapersComponent() {
                           bold
                         />
                         <div className='flex gap-4 flex-wrap mt-2'>
-                          <Typography.MediumText
-                            text={`Author : ${item.author}`}
-                            className='text-white'
-                          />
+                          <Link to={`/whitepapers/explore-whitepapers?author=${item.author}`}>
+                            <Typography.MediumText
+                              text={`Author : ${item.author}`}
+                              className='text-white hover:text-blue-500'
+                            />
+                          </Link>
                           <Typography.MediumText
                             text={`Published : ${dayjs(
                               item.published_at

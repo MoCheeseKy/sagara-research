@@ -59,7 +59,7 @@ export default function WhitepaperCard({
                     <Link to={`/whitepapers/explore-whitepapers?author=${author}`}>
                       <Typography.SmallText
                         text={`Author : ${author ? author : '-'}`}
-                        className='text-[#808080] mt-2'
+                        className='text-[#808080] hover:text-blue-500 mt-2'
                       />
                     </Link>
                     <Typography.SmallText
