@@ -313,11 +313,13 @@ export default function ExploreResearchComponent() {
                           bold
                         />
                         <div className='flex gap-x-2 flex-wrap mt-2'>
-                          <Typography.MediumText
-                            text={`${item.author}`}
-                            className='text-white'
-                            bold
-                          />
+                          <Link onClick={() => window.location.href = `/research/explore-research?author=${item.author}`}>
+                            <Typography.MediumText
+                              text={`${item.author}`}
+                              className='text-white'
+                              bold
+                            />
+                          </Link>
                           <Typography.MediumText
                             text={`${dayjs(item.published_at).format(
                               'YYYY-MM-DD'
