@@ -57,7 +57,10 @@ export default function ResearchCard({
                     ))}
                   </div>
                   <div>
-                    <Link to={`/research/explore-research?author=${author}`}>
+                    <Link
+                      to={`/research/explore-research?author=${author}`}
+                      onClick={() => window.location.href = `/research/explore-research?author=${author}`}
+                    >
                       <Typography.SmallText
                         text={`Author : ${author ? author : '-'}`}
                         className='text-[#808080] hover:text-blue-500 mt-2'
