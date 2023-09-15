@@ -93,10 +93,10 @@ export default function AboutUsComponent() {
               <div>
                 <Typography.LargeHeading
                   className=' lg:text-[32px]'
-                  text='Expertise'
+                  text='Relevance'
                   bold
                 />
-                <Typography.MediumText text='Our team of seasoned researchers and analysts is dedicated to delivering in-depth, well-researched whitepapers that offer actionable insights.' />
+                <Typography.MediumText text='We focus on trending topics and emerging technologies, ensuring that our collection remains current and valuable.' />
               </div>
             </div>
             <div className='flex items-center gap-6'>
@@ -107,10 +107,10 @@ export default function AboutUsComponent() {
               <div>
                 <Typography.LargeHeading
                   className=' lg:text-[32px]'
-                  text='Expertise'
+                  text='Quality'
                   bold
                 />
-                <Typography.MediumText text='Our team of seasoned researchers and analysts is dedicated to delivering in-depth, well-researched whitepapers that offer actionable insights.' />
+                <Typography.MediumText text='We uphold the highest standards of quality and accuracy in our content to provide you with trustworthy resources.' />
               </div>
             </div>
           </div>
