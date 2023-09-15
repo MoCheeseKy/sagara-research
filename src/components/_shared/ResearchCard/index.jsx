@@ -92,7 +92,7 @@ export default function ResearchCard({
                   <div className='flex gap-2 text-[#808080] items-center'>
                     <FiDownload />
                     <Typography.SmallText
-                      text={`${download ? download : '-'}`}
+                      text={`${download ? download : '0'}`}
                     />
                   </div>
                   <Link
