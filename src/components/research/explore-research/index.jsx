@@ -18,7 +18,7 @@ import {
   Modal,
   Radio,
   Space,
-  // Select,
+  Select,
   DatePicker,
   Carousel,
 } from 'antd';
@@ -59,6 +59,7 @@ export default function ExploreResearchComponent() {
     ordering: '-published_at',
     publish_date_after: '',
     publish_date_before: '',
+    language: ''
   });
   const [formModalOpen, setFormModalOpen] = useState(false);
   const [filterModalOpen, setFilterModalOpen] = useState(false);
@@ -73,6 +74,7 @@ export default function ExploreResearchComponent() {
       ordering: query.ordering,
       publish_date_after: query.publish_date_after,
       publish_date_before: query.publish_date_before,
+      language: query.language
     };
 
     dispatch(Whitepapers.GetWhitepapersList(payload))
@@ -433,6 +435,19 @@ export default function ExploreResearchComponent() {
                 <DatePicker.RangePicker
                   onChange={dateChange}
                   className='custom-input'
+                />
+              </div>
+              <div>
+                <Typography.LargeText text='Search by Language' />
+                <Select
+                  options={[
+                    { label: 'All', value: '' },
+                    { label: 'English', value: 'English' },
+                    { label: 'Indonesia', value: 'Indonesia' },
+                  ]}
+                  className='w-full'
+                  onChange={(e) => setQuery({...query, page: 1, language: e})}
+                  value={query.language}
                 />
               </div>
             </div>
