@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 import DefaultCover from '../../../assets/Images/DefaultWhitepaperCover.svg';
 import React from 'react';
 
+import { AiOutlineUser } from 'react-icons/ai';
+import { BsCalendar2Check } from 'react-icons/bs';
+import { FiDownload } from 'react-icons/fi';
+import { HiLanguage } from 'react-icons/hi2';
+
 export default function ResearchCard({
   image,
   title,
@@ -13,6 +18,7 @@ export default function ResearchCard({
   desc,
   slug,
   download,
+  language,
 }) {
   return (
     <>
@@ -59,21 +65,30 @@ export default function ResearchCard({
                   <div>
                     <Link
                       to={`/research/explore-research?author=${author}`}
-                      onClick={() => window.location.href = `/research/explore-research?author=${author}`}
+                      onClick={() =>
+                        (window.location.href = `/research/explore-research?author=${author}`)
+                      }
+                      className='flex gap-2 mt-2 items-center text-[#808080] hover:text-blue-500'
                     >
-                      <Typography.SmallText
-                        text={`Author : ${author ? author : '-'}`}
-                        className='text-[#808080] hover:text-blue-500 mt-2'
-                      />
+                      <AiOutlineUser />
+                      <Typography.SmallText text={`${author ? author : '-'}`} />
                     </Link>
-                    <Typography.SmallText
-                      text={`Publish : ${date ? date : '-'}`}
-                      className='text-[#808080]'
-                    />
-                    <Typography.SmallText
-                      text={`Download : ${download ? download : '-'}`}
-                      className='text-[#808080] mb-2'
-                    />
+                    <div className='flex gap-2 text-[#808080] items-center'>
+                      <BsCalendar2Check />
+                      <Typography.SmallText text={`${date ? date : '-'}`} />
+                    </div>
+                    <div className='flex gap-2 text-[#808080] items-center'>
+                      <FiDownload />
+                      <Typography.SmallText
+                        text={`${download ? download : '-'}`}
+                      />
+                    </div>
+                    <div className='flex gap-2 mb-2 text-[#808080] items-center'>
+                      <HiLanguage />
+                      <Typography.SmallText
+                        text={`${language ? language : '-'}`}
+                      />
+                    </div>
                     <div className='hidden md:flex md:flex-col'>
                       <Typography.Elipsis
                         text={desc}

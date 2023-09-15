@@ -110,7 +110,7 @@ export default function LandingComponent() {
     return (
       <div className='carousel-button'>
         <CustomButton
-          className={`${className} rounded-full w-[44px] z-50 min-w-[44px] max-w-[44px] h-[44px] min-h-[44px] max-h-[44px] opacity-button`}
+          className={`${className} rounded-full w-[44px] min-w-[44px] max-w-[44px] h-[44px] min-h-[44px] max-h-[44px] opacity-button`}
           style={{
             color: 'white',
             fontSize: '15px',
@@ -262,6 +262,7 @@ export default function LandingComponent() {
                     }
                     author={whitepaper?.author}
                     download={whitepaper?.count_of_downloads}
+                    language={whitepaper?.langguage}
                     topic={whitepaper?.theme}
                     desc={whitepaper?.overview ? whitepaper?.overview : '-'}
                     slug={whitepaper?.slug}
@@ -291,6 +292,7 @@ export default function LandingComponent() {
                     }
                     author={whitepaper?.author}
                     download={whitepaper?.count_of_downloads}
+                    language={whitepaper?.langguage}
                     topic={whitepaper?.theme}
                     desc={whitepaper?.overview ? whitepaper?.overview : '-'}
                     slug={whitepaper?.slug}

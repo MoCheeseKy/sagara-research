@@ -313,7 +313,11 @@ export default function ExploreResearchComponent() {
                           bold
                         />
                         <div className='flex gap-x-2 flex-wrap mt-2'>
-                          <Link onClick={() => window.location.href = `/research/explore-research?author=${item.author}`}>
+                          <Link
+                            onClick={() =>
+                              (window.location.href = `/research/explore-research?author=${item.author}`)
+                            }
+                          >
                             <Typography.MediumText
                               text={`${item.author}`}
                               className='text-white'
@@ -461,6 +465,7 @@ export default function ExploreResearchComponent() {
                           }
                           author={whitepaper?.author}
                           download={whitepaper?.count_of_downloads}
+                          language={whitepaper?.langguage}
                           topic={whitepaper?.theme}
                           desc={
                             whitepaper?.overview ? whitepaper?.overview : '-'
