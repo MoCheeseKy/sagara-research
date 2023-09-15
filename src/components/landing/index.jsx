@@ -242,14 +242,15 @@ export default function LandingComponent() {
         </div>
       </div>
       <div className='flex justify-center w-full'>
-        <div className='py-16 flex flex-col  px-[15px] w-full md:w-[85%] max-w-[1080px]'>
+        <div className='py-16 pb-10 md:pb-16 flex flex-col  px-[15px] w-full md:w-[85%] max-w-[1080px]'>
           <Typography.LargeHeading
             text='Recent Research'
-            className='mb-[30px]'
+            className='mb-[10px] md:mb-[30px]'
           />
           <div className='grid gap-[15px]'>
-            {recentWhitepaperList?.results?.map(
-              (whitepaper, indexWhitepaper) => (
+            {recentWhitepaperList?.results
+              ?.slice(0, 3)
+              .map((whitepaper, indexWhitepaper) => (
                 <React.Fragment key={indexWhitepaper}>
                   <LandingResearchCard
                     image={whitepaper?.image}
@@ -266,8 +267,7 @@ export default function LandingComponent() {
                     slug={whitepaper?.slug}
                   />
                 </React.Fragment>
-              )
-            )}
+              ))}
           </div>
         </div>
       </div>
@@ -275,7 +275,7 @@ export default function LandingComponent() {
         <div className='pb-16 flex flex-col  px-[15px] w-full md:w-[85%] max-w-[1080px]'>
           <Typography.LargeHeading
             text='Popular Research'
-            className='mb-[30px]'
+            className='mb-[10px] md:mb-[30px]'
           />
           <div className='grid gap-[15px]'>
             {popularWhitepaperList?.results?.map(
