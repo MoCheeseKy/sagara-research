@@ -143,22 +143,23 @@ export default function ExploreResearchComponent() {
         ...query,
         publish_date_after: startDate,
         publish_date_before: endDate,
+        page: 1
       });
     } else {
-      setQuery({ ...query, publish_date_after: '', publish_date_before: '' });
+      setQuery({ ...query, publish_date_after: '', publish_date_before: '', page: 1 });
     }
   };
 
   const authorSearch = (e) => {
     if (e.key === 'Enter') {
-      setQuery({ ...query, author: e.target.value });
+      setQuery({ ...query, author: e.target.value, page: 1 });
       setSearchParams(`author=${e.target.value}`);
     }
   };
 
   const topicSearch = (e) => {
     if (e.key === 'Enter') {
-      setQuery({ ...query, theme: e.target.value });
+      setQuery({ ...query, theme: e.target.value, page: 1 });
     }
   };
 
@@ -187,6 +188,7 @@ export default function ExploreResearchComponent() {
     setQuery({
       ...query,
       ...value,
+      page: 1
     });
   };
 
@@ -534,6 +536,7 @@ export default function ExploreResearchComponent() {
                     total={whitepapersList.count}
                     pageSize={5}
                     onChange={paginationChange}
+                    current={query.page}
                   />
                 </div>
               )}
