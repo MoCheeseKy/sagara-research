@@ -70,12 +70,18 @@ export default function FormDownload({
             </Form.Item>
             <Form.Item
               name='phone'
-              rules={[{ required: true, message: 'This Field is required' }]}
+              rules={[
+                {
+                  required: true,
+                  message: 'Please Input Number, This field is required',
+                },
+              ]}
             >
               <CustomInput
+                justNumber
                 placeholder='Phone'
                 type='text'
-                className='py-[6px] px-[18px]'
+                className='py-[6px] w-full px-[8px]'
               />
             </Form.Item>
             <Form.Item

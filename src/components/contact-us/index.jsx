@@ -127,7 +127,7 @@ export default function ContactUsComponent() {
                   >
                     <TextArea
                       placeholder='Input Description'
-                      className='py-[16px] px-[18px]'
+                      className='custom-input py-[16px] px-[18px]'
                     />
                   </Form.Item>
                   <div className='flex justify-end'>

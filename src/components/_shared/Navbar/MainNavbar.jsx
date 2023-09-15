@@ -216,13 +216,16 @@ export default function MainNavbar() {
               <Form.Item
                 name='phone'
                 rules={[
-                  { required: true, message: 'This field is required' },
-                  { type: 'integer', message: 'Please input number' },
+                  {
+                    required: true,
+                    message: 'Please Input Number, This field is required',
+                  },
                 ]}
               >
                 <CustomInput
+                  justNumber
                   placeholder='Phone'
-                  className='py-[10px] px-[18px]'
+                  className='py-[10px] w-full px-[8px]'
                 />
               </Form.Item>
               <Form.Item

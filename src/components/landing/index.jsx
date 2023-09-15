@@ -173,23 +173,23 @@ export default function LandingComponent() {
                         />
                       </div>
                       <div>
-                        <div className='flex  gap-[6px] mb-2'>
+                        <Typography.LargeHeading
+                          text={item.title}
+                          className='text-white lg:text-[28px] mb-2'
+                          bold
+                        />
+                        <div className='flex  gap-[6px] '>
                           {item?.theme?.map((theme, indexTheme) => (
                             <React.Fragment key={indexTheme}>
                               <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
                                 <Typography.Custom
-                                  text={theme ? theme : '-'}
+                                  text={theme?.title ? theme?.title : '-'}
                                   className='text-white text-xs'
                                 />
                               </div>
                             </React.Fragment>
                           ))}
                         </div>
-                        <Typography.LargeHeading
-                          text={item.title}
-                          className='text-white lg:text-[28px]'
-                          bold
-                        />
                         <div className='flex gap-x-2 flex-wrap mt-2'>
                           <Typography.MediumText
                             text={`${item.author}`}
@@ -201,6 +201,11 @@ export default function LandingComponent() {
                               'YYYY-MM-DD'
                             )}`}
                             className='text-white opacity-75'
+                          />
+                          <Typography.MediumText
+                            text={`${item.langguage}`}
+                            className='text-white'
+                            bold
                           />
                         </div>
                         <div className='flex mt-4 gap-4'>
