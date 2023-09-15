@@ -63,14 +63,19 @@ export default function LandingResearchCard({
                   <div className='flex flex-wrap gap-[6px]'>
                     {topic?.map((topic, indexTopic) => (
                       <React.Fragment key={indexTopic}>
-                        <div className='flex gap-[6px]'>
+                        <Link
+                          to={`/research/explore-research?topic=${topic?.title}`}
+                          onClick={() =>
+                            (window.location.href = `/research/explore-research?topic=${topic?.title}`)
+                          }
+                        >
                           <div className='border-primary border-[1px] px-4 rounded-lg w-fit'>
                             <Typography.Custom
                               text={topic?.title ? topic?.title : '-'}
                               className='text-primary text-xs'
                             />
                           </div>
-                        </div>
+                        </Link>
                       </React.Fragment>
                     ))}
                   </div>
@@ -95,12 +100,19 @@ export default function LandingResearchCard({
                         text={`${download ? download : '-'}`}
                       />
                     </div>
-                    <div className='flex gap-2 mb-2 text-[#808080] items-center'>
-                      <HiLanguage />
-                      <Typography.SmallText
-                        text={`${language ? language : '-'}`}
-                      />
-                    </div>
+                    <Link
+                      to={`/research/explore-research?language=${language}`}
+                      onClick={() =>
+                        (window.location.href = `/research/explore-research?language=${language}`)
+                      }
+                    >
+                      <div className='flex gap-2 mb-2 text-[#808080] items-center hover:text-blue-500'>
+                        <HiLanguage />
+                        <Typography.SmallText
+                          text={`${language ? language : '-'}`}
+                        />
+                      </div>
+                    </Link>
                     <div className='hidden md:flex md:flex-col'>
                       <Typography.Elipsis
                         text={desc}
