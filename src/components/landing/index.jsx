@@ -15,6 +15,7 @@ import FormDownload from '../_shared/Form/FormDownload';
 
 // Import Icon
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
+import { HiLanguage } from 'react-icons/hi2';
 
 // Import Image
 import HeroBanner from '../../assets/Images/HeroBanner.svg';
@@ -179,6 +180,14 @@ export default function LandingComponent() {
                           bold
                         />
                         <div className='flex  gap-[6px] '>
+                          <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
+                            <div className='flex items-center gap-2 text-white text-xs'>
+                              <HiLanguage />
+                              <Typography.Custom
+                                text={item?.langguage ? item?.langguage : '-'}
+                              />
+                            </div>
+                          </div>
                           {item?.theme?.map((theme, indexTheme) => (
                             <React.Fragment key={indexTheme}>
                               <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
@@ -201,11 +210,6 @@ export default function LandingComponent() {
                               'YYYY-MM-DD'
                             )}`}
                             className='text-white opacity-75'
-                          />
-                          <Typography.MediumText
-                            text={`${item.langguage}`}
-                            className='text-white'
-                            bold
                           />
                         </div>
                         <div className='flex mt-4 gap-4'>
