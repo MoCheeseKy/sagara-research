@@ -94,7 +94,7 @@ export default function ResearchCard({
                         (window.location.href = `/research/explore-research?language=${language}`)
                       }
                     >
-                      <div className='flex gap-2 mb-2 text-[#808080] items-center'>
+                      <div className='flex gap-2 mb-2 text-[#808080] hover:text-blue-500 items-center'>
                         <HiLanguage />
                         <Typography.SmallText
                           text={`${language ? language : '-'}`}

@@ -181,32 +181,53 @@ export default function LandingComponent() {
                         />
                         <div className='flex  gap-[6px] '>
                           <div className='border-white border-[1px] px-2 rounded-lg w-fit'>
-                            <div className='flex items-center gap-2 text-white text-xs'>
-                              <HiLanguage />
-                              <Typography.Custom
-                                text={item?.langguage ? item?.langguage : '-'}
-                              />
-                            </div>
+                            <Link
+                              to={`/research/explore-research?language=${item?.langguage}`}
+                              onClick={() =>
+                                (window.location.href = `/research/explore-research?language=${item?.langguage}`)
+                              }
+                            >
+                              <div className='flex items-center gap-2 text-white text-xs'>
+                                <HiLanguage />
+                                <Typography.Custom
+                                  text={item?.langguage ? item?.langguage : '-'}
+                                />
+                              </div>
+                            </Link>
                           </div>
                           {item?.theme?.map((theme, indexTheme) => (
                             <React.Fragment key={indexTheme}>
-                              <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
-                                <Typography.Custom
-                                  text={theme?.title ? theme?.title : '-'}
-                                  className='text-white text-xs'
-                                />
-                              </div>
+                              <Link
+                                to={`/research/explore-research?topic=${theme?.title}`}
+                                onClick={() =>
+                                  (window.location.href = `/research/explore-research?topic=${theme?.title}`)
+                                }
+                              >
+                                <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
+                                  <Typography.Custom
+                                    text={theme?.title ? theme?.title : '-'}
+                                    className='text-white text-xs'
+                                  />
+                                </div>
+                              </Link>
                             </React.Fragment>
                           ))}
                         </div>
                         <div className='flex gap-x-2 flex-wrap mt-2'>
+                          <Link
+                            to={`/research/explore-research?author=${item?.author}`}
+                            onClick={() =>
+                              (window.location.href = `/research/explore-research?author=${item?.author}`)
+                            }
+                          >
+                            <Typography.MediumText
+                              text={`${item?.author}`}
+                              className='text-white hover:text-blue-500 hover:underline'
+                              bold
+                            />
+                          </Link>
                           <Typography.MediumText
-                            text={`${item.author}`}
-                            className='text-white'
-                            bold
-                          />
-                          <Typography.MediumText
-                            text={`${dayjs(item.published_at).format(
+                            text={`${dayjs(item?.published_at).format(
                               'YYYY-MM-DD'
                             )}`}
                             className='text-white opacity-75'
@@ -215,7 +236,7 @@ export default function LandingComponent() {
                         <div className='flex mt-4 gap-4'>
                           <Link
                             className='w-fit h-fit'
-                            to={`/research/detail/${item.slug}`}
+                            to={`/research/detail/${item?.slug}`}
                           >
                             <CustomButton
                               text='Learn More'

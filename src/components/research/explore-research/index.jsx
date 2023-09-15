@@ -31,6 +31,7 @@ import { BiUser, BiSearch } from 'react-icons/bi';
 import { GiChampions } from 'react-icons/gi';
 import { PiShareDuotone } from 'react-icons/pi';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
+import { HiLanguage } from 'react-icons/hi2';
 
 // Image Import
 import EmptyState from '../../../assets/Images/EmptyState.svg';
@@ -49,17 +50,19 @@ export default function ExploreResearchComponent() {
   const carouselRef = useRef(null);
 
   const initAuthor = searchParams.get('author') || '';
+  const initLanguage = searchParams.get('language') || '';
+  const initTopic = searchParams.get('topic') || '';
 
   const [query, setQuery] = useState({
     page: 1,
     page_size: 5,
     search: '',
     author: initAuthor,
-    theme: '',
+    theme: initTopic,
     ordering: '-published_at',
     publish_date_after: '',
     publish_date_before: '',
-    language: ''
+    language: initLanguage,
   });
   const [formModalOpen, setFormModalOpen] = useState(false);
   const [filterModalOpen, setFilterModalOpen] = useState(false);
@@ -74,7 +77,7 @@ export default function ExploreResearchComponent() {
       ordering: query.ordering,
       publish_date_after: query.publish_date_after,
       publish_date_before: query.publish_date_before,
-      language: query.language
+      language: query.language,
     };
 
     dispatch(Whitepapers.GetWhitepapersList(payload))
@@ -193,47 +196,49 @@ export default function ExploreResearchComponent() {
 
   const NextArrow = ({ className, style, onClick }) => {
     return (
-      <CustomButton
-        className={`${className} carousel-button`}
-        style={{
-          color: 'white',
-          fontSize: '15px',
-          lineHeight: '1.5715',
-          content: '',
-          padding: '10px 20px',
-          backgroundColor: '#a51535',
-          width: '48px',
-          height: '48px',
-          position: 'absolute',
-          right: '-10%',
-          ...style,
-        }}
-        onClick={onClick}
-        icon={<BsChevronCompactRight className='text-white' size={24} />}
-      />
+      <div className='carousel-button'>
+        <CustomButton
+          className={`${className} rounded-full w-[44px] z-50 min-w-[44px] max-w-[44px] h-[44px] min-h-[44px] max-h-[44px] opacity-button`}
+          style={{
+            color: 'white',
+            fontSize: '15px',
+            lineHeight: '1.5715',
+            content: '',
+            padding: '10px',
+            backgroundColor: '#a51535',
+            width: '48px',
+            height: '48px',
+            position: 'absolute',
+            ...style,
+          }}
+          onClick={onClick}
+          icon={<BsChevronCompactRight className='text-white' size={24} />}
+        />
+      </div>
     );
   };
 
   const PrevArrow = ({ className, style, onClick }) => {
     return (
-      <CustomButton
-        className={`${className} carousel-button`}
-        style={{
-          color: 'white',
-          fontSize: '15px',
-          lineHeight: '1.5715',
-          content: '',
-          padding: '10px 20px',
-          backgroundColor: '#a51535',
-          width: '48px',
-          height: '48px',
-          position: 'absolute',
-          right: '-10%',
-          ...style,
-        }}
-        onClick={onClick}
-        icon={<BsChevronCompactLeft className='text-white' size={24} />}
-      />
+      <div className='carousel-button'>
+        <CustomButton
+          className={`${className} rounded-full w-[44px] min-w-[44px] max-w-[44px] h-[44px] min-h-[44px] max-h-[44px] opacity-button`}
+          style={{
+            color: 'white',
+            fontSize: '15px',
+            lineHeight: '1.5715',
+            content: '',
+            padding: '10px',
+            backgroundColor: '#a51535',
+            width: '48px',
+            height: '48px',
+            position: 'absolute',
+            ...style,
+          }}
+          onClick={onClick}
+          icon={<BsChevronCompactLeft className='text-white' size={24} />}
+        />
+      </div>
     );
   };
 
@@ -297,37 +302,60 @@ export default function ExploreResearchComponent() {
                         />
                       </div>
                       <div>
-                        <div className='flex  gap-[6px] mb-2'>
-                          {item?.theme?.map((theme, indexTheme) => (
-                            <React.Fragment key={indexTheme}>
-                              <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
+                        <Typography.LargeHeading
+                          text={item.title}
+                          className='text-white lg:text-[28px] mb-2'
+                          bold
+                        />
+                        <div className='flex  gap-[6px] '>
+                          <div className='border-white border-[1px] px-2 rounded-lg w-fit'>
+                            <Link
+                              to={`/research/explore-research?language=${item?.langguage}`}
+                              onClick={() =>
+                                (window.location.href = `/research/explore-research?language=${item?.langguage}`)
+                              }
+                            >
+                              <div className='flex items-center gap-2 text-white text-xs'>
+                                <HiLanguage />
                                 <Typography.Custom
-                                  text={theme ? theme : '-'}
-                                  className='text-white text-xs'
+                                  text={item?.langguage ? item?.langguage : '-'}
                                 />
                               </div>
+                            </Link>
+                          </div>
+                          {item?.theme?.map((theme, indexTheme) => (
+                            <React.Fragment key={indexTheme}>
+                              <Link
+                                to={`/research/explore-research?topic=${theme?.title}`}
+                                onClick={() =>
+                                  (window.location.href = `/research/explore-research?topic=${theme?.title}`)
+                                }
+                              >
+                                <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
+                                  <Typography.Custom
+                                    text={theme?.title ? theme?.title : '-'}
+                                    className='text-white text-xs'
+                                  />
+                                </div>
+                              </Link>
                             </React.Fragment>
                           ))}
                         </div>
-                        <Typography.LargeHeading
-                          text={item.title}
-                          className='text-white lg:text-[28px]'
-                          bold
-                        />
                         <div className='flex gap-x-2 flex-wrap mt-2'>
                           <Link
+                            to={`/research/explore-research?author=${item?.author}`}
                             onClick={() =>
-                              (window.location.href = `/research/explore-research?author=${item.author}`)
+                              (window.location.href = `/research/explore-research?author=${item?.author}`)
                             }
                           >
                             <Typography.MediumText
-                              text={`${item.author}`}
-                              className='text-white'
+                              text={`${item?.author}`}
+                              className='text-white hover:text-blue-500 hover:underline'
                               bold
                             />
                           </Link>
                           <Typography.MediumText
-                            text={`${dayjs(item.published_at).format(
+                            text={`${dayjs(item?.published_at).format(
                               'YYYY-MM-DD'
                             )}`}
                             className='text-white opacity-75'
@@ -336,7 +364,7 @@ export default function ExploreResearchComponent() {
                         <div className='flex mt-4 gap-4'>
                           <Link
                             className='w-fit h-fit'
-                            to={`/research/detail/${item.slug}`}
+                            to={`/research/detail/${item?.slug}`}
                           >
                             <CustomButton
                               text='Learn More'
@@ -427,6 +455,7 @@ export default function ExploreResearchComponent() {
                   onKeyUp={topicSearch}
                   size='default'
                   placeholder='Search Topic'
+                  defaultValue={query.theme}
                 />
                 {/* <Select showSearch filterOption={filterOption} className='w-full' options={dummytheme} placeholder='Search Topic' /> */}
               </div>
@@ -446,7 +475,7 @@ export default function ExploreResearchComponent() {
                     { label: 'Indonesia', value: 'Indonesia' },
                   ]}
                   className='w-full'
-                  onChange={(e) => setQuery({...query, page: 1, language: e})}
+                  onChange={(e) => setQuery({ ...query, page: 1, language: e })}
                   value={query.language}
                 />
               </div>
