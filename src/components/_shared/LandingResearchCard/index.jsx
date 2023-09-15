@@ -48,10 +48,16 @@ export default function LandingResearchCard({
                   />
                 </div>
                 <div>
+                  <div className='mb-2'>
+                    <Typography.LargeText
+                      text={title ? `${title}` : '-'}
+                      bold
+                    />
+                  </div>
                   <div className='flex flex-wrap gap-[6px]'>
                     {topic?.map((topic, indexTopic) => (
                       <React.Fragment key={indexTopic}>
-                        <div className='flex gap-[6px] mb-2'>
+                        <div className='flex gap-[6px]'>
                           <div className='border-primary border-[1px] px-4 rounded-lg w-fit'>
                             <Typography.Custom
                               text={topic?.title ? topic?.title : '-'}
@@ -61,12 +67,6 @@ export default function LandingResearchCard({
                         </div>
                       </React.Fragment>
                     ))}
-                  </div>
-                  <div>
-                    <Typography.LargeText
-                      text={title ? `${title}` : '-'}
-                      bold
-                    />
                   </div>
                   <div>
                     <Link to={`/research/explore-research?author=${author}`}>

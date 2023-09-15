@@ -29,7 +29,7 @@ function App() {
         <Route
           path='*'
           element={
-            <MainLayout>
+            <MainLayout title='404 Not Found'>
               <div className='h-[100vh] flex flex-col justify-center items-center'>
                 <div className='h-[64px]'></div>
                 <div
