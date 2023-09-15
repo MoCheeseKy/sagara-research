@@ -143,10 +143,15 @@ export default function ExploreResearchComponent() {
         ...query,
         publish_date_after: startDate,
         publish_date_before: endDate,
-        page: 1
+        page: 1,
       });
     } else {
-      setQuery({ ...query, publish_date_after: '', publish_date_before: '', page: 1 });
+      setQuery({
+        ...query,
+        publish_date_after: '',
+        publish_date_before: '',
+        page: 1,
+      });
     }
   };
 
@@ -188,7 +193,7 @@ export default function ExploreResearchComponent() {
     setQuery({
       ...query,
       ...value,
-      page: 1
+      page: 1,
     });
   };
 
@@ -293,16 +298,18 @@ export default function ExploreResearchComponent() {
                     className='h-[478px] lg:pl-10 flex flex-col w-full justify-between'
                   >
                     <div className='flex flex-col justify-center lg:justify-between h-full pb-6'>
-                      <div
-                        style={{ backgroundImage: `url(${DefaultBanner})` }}
-                        className='w-fit h-fit bg-cover'
-                      >
-                        <img
-                          src={item.image}
-                          alt=' '
-                          className='w-[180px] md:min-w-[180px] md:max-w-[180px] h-fit bg-cover aspect-[3/4]'
-                        />
-                      </div>
+                      <Link to={`/research/detail/${item?.slug}`}>
+                        <div
+                          style={{ backgroundImage: `url(${DefaultBanner})` }}
+                          className='w-fit h-fit bg-cover'
+                        >
+                          <img
+                            src={item.image}
+                            alt=' '
+                            className='w-[180px] md:min-w-[180px] md:max-w-[180px] h-fit bg-cover aspect-[3/4]'
+                          />
+                        </div>
+                      </Link>
                       <div>
                         <Typography.LargeHeading
                           text={item.title}
