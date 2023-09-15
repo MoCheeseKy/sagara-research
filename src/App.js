@@ -1,17 +1,15 @@
 import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+// Import Screens :
 import Landing from './screens';
-import OurTeams from './screens/about-us/our-teams';
-import TeamDetail from './screens/about-us/our-teams/team-detail';
-import SagaraResearch from './screens/about-us/sagara-research';
 import ExploreWhitepapers from './screens/whitepapers/explore-whitepapers';
 import AboutUs from './screens/about-us';
 import WhitepaperDetail from './screens/whitepapers/detail';
 import ContactUs from './screens/contact-us';
-
 import MainLayout from './layouts/MainLayout';
 
+// Importing Image :
 import NotFoundImage from './assets/Images/NotFoundPage.svg';
 
 function App() {
@@ -25,12 +23,6 @@ function App() {
         />
         <Route path='/research/detail/:slug' element={<WhitepaperDetail />} />
         <Route path='/about-us' element={<AboutUs />} />
-        <Route path='/about-us/our-teams' element={<OurTeams />} />
-        <Route
-          path='/about-us/our-teams/team-detail/:id'
-          element={<TeamDetail />}
-        />
-        <Route path='/about-us/sagara-research' element={<SagaraResearch />} />
         <Route path='/contact-us' element={<ContactUs />} />
 
         {/* Handle Not Found */}
