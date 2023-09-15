@@ -1,13 +1,13 @@
 import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
 
 // Import Screens :
 import Landing from './screens';
-import ExploreWhitepapers from './screens/whitepapers/explore-whitepapers';
+import ExploreResearch from './screens/research/explore-research';
+import ResearchDetail from './screens/research/detail';
 import AboutUs from './screens/about-us';
-import WhitepaperDetail from './screens/whitepapers/detail';
 import ContactUs from './screens/contact-us';
-import MainLayout from './layouts/MainLayout';
 
 // Importing Image :
 import NotFoundImage from './assets/Images/NotFoundPage.svg';
@@ -19,9 +19,9 @@ function App() {
         <Route path='/' element={<Landing />} />
         <Route
           path='/research/explore-research'
-          element={<ExploreWhitepapers />}
+          element={<ExploreResearch />}
         />
-        <Route path='/research/detail/:slug' element={<WhitepaperDetail />} />
+        <Route path='/research/detail/:slug' element={<ResearchDetail />} />
         <Route path='/about-us' element={<AboutUs />} />
         <Route path='/contact-us' element={<ContactUs />} />
 

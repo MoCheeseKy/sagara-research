@@ -7,7 +7,7 @@ import { Whitepapers } from '../../service';
 import axios from 'axios';
 
 import Typography from '../_shared/Typography';
-import LandingWhitepaperCard from '../_shared/LandingWhitepaperCard';
+import LandingResearchCard from '../_shared/LandingResearchCard';
 import CustomButton from '../_shared/CustomButton';
 import FormDownload from '../_shared/Form/FormDownload';
 import HeroBanner from '../../assets/Images/HeroBanner.svg';
@@ -241,7 +241,7 @@ export default function LandingComponent() {
             {recentWhitepaperList?.results?.map(
               (whitepaper, indexWhitepaper) => (
                 <React.Fragment key={indexWhitepaper}>
-                  <LandingWhitepaperCard
+                  <LandingResearchCard
                     image={whitepaper?.image}
                     title={whitepaper?.title ? whitepaper?.title : '-'}
                     date={
@@ -271,7 +271,7 @@ export default function LandingComponent() {
             {popularWhitepaperList?.results?.map(
               (whitepaper, indexWhitepaper) => (
                 <React.Fragment key={indexWhitepaper}>
-                  <LandingWhitepaperCard
+                  <LandingResearchCard
                     image={whitepaper?.image}
                     title={whitepaper?.title ? whitepaper?.title : '-'}
                     date={

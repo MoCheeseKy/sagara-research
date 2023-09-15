@@ -18,7 +18,7 @@ import { Whitepapers } from '../../../service';
 import DefaultCover from '../../../assets/Images/DefaultWhitepaperCover.svg';
 import axios from 'axios';
 
-export default function WHitepaperDetailComponent() {
+export default function ResearchDetailComponent() {
   const params = useParams();
   const slug = params.slug;
   const [form] = Form.useForm();

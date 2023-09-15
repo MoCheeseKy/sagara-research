@@ -19,7 +19,7 @@ import {
   Carousel,
 } from 'antd';
 import FormDownload from '../../_shared/Form/FormDownload';
-import WhitepaperCard from '../../_shared/WhitepaperCard';
+import ResearchCard from '../../_shared/ResearchCard';
 import EmptyState from '../../../assets/Images/EmptyState.svg';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,7 +33,7 @@ import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 
 import axios from 'axios';
 
-export default function ExploreWhitepapersComponent() {
+export default function ExploreResearchComponent() {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const [filterForm] = Form.useForm();
@@ -83,7 +83,7 @@ export default function ExploreWhitepapersComponent() {
 
   useEffect(() => {
     dispatch(Whitepapers.GetHighlightWhitepaper());
-  }, [dispatch, Whitepapers])
+  }, [dispatch, Whitepapers]);
 
   const paginationChange = (page) => {
     setQuery({ ...query, page });
@@ -476,7 +476,7 @@ export default function ExploreWhitepapersComponent() {
                   {whitepapersList?.results?.map(
                     (whitepaper, indexWhitepaper) => (
                       <React.Fragment key={indexWhitepaper}>
-                        <WhitepaperCard
+                        <ResearchCard
                           image={whitepaper?.image}
                           title={whitepaper?.title ? whitepaper?.title : '-'}
                           date={
