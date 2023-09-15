@@ -5,6 +5,8 @@ import { Whitepapers } from '../../../service';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import numWords from 'num-words';
+import { capitalizeFirst } from '../../../helper/stringlibs';
 
 // Import Component
 import { Form, notification } from 'antd';
@@ -255,7 +257,7 @@ export default function ResearchDetailComponent() {
             <Typography.MediumText
               text={`${
                 whitepapersDetail?.count_of_downloads
-                  ? whitepapersDetail?.count_of_downloads
+                  ? capitalizeFirst(numWords(whitepapersDetail?.count_of_downloads))
                   : '0'
               } Business Leader has been downloaded this research.`}
               className=' mb-4'
