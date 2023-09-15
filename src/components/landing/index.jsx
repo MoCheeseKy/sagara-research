@@ -180,7 +180,7 @@ export default function LandingComponent() {
                           bold
                         />
                         <div className='flex  gap-[6px] '>
-                          <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
+                          <div className='border-white border-[1px] px-2 rounded-lg w-fit'>
                             <div className='flex items-center gap-2 text-white text-xs'>
                               <HiLanguage />
                               <Typography.Custom
