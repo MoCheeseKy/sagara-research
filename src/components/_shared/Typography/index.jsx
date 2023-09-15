@@ -22,7 +22,7 @@ import ExtraLargeHeading from './ExtraLargeHeading';
 // 30px 36px 48px
 import Insight from './Insight';
 
-export default {
+const Typography = {
   Custom,
   Elipsis,
   SmallText,
@@ -34,3 +34,5 @@ export default {
   ExtraLargeHeading,
   Insight,
 };
+
+export default Typography;
