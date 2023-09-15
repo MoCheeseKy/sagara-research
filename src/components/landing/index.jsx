@@ -1,19 +1,24 @@
+// Import Functional
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import dayjs from 'dayjs';
-import { Carousel, notification, Form, Modal } from 'antd';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../service';
 import axios from 'axios';
+import dayjs from 'dayjs';
 
+// Import Component
+import { Carousel, notification, Form, Modal } from 'antd';
 import Typography from '../_shared/Typography';
 import LandingResearchCard from '../_shared/LandingResearchCard';
 import CustomButton from '../_shared/CustomButton';
 import FormDownload from '../_shared/Form/FormDownload';
+
+// Import Icon
+import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
+
+// Import Image
 import HeroBanner from '../../assets/Images/HeroBanner.svg';
 import DefaultBanner from '../../assets/Images/DefaultWhitepaperCover.svg';
-
-import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 
 export default function LandingComponent() {
   const dispatch = useDispatch();

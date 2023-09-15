@@ -1,22 +1,22 @@
+// import Funtional
 import React, { useEffect } from 'react';
-import Typography from '../../_shared/Typography';
-import { Form, notification } from 'antd';
-import CustomTabs from '../../_shared/CustomTabs';
+import { useDispatch, useSelector } from 'react-redux';
+import { Whitepapers } from '../../../service';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import dayjs from 'dayjs';
-import FormDownload from '../../_shared/Form/FormDownload';
 
-// Import Self Component
+// Import Component
+import { Form, notification } from 'antd';
+import Typography from '../../_shared/Typography';
+import CustomTabs from '../../_shared/CustomTabs';
+import FormDownload from '../../_shared/Form/FormDownload';
 import OverviewComponent from './overview';
 import AboutFGDComponent from './aboutFGD';
 import InsightComponent from './insight';
 
-// Dispatch Setting
-import { useDispatch, useSelector } from 'react-redux';
-import { Whitepapers } from '../../../service';
-
+// Import Image
 import DefaultCover from '../../../assets/Images/DefaultWhitepaperCover.svg';
-import axios from 'axios';
 
 export default function ResearchDetailComponent() {
   const params = useParams();

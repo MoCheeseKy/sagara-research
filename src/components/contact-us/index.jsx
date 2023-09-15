@@ -1,13 +1,16 @@
+// Import Functional
 import React from 'react';
+import axios from 'axios';
+
+// Import Component
 import Typography from '../_shared/Typography';
 import CustomButton from '../_shared/CustomButton';
 import CustomInput from '../_shared/Form/CustomInput';
-import axios from 'axios';
+import { Form, Input, notification } from 'antd';
 
+// Import Icon
 import { MdCall } from 'react-icons/md';
 import { HiMail } from 'react-icons/hi';
-
-import { Form, Input, notification } from 'antd';
 
 export default function ContactUsComponent() {
   const { TextArea } = Input;

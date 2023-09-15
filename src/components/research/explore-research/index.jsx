@@ -1,12 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+// Import Functional
 import React, { useEffect, useState, useRef } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Whitepapers } from '../../../service';
+import axios from 'axios';
+import dayjs from 'dayjs';
+
+// Import Component
 import Typography from '../../_shared/Typography';
 import CustomButton from '../../_shared/CustomButton';
 import CustomInput from '../../_shared/Form/CustomInput';
-import { LiaDownloadSolid } from 'react-icons/lia';
-import { BiUser, BiSearch } from 'react-icons/bi';
-import { GiChampions } from 'react-icons/gi';
-import { PiShareDuotone } from 'react-icons/pi';
 import {
   notification,
   Pagination,
@@ -20,18 +24,18 @@ import {
 } from 'antd';
 import FormDownload from '../../_shared/Form/FormDownload';
 import ResearchCard from '../../_shared/ResearchCard';
-import EmptyState from '../../../assets/Images/EmptyState.svg';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { Whitepapers } from '../../../service';
-import dayjs from 'dayjs';
-import { Link, useSearchParams } from 'react-router-dom';
-
-import HeroBanner from '../../../assets/Images/HeroBanner.svg';
-import DefaultBanner from '../../../assets/Images/DefaultWhitepaperCover.svg';
+// Icon Import
+import { LiaDownloadSolid } from 'react-icons/lia';
+import { BiUser, BiSearch } from 'react-icons/bi';
+import { GiChampions } from 'react-icons/gi';
+import { PiShareDuotone } from 'react-icons/pi';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 
-import axios from 'axios';
+// Image Import
+import EmptyState from '../../../assets/Images/EmptyState.svg';
+import HeroBanner from '../../../assets/Images/HeroBanner.svg';
+import DefaultBanner from '../../../assets/Images/DefaultWhitepaperCover.svg';
 
 export default function ExploreResearchComponent() {
   const dispatch = useDispatch();
@@ -257,39 +261,6 @@ export default function ExploreResearchComponent() {
     ordering: '',
     range_time: null,
   };
-
-  // const filterOption = (input, option) =>
-  //   (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
-
-  // const dummyAuthor = [
-  //   {
-  //     value: 'author_1',
-  //     label: 'Author 1',
-  //   },
-  //   {
-  //     value: 'author_2',
-  //     label: 'Author 2',
-  //   },
-  //   {
-  //     value: 'author_3',
-  //     label: 'Author 3',
-  //   },
-  // ];
-
-  // const dummytheme = [
-  //   {
-  //     value: 'topic_1',
-  //     label: 'Tokpik 1',
-  //   },
-  //   {
-  //     value: 'topic_2',
-  //     label: 'Topik 2',
-  //   },
-  //   {
-  //     value: 'topic_3',
-  //     label: 'Topik 3',
-  //   },
-  // ];
 
   return (
     <>

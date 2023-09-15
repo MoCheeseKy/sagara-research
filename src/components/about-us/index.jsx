@@ -1,6 +1,10 @@
+// Import Functional
 import React from 'react';
+
+// Import Component
 import Typography from '../_shared/Typography';
 
+// Import Image
 import AboutUsHeroImage from '../../assets/Images/AboutUsHeroBanner.svg';
 import CommitmentImage from '../../assets/Images/CommitmentPic.svg';
 import ExpertiseImage from '../../assets/Images/Expertise.svg';
