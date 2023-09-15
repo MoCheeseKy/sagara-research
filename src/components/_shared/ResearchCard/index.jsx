@@ -1,8 +1,9 @@
+import React from 'react';
 import Typography from '../Typography';
 import CustomButton from '../CustomButton';
 import { Link } from 'react-router-dom';
 import DefaultCover from '../../../assets/Images/DefaultWhitepaperCover.svg';
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { AiOutlineUser } from 'react-icons/ai';
 import { BsCalendar2Check } from 'react-icons/bs';
@@ -20,9 +21,16 @@ export default function ResearchCard({
   download,
   language,
 }) {
+  const navigate = useNavigate();
+  const CardNavigate = () => {
+    navigate(`/research/detail/${slug}`);
+  };
   return (
     <>
-      <div className='flex flex-col md:flex-row shadow rounded mt-[15px] hover:mt-0 mb-0 hover:mb-[15px] duration-300 overflow-hidden bg-white'>
+      <div
+        onClick={() => CardNavigate()}
+        className='cursor-pointer flex flex-col md:flex-row shadow rounded mt-[15px] hover:mt-0 mb-0 hover:mb-[15px] duration-300 overflow-hidden bg-white'
+      >
         <div className='p-6 md:p-[30px] flex flex-col'>
           <div className='flex flex-col gap-2'>
             <div className='flex gap-6'>
