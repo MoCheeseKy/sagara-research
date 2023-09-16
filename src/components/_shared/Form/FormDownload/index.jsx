@@ -127,7 +127,7 @@ export default function FormDownload({
           <CustomButton
             text='Download'
             className={`pt-[12px] pb-[12px] ${
-              isLanding ? 'text-lg text-bold' : ''
+              isLanding ? 'text-lg font-bold' : ''
             }`}
           />
         </div>
