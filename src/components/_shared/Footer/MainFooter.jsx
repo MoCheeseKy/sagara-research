@@ -11,7 +11,7 @@ export default function MainFooter() {
           <div className='w-full md:w-[40%] lg:w-[20%] px-[15px]'>
             <Typography.LargeText text='JAKARTA' className='mb-[15px]' />
             <Typography.MediumText
-              text='Wisma KGBI Jl.Jend.Sudirman Kav.28 Bendungan Hilir, Kecamatan Tanah Abang, Jakarta Pusat, DKI Jakarta 10210'
+              text='Wisma GKBI Jl.Jend.Sudirman Kav.28 Bendungan Hilir, Kecamatan Tanah Abang, Jakarta Pusat, DKI Jakarta 10210'
               className='text-[#c0c0c0]'
             />
           </div>
