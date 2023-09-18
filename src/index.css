@@ -39,6 +39,11 @@ span .ant-radio-inner {
   background-color: #fff !important;
 }
 
+span.custom-borderless-input .ant-input {
+  text-align: right;
+  padding-right: 8px;
+}
+
 .custom-input:focus,
 .custom-input:active,
 .custom-input:hover {
