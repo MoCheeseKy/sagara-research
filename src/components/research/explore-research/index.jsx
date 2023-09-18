@@ -170,7 +170,7 @@ export default function ExploreResearchComponent() {
       {context}
       <div className='flex justify-center w-full'>
         <div className='py-16 flex flex-col px-[15px] w-full md:w-[85%] max-w-[1080px]'>
-          <div className='flex flex-row justify-between items-center pt-16'>
+          <div className='flex flex-row justify-between items-center pt-10'>
             <Typography.LargeHeading
               text='Explore Research'
               className='mb-0 flex col-span-4'
