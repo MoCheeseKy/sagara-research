@@ -7,7 +7,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 
 // Import Component
-import { Form, notification } from 'antd';
+import { Form, notification, message } from 'antd';
 import Typography from '../../_shared/Typography';
 import CustomTabs from '../../_shared/CustomTabs';
 import FormDownload from '../../_shared/Form/FormDownload';
@@ -25,6 +25,7 @@ export default function ResearchDetailComponent() {
   const dispatch = useDispatch();
   const { whitepapersDetail } = useSelector((state) => state.whitepaper);
   const [api, context] = notification.useNotification();
+  const [messageApi, contextHolder] = message.useMessage();
 
   useEffect(() => {
     dispatch(Whitepapers.GetWhitepaperDetail(slug))
@@ -78,6 +79,16 @@ export default function ResearchDetailComponent() {
     }
   };
 
+  const saveToClipboard = () => {
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => {
+        messageApi.success('Copied to clipboard')
+      })
+      .catch(() => {
+        messageApi.error('Failed save to clipboard')
+      })
+  }
+
   const FullTabsItem = [
     {
       label: 'Overview',
@@ -127,6 +138,7 @@ export default function ResearchDetailComponent() {
   return (
     <>
       {context}
+      {contextHolder}
       <div className='pt-[65px]' />
       <div className='flex justify-center py-14'>
         <div className='flex flex-col lg:flex-row px-[15px] w-full md:w-[85%] max-w-[1080px] gap-16'>
