@@ -5,7 +5,7 @@ export default function InsightComponent({ data }) {
   return (
     <>
       {data?.insight ? (
-        <div className='grid md:grid-cols-2 gap-12'>
+        <div className='grid gap-6'>
           {data?.insight?.map((insight, indexInsight) => (
             <div key={indexInsight}>
               <Typography.SmallHeading

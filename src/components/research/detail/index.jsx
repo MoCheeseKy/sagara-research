@@ -90,14 +90,6 @@ export default function ResearchDetailComponent() {
       ),
     },
     {
-      label: 'About FGD',
-      children: (
-        <>
-          <AboutFGDComponent data={whitepapersDetail} />
-        </>
-      ),
-    },
-    {
       label: 'Insight',
       children: (
         <>
@@ -105,9 +97,17 @@ export default function ResearchDetailComponent() {
         </>
       ),
     },
+    {
+      label: 'About FGD',
+      children: (
+        <>
+          <AboutFGDComponent data={whitepapersDetail} />
+        </>
+      ),
+    },
   ];
 
-  const TabsItemWithoutInsight = [
+  const TabsItemWithoutFGD = [
     {
       label: 'Overview',
       children: (
@@ -117,10 +117,10 @@ export default function ResearchDetailComponent() {
       ),
     },
     {
-      label: 'About FGD',
+      label: 'Insight',
       children: (
         <>
-          <AboutFGDComponent data={whitepapersDetail} />
+          <InsightComponent data={whitepapersDetail} />
         </>
       ),
     },
@@ -246,9 +246,9 @@ export default function ResearchDetailComponent() {
               </div>
               <CustomTabs
                 Options={
-                  whitepapersDetail?.insight?.length !== 0
+                  whitepapersDetail?.about?.FGD_about
                     ? FullTabsItem
-                    : TabsItemWithoutInsight
+                    : TabsItemWithoutFGD
                 }
               />
             </div>
@@ -257,7 +257,9 @@ export default function ResearchDetailComponent() {
             <Typography.MediumText
               text={`${
                 whitepapersDetail?.count_of_downloads
-                  ? capitalizeFirst(numWords(whitepapersDetail?.count_of_downloads))
+                  ? capitalizeFirst(
+                      numWords(whitepapersDetail?.count_of_downloads)
+                    )
                   : '0'
               } Business Leader has been downloaded this research.`}
               className=' mb-4'
