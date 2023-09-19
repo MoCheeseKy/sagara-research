@@ -34,15 +34,20 @@ import EmptyState from '../../../assets/Images/EmptyState.svg';
 export default function ExploreResearchComponent() {
   const dispatch = useDispatch();
   const [filterForm] = Form.useForm();
+  const [filterModalOpen, setFilterModalOpen] = useState(false);
   const { whitepapersList } = useSelector((state) => state.whitepaper);
+  const [api, context] = notification.useNotification();
   const { search, author, topic, language } = useSelector(
     (state) => state.filter
   );
-  const [api, context] = notification.useNotification();
 
-  useEffect(() => {
-    console.log(search);
-  }, [search]);
+  const filterInitVal = {
+    search: '',
+    author: '',
+    theme: '',
+    ordering: '',
+    range_time: null,
+  };
 
   const [query, setQuery] = useState({
     page: 1,
@@ -55,7 +60,6 @@ export default function ExploreResearchComponent() {
     publish_date_before: '',
     language: language,
   });
-  const [filterModalOpen, setFilterModalOpen] = useState(false);
 
   useEffect(() => {
     const payload = {
@@ -69,19 +73,8 @@ export default function ExploreResearchComponent() {
       language: query.language,
     };
 
-    dispatch(Whitepapers.GetWhitepapersList(payload))
-      .unwrap()
-      .then(() => {
-        api.success({ message: 'Success get whitepaper' });
-      })
-      .catch(() => {
-        api.error({ message: 'Failed get whitepaper' });
-      });
+    dispatch(Whitepapers.GetWhitepapersList(payload)).unwrap();
   }, [dispatch, api, query]);
-
-  useEffect(() => {
-    dispatch(Whitepapers.GetHighlightWhitepaper());
-  }, [dispatch, Whitepapers]);
 
   const paginationChange = (page) => {
     setQuery({ ...query, page });
@@ -152,14 +145,6 @@ export default function ExploreResearchComponent() {
       ...value,
       page: 1,
     });
-  };
-
-  const filterInitVal = {
-    search: '',
-    author: '',
-    theme: '',
-    ordering: '',
-    range_time: null,
   };
 
   return (
