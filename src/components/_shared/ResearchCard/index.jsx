@@ -43,7 +43,7 @@ export default function ResearchCard({
               >
                 <img
                   src={image ? image : DefaultCover}
-                  alt=' '
+                  alt='defaultCover'
                   className='w-[74px] md:min-w-[144px] md:max-w-[144px] aspect-[3/4] h-fit bg-cover'
                 />
               </div>

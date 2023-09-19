@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // Import Functional
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { searchHandler } from '../../../store/global/filter';
 import { Whitepapers } from '../../../service';
 import dayjs from 'dayjs';
 
@@ -35,23 +35,25 @@ export default function ExploreResearchComponent() {
   const dispatch = useDispatch();
   const [filterForm] = Form.useForm();
   const { whitepapersList } = useSelector((state) => state.whitepaper);
+  const { search, author, topic, language } = useSelector(
+    (state) => state.filter
+  );
   const [api, context] = notification.useNotification();
-  const [searchParams, setSearchParams] = useSearchParams();
 
-  const initAuthor = searchParams.get('author') || '';
-  const initLanguage = searchParams.get('language') || '';
-  const initTopic = searchParams.get('topic') || '';
+  useEffect(() => {
+    console.log(search);
+  }, [search]);
 
   const [query, setQuery] = useState({
     page: 1,
     page_size: 5,
-    search: '',
-    author: initAuthor,
-    theme: initTopic,
+    search: search,
+    author: author,
+    theme: topic,
     ordering: '-published_at',
     publish_date_after: '',
     publish_date_before: '',
-    language: initLanguage,
+    language: language,
   });
   const [filterModalOpen, setFilterModalOpen] = useState(false);
 
@@ -114,7 +116,6 @@ export default function ExploreResearchComponent() {
   const authorSearch = (e) => {
     if (e.key === 'Enter') {
       setQuery({ ...query, author: e.target.value, page: 1 });
-      setSearchParams(`author=${e.target.value}`);
     }
   };
 
@@ -152,10 +153,6 @@ export default function ExploreResearchComponent() {
       page: 1,
     });
   };
-
-  useEffect(() => {
-    setQuery({ ...query, author: initAuthor });
-  }, [initAuthor]);
 
   const filterInitVal = {
     search: '',
@@ -195,6 +192,8 @@ export default function ExploreResearchComponent() {
               <CustomInput
                 className='md:col-start-6 md:col-end-13 py-[10px] px-[18px] mt-[-10px] md:mt-0'
                 placeholder='Press enter to search'
+                value={search}
+                onChange={(e) => dispatch(searchHandler(e.target.value))}
                 onKeyUp={handleSearch}
                 prefix={<BiSearch />}
               />

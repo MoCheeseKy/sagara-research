@@ -40,7 +40,7 @@ export default function LandingResearchCard({
         >
           <img
             src={image ? image : DefaultCover}
-            alt=' '
+            alt='defaultCover'
             className='md:min-w-[260px] md:max-w-[260px] aspect-[3/4] h-fit bg-cover'
           />
         </div>
@@ -56,7 +56,7 @@ export default function LandingResearchCard({
               >
                 <img
                   src={image ? image : DefaultCover}
-                  alt=' '
+                  alt='defaultCover'
                   className='w-[74px] md:hidden md:min-w-[144px] md:max-w-[144px] aspect-[3/4] h-fit bg-cover'
                 />
               </div>

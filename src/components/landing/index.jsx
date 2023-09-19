@@ -87,7 +87,9 @@ export default function LandingComponent() {
     return (
       <div className='carousel-button'>
         <CustomButton
-          className={`${className} rounded-full w-[44px] z-50 min-w-[44px] max-w-[44px] h-[44px] min-h-[44px] max-h-[44px] opacity-button`}
+          icon={<BsChevronCompactRight className='text-white' size={24} />}
+          onClick={onClick}
+          className={`${className} relative z-50 rounded-full w-[44px]  min-w-[44px] max-w-[44px] h-[44px] min-h-[44px] max-h-[44px] opacity-button`}
           style={{
             color: 'white',
             fontSize: '15px',
@@ -100,8 +102,6 @@ export default function LandingComponent() {
             position: 'absolute',
             ...style,
           }}
-          onClick={onClick}
-          icon={<BsChevronCompactRight className='text-white' size={24} />}
         />
       </div>
     );
@@ -111,7 +111,9 @@ export default function LandingComponent() {
     return (
       <div className='carousel-button'>
         <CustomButton
-          className={`${className} rounded-full w-[44px] min-w-[44px] max-w-[44px] h-[44px] min-h-[44px] max-h-[44px] opacity-button`}
+          icon={<BsChevronCompactLeft className='text-white' size={24} />}
+          onClick={onClick}
+          className={`${className} relative z-50 rounded-full w-[44px] min-w-[44px] max-w-[44px] h-[44px] min-h-[44px] max-h-[44px] opacity-button`}
           style={{
             color: 'white',
             fontSize: '15px',
@@ -124,8 +126,6 @@ export default function LandingComponent() {
             position: 'absolute',
             ...style,
           }}
-          onClick={onClick}
-          icon={<BsChevronCompactLeft className='text-white' size={24} />}
         />
       </div>
     );
@@ -170,7 +170,7 @@ export default function LandingComponent() {
                         >
                           <img
                             src={item.image}
-                            alt=' '
+                            alt='defaultBanner'
                             className='w-[180px] md:min-w-[180px] md:max-w-[180px] h-fit bg-cover aspect-[3/4]'
                           />
                         </div>

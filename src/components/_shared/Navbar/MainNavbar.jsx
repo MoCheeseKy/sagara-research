@@ -52,7 +52,7 @@ export default function MainNavbar() {
         <div className='flex gap-[70px]'>
           <div>
             <Link to='/'>
-              <img src={DarkLogo} className='w-[164px] bg-white' alt=' ' />
+              <img src={DarkLogo} className='w-[164px] bg-white' alt='logo' />
             </Link>
           </div>
           <div className='hidden md:flex items-center gap-[30px]'>

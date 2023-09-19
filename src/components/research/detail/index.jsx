@@ -80,14 +80,15 @@ export default function ResearchDetailComponent() {
   };
 
   const saveToClipboard = () => {
-    navigator.clipboard.writeText(window.location.href)
+    navigator.clipboard
+      .writeText(window.location.href)
       .then(() => {
-        messageApi.success('Copied to clipboard')
+        messageApi.success('Copied to clipboard');
       })
       .catch(() => {
-        messageApi.error('Failed save to clipboard')
-      })
-  }
+        messageApi.error('Failed save to clipboard');
+      });
+  };
 
   const FullTabsItem = [
     {
@@ -149,7 +150,7 @@ export default function ResearchDetailComponent() {
             >
               <img
                 src={whitepapersDetail?.image}
-                alt=' '
+                alt='defaultCover'
                 className='w-full md:w-[124px] md:min-w-[124px] h-fit aspect-[3/4] rounded bg-cover'
               />
             </div>
