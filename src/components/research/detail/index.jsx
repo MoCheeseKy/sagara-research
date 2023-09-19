@@ -96,9 +96,13 @@ export default function ResearchDetailComponent() {
       dispatch(Whitepapers.DownloadWhitepaper(data))
         .unwrap()
         .then(() => {
+          api.success({ message: 'Success Download' });
           axios.post(
             `https://api.telegram.org/bot${TelegramToken}/sendMessage?chat_id=${ChatID}&text=${Messages}`
           );
+        })
+        .catch(() => {
+          api.error({ message: 'Failed Download' });
         });
     } else {
       form.validateFields();
