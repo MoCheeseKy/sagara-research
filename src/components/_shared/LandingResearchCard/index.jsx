@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from '../Typography';
 import CustomButton from '../CustomButton';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   resetFilter,
   authorHandler,
@@ -54,49 +54,40 @@ export default function LandingResearchCard({
   return (
     <>
       <div className=' flex flex-col md:flex-row shadow rounded mt-[15px] lg:hover:mt-0 lg:mb-0 lg:hover:mb-[15px] duration-300 overflow-hidden bg-white'>
-        <div
+        <img
           onClick={() => CardNavigate('Open Detail')}
-          className='w-fit cursor-pointer h-fit hidden md:flex'
-        >
-          <img
-            src={image ? image : DefaultCover}
-            onError={({ currentTarget }) => {
-              currentTarget.onerror = null;
-              currentTarget.src = DefaultCover;
-            }}
-            alt='defaultCover'
-            className='md:min-w-[260px] md:max-w-[260px] aspect-[3/4] h-fit bg-cover'
-          />
-        </div>
+          src={image ? image : DefaultCover}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src = DefaultCover;
+          }}
+          alt='defaultCover'
+          className='cursor-pointer md:min-w-[260px] md:max-w-[260px] aspect-[3/4] h-fit bg-cover'
+        />
         <div className='p-6 md:p-[30px] flex flex-col'>
           <div className='flex flex-col gap-2'>
             <div className='flex gap-6'>
-              <div
+              <img
                 onClick={() => CardNavigate('Open Detail')}
-                className='cursor-pointer w-fit h-fit'
-              >
-                <img
-                  src={image ? image : DefaultCover}
-                  onError={({ currentTarget }) => {
-                    currentTarget.onerror = null;
-                    currentTarget.src = DefaultCover;
-                  }}
-                  alt='defaultCover'
-                  className='w-[74px] md:hidden md:min-w-[144px] md:max-w-[144px] aspect-[3/4] h-fit bg-cover'
-                />
-              </div>
+                src={image ? image : DefaultCover}
+                onError={({ currentTarget }) => {
+                  currentTarget.onerror = null;
+                  currentTarget.src = DefaultCover;
+                }}
+                alt='defaultCover'
+                className='cursor-pointer w-[74px] md:hidden md:min-w-[144px] md:max-w-[144px] aspect-[3/4] h-fit bg-cover'
+              />
               <div>
-                <button onClick={() => CardNavigate('Open Detail')}>
-                  <Typography.LargeText
-                    className='cursor-pointer w-fit mb-2'
-                    text={title ? `${title}` : '-'}
-                    bold
-                  />
-                </button>
+                <Typography.LargeText
+                  onClick={() => CardNavigate('Open Detail')}
+                  className='cursor-pointer w-fit mb-2'
+                  text={title ? `${title}` : '-'}
+                  bold
+                />
                 <div className='flex flex-wrap gap-[6px]'>
                   {topic?.map((topic, indexTopic) => (
                     <React.Fragment key={indexTopic}>
-                      <div
+                      <button
                         onClick={() =>
                           CardNavigate('Topic Filter', topic?.title)
                         }
@@ -106,7 +97,7 @@ export default function LandingResearchCard({
                           text={topic?.title ? topic?.title : '-'}
                           className='text-primary text-xs'
                         />
-                      </div>
+                      </button>
                     </React.Fragment>
                   ))}
                 </div>
@@ -145,12 +136,11 @@ export default function LandingResearchCard({
                       className='text-[#808080] cursor-pointer'
                       onClick={() => CardNavigate('Open Detail')}
                     />
-                    <Link to={`/research/detail/${slug}`}>
-                      <CustomButton
-                        text='Learn More'
-                        className='w-fit text-sm py-2'
-                      />
-                    </Link>
+                    <CustomButton
+                      text='Learn More'
+                      className='w-fit text-sm py-2'
+                      onClick={() => CardNavigate('Open Detail')}
+                    />
                   </div>
                 </div>
               </div>
@@ -162,12 +152,11 @@ export default function LandingResearchCard({
                 className='text-[#808080] cursor-pointer'
                 onClick={() => CardNavigate('Open Detail')}
               />
-              <Link to={`/research/detail/${slug}`}>
-                <CustomButton
-                  text='Learn More'
-                  className='w-fit text-sm py-2'
-                />
-              </Link>
+              <CustomButton
+                text='Learn More'
+                className='w-fit text-sm py-2'
+                onClick={() => CardNavigate('Open Detail')}
+              />
             </div>
           </div>
         </div>

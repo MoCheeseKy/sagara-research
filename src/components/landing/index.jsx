@@ -1,6 +1,6 @@
 // Import Functional
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../service';
 import {
@@ -194,37 +194,28 @@ export default function LandingComponent() {
                     className='h-[478px] lg:pl-10 flex flex-col w-full justify-between'
                   >
                     <div className='flex flex-col justify-center lg:justify-between h-full pb-6'>
-                      <button
-                        className='w-fit'
+                      <img
                         onClick={() => CardNavigate('Open Detail', item?.slug)}
-                      >
-                        <div className='w-fit h-fit bg-cover'>
-                          <img
-                            src={item.image}
-                            onError={({ currentTarget }) => {
-                              currentTarget.onerror = null;
-                              currentTarget.src = DefaultBanner;
-                            }}
-                            alt='defaultBanner'
-                            className='w-[180px] md:min-w-[180px] md:max-w-[180px] h-fit bg-cover aspect-[3/4]'
-                          />
-                        </div>
-                      </button>
+                        src={item.image}
+                        onError={({ currentTarget }) => {
+                          currentTarget.onerror = null;
+                          currentTarget.src = DefaultBanner;
+                        }}
+                        alt='defaultBanner'
+                        className='w-[180px] md:min-w-[180px] md:max-w-[180px] h-fit bg-cover aspect-[3/4]'
+                      />
                       <div>
-                        <div
+                        <Typography.LargeHeading
                           onClick={() =>
                             CardNavigate('Open Detail', item?.slug)
                           }
-                        >
-                          <Typography.LargeHeading
-                            text={item.title}
-                            className='text-white cursor-pointer lg:text-[28px] mb-2'
-                            bold
-                          />
-                        </div>
+                          text={item.title}
+                          className='text-white cursor-pointer lg:text-[28px] mb-2'
+                          bold
+                        />
                         <div className='flex  gap-[6px] '>
                           <div className='border-white border-[1px] px-2 rounded-lg w-fit'>
-                            <div
+                            <button
                               onClick={() =>
                                 CardNavigate('Language Filter', item?.langguage)
                               }
@@ -234,11 +225,11 @@ export default function LandingComponent() {
                               <Typography.Custom
                                 text={item?.langguage ? item?.langguage : '-'}
                               />
-                            </div>
+                            </button>
                           </div>
                           {item?.theme?.map((theme, indexTheme) => (
                             <React.Fragment key={indexTheme}>
-                              <div
+                              <button
                                 onClick={() =>
                                   CardNavigate('Topic Filter', theme?.title)
                                 }
@@ -248,7 +239,7 @@ export default function LandingComponent() {
                                   text={theme?.title ? theme?.title : '-'}
                                   className='text-white text-xs'
                                 />
-                              </div>
+                              </button>
                             </React.Fragment>
                           ))}
                         </div>
@@ -272,15 +263,11 @@ export default function LandingComponent() {
                           />
                         </div>
                         <div className='flex mt-4 gap-4'>
-                          <Link
-                            className='w-fit h-fit'
-                            to={`/research/detail/${item?.slug}`}
-                          >
-                            <CustomButton
-                              text='Learn More'
-                              className='bg-transparent text-sm py-2 border-white border-[1px] text-white'
-                            />
-                          </Link>
+                          <CustomButton
+                            text='Learn More'
+                            className='bg-transparent text-sm py-2 border-white border-[1px] text-white'
+                            onClick={() => CardNavigate('Open Detail')}
+                          />
                           <CustomButton
                             text='Download'
                             className='lg:hidden'
