@@ -1,8 +1,14 @@
 // Import Functional
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../service';
+import {
+  topicHandler,
+  authorHandler,
+  languageHandler,
+  resetFilter,
+} from '../../store/global/filter';
 import axios from 'axios';
 import dayjs from 'dayjs';
 
@@ -23,6 +29,7 @@ import DefaultBanner from '../../assets/Images/DefaultWhitepaperCover.svg';
 
 export default function LandingComponent() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const [api, context] = notification.useNotification();
   const [modalOpen, setModalOpen] = useState(false);
@@ -141,6 +148,26 @@ export default function LandingComponent() {
     waitForAnimate: true,
   };
 
+  function CardNavigate(type, value) {
+    if (type === 'Open Detail') {
+      navigate(`/research/detail/${value}`);
+    } else if (type !== 'Open Detail') {
+      if (type === 'Topic Filter') {
+        dispatch(resetFilter());
+        dispatch(topicHandler(value));
+      } else if (type === 'Author Filter') {
+        dispatch(resetFilter());
+        dispatch(authorHandler(value));
+      } else {
+        dispatch(resetFilter());
+        dispatch(languageHandler(value));
+      }
+      navigate(`/research/explore-research`);
+    } else {
+      navigate(`/`);
+    }
+  }
+
   return (
     <>
       {context}
@@ -163,7 +190,10 @@ export default function LandingComponent() {
                     className='h-[478px] lg:pl-10 flex flex-col w-full justify-between'
                   >
                     <div className='flex flex-col justify-center lg:justify-between h-full pb-6'>
-                      <Link to={`/research/detail/${item?.slug}`}>
+                      <button
+                        className='w-fit'
+                        onClick={() => CardNavigate('Open Detail', item?.slug)}
+                      >
                         <div
                           style={{ backgroundImage: `url(${DefaultBanner})` }}
                           className='w-fit h-fit bg-cover'
@@ -174,60 +204,61 @@ export default function LandingComponent() {
                             className='w-[180px] md:min-w-[180px] md:max-w-[180px] h-fit bg-cover aspect-[3/4]'
                           />
                         </div>
-                      </Link>
+                      </button>
                       <div>
-                        <Typography.LargeHeading
-                          text={item.title}
-                          className='text-white lg:text-[28px] mb-2'
-                          bold
-                        />
+                        <div
+                          onClick={() =>
+                            CardNavigate('Open Detail', item?.slug)
+                          }
+                        >
+                          <Typography.LargeHeading
+                            text={item.title}
+                            className='text-white cursor-pointer lg:text-[28px] mb-2'
+                            bold
+                          />
+                        </div>
                         <div className='flex  gap-[6px] '>
                           <div className='border-white border-[1px] px-2 rounded-lg w-fit'>
-                            <Link
-                              to={`/research/explore-research?language=${item?.langguage}`}
+                            <div
                               onClick={() =>
-                                (window.location.href = `/research/explore-research?language=${item?.langguage}`)
+                                CardNavigate('Language Filter', item?.langguage)
                               }
+                              className='flex items-center cursor-pointer gap-2 text-white text-xs'
                             >
-                              <div className='flex items-center gap-2 text-white text-xs'>
-                                <HiLanguage />
-                                <Typography.Custom
-                                  text={item?.langguage ? item?.langguage : '-'}
-                                />
-                              </div>
-                            </Link>
+                              <HiLanguage />
+                              <Typography.Custom
+                                text={item?.langguage ? item?.langguage : '-'}
+                              />
+                            </div>
                           </div>
                           {item?.theme?.map((theme, indexTheme) => (
                             <React.Fragment key={indexTheme}>
-                              <Link
-                                to={`/research/explore-research?topic=${theme?.title}`}
+                              <div
                                 onClick={() =>
-                                  (window.location.href = `/research/explore-research?topic=${theme?.title}`)
+                                  CardNavigate('Topic Filter', theme?.title)
                                 }
+                                className='border-white border-[1px] px-4 rounded-lg cursor-pointer w-fit'
                               >
-                                <div className='border-white border-[1px] px-4 rounded-lg w-fit'>
-                                  <Typography.Custom
-                                    text={theme?.title ? theme?.title : '-'}
-                                    className='text-white text-xs'
-                                  />
-                                </div>
-                              </Link>
+                                <Typography.Custom
+                                  text={theme?.title ? theme?.title : '-'}
+                                  className='text-white text-xs'
+                                />
+                              </div>
                             </React.Fragment>
                           ))}
                         </div>
                         <div className='flex gap-x-2 flex-wrap mt-2'>
-                          <Link
-                            to={`/research/explore-research?author=${item?.author}`}
+                          <button
                             onClick={() =>
-                              (window.location.href = `/research/explore-research?author=${item?.author}`)
+                              CardNavigate('Author Filter', item?.author)
                             }
                           >
                             <Typography.MediumText
                               text={`${item?.author}`}
-                              className='text-white hover:text-blue-500 hover:underline'
+                              className='text-white cursor-pointer hover:text-blue-500 hover:underline'
                               bold
                             />
-                          </Link>
+                          </button>
                           <Typography.MediumText
                             text={`${dayjs(item?.published_at).format(
                               'YYYY-MM-DD'

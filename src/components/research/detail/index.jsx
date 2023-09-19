@@ -150,6 +150,7 @@ export default function ResearchDetailComponent() {
               <Typography.MediumHeading
                 text={whitepapersDetail?.title ? whitepapersDetail?.title : '-'}
                 className='w-[80%]'
+                bold
               />
               <Typography.MediumText
                 text={
