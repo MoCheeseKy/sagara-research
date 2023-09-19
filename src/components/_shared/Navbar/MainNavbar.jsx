@@ -1,14 +1,30 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { searchHandler, resetFilter } from '../../../store/global/filter';
+
 import { Button, Drawer, Collapse } from 'antd';
 import Typography from '../Typography';
-import { Link } from 'react-router-dom';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { BiChevronRight, BiSearch } from 'react-icons/bi';
-import DarkLogo from '../../../assets/Images/SagaraResearchLogo.gif';
 import { Input } from 'antd';
 
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { BiChevronRight, BiSearch } from 'react-icons/bi';
+
+import DarkLogo from '../../../assets/Images/SagaraResearchLogo.gif';
+
 export default function MainNavbar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [Search, setSearch] = useState('');
+
+  function FilterSearch(e) {
+    if (e.key === 'Enter') {
+      dispatch(resetFilter());
+      dispatch(searchHandler(Search));
+      navigate('/research/explore-research');
+    }
+  }
 
   const collapseItem = [
     {
@@ -78,6 +94,8 @@ export default function MainNavbar() {
               placeholder='Find Research'
               className='flex flex-row-reverse justify-end custom-borderless-input'
               prefix={<BiSearch />}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyUp={(e) => FilterSearch(e)}
             />
           </div>
           <BiSearch className='lg:hidden' />

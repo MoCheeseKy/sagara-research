@@ -23,10 +23,21 @@ export const filterSlicer = createSlice({
     languageHandler: (state, action) => {
       state.language = action.payload;
     },
+    resetFilter: (state) => {
+      state.search = '';
+      state.author = '';
+      state.topic = '';
+      state.language = '';
+    },
   },
 });
 
-export const { searchHandler, authorHandler, topicHandler, languageHandler } =
-  filterSlicer.actions;
+export const {
+  searchHandler,
+  authorHandler,
+  topicHandler,
+  languageHandler,
+  resetFilter,
+} = filterSlicer.actions;
 
 export default filterSlicer.reducer;

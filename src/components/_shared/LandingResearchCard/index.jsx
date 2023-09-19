@@ -1,14 +1,21 @@
 import React from 'react';
 import Typography from '../Typography';
 import CustomButton from '../CustomButton';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import DefaultCover from '../../../assets/Images/DefaultWhitepaperCover.svg';
+import { Link, useNavigate } from 'react-router-dom';
+import {
+  resetFilter,
+  authorHandler,
+  topicHandler,
+  languageHandler,
+} from '../../../store/global/filter';
+import { useDispatch } from 'react-redux';
 
 import { AiOutlineUser } from 'react-icons/ai';
 import { BsCalendar2Check } from 'react-icons/bs';
 import { FiDownload } from 'react-icons/fi';
 import { HiLanguage } from 'react-icons/hi2';
+
+import DefaultCover from '../../../assets/Images/DefaultWhitepaperCover.svg';
 
 export default function LandingResearchCard({
   image,
@@ -21,18 +28,35 @@ export default function LandingResearchCard({
   download,
   language,
 }) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const CardNavigate = () => {
-    navigate(`/research/detail/${slug}`);
-  };
+
+  function CardNavigate(type, value) {
+    if (type === 'Open Detail') {
+      navigate(`/research/detail/${slug}`);
+    } else if (type !== 'Open Detail') {
+      if (type === 'Topic Filter') {
+        dispatch(resetFilter());
+        dispatch(topicHandler(value));
+      } else if (type === 'Author Filter') {
+        dispatch(resetFilter());
+        dispatch(authorHandler(value));
+      } else {
+        dispatch(resetFilter());
+        dispatch(languageHandler(value));
+      }
+      navigate(`/research/explore-research`);
+    } else {
+      navigate(`/`);
+    }
+  }
+
   return (
     <>
-      <div
-        onClick={() => CardNavigate()}
-        className='cursor-pointer flex flex-col md:flex-row shadow rounded mt-[15px] hover:mt-0 mb-0 hover:mb-[15px] duration-300 overflow-hidden bg-white'
-      >
+      <div className=' flex flex-col md:flex-row shadow rounded mt-[15px] lg:hover:mt-0 lg:mb-0 lg:hover:mb-[15px] duration-300 overflow-hidden bg-white'>
         <div
-          className='w-fit h-fit hidden md:flex'
+          onClick={() => CardNavigate('Open Detail')}
+          className='w-fit cursor-pointer h-fit hidden md:flex'
           style={{
             backgroundImage: `url(${DefaultCover})`,
             backgroundSize: 'cover',
@@ -48,7 +72,8 @@ export default function LandingResearchCard({
           <div className='flex flex-col gap-2'>
             <div className='flex gap-6'>
               <div
-                className='w-fit h-fit'
+                onClick={() => CardNavigate('Open Detail')}
+                className='cursor-pointer w-fit h-fit'
                 style={{
                   backgroundImage: `url(${DefaultCover})`,
                   backgroundSize: 'cover',
@@ -61,39 +86,38 @@ export default function LandingResearchCard({
                 />
               </div>
               <div>
-                <div className='mb-2'>
-                  <Typography.LargeText text={title ? `${title}` : '-'} bold />
-                </div>
+                <button onClick={() => CardNavigate('Open Detail')}>
+                  <Typography.LargeText
+                    className='cursor-pointer w-fit mb-2'
+                    text={title ? `${title}` : '-'}
+                    bold
+                  />
+                </button>
                 <div className='flex flex-wrap gap-[6px]'>
                   {topic?.map((topic, indexTopic) => (
                     <React.Fragment key={indexTopic}>
-                      <Link
-                        to={`/research/explore-research?topic=${topic?.title}`}
+                      <div
                         onClick={() =>
-                          (window.location.href = `/research/explore-research?topic=${topic?.title}`)
+                          CardNavigate('Topic Filter', topic?.title)
                         }
+                        className='border-primary cursor-pointer border-[1px] px-4 rounded-lg w-fit'
                       >
-                        <div className='border-primary border-[1px] px-4 rounded-lg w-fit'>
-                          <Typography.Custom
-                            text={topic?.title ? topic?.title : '-'}
-                            className='text-primary text-xs'
-                          />
-                        </div>
-                      </Link>
+                        <Typography.Custom
+                          text={topic?.title ? topic?.title : '-'}
+                          className='text-primary text-xs'
+                        />
+                      </div>
                     </React.Fragment>
                   ))}
                 </div>
                 <div>
-                  <Link
-                    to={`/research/explore-research?author=${author}`}
-                    onClick={() =>
-                      (window.location.href = `/research/explore-research?author=${author}`)
-                    }
-                    className='flex gap-2 mt-2 items-center text-[#808080] hover:text-blue-500'
+                  <button
+                    onClick={() => CardNavigate('Author Filter', author)}
+                    className='flex cursor-pointer gap-2 mt-2 items-center text-[#808080] hover:text-blue-500'
                   >
                     <AiOutlineUser />
                     <Typography.SmallText text={`${author ? author : '-'}`} />
-                  </Link>
+                  </button>
                   <div className='flex gap-2 text-[#808080] items-center'>
                     <BsCalendar2Check />
                     <Typography.SmallText text={`${date ? date : '-'}`} />
@@ -104,11 +128,8 @@ export default function LandingResearchCard({
                       text={`${download ? download : '0'}`}
                     />
                   </div>
-                  <Link
-                    to={`/research/explore-research?language=${language}`}
-                    onClick={() =>
-                      (window.location.href = `/research/explore-research?language=${language}`)
-                    }
+                  <button
+                    onClick={() => CardNavigate('Language Filter', language)}
                   >
                     <div className='flex gap-2 mb-2 text-[#808080] items-center hover:text-blue-500'>
                       <HiLanguage />
@@ -116,12 +137,13 @@ export default function LandingResearchCard({
                         text={`${language ? language : '-'}`}
                       />
                     </div>
-                  </Link>
+                  </button>
                   <div className='hidden md:flex md:flex-col'>
                     <Typography.Elipsis
                       text={desc}
                       ellipsis={3}
-                      className='text-[#808080]'
+                      className='text-[#808080] cursor-pointer'
+                      onClick={() => CardNavigate('Open Detail')}
                     />
                     <Link to={`/research/detail/${slug}`}>
                       <CustomButton
@@ -137,7 +159,8 @@ export default function LandingResearchCard({
               <Typography.Elipsis
                 text={desc}
                 ellipsis={3}
-                className='text-[#808080]'
+                className='text-[#808080] cursor-pointer'
+                onClick={() => CardNavigate('Open Detail')}
               />
               <Link to={`/research/detail/${slug}`}>
                 <CustomButton

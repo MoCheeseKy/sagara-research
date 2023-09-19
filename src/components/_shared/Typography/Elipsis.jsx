@@ -3,12 +3,13 @@ import React from 'react';
 import { Typography } from 'antd';
 const { Paragraph } = Typography;
 
-export default function Elipsis({ text, ellipsis }) {
+export default function Elipsis({ text, ellipsis, ...props }) {
   return (
     <Paragraph
       ellipsis={{
         rows: ellipsis,
       }}
+      {...props}
     >
       {text}
     </Paragraph>

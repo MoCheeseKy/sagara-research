@@ -47,6 +47,7 @@ export default function ExploreResearchComponent() {
     theme: '',
     ordering: '',
     range_time: null,
+    language: '',
   };
 
   const [query, setQuery] = useState({
@@ -60,6 +61,20 @@ export default function ExploreResearchComponent() {
     publish_date_before: '',
     language: language,
   });
+
+  useEffect(() => {
+    setQuery({
+      ...query,
+      search: search,
+      author: author,
+      theme: topic,
+      language: language,
+    });
+    filterForm.setFieldValue('search', search);
+    filterForm.setFieldValue('author', author);
+    filterForm.setFieldValue('theme', topic);
+    filterForm.setFieldValue('language', language);
+  }, [search, author, topic, language]);
 
   useEffect(() => {
     const payload = {
@@ -152,7 +167,7 @@ export default function ExploreResearchComponent() {
       {context}
       <div className='flex justify-center w-full'>
         <div className='py-16 flex flex-col px-[15px] w-full md:w-[85%] max-w-[1080px]'>
-          <div className='flex flex-row justify-between items-center pt-10'>
+          <div className='flex flex-row justify-between items-center pt-10 lg:mb-[30px]'>
             <Typography.LargeHeading
               text='Explore Research'
               className='mb-0 flex col-span-4'
@@ -164,7 +179,7 @@ export default function ExploreResearchComponent() {
                   : 'No Results'
               }
               bold
-              className='hidden lg:block mb-0 md:mb-[30px] col-span-4'
+              className='hidden lg:block  col-span-4'
             />
             <CustomButton
               text='Pilih filter'
@@ -201,6 +216,7 @@ export default function ExploreResearchComponent() {
                 <div className='flex flex-col gap-1'>
                   <Typography.LargeText text='Search Author' />
                   <CustomInput
+                    value={author}
                     onKeyUp={authorSearch}
                     size='default'
                     placeholder='Search Author'
@@ -212,6 +228,7 @@ export default function ExploreResearchComponent() {
                 <div className='flex flex-col gap-1'>
                   <Typography.LargeText text='Search Topic' />
                   <CustomInput
+                    value={topic}
                     onKeyUp={topicSearch}
                     size='default'
                     placeholder='Search Topic'
@@ -235,7 +252,7 @@ export default function ExploreResearchComponent() {
                       bordered={false}
                       className='w-full py-[2px] px-[6px] outline-none shadow-none border-0'
                       optionFilterProp='children'
-                      value={query.language}
+                      value={language}
                       onChange={(e) =>
                         setQuery({ ...query, page: 1, language: e })
                       }
