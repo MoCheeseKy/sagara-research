@@ -7,9 +7,11 @@ export default function MediumText({
   bold,
   semibold,
   medium,
+  ...props
 }) {
   return (
     <p
+      {...props}
       className={`text-base ${bold ? 'font-bold' : ''} ${
         semibold ? 'font-semibold' : ''
       } ${medium ? 'font-medium' : ''} ${className}`}

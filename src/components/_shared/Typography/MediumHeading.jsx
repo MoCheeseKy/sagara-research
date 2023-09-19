@@ -7,9 +7,11 @@ export default function MediumHeading({
   bold,
   semibold,
   medium,
+  ...props
 }) {
   return (
     <p
+      {...props}
       className={`text-xl md:text-2xl ${bold ? 'font-bold' : ''} ${
         semibold ? 'font-semibold' : ''
       } ${medium ? 'font-medium' : ''} ${className}`}

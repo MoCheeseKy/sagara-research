@@ -7,9 +7,11 @@ export default function LargeHeading({
   bold,
   semibold,
   medium,
+  ...props
 }) {
   return (
     <p
+      {...props}
       className={`text-xl md:text-2xl lg:text-3xl ${bold ? 'font-bold' : ''} ${
         semibold ? 'font-semibold' : ''
       } ${medium ? 'font-medium' : ''} ${className}`}

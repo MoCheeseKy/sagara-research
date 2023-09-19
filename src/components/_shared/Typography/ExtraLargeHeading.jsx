@@ -7,9 +7,11 @@ export default function ExtraLargeHeading({
   bold,
   semibold,
   medium,
+  ...props
 }) {
   return (
     <p
+      {...props}
       className={`text-2xl md:text-3xl lg:text-4xl ${bold ? 'font-bold' : ''} ${
         semibold ? 'font-semibold' : ''
       } ${medium ? 'font-medium' : ''} ${className}`}

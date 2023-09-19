@@ -1,9 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-export default function SmallText({ text, className, bold, semibold, medium }) {
+export default function SmallText({
+  text,
+  className,
+  bold,
+  semibold,
+  medium,
+  ...props
+}) {
   return (
     <p
+      {...props}
       className={`text-sm ${bold ? 'font-bold' : ''} ${
         semibold ? 'font-semibold' : ''
       } ${medium ? 'font-medium' : ''} ${className}`}

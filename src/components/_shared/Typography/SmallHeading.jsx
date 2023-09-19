@@ -7,9 +7,11 @@ export default function SmallHeading({
   bold,
   semibold,
   medium,
+  ...props
 }) {
   return (
     <p
+      {...props}
       className={`text-lg md:text-xl ${bold ? 'font-bold' : ''} ${
         semibold ? 'font-semibold' : ''
       } ${medium ? 'font-medium' : ''} ${className}`}

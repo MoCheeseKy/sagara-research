@@ -1,9 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-export default function Custom({ text, className, bold, semibold, medium }) {
+export default function Custom({
+  text,
+  className,
+  bold,
+  semibold,
+  medium,
+  ...props
+}) {
   return (
     <p
+      {...props}
       className={`${bold ? 'font-bold' : ''} ${
         semibold ? 'font-semibold' : ''
       } ${medium ? 'font-medium' : ''} ${className}`}
