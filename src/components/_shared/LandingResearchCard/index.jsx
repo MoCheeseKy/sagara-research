@@ -57,13 +57,13 @@ export default function LandingResearchCard({
         <div
           onClick={() => CardNavigate('Open Detail')}
           className='w-fit cursor-pointer h-fit hidden md:flex'
-          style={{
-            backgroundImage: `url(${DefaultCover})`,
-            backgroundSize: 'cover',
-          }}
         >
           <img
             src={image ? image : DefaultCover}
+            onError={({ currentTarget }) => {
+              currentTarget.onerror = null;
+              currentTarget.src = DefaultCover;
+            }}
             alt='defaultCover'
             className='md:min-w-[260px] md:max-w-[260px] aspect-[3/4] h-fit bg-cover'
           />
@@ -74,13 +74,13 @@ export default function LandingResearchCard({
               <div
                 onClick={() => CardNavigate('Open Detail')}
                 className='cursor-pointer w-fit h-fit'
-                style={{
-                  backgroundImage: `url(${DefaultCover})`,
-                  backgroundSize: 'cover',
-                }}
               >
                 <img
                   src={image ? image : DefaultCover}
+                  onError={({ currentTarget }) => {
+                    currentTarget.onerror = null;
+                    currentTarget.src = DefaultCover;
+                  }}
                   alt='defaultCover'
                   className='w-[74px] md:hidden md:min-w-[144px] md:max-w-[144px] aspect-[3/4] h-fit bg-cover'
                 />

@@ -198,12 +198,13 @@ export default function LandingComponent() {
                         className='w-fit'
                         onClick={() => CardNavigate('Open Detail', item?.slug)}
                       >
-                        <div
-                          style={{ backgroundImage: `url(${DefaultBanner})` }}
-                          className='w-fit h-fit bg-cover'
-                        >
+                        <div className='w-fit h-fit bg-cover'>
                           <img
                             src={item.image}
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null;
+                              currentTarget.src = DefaultBanner;
+                            }}
                             alt='defaultBanner'
                             className='w-[180px] md:min-w-[180px] md:max-w-[180px] h-fit bg-cover aspect-[3/4]'
                           />

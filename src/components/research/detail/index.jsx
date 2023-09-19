@@ -128,12 +128,13 @@ export default function ResearchDetailComponent() {
       <div className='flex justify-center py-14'>
         <div className='flex flex-col lg:flex-row px-[15px] w-full md:w-[85%] max-w-[1080px] gap-16'>
           <div className='flex flex-col md:flex-row gap-6 w-full'>
-            <div
-              className='w-fit h-fit bg-cover'
-              style={{ backgroundImage: `url(${DefaultCover})` }}
-            >
+            <div className='w-fit h-fit bg-cover'>
               <img
                 src={whitepapersDetail?.image}
+                onError={({ currentTarget }) => {
+                  currentTarget.onerror = null;
+                  currentTarget.src = DefaultCover;
+                }}
                 alt='defaultCover'
                 className='w-full md:w-[124px] md:min-w-[124px] h-fit aspect-[3/4] rounded bg-cover'
               />

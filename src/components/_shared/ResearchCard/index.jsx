@@ -61,12 +61,15 @@ export default function ResearchCard({
                 onClick={() => CardNavigate('Open Detail')}
                 className='w-fit h-fit cursor-pointer'
                 style={{
-                  backgroundImage: `url(${DefaultCover})`,
                   backgroundSize: 'cover',
                 }}
               >
                 <img
                   src={image ? image : DefaultCover}
+                  onError={({ currentTarget }) => {
+                    currentTarget.onerror = null;
+                    currentTarget.src = DefaultCover;
+                  }}
                   alt='defaultCover'
                   className='min-w-[74px] max-w-[74px] md:min-w-[144px] md:max-w-[144px] aspect-[3/4] h-fit bg-cover'
                 />
