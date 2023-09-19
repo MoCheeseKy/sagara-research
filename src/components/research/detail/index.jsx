@@ -27,17 +27,6 @@ export default function ResearchDetailComponent() {
   const [api, context] = notification.useNotification();
   const [messageApi, contextHolder] = message.useMessage();
 
-  useEffect(() => {
-    dispatch(Whitepapers.GetWhitepaperDetail(slug))
-      .unwrap()
-      .then(() => {
-        api.success({ message: 'Success get detail' });
-      })
-      .catch(() => {
-        api.error({ message: 'Failed get detail' });
-      });
-  }, [dispatch, api, slug]);
-
   const initialValues = {
     name: '',
     company: '',
@@ -47,6 +36,43 @@ export default function ResearchDetailComponent() {
     country: undefined,
     term: false,
   };
+
+  let FullTabsItem = [
+    {
+      label: 'Overview',
+      children: (
+        <>
+          <OverviewComponent data={whitepapersDetail} />
+        </>
+      ),
+    },
+    {
+      label: 'Insight',
+      children: (
+        <>
+          <InsightComponent data={whitepapersDetail} />
+        </>
+      ),
+    },
+  ];
+
+  if (whitepapersDetail?.about?.FGD_about) {
+    FullTabsItem = [
+      ...FullTabsItem,
+      {
+        label: 'About FGD',
+        children: (
+          <>
+            <AboutFGDComponent data={whitepapersDetail} />
+          </>
+        ),
+      },
+    ];
+  }
+
+  useEffect(() => {
+    dispatch(Whitepapers.GetWhitepaperDetail(slug)).unwrap();
+  }, [dispatch, api, slug]);
 
   const onSubmitDownload = (e) => {
     if (e.term) {
@@ -89,52 +115,6 @@ export default function ResearchDetailComponent() {
         messageApi.error('Failed save to clipboard');
       });
   };
-
-  const FullTabsItem = [
-    {
-      label: 'Overview',
-      children: (
-        <>
-          <OverviewComponent data={whitepapersDetail} />
-        </>
-      ),
-    },
-    {
-      label: 'Insight',
-      children: (
-        <>
-          <InsightComponent data={whitepapersDetail} />
-        </>
-      ),
-    },
-    {
-      label: 'About FGD',
-      children: (
-        <>
-          <AboutFGDComponent data={whitepapersDetail} />
-        </>
-      ),
-    },
-  ];
-
-  const TabsItemWithoutFGD = [
-    {
-      label: 'Overview',
-      children: (
-        <>
-          <OverviewComponent data={whitepapersDetail} />
-        </>
-      ),
-    },
-    {
-      label: 'Insight',
-      children: (
-        <>
-          <InsightComponent data={whitepapersDetail} />
-        </>
-      ),
-    },
-  ];
 
   return (
     <>
@@ -194,7 +174,7 @@ export default function ResearchDetailComponent() {
                   className='text-[#666]'
                 />
                 <Typography.MediumText
-                  text={`Publication : ${
+                  text={`Published : ${
                     whitepapersDetail?.about?.published_at
                       ? dayjs(whitepapersDetail?.about?.published_at).format(
                           'DD-MM-YYYY'
@@ -255,13 +235,7 @@ export default function ResearchDetailComponent() {
                   className='text-[#b1adad]'
                 />
               </div>
-              <CustomTabs
-                Options={
-                  whitepapersDetail?.about?.FGD_about
-                    ? FullTabsItem
-                    : TabsItemWithoutFGD
-                }
-              />
+              <CustomTabs Options={FullTabsItem} />
             </div>
           </div>
           <div className='w-full h-fit sticky top-24 lg:w-[40%] lg:max-w-[40%]'>
