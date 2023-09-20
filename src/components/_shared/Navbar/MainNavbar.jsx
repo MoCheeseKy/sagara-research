@@ -99,7 +99,7 @@ export default function MainNavbar() {
             />
           </div>
           <BiSearch className='lg:hidden' />
-          <div className='lg:hidden'>
+          <div className='md:hidden'>
             <Button
               style={{
                 borderRadius: '4px',

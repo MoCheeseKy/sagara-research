@@ -202,7 +202,7 @@ export default function LandingComponent() {
                           currentTarget.src = DefaultBanner;
                         }}
                         alt='defaultBanner'
-                        className='w-[180px] md:min-w-[180px] md:max-w-[180px] h-fit bg-cover aspect-[3/4]'
+                        className='w-[180px] md:min-w-[180px] cursor-pointer md:max-w-[180px] h-fit bg-cover aspect-[3/4]'
                       />
                       <div>
                         <Typography.LargeHeading
@@ -295,9 +295,10 @@ export default function LandingComponent() {
         <div className='py-16 pb-10 md:pb-16 flex flex-col  px-[15px] w-full md:w-[85%] max-w-[1080px]'>
           <Typography.LargeHeading
             text='Recent Research'
-            className='mb-[10px] md:mb-[30px]'
+            className='mb-[10px]'
+            bold
           />
-          <div className='grid gap-[15px]'>
+          <div className='grid gap-2 md:gap-[15px]'>
             {recentWhitepaperList?.results
               ?.slice(0, 3)
               .map((whitepaper, indexWhitepaper) => (
@@ -326,9 +327,10 @@ export default function LandingComponent() {
         <div className='pb-16 flex flex-col  px-[15px] w-full md:w-[85%] max-w-[1080px]'>
           <Typography.LargeHeading
             text='Popular Research'
-            className='mb-[10px] md:mb-[30px]'
+            className='mb-[10px]'
+            bold
           />
-          <div className='grid gap-[15px]'>
+          <div className='grid gap-2 md:gap-[15px]'>
             {popularWhitepaperList?.results?.map(
               (whitepaper, indexWhitepaper) => (
                 <React.Fragment key={indexWhitepaper}>
