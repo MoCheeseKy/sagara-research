@@ -3,12 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { searchHandler, resetFilter } from '../../../store/global/filter';
 
-import { Button, Drawer, Collapse } from 'antd';
+import { Button, Drawer } from 'antd';
 import Typography from '../Typography';
 import { Input } from 'antd';
 
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { BiChevronRight, BiSearch } from 'react-icons/bi';
+import { BiSearch } from 'react-icons/bi';
 import { IoCloseOutline } from 'react-icons/io5';
 
 import DarkLogo from '../../../assets/Images/SagaraResearchLogo.gif';
@@ -19,42 +19,6 @@ export default function MainNavbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [Search, setSearch] = useState('');
   const [OpenSearch, setOpenSearch] = useState(false);
-
-  const collapseItem = [
-    {
-      key: 1,
-      label: (
-        <Link to='/research/explore-research' style={{ color: 'white' }}>
-          RESEARCH
-        </Link>
-      ),
-      style: { borderBottom: '1px solid #404040' },
-      showArrow: false,
-      collapsible: 'disabled',
-    },
-    {
-      key: 2,
-      label: (
-        <Link to='/about-us' style={{ color: 'white' }}>
-          ABOUT
-        </Link>
-      ),
-      style: { borderBottom: '1px solid #404040' },
-      showArrow: false,
-      collapsible: 'disabled',
-    },
-    {
-      key: 3,
-      label: (
-        <Link to='/about-us' style={{ color: 'white' }}>
-          CONSULT WITH SAGARA
-        </Link>
-      ),
-      style: { borderBottom: '1px solid #404040' },
-      showArrow: false,
-      collapsible: 'disabled',
-    },
-  ];
 
   function FilterSearch(e) {
     if (e.key === 'Enter') {
@@ -71,7 +35,7 @@ export default function MainNavbar() {
 
   return (
     <>
-      <nav className='flex fixed gap-16 lg:gap-0 z-[999] bg-white w-full items-center justify-between box-border py-[16px] px-[10px] md:px-10 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.12)]'>
+      <nav className='flex fixed gap-16 lg:gap-0 z-[99999] bg-white w-full items-center justify-between box-border py-[16px] px-[10px] md:px-10 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.12)]'>
         {OpenSearch ? (
           <>
             <div className='border-b-2 w-full'>
@@ -146,7 +110,7 @@ export default function MainNavbar() {
                 borderRadius: '4px',
                 border: 'none',
               }}
-              onClick={() => setDrawerOpen(true)}
+              onClick={() => setDrawerOpen(!drawerOpen)}
             >
               <GiHamburgerMenu style={{ color: '#555' }} />
             </Button>
@@ -156,37 +120,35 @@ export default function MainNavbar() {
 
       {/* Navigation for mobile */}
       <Drawer
-        title={<span style={{ color: 'white' }}>Menu</span>}
-        placement='left'
+        placement='top'
         closable={false}
         onClose={() => setDrawerOpen(false)}
         open={drawerOpen}
-        width={300}
-        headerStyle={{ textAlign: 'center', backgroundColor: '#262626' }}
-        bodyStyle={{ padding: '0', backgroundColor: '#2a2a2a' }}
-        style={{ color: 'white' }}
+        height='fit-content'
+        bodyStyle={{
+          padding: '0',
+          backgroundColor: '#ffffff',
+          height: 'fit-content',
+        }}
+        style={{
+          color: 'white',
+          zIndex: '10',
+          paddingTop: '64px',
+          paddingBottom: '0px',
+        }}
+        className='bg-primary'
       >
-        <div className='flex flex-col'>
-          <Collapse
-            accordion
-            ghost
-            bordered={false}
-            items={collapseItem}
-            expandIconPosition='end'
-            expandIcon={(e) => {
-              return (
-                <BiChevronRight
-                  color='white'
-                  size={24}
-                  className={`transition ${
-                    e.isActive ? 'rotate-90' : 'rotate-0'
-                  }`}
-                />
-              );
-            }}
-            style={{ color: 'white' }}
-          />
-        </div>
+        <Link className='h-fit m-0 p-0 ' to='/research/explore-research'>
+          <div className='text-black  px-[15px] pt-[24px]'>RESEARCH</div>
+        </Link>
+        <Link className='h-fit m-0 p-0 ' to='/about-us'>
+          <div className='text-black  px-[15px] pt-[24px]'>ABOUT</div>
+        </Link>
+        <Link className='h-fit m-0 p-0 ' to='/contact-us'>
+          <div className='text-black  px-[15px] py-[24px]'>
+            CONSULT WITH SAGARA
+          </div>
+        </Link>
       </Drawer>
     </>
   );
