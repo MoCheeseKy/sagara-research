@@ -62,7 +62,7 @@ export default function LandingResearchCard({
             currentTarget.src = DefaultCover;
           }}
           alt='defaultCover'
-          className='cursor-pointer md:min-w-[260px] md:max-w-[260px] aspect-[3/4] h-fit bg-cover'
+          className='cursor-pointer md:min-w-[260px] md:max-w-[260px] aspect-[3/4] h-fit bg-cover hidden md:block'
         />
         <div className='p-6 md:p-[30px] flex flex-col'>
           <div className='flex flex-col gap-2'>
