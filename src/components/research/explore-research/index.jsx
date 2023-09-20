@@ -248,7 +248,7 @@ export default function ExploreResearchComponent() {
                   <Typography.LargeText text='Search by Language' />
                   <div className='bg-white rounded-[10px]'>
                     <CustomSelect
-                      placeholder='Select Research Objective'
+                      placeholder='Select Language'
                       bordered={false}
                       className='w-full py-[2px] px-[6px] outline-none shadow-none border-0'
                       optionFilterProp='children'
@@ -444,10 +444,10 @@ export default function ExploreResearchComponent() {
                 </Form.Item>
               </div>
               <div>
-                <Typography.LargeText text='Search by Date' />
+                <Typography.LargeText text='Search by Language' />
                 <Form.Item name='language' className='mb-[-0px]'>
                   <CustomSelect
-                    placeholder='Select Research Objective'
+                    placeholder='Select Language'
                     bordered={false}
                     className='w-full py-[2px] px-[6px] outline-none shadow-none border-0'
                     optionFilterProp='children'
