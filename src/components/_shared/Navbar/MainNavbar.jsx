@@ -64,7 +64,7 @@ export default function MainNavbar() {
                 <Link to='/research/explore-research'>
                   <Typography.MediumText text='RESEARCH' />
                 </Link>
-                <Link to='/about-us'>
+                <Link to='/about-sagara-research'>
                   <Typography.MediumText text='ABOUT' />
                 </Link>
                 <Link to='/contact-us'>
@@ -141,7 +141,7 @@ export default function MainNavbar() {
         <Link className='h-fit m-0 p-0 ' to='/research/explore-research'>
           <div className='text-black  px-[15px] pt-[24px]'>RESEARCH</div>
         </Link>
-        <Link className='h-fit m-0 p-0 ' to='/about-us'>
+        <Link className='h-fit m-0 p-0 ' to='/about-sagara-research'>
           <div className='text-black  px-[15px] pt-[24px]'>ABOUT</div>
         </Link>
         <Link className='h-fit m-0 p-0 ' to='/contact-us'>
