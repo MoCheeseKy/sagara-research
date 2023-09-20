@@ -6,7 +6,7 @@ import MainLayout from './layouts/MainLayout';
 import Landing from './screens';
 import ExploreResearch from './screens/research/explore-research';
 import ResearchDetail from './screens/research/detail';
-import AboutUs from './screens/about-us';
+import AboutUs from './screens/about-sagara-research';
 import ContactUs from './screens/contact-us';
 
 // Importing Image :
@@ -22,7 +22,7 @@ function App() {
           element={<ExploreResearch />}
         />
         <Route path='/research/detail/:slug' element={<ResearchDetail />} />
-        <Route path='/about-us' element={<AboutUs />} />
+        <Route path='/about-sagara-research' element={<AboutUs />} />
         <Route path='/contact-us' element={<ContactUs />} />
 
         {/* Handle Not Found */}
