@@ -1,5 +1,5 @@
 // import Funtional
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../../service';
@@ -20,6 +20,7 @@ import FormDownload from '../../_shared/Form/FormDownload';
 import OverviewComponent from './overview';
 import AboutFGDComponent from './aboutFGD';
 import InsightComponent from './insight';
+import SharePopup from './sharePopup';
 
 // Import Icon
 import { BiShareAlt } from 'react-icons/bi';
@@ -35,7 +36,9 @@ export default function ResearchDetailComponent() {
   const navigate = useNavigate();
   const { whitepapersDetail } = useSelector((state) => state.whitepaper);
   const [api, context] = notification.useNotification();
-  const [messageApi, contextHolder] = message.useMessage();
+  const [messageApi, messageContext] = message.useMessage();
+
+  const [modalOpen, setModalOpen] = useState(false);
 
   const initialValues = {
     name: '',
@@ -147,7 +150,7 @@ export default function ResearchDetailComponent() {
   return (
     <>
       {context}
-      {contextHolder}
+      {messageContext}
       <div className='pt-[65px]' />
       <div className='flex justify-center py-14'>
         <div className='flex flex-col lg:flex-row px-[15px] w-full md:w-[85%] max-w-[1080px] gap-16'>
@@ -182,7 +185,7 @@ export default function ResearchDetailComponent() {
                     </React.Fragment>
                   ))}
                 </div>
-                <BiShareAlt />
+                <BiShareAlt className='cursor-pointer' onClick={() => setModalOpen(true)} />
               </div>
               <Typography.MediumHeading
                 text={whitepapersDetail?.title ? whitepapersDetail?.title : '-'}
@@ -333,6 +336,11 @@ export default function ResearchDetailComponent() {
           </div>
         </div>
       </div>
+      <SharePopup
+        open={modalOpen}
+        onClose={() => setModalOpen(false)} title={whitepapersDetail?.title}
+        saveToClipboard={saveToClipboard}
+      />
     </>
   );
 }
