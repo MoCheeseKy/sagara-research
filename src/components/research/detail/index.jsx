@@ -1,8 +1,14 @@
 // import Funtional
 import React, { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Whitepapers } from '../../../service';
-import { useParams } from 'react-router-dom';
+import {
+  resetFilter,
+  authorHandler,
+  topicHandler,
+  languageHandler,
+} from '../../../store/global/filter';
 import axios from 'axios';
 import dayjs from 'dayjs';
 
@@ -23,6 +29,7 @@ export default function ResearchDetailComponent() {
   const slug = params.slug;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { whitepapersDetail } = useSelector((state) => state.whitepaper);
   const [api, context] = notification.useNotification();
   const [messageApi, contextHolder] = message.useMessage();
@@ -109,7 +116,21 @@ export default function ResearchDetailComponent() {
     }
   };
 
-  const saveToClipboard = () => {
+  function CardNavigate(type, value) {
+    if (type === 'Topic Filter') {
+      dispatch(resetFilter());
+      dispatch(topicHandler(value));
+    } else if (type === 'Author Filter') {
+      dispatch(resetFilter());
+      dispatch(authorHandler(value));
+    } else {
+      dispatch(resetFilter());
+      dispatch(languageHandler(value));
+    }
+    navigate(`/research/explore-research`);
+  }
+
+  function saveToClipboard() {
     navigator.clipboard
       .writeText(window.location.href)
       .then(() => {
@@ -118,7 +139,7 @@ export default function ResearchDetailComponent() {
       .catch(() => {
         messageApi.error('Failed save to clipboard');
       });
-  };
+  }
 
   return (
     <>
@@ -143,12 +164,15 @@ export default function ResearchDetailComponent() {
               <div className='flex gap-[6px]'>
                 {whitepapersDetail?.theme?.map((topic, indexTopic) => (
                   <React.Fragment key={indexTopic}>
-                    <div className='border-primary border-[1px] px-4 rounded-lg w-fit'>
+                    <button
+                      onClick={() => CardNavigate('Topic Filter', topic?.title)}
+                      className='border-primary border-[1px] px-4 rounded-lg w-fit'
+                    >
                       <Typography.Custom
                         text={topic?.title ? topic?.title : '-'}
                         className='text-primary text-xs'
                       />
-                    </div>
+                    </button>
                   </React.Fragment>
                 ))}
               </div>
@@ -165,70 +189,109 @@ export default function ResearchDetailComponent() {
                 }
               />
               <div className='grid grid-cols-1 md:grid-cols-2 border-b-2 border-t-2  py-6'>
-                <Typography.MediumText
-                  text={`Author : ${
-                    whitepapersDetail?.author ? whitepapersDetail?.author : '-'
-                  }`}
-                  className='text-[#666]'
-                />
-                <Typography.MediumText
-                  text={`Language : ${
-                    whitepapersDetail?.langguage
-                      ? whitepapersDetail?.langguage
-                      : '-'
-                  }`}
-                  className='text-[#666]'
-                />
-                <Typography.MediumText
-                  text={`Published : ${
-                    whitepapersDetail?.about?.published_at
-                      ? dayjs(whitepapersDetail?.about?.published_at).format(
-                          'DD-MM-YYYY'
-                        )
-                      : '-'
-                  }`}
-                  className='text-[#666]'
-                />
-                <Typography.MediumText
-                  text={`FDG Date : ${
-                    whitepapersDetail?.about?.FGD_date
-                      ? whitepapersDetail?.about?.FGD_date
-                      : '-'
-                  }`}
-                  className='text-[#666]'
-                />
-                <Typography.MediumText
-                  text={`Editor : ${
-                    whitepapersDetail?.about?.editor
-                      ? whitepapersDetail?.about?.editor
-                      : '-'
-                  }`}
-                  className='text-[#666]'
-                />
-                <Typography.MediumText
-                  text={`License : ${
-                    whitepapersDetail?.about?.license
-                      ? whitepapersDetail?.about?.license
-                      : '-'
-                  }`}
-                  className='text-[#666]'
-                />
-                <Typography.MediumText
-                  text={`Page : ${
-                    whitepapersDetail?.about?.length
-                      ? whitepapersDetail?.about?.length
-                      : '0'
-                  }-page(s)`}
-                  className='text-[#666]'
-                />
-                <Typography.MediumText
-                  text={`Download : ${
-                    whitepapersDetail?.count_of_downloads
-                      ? whitepapersDetail?.count_of_downloads
-                      : '0'
-                  }`}
-                  className='text-[#666]'
-                />
+                <button
+                  onClick={() =>
+                    CardNavigate('Author Filter', whitepapersDetail?.author)
+                  }
+                  className='w-fit flex gap-1 [&>*:nth-child(1)]:text-[#666] [&>*:nth-child(2)]:text-black hover-to-blue'
+                >
+                  <Typography.MediumText text='Author:' />
+                  <Typography.MediumText
+                    text={`${
+                      whitepapersDetail?.author
+                        ? whitepapersDetail?.author
+                        : '-'
+                    }`}
+                    bold
+                  />
+                </button>
+                <button
+                  onClick={() =>
+                    CardNavigate(
+                      'Language Filter',
+                      whitepapersDetail?.langguage
+                    )
+                  }
+                  className='w-fit flex gap-1 [&>*:nth-child(1)]:text-[#666] [&>*:nth-child(2)]:text-black hover-to-blue'
+                >
+                  <Typography.MediumText text='Language:' />
+                  <Typography.MediumText
+                    text={`${
+                      whitepapersDetail?.langguage
+                        ? whitepapersDetail?.langguage
+                        : '-'
+                    }`}
+                    bold
+                  />
+                </button>
+                <div className='flex gap-1 [&>*:nth-child(1)]:text-[#666] [&>*:nth-child(2)]:text-black'>
+                  <Typography.MediumText text='Published:' />
+                  <Typography.MediumText
+                    text={`${
+                      whitepapersDetail?.about?.published_at
+                        ? dayjs(whitepapersDetail?.about?.published_at).format(
+                            'DD-MM-YYYY'
+                          )
+                        : '-'
+                    }`}
+                    bold
+                  />
+                </div>
+                <div className='flex gap-1 [&>*:nth-child(1)]:text-[#666] [&>*:nth-child(2)]:text-black'>
+                  <Typography.MediumText text='FDG Date' />
+                  <Typography.MediumText
+                    text={`${
+                      whitepapersDetail?.about?.FGD_date
+                        ? whitepapersDetail?.about?.FGD_date
+                        : '-'
+                    }`}
+                    bold
+                  />
+                </div>
+                <div className='flex gap-1 [&>*:nth-child(1)]:text-[#666] [&>*:nth-child(2)]:text-black'>
+                  <Typography.MediumText text='Editor:' />
+                  <Typography.MediumText
+                    text={`${
+                      whitepapersDetail?.about?.editor
+                        ? whitepapersDetail?.about?.editor
+                        : '-'
+                    }`}
+                    bold
+                  />
+                </div>
+                <div className='flex gap-1 [&>*:nth-child(1)]:text-[#666] [&>*:nth-child(2)]:text-black'>
+                  <Typography.MediumText text='License:' />
+                  <Typography.MediumText
+                    text={`${
+                      whitepapersDetail?.about?.license
+                        ? whitepapersDetail?.about?.license
+                        : '-'
+                    }`}
+                    bold
+                  />
+                </div>
+                <div className='flex gap-1 [&>*:nth-child(1)]:text-[#666] [&>*:nth-child(2)]:text-black'>
+                  <Typography.MediumText text='Page:' />
+                  <Typography.MediumText
+                    text={`${
+                      whitepapersDetail?.about?.length
+                        ? whitepapersDetail?.about?.length
+                        : '0'
+                    }-page(s)`}
+                    bold
+                  />
+                </div>
+                <div className='flex gap-1 [&>*:nth-child(1)]:text-[#666] [&>*:nth-child(2)]:text-black'>
+                  <Typography.MediumText text='Download:' />
+                  <Typography.MediumText
+                    text={`${
+                      whitepapersDetail?.count_of_downloads
+                        ? whitepapersDetail?.count_of_downloads
+                        : '0'
+                    }`}
+                    bold
+                  />
+                </div>
               </div>
               <div className='border-b-2 pb-6'>
                 <Typography.LargeText

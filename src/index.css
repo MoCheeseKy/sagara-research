@@ -60,6 +60,12 @@ span.custom-borderless-input .ant-input {
   content: '' !important;
 }
 
+.hover-to-blue:hover > * {
+  color: #5fa7f6 !important;
+  font-weight: 400 !important;
+  text-decoration: underline !important;
+}
+
 .carousel-button {
   display: block !important;
   justify-content: center;
