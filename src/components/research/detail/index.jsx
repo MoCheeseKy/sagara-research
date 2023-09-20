@@ -21,6 +21,9 @@ import OverviewComponent from './overview';
 import AboutFGDComponent from './aboutFGD';
 import InsightComponent from './insight';
 
+// Import Icon
+import { BiShareAlt } from 'react-icons/bi';
+
 // Import Image
 import DefaultCover from '../../../assets/Images/DefaultWhitepaperCover.svg';
 
@@ -161,20 +164,25 @@ export default function ResearchDetailComponent() {
               />
             </div>
             <div className='flex flex-col gap-4'>
-              <div className='flex gap-[6px]'>
-                {whitepapersDetail?.theme?.map((topic, indexTopic) => (
-                  <React.Fragment key={indexTopic}>
-                    <button
-                      onClick={() => CardNavigate('Topic Filter', topic?.title)}
-                      className='border-primary border-[1px] px-4 rounded-lg w-fit'
-                    >
-                      <Typography.Custom
-                        text={topic?.title ? topic?.title : '-'}
-                        className='text-primary text-xs'
-                      />
-                    </button>
-                  </React.Fragment>
-                ))}
+              <div className='flex justify-between gap-2'>
+                <div className='flex gap-[6px]'>
+                  {whitepapersDetail?.theme?.map((topic, indexTopic) => (
+                    <React.Fragment key={indexTopic}>
+                      <button
+                        onClick={() =>
+                          CardNavigate('Topic Filter', topic?.title)
+                        }
+                        className='border-primary border-[1px] px-4 rounded-lg w-fit'
+                      >
+                        <Typography.Custom
+                          text={topic?.title ? topic?.title : '-'}
+                          className='text-primary text-xs'
+                        />
+                      </button>
+                    </React.Fragment>
+                  ))}
+                </div>
+                <BiShareAlt />
               </div>
               <Typography.MediumHeading
                 text={whitepapersDetail?.title ? whitepapersDetail?.title : '-'}
