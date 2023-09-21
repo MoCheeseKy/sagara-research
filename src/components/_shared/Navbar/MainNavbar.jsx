@@ -56,7 +56,7 @@ export default function MainNavbar() {
                   <img
                     src={DarkLogo}
                     className='w-[164px] bg-white'
-                    alt='logo'
+                    alt='logoSagaraResearch'
                   />
                 </Link>
               </div>
