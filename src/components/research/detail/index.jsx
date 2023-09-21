@@ -185,7 +185,10 @@ export default function ResearchDetailComponent() {
                     </React.Fragment>
                   ))}
                 </div>
-                <BiShareAlt className='cursor-pointer' onClick={() => setModalOpen(true)} />
+                <BiShareAlt
+                  className='cursor-pointer mr-8 md:mr-0'
+                  onClick={() => setModalOpen(true)}
+                />
               </div>
               <Typography.MediumHeading
                 text={whitepapersDetail?.title ? whitepapersDetail?.title : '-'}
@@ -338,8 +341,12 @@ export default function ResearchDetailComponent() {
       </div>
       <SharePopup
         open={modalOpen}
-        onClose={() => setModalOpen(false)} title={whitepapersDetail?.title}
+        onClose={() => setModalOpen(false)}
+        title={whitepapersDetail?.title}
         saveToClipboard={saveToClipboard}
+        author={whitepapersDetail?.author}
+        image={whitepapersDetail?.image}
+        language={whitepapersDetail?.langguage}
       />
     </>
   );
