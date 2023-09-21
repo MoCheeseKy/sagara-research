@@ -23,7 +23,7 @@ function App() {
         />
         <Route path='/research/detail/:slug' element={<ResearchDetail />} />
         <Route path='/about-sagara-research' element={<AboutUs />} />
-        <Route path='/contact-us' element={<ContactUs />} />
+        <Route path='/research/contact-us' element={<ContactUs />} />
 
         {/* Handle Not Found */}
         <Route

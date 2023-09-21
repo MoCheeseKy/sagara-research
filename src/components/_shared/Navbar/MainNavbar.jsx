@@ -52,7 +52,7 @@ export default function MainNavbar() {
           <>
             <div className='flex gap-[70px]'>
               <div>
-                <Link to='/'>
+                <Link to='/research'>
                   <img
                     src={DarkLogo}
                     className='w-[164px] bg-white'
@@ -67,7 +67,7 @@ export default function MainNavbar() {
                 <Link to='/about-sagara-research'>
                   <Typography.MediumText text='ABOUT' />
                 </Link>
-                <Link to='/contact-us'>
+                <Link to='/research/contact-us'>
                   <Typography.MediumText
                     bold
                     className='text-primary'
@@ -138,13 +138,16 @@ export default function MainNavbar() {
         }}
         className='bg-primary'
       >
+        <Link className='h-fit m-0 p-0 ' to='/research'>
+          <div className='text-black  px-[15px] pt-[24px]'>HOME</div>
+        </Link>
         <Link className='h-fit m-0 p-0 ' to='/research/explore-research'>
           <div className='text-black  px-[15px] pt-[24px]'>RESEARCH</div>
         </Link>
         <Link className='h-fit m-0 p-0 ' to='/about-sagara-research'>
           <div className='text-black  px-[15px] pt-[24px]'>ABOUT</div>
         </Link>
-        <Link className='h-fit m-0 p-0 ' to='/contact-us'>
+        <Link className='h-fit m-0 p-0 ' to='/research/contact-us'>
           <div className='text-black  px-[15px] py-[24px]'>
             CONSULT WITH SAGARA
           </div>
