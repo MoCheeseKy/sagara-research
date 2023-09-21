@@ -2,7 +2,7 @@
 // Import Functional
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchHandler } from '../../../store/global/filter';
+import { searchHandler, authorHandler, languageHandler, topicHandler } from '../../../store/global/filter';
 import { Whitepapers } from '../../../service';
 import dayjs from 'dayjs';
 
@@ -27,6 +27,8 @@ import { LiaDownloadSolid } from 'react-icons/lia';
 import { BiUser, BiSearch } from 'react-icons/bi';
 import { GiChampions } from 'react-icons/gi';
 import { PiShareDuotone } from 'react-icons/pi';
+import { HiLanguage } from 'react-icons/hi2';
+import { AiOutlineClose } from 'react-icons/ai'
 
 // Image Import
 import EmptyState from '../../../assets/Images/EmptyState.svg';
@@ -143,6 +145,7 @@ export default function ExploreResearchComponent() {
         ordering: e.ordering,
         publish_date_after: dayjs(e.range_time[0]).format('YYYY-MM-DD'),
         publish_date_before: dayjs(e.range_time[1]).format('YYYY-MM-DD'),
+        language: e.language
       };
     } else {
       value = {
@@ -152,6 +155,7 @@ export default function ExploreResearchComponent() {
         ordering: e.ordering,
         publish_date_after: '',
         publish_date_before: '',
+        language: e.language
       };
     }
     setFilterModalOpen(false);
@@ -160,13 +164,17 @@ export default function ExploreResearchComponent() {
       ...value,
       page: 1,
     });
+    dispatch(searchHandler(value.search))
+    dispatch(authorHandler(value.author))
+    dispatch(topicHandler(value.theme))
+    dispatch(languageHandler(value.language))
   };
 
   return (
     <>
       {context}
       <div className='flex justify-center w-full'>
-        <div className='py-16 flex flex-col px-[15px] w-full md:w-[85%] max-w-[1080px]'>
+        <div className='py-16 flex flex-col px-[15px] w-full md:w-[85%] max-w-[1080px] gap-[15px]'>
           <div className='flex flex-row justify-between items-center pt-10 lg:mb-[30px]'>
             <Typography.LargeHeading
               text='Explore Research'
@@ -267,6 +275,52 @@ export default function ExploreResearchComponent() {
               </div>
             </div>
             <div className='grid w-full gap-[15px] lg:mt-[-30px]'>
+              <div className='flex flex-row gap-2 lg:hidden'>
+                {search && (
+                  <div className='border-primary border-[1px] px-3 rounded-lg w-fit flex items-center gap-1'>
+                    <BiSearch className='text-primary' />
+                    <Typography.Custom text={search} className='text-primary text-xs' />
+                    <AiOutlineClose
+                      size={14}
+                      className='text-primary'
+                      onClick={() => dispatch(searchHandler(''))}
+                    />
+                  </div>
+                )}
+                {author && (
+                  <div className='border-primary border-[1px] px-3 rounded-lg w-fit flex items-center gap-1'>
+                    <BiUser className='text-primary' />
+                    <Typography.Custom text={author} className='text-primary text-xs' />
+                    <AiOutlineClose
+                      size={14}
+                      className='text-primary'
+                      onClick={() => dispatch(authorHandler(''))}
+                    />
+                  </div>
+                )}
+                {topic && (
+                  <div className='border-primary border-[1px] px-3 rounded-lg w-fit flex items-center gap-1'>
+                    {/* <BiSearch className='text-primary' /> */}
+                    <Typography.Custom text={topic} className='text-primary text-xs' />
+                    <AiOutlineClose
+                      size={14}
+                      className='text-primary'
+                      onClick={() => dispatch(topicHandler(''))}
+                    />
+                  </div>
+                )}
+                {language && (
+                  <div className='border-primary border-[1px] px-3 rounded-lg w-fit flex items-center gap-1'>
+                    <HiLanguage className='text-primary' />
+                    <Typography.Custom text={language} className='text-primary text-xs' />
+                    <AiOutlineClose
+                      size={14}
+                      className='text-primary'
+                      onClick={() => dispatch(languageHandler(''))}
+                    />
+                  </div>
+                )}
+              </div>
               <div>
                 <Typography.LargeText
                   text={
