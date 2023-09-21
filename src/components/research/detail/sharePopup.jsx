@@ -3,15 +3,17 @@ import { Modal } from 'antd';
 import {
   WhatsappShareButton,
   EmailShareButton,
-  FacebookShareButton
+  TelegramShareButton,
+  LinkedinShareButton,
+  LineShareButton
 } from 'react-share';
 import {
   AiOutlineMail,
   AiOutlineWhatsApp,
-  AiOutlineFacebook,
-  AiOutlineCopy
-  // AiOutlineInstagram,
+  AiOutlineCopy,
+  AiOutlineLinkedin
 } from 'react-icons/ai'
+import { BiLogoTelegram } from 'react-icons/bi'
 
 export default function SharePopup({
   open = false,
@@ -30,9 +32,19 @@ export default function SharePopup({
         <WhatsappShareButton url={window.location.href} title='Share Research'>
           <AiOutlineWhatsApp size={50} />
         </WhatsappShareButton>
-        <FacebookShareButton url={window.location.href}>
-          <AiOutlineFacebook size={50} />
-        </FacebookShareButton>
+        <TelegramShareButton url={window.location.href}>
+          <BiLogoTelegram size={50} />
+        </TelegramShareButton>
+        <LineShareButton url={window.location.href}>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg"
+            alt="line logo"
+            className='w-[50px] h-[50px]'
+          />
+        </LineShareButton>
+        <LinkedinShareButton url={window.location.href}>
+          <AiOutlineLinkedin size={50} />
+        </LinkedinShareButton>
         <EmailShareButton url={window.location.href} subject='Share Research'>
           <AiOutlineMail size={50} />
         </EmailShareButton>
