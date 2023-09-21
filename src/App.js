@@ -16,7 +16,7 @@ function App() {
   return (
     <Suspense fallback={<>Loading</>}>
       <Routes>
-        <Route path='/' element={<Landing />} />
+        <Route path='/research' element={<Landing />} />
         <Route
           path='/research/explore-research'
           element={<ExploreResearch />}
