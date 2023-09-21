@@ -85,12 +85,12 @@ export default function ContactUsComponent() {
               </div>
               <Carousel autoplay>
                 <iframe
-                  className='rounded w-full aspect-[16/7]'
+                  className='rounded w-full aspect-square lg:aspect-[16/7]'
                   title='Maps'
                   src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.349417668403!2d106.81123337453113!3d-6.21756846089696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f15fc43cc98d%3A0x5e3e0644cb7346a9!2sSagara%20Technology%20Jakarta!5e0!3m2!1sen!2sid!4v1689152197001!5m2!1sen!2sid'
                 />
                 <iframe
-                  className='rounded w-full aspect-[16/7]'
+                  className='rounded w-full aspect-square lg:aspect-[16/7]'
                   title='Maps'
                   src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.4426041654483!2d107.68597571183649!3d-6.9570019680863675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e83fb5765d65%3A0xe3bfb9fb2c7588c7!2sSagara%20Technology%20Bandung%20Headquarters%20%E2%80%A2%20Centre%20of%20Innovation!5e0!3m2!1sid!2sid!4v1695290361154!5m2!1sid!2sid'
                 />
