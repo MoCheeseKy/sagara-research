@@ -18,6 +18,7 @@ import Typography from '../_shared/Typography';
 import LandingResearchCard from '../_shared/LandingResearchCard';
 import CustomButton from '../_shared/CustomButton';
 import FormDownload from '../_shared/Form/FormDownload';
+import ThanksPopup from '../_shared/ThanksPopup';
 
 // Import Icon
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
@@ -34,6 +35,7 @@ export default function LandingComponent() {
   const [api, context] = notification.useNotification();
   const [modalOpen, setModalOpen] = useState(false);
   const carouselRef = useRef(null);
+  const [OpenThanksPopup, setOpenThanksPopup] = useState(false);
 
   const {
     recentWhitepaperList,
@@ -355,6 +357,8 @@ export default function LandingComponent() {
           </div>
         </div>
       </div>
+
+      {/* Popup */}
       <Modal
         open={modalOpen}
         onCancel={() => setModalOpen(false)}
@@ -370,6 +374,12 @@ export default function LandingComponent() {
           />
         </>
       </Modal>
+
+      <ThanksPopup
+        open={OpenThanksPopup}
+        onClose={() => setOpenThanksPopup(false)}
+        title={highlightWhitepaperList?.results[selectedInsight]?.title}
+      />
     </>
   );
 }
