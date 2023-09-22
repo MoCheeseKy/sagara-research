@@ -13,14 +13,15 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 
 // Import Component
-import { Form, notification, message } from 'antd';
+import { Form, notification } from 'antd';
 import Typography from '../../_shared/Typography';
 import CustomTabs from '../../_shared/CustomTabs';
 import FormDownload from '../../_shared/Form/FormDownload';
 import OverviewComponent from './overview';
 import AboutFGDComponent from './aboutFGD';
 import InsightComponent from './insight';
-import SharePopup from './sharePopup';
+import SharePopup from '../../_shared/SharePopup';
+import ThanksPopup from '../../_shared/ThanksPopup';
 
 // Import Icon
 import { BiShareAlt } from 'react-icons/bi';
@@ -36,9 +37,9 @@ export default function ResearchDetailComponent() {
   const navigate = useNavigate();
   const { whitepapersDetail } = useSelector((state) => state.whitepaper);
   const [api, context] = notification.useNotification();
-  const [messageApi, messageContext] = message.useMessage();
 
-  const [modalOpen, setModalOpen] = useState(false);
+  const [OpenSharePopup, setOpenSharePopup] = useState(false);
+  const [OpenThanksPopup, setOpenThanksPopup] = useState(false);
 
   const initialValues = {
     name: '',
@@ -110,6 +111,7 @@ export default function ResearchDetailComponent() {
         .unwrap()
         .then(() => {
           api.success({ message: 'Success Download' });
+          setOpenThanksPopup(true);
           axios.post(
             `https://api.telegram.org/bot${TelegramToken}/sendMessage?chat_id=${ChatID}&text=${Messages}`
           );
@@ -136,21 +138,10 @@ export default function ResearchDetailComponent() {
     navigate(`/research/explore-research`);
   }
 
-  function saveToClipboard() {
-    navigator.clipboard
-      .writeText(window.location.href)
-      .then(() => {
-        messageApi.success('Copied to clipboard');
-      })
-      .catch(() => {
-        messageApi.error('Failed save to clipboard');
-      });
-  }
-
   return (
     <>
       {context}
-      {messageContext}
+
       <div className='pt-[65px]' />
       <div className='flex justify-center py-14'>
         <div className='flex flex-col lg:flex-row px-[15px] w-full md:w-[85%] max-w-[1080px] gap-16'>
@@ -187,7 +178,7 @@ export default function ResearchDetailComponent() {
                 </div>
                 <BiShareAlt
                   className='cursor-pointer mr-8 md:mr-0'
-                  onClick={() => setModalOpen(true)}
+                  onClick={() => setOpenSharePopup(true)}
                 />
               </div>
               <Typography.MediumHeading
@@ -339,14 +330,20 @@ export default function ResearchDetailComponent() {
           </div>
         </div>
       </div>
+
+      {/* Popup Section */}
       <SharePopup
-        open={modalOpen}
-        onClose={() => setModalOpen(false)}
+        open={OpenSharePopup}
+        onClose={() => setOpenSharePopup(false)}
         title={whitepapersDetail?.title}
-        saveToClipboard={saveToClipboard}
         author={whitepapersDetail?.author}
         image={whitepapersDetail?.image}
         language={whitepapersDetail?.langguage}
+      />
+      <ThanksPopup
+        open={OpenThanksPopup}
+        onClose={() => setOpenThanksPopup(false)}
+        title={whitepapersDetail?.title}
       />
     </>
   );

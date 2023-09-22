@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: Roboto;
-  src: url(../src/assets/Font/Roboto/Roboto-Regular.ttf);
+  font-family: Inter;
+  src: url(../src/assets/Font/Inter/inter.ttf);
 }
 
 * {
   margin: 0;
-  font-family: Roboto !important;
+  font-family: Inter !important;
   padding: 0;
 }
 
